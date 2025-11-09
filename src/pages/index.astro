@@ -2,21 +2,14 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-type BlogPost = {
-  slug: string;
-  data: {
-    title: string;
-    pubDate: Date;
-    description: string;
-    author: string;
-  };
-};
-
 // Social media links
 const socialLinks = [
   { name: "Twitter", url: "https://twitter.com/shinjipons" },
   { name: "GitHub", url: "https://github.com/shinjipons" },
   { name: "LinkedIn", url: "https://linkedin.com/in/shinjipons" },
+  { name: "Figma", url: "https://www.figma.com/@shinjipons" },
+  { name: "Instagram", url: "https://www.instagram.com/shinji.pons" },
+  { name: "Cal.com", url: "https://cal.com/shinjipons/" },
 ];
 
 // Work experience
@@ -24,7 +17,7 @@ const workExperience = [
   {
     company: "Formlabs",
     role: "Product designer",
-    period: "2025 - Present",
+    period: "2025—",
   },
   {
     company: "Modyfi",
@@ -34,27 +27,27 @@ const workExperience = [
   {
     company: "Ragdoll Dynamics",
     role: "Product designer",
-    period: "2023 - 2024",
+    period: "2023—24",
   },
   {
     company: "Frostbite",
     role: "Product designer",
-    period: "2022 - 2023",
+    period: "2022—23",
   },
   {
     company: "LEGO",
     role: "Product designer",
-    period: "2019 - 2021",
+    period: "2019—21",
   },
   {
     company: "Autodesk",
     role: "Product designer",
-    period: "2017 - 2019",
+    period: "2017—19",
   },
   {
     company: "Thomson Reuters",
     role: "Product designer",
-    period: "2016 - 2017",
+    period: "2016—17",
   },
   {
     company: "Microsoft",
@@ -78,22 +71,51 @@ const education = [
   {
     institution: "London College of Communication",
     degree: "Bachelor of Arts, Graphic & Media Design",
-    period: "2010 - 2014",
+    period: "2010—14",
   },
 ];
 
 // Work projects (most proud projects)
 const workProjects = [
   {
-    name: "Project Alpha",
-    description:
-      "A revolutionary web application that transformed how users interact with data.",
-    url: "https://example.com/project-alpha",
+    name: "PreForm by Formlabs",
+    description: "from version 3.51 onwards",
+    url: "https://formlabs.com/software/preform/",
   },
   {
-    name: "Project Beta",
-    description: "An innovative platform for real-time collaboration.",
-    url: "https://example.com/project-beta",
+    name: "Ragdoll Standalone",
+    description: "Animating with physics in Maya, Blender and beyond",
+    url: "https://ragdolldynamics.com/",
+  },
+  {
+    name: "Modyfi",
+    description: "Confidential",
+    url: "https://www.modyfi.com/",
+  },
+  {
+    name: "Frostbite",
+    description: "Confidential",
+    url: "https://www.ea.com/frostbite",
+  },
+  {
+    name: "LEGO Digital Designer Pro",
+    description: "Confidential",
+    url: "https://www.lego.com/",
+  },
+  {
+    name: "Autodesk Alias SubD",
+    description: "Designing subdivision modelling tools for Alias",
+    url: "https://autodesk.com/alias",
+  },
+  {
+    name: "Dynamo for Alias",
+    description: "Adding computational design to Alias",
+    url: "https://autodesk.com/alias",
+  },
+  {
+    name: "Louvre Abu Dhabi",
+    description: "Museum icon design and typography",
+    url: "https://www.jeannouvel.com/projets/louvre-abou-dhabi-3/",
   },
 ];
 
@@ -105,15 +127,19 @@ const sideProjects = [
       "A useful tool I built to solve a specific problem I encountered.",
     url: "https://github.com/example/personal-tool",
   },
-  {
-    name: "Open Source Contribution",
-    description: "Contributed to an open source project that helps developers.",
-    url: "https://github.com/example/opensource",
-  },
 ];
 
-// Get all blog posts and sort by date (newest first)
-const allPosts = (await (getCollection as any)("writing")) as BlogPost[];
+// Next trips
+const nextTrips = [
+  // {
+  //   title: "Ragdoll Con 2025",
+  //   destination: "London, UK",
+  //   date: "Nov 2025",
+  // },
+];
+
+// Get all blog posts dynamically and sort by date (newest first)
+const allPosts = await getCollection("writing");
 const blogPosts = allPosts.sort(
   (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
 );
@@ -123,7 +149,7 @@ const blogPosts = allPosts.sort(
   <div class="max-w-[560px] mx-auto px-4 py-12">
     <!-- Header section -->
     <section class="mb-16">
-      <h2 class="font-medium text-gray-900 dark:text-gray-100 px-4">
+      <h2 class="font-semibold text-gray-900 dark:text-gray-100 px-4">
         Shinji Pons
       </h2>
       <p class="px-4 text-gray-700 dark:text-gray-300">Product Designer</p>
@@ -131,19 +157,19 @@ const blogPosts = allPosts.sort(
 
     <!-- Today section -->
     <section class="mb-16">
-      <h2 class="font-medium text-gray-900 dark:text-gray-100 px-4 pb-4">
+      <h2 class="font-semibold text-gray-900 dark:text-gray-100 px-4 pb-4">
         Today
       </h2>
       <p class="px-4 text-gray-700 dark:text-gray-300">
-        Hey I'm Shinji, I lead software product design at Formlabs. I craft 3D
-        tools and workflows that incite artists, engineers and designers to
-        accomplish greater things.
+        I lead software product design at Formlabs. I craft 3D tools and
+        workflows that incite artists, engineers and designers to accomplish
+        greater things.
       </p>
     </section>
 
     <!-- Social Links Section -->
     <section class="mb-16">
-      <h2 class="font-medium text-gray-900 dark:text-gray-100 px-4 pb-4">
+      <h2 class="font-semibold text-gray-900 dark:text-gray-100 px-4 pb-4">
         More
       </h2>
       <ul class="px-4">
@@ -165,24 +191,60 @@ const blogPosts = allPosts.sort(
       </ul>
     </section>
 
+    <!-- Next Trip Section -->
+    <section class="mb-16">
+      <h2 class="font-semibold text-gray-900 dark:text-gray-100 mb-6 px-4">
+        Next trip
+      </h2>
+      {
+        nextTrips.length > 0 ? (
+          <div class="space-y-6">
+            {nextTrips.map((trip) => (
+              <div class="px-4 flex justify-between items-center">
+                <p class="text-gray-900 dark:text-gray-100">
+                  {trip.title ? (
+                    <>
+                      <span class="font-medium">{trip.title}</span>
+                      {trip.destination && <> — {trip.destination}</>}
+                    </>
+                  ) : (
+                    <span class="font-medium">{trip.destination}</span>
+                  )}
+                </p>
+                {trip.date && (
+                  <p class="text-gray-500 dark:text-gray-500 w-24 text-right">
+                    {trip.date}
+                  </p>
+                )}
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p class="px-4 text-gray-700 dark:text-gray-300">
+            Planning my next adventure...
+          </p>
+        )
+      }
+    </section>
+
     <!-- Blog Posts Section -->
     <section class="mb-16">
-      <h2 class="font-medium text-gray-900 dark:text-gray-100 mb-6 px-4">
+      <h2 class="font-semibold text-gray-900 dark:text-gray-100 mb-6 px-4">
         Writing
       </h2>
       {
         blogPosts.length > 0 ? (
-          <div class="space-y-6">
+          <div class="space-y-2">
             {blogPosts.map((post) => (
               <a
                 href={`/writing/${post.slug}`}
-                class="block rounded-lg pt-4 px-4 pb-2 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
+                class="block rounded-lg pt-4 px-4 pb-2 bg-white dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
               >
                 <article>
                   <h3 class="font-medium text-gray-900 dark:text-gray-100 mb-2">
                     {post.data.title}
                   </h3>
-                  <p class="text-gray-700 dark:text-gray-300 mb-3">
+                  <p class="text-gray-700 dark:text-gray-300 mb-2">
                     {post.data.description}
                   </p>
                 </article>
@@ -199,7 +261,7 @@ const blogPosts = allPosts.sort(
 
     <!-- Work Experience Section -->
     <section class="mb-16">
-      <h2 class="font-medium text-gray-900 dark:text-gray-100 mb-6 px-4">
+      <h2 class="font-semibold text-gray-900 dark:text-gray-100 mb-6 px-4">
         Experience
       </h2>
       <div class="space-y-6">
@@ -207,12 +269,14 @@ const blogPosts = allPosts.sort(
           workExperience.map((job) => (
             <div class="px-4 flex justify-between items-center">
               <p class="text-gray-900 dark:text-gray-100">
-                <span class="font-medium">{job.role}</span> at{" "}
-                <span class="font-medium text-gray-700 dark:text-gray-300">
-                  {job.company}
-                </span>
+                <span class="font-medium">{job.company}</span>
               </p>
-              <p class="text-gray-500 dark:text-gray-500">{job.period}</p>
+              <div class="flex items-center gap-0">
+                <p class="text-gray-700 dark:text-gray-300">{job.role}</p>
+                <p class="text-gray-500 dark:text-gray-500 w-24 text-right">
+                  {job.period}
+                </p>
+              </div>
             </div>
           ))
         }
@@ -220,8 +284,8 @@ const blogPosts = allPosts.sort(
     </section>
 
     <!-- Education Section -->
-    <section class="mb-16">
-      <h2 class="font-medium text-gray-900 dark:text-gray-100 mb-6 px-4">
+    <!-- <section class="mb-16">
+      <h2 class="font-semibold text-gray-900 dark:text-gray-100 mb-6 px-4">
         Education
       </h2>
       <div class="space-y-6">
@@ -239,31 +303,29 @@ const blogPosts = allPosts.sort(
           ))
         }
       </div>
-    </section>
+    </section> -->
 
     <!-- Work Projects Section -->
     <section class="mb-16">
-      <h2 class="font-medium text-gray-900 dark:text-gray-100 mb-6 px-4">
+      <h2 class="font-semibold text-gray-900 dark:text-gray-100 mb-6 px-4">
         Projects
       </h2>
       <div class="grid gap-2 grid-cols-1">
         {
           workProjects.map((project) => (
-            <div class="rounded-lg pt-4 px-4 pb-2 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
+            <a
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="block rounded-lg pt-4 px-4 pb-2 bg-white dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
+            >
               <h3 class="font-medium text-gray-900 dark:text-gray-100 mb-2">
-                <a
-                  href={project.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="hover:text-blue-600 transition-colors duration-200"
-                >
-                  {project.name}
-                </a>
+                {project.name}
               </h3>
-              <p class="text-gray-700 dark:text-gray-300 mb-4">
+              <p class="text-gray-700 dark:text-gray-300 mb-2">
                 {project.description}
               </p>
-            </div>
+            </a>
           ))
         }
       </div>
@@ -271,27 +333,25 @@ const blogPosts = allPosts.sort(
 
     <!-- Side Projects Section -->
     <section class="mb-16">
-      <h2 class="font-medium text-gray-900 dark:text-gray-100 mb-6 px-4">
+      <h2 class="font-semibold text-gray-900 dark:text-gray-100 mb-6 px-4">
         Side Projects
       </h2>
       <div class="grid gap-2 grid-cols-1">
         {
           sideProjects.map((project) => (
-            <div class="rounded-lg pt-4 px-4 pb-2 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
+            <a
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="block rounded-lg pt-4 px-4 pb-2 bg-white dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
+            >
               <h3 class="font-medium text-gray-900 dark:text-gray-100 mb-2">
-                <a
-                  href={project.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="hover:text-blue-600 transition-colors duration-200"
-                >
-                  {project.name}
-                </a>
+                {project.name}
               </h3>
-              <p class="text-gray-700 dark:text-gray-300 mb-4">
+              <p class="text-gray-700 dark:text-gray-300 mb-2">
                 {project.description}
               </p>
-            </div>
+            </a>
           ))
         }
       </div>

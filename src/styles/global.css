@@ -16,5 +16,10 @@
     font-size: 1rem;
     font-family: 'IBM Plex Sans', sans-serif;
   }
+  
+  /* Ensure code blocks and all their children use monospace (overrides the span rule above) */
+  pre, code, pre *, code *, pre span, code span {
+    font-family: monospace !important;
+  }
 }
 

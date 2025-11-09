@@ -1,0 +1,220 @@
+/* Blog Post Stylesheet - Padding and Spacing Only */
+
+/* Article container */
+article {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+/* Header spacing */
+article > header {
+  margin-bottom: 2rem;
+}
+
+article > header h1 {
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+article > header > div {
+  margin-bottom: 1.5rem;
+}
+
+article > header > p {
+  margin-top: 0;
+}
+
+/* Prose content spacing */
+article .prose {
+  /* Paragraph spacing */
+  --tw-prose-paragraphs: 1.5rem;
+}
+
+article .prose > p {
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+article .prose > p:first-child {
+  margin-top: 0;
+}
+
+article .prose > p:last-child {
+  margin-bottom: 0;
+}
+
+/* Heading spacing and weight */
+article .prose > h1,
+article .prose > h2,
+article .prose > h3,
+article .prose > h4,
+article .prose > h5,
+article .prose > h6 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+article .prose > h1:first-child,
+article .prose > h2:first-child,
+article .prose > h3:first-child,
+article .prose > h4:first-child,
+article .prose > h5:first-child,
+article .prose > h6:first-child {
+  margin-top: 0;
+}
+
+/* List spacing */
+article .prose > ul,
+article .prose > ol {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
+  list-style-type: disc;
+}
+
+article .prose > ol {
+  list-style-type: decimal;
+}
+
+article .prose > ul:first-child,
+article .prose > ol:first-child {
+  margin-top: 0;
+}
+
+article .prose > ul:last-child,
+article .prose > ol:last-child {
+  margin-bottom: 0;
+}
+
+article .prose ul > li,
+article .prose ol > li {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  list-style-position: outside;
+  padding-left: 0.5rem;
+}
+
+/* Nested lists */
+article .prose ul ul,
+article .prose ol ol,
+article .prose ul ol,
+article .prose ol ul {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding-left: 1.5rem;
+}
+
+article .prose ul ul {
+  list-style-type: circle;
+}
+
+article .prose ul ul ul {
+  list-style-type: square;
+}
+
+article .prose ul > li:first-child,
+article .prose ol > li:first-child {
+  margin-top: 0;
+}
+
+article .prose ul > li:last-child,
+article .prose ol > li:last-child {
+  margin-bottom: 0;
+}
+
+/* Blockquote spacing */
+article .prose > blockquote {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+article .prose > blockquote:first-child {
+  margin-top: 0;
+}
+
+article .prose > blockquote:last-child {
+  margin-bottom: 0;
+}
+
+/* Code block spacing - ensure monospace font */
+article .prose pre,
+article .prose > pre,
+article pre,
+article .prose pre[class*="language-"],
+article pre[class*="language-"] {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  font-family: monospace !important;
+  font-size: 0.875rem;
+  line-height: 1.7142857;
+  border-radius: 6px;
+  background-color: #111827 !important; /* gray-900 for light mode */
+  color: #f9fafb !important; /* gray-50 for text */
+}
+
+.dark article .prose pre,
+.dark article .prose > pre,
+.dark article pre,
+.dark article .prose pre[class*="language-"],
+.dark article pre[class*="language-"] {
+  background-color: #030712 !important; /* gray-950 for dark mode */
+}
+
+@media (prefers-color-scheme: dark) {
+  article .prose pre,
+  article .prose > pre,
+  article pre,
+  article .prose pre[class*="language-"],
+  article pre[class*="language-"] {
+    background-color: #030712 !important; /* gray-950 for dark mode */
+  }
+}
+
+article .prose pre code,
+article .prose > pre code,
+article .prose pre > code,
+article pre code {
+  font-family: monospace !important;
+  font-size: 0.875rem;
+  display: block;
+  width: 100%;
+}
+
+article .prose > pre:first-child {
+  margin-top: 0;
+}
+
+article .prose > pre:last-child {
+  margin-bottom: 0;
+}
+
+/* Horizontal rule spacing */
+article .prose > hr {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* Image spacing */
+article .prose > img {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+article .prose > img:first-child {
+  margin-top: 0;
+}
+
+article .prose > img:last-child {
+  margin-bottom: 0;
+}
+
+/* Footer spacing */
+article > footer {
+  margin-top: 3rem;
+  padding-top: 2rem;
+}
+
