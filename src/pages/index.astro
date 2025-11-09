@@ -1,18 +1,205 @@
 ---
-// Welcome to Astro! Everything between these triple-dash code fences
-// is your "component frontmatter". It never runs in the browser.
-// console.log("This runs in your terminal, not the browser!");
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+type BlogPost = {
+  slug: string;
+  data: {
+    title: string;
+    pubDate: Date;
+    description: string;
+    author: string;
+  };
+};
+
+// Social media links
+const socialLinks = [
+  { name: 'Twitter', url: 'https://twitter.com/shinjipons' },
+  { name: 'GitHub', url: 'https://github.com/shinjipons' },
+  { name: 'LinkedIn', url: 'https://linkedin.com/in/shinjipons' },
+];
+
+// Work experience
+const workExperience = [
+  {
+    company: 'Example Company',
+    role: 'Senior Developer',
+    period: '2020 - Present',
+  },
+  {
+    company: 'Previous Company',
+    role: 'Developer',
+    period: '2018 - 2020',
+  },
+];
+
+// Formal education
+const education = [
+  {
+    institution: 'University Name',
+    degree: 'Bachelor of Science in Computer Science',
+    period: '2014 - 2018',
+  },
+];
+
+// Work projects (most proud projects)
+const workProjects = [
+  {
+    name: 'Project Alpha',
+    description: 'A revolutionary web application that transformed how users interact with data.',
+    url: 'https://example.com/project-alpha',
+  },
+  {
+    name: 'Project Beta',
+    description: 'An innovative platform for real-time collaboration.',
+    url: 'https://example.com/project-beta',
+  },
+];
+
+// Side projects
+const sideProjects = [
+  {
+    name: 'Personal Tool',
+    description: 'A useful tool I built to solve a specific problem I encountered.',
+    url: 'https://github.com/example/personal-tool',
+  },
+  {
+    name: 'Open Source Contribution',
+    description: 'Contributed to an open source project that helps developers.',
+    url: 'https://github.com/example/opensource',
+  },
+];
+
+// Get all blog posts and sort by date (newest first)
+const allPosts = (await (getCollection as any)('writing')) as BlogPost[];
+const blogPosts = allPosts.sort(
+  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
+);
 ---
 
-<!-- Below is your "component template." It's just HTML, but with
-    some magic sprinkled in to help you build great templates. -->
-<html>
-  <body>
-    <h1>Hello, World!</h1>
-  </body>
-</html>
-<style>
-  h1 {
-    color: orange;
-  }
-</style>
+<BaseLayout title="Home" description="Personal website and blog">
+  <div class="max-w-[560px] mx-auto px-4 py-12">
+
+    <!-- Header section -->
+    <section class="mb-16">
+      <h2 class="font-bold text-gray-900 px-4">Shinji Pons</h1>
+      <p class="px-4">Product Designer</p>
+    </section>
+
+    <!-- Social Links Section -->
+    <section class="mb-16">
+      <h2 class="font-bold text-gray-900 px-4">More</h2>
+      <ul class="px-4">
+        {socialLinks.map((link) => (
+          <li>
+            <a
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-gray-600 hover:text-gray-900"
+            >
+              {link.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- Blog Posts Section -->
+    <section class="mb-16">
+      <h2 class="font-bold text-gray-900 mb-6 px-4">Blog Posts</h2>
+      {blogPosts.length > 0 ? (
+        <div class="space-y-6">
+          {blogPosts.map((post) => (
+            <article class="rounded-lg pt-4 px-4 pb-2 bg-gray-50 hover:bg-gray-100 transition-colors duration-200">
+              <h3 class="font-semibold text-gray-900 mb-2">
+                <a
+                  href={`/writing/${post.slug}`}
+                  class="hover:text-blue-600 transition-colors duration-200"
+                >
+                  {post.data.title}
+                </a>
+              </h3>
+              <p class="text-gray-600 mb-3">{post.data.description}</p>
+            </article>
+          ))}
+        </div>
+      ) : (
+        <p class="text-gray-600">No blog posts yet. Check back soon!</p>
+      )}
+    </section>
+
+    <!-- Work Experience Section -->
+    <section class="mb-16">
+      <h2 class="font-bold text-gray-900 mb-6 px-4">Work Experience</h2>
+      <div class="space-y-6">
+        {workExperience.map((job) => (
+          <div class="px-4 flex justify-between items-center">
+            <p class="text-gray-900">
+              <span class="font-semibold">{job.role}</span> at <span class="font-medium text-gray-700">{job.company}</span>
+            </p>
+            <p class="text-gray-500">{job.period}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="mb-16">
+      <h2 class="font-bold text-gray-900 mb-6 px-4">Education</h2>
+      <div class="space-y-6">
+        {education.map((edu) => (
+          <div class="px-4">
+            <h3 class="font-semibold text-gray-900">{edu.degree}</h3>
+            <p class="text-gray-700 font-medium">{edu.institution}</p>
+            <p class="text-gray-500">{edu.period}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Work Projects Section -->
+    <section class="mb-16">
+      <h2 class="font-bold text-gray-900 mb-6 px-4">Work Projects</h2>
+      <div class="grid gap-6 grid-cols-1">
+        {workProjects.map((project) => (
+          <div class="rounded-lg pt-4 px-4 pb-2 bg-gray-50 hover:bg-gray-100 transition-colors duration-200">
+            <h3 class="font-semibold text-gray-900 mb-2">
+              <a
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="hover:text-blue-600 transition-colors duration-200"
+              >
+                {project.name}
+              </a>
+            </h3>
+            <p class="text-gray-600 mb-4">{project.description}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Side Projects Section -->
+    <section class="mb-16">
+      <h2 class="font-bold text-gray-900 mb-6 px-4">Side Projects</h2>
+      <div class="grid gap-2 grid-cols-1">
+        {sideProjects.map((project) => (
+          <div class="rounded-lg pt-4 px-4 pb-2 bg-gray-50 hover:bg-gray-100 transition-colors duration-200">
+            <h3 class="font-semibold text-gray-900 mb-2">
+              <a
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="hover:text-blue-600 transition-colors duration-200"
+              >
+                {project.name}
+              </a>
+            </h3>
+            <p class="text-gray-600 mb-4">{project.description}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  </div>
+</BaseLayout>
