@@ -27,7 +27,7 @@ const workExperience = [
     period: "2025 - Present",
   },
   {
-    company: "Modify",
+    company: "Modyfi",
     role: "Product designer",
     period: "2024",
   },
@@ -76,9 +76,9 @@ const workExperience = [
 // Formal education
 const education = [
   {
-    institution: "University Name",
-    degree: "Bachelor of Science in Computer Science",
-    period: "2014 - 2018",
+    institution: "London College of Communication",
+    degree: "Bachelor of Arts, Graphic & Media Design",
+    period: "2010 - 2014",
   },
 ];
 
@@ -123,13 +123,29 @@ const blogPosts = allPosts.sort(
   <div class="max-w-[560px] mx-auto px-4 py-12">
     <!-- Header section -->
     <section class="mb-16">
-      <h2 class="font-medium text-gray-900 px-4">Shinji Pons</h2>
-      <p class="px-4">Product Designer</p>
+      <h2 class="font-medium text-gray-900 dark:text-gray-100 px-4">
+        Shinji Pons
+      </h2>
+      <p class="px-4 text-gray-700 dark:text-gray-300">Product Designer</p>
+    </section>
+
+    <!-- Today section -->
+    <section class="mb-16">
+      <h2 class="font-medium text-gray-900 dark:text-gray-100 px-4 pb-4">
+        Today
+      </h2>
+      <p class="px-4 text-gray-700 dark:text-gray-300">
+        Hey I'm Shinji, I lead software product design at Formlabs. I craft 3D
+        tools and workflows that incite artists, engineers and designers to
+        accomplish greater things.
+      </p>
     </section>
 
     <!-- Social Links Section -->
     <section class="mb-16">
-      <h2 class="font-medium text-gray-900 px-4">More</h2>
+      <h2 class="font-medium text-gray-900 dark:text-gray-100 px-4 pb-4">
+        More
+      </h2>
       <ul class="px-4">
         {
           socialLinks.map((link) => (
@@ -138,9 +154,10 @@ const blogPosts = allPosts.sort(
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-gray-700 hover:text-gray-900"
+                class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 inline-flex items-center gap-1"
               >
                 {link.name}
+                <span class="text-gray-500 dark:text-gray-500 text-xs">↗</span>
               </a>
             </li>
           ))
@@ -150,42 +167,52 @@ const blogPosts = allPosts.sort(
 
     <!-- Blog Posts Section -->
     <section class="mb-16">
-      <h2 class="font-medium text-gray-900 mb-6 px-4">Blog Posts</h2>
+      <h2 class="font-medium text-gray-900 dark:text-gray-100 mb-6 px-4">
+        Writing
+      </h2>
       {
         blogPosts.length > 0 ? (
           <div class="space-y-6">
             {blogPosts.map((post) => (
-              <article class="rounded-lg pt-4 px-4 pb-2 bg-white hover:bg-gray-100 transition-colors duration-200">
-                <h3 class="font-medium text-gray-900 mb-2">
-                  <a
-                    href={`/writing/${post.slug}`}
-                    class="hover:text-blue-600 transition-colors duration-200"
-                  >
+              <a
+                href={`/writing/${post.slug}`}
+                class="block rounded-lg pt-4 px-4 pb-2 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
+              >
+                <article>
+                  <h3 class="font-medium text-gray-900 dark:text-gray-100 mb-2">
                     {post.data.title}
-                  </a>
-                </h3>
-                <p class="text-gray-700 mb-3">{post.data.description}</p>
-              </article>
+                  </h3>
+                  <p class="text-gray-700 dark:text-gray-300 mb-3">
+                    {post.data.description}
+                  </p>
+                </article>
+              </a>
             ))}
           </div>
         ) : (
-          <p class="text-gray-700">No blog posts yet. Check back soon!</p>
+          <p class="text-gray-700 dark:text-gray-300">
+            No posts yet. Check back soon!
+          </p>
         )
       }
     </section>
 
     <!-- Work Experience Section -->
     <section class="mb-16">
-      <h2 class="font-medium text-gray-900 mb-6 px-4">Work Experience</h2>
+      <h2 class="font-medium text-gray-900 dark:text-gray-100 mb-6 px-4">
+        Experience
+      </h2>
       <div class="space-y-6">
         {
           workExperience.map((job) => (
             <div class="px-4 flex justify-between items-center">
-              <p class="text-gray-900">
+              <p class="text-gray-900 dark:text-gray-100">
                 <span class="font-medium">{job.role}</span> at{" "}
-                <span class="font-medium text-gray-700">{job.company}</span>
+                <span class="font-medium text-gray-700 dark:text-gray-300">
+                  {job.company}
+                </span>
               </p>
-              <p class="text-gray-500">{job.period}</p>
+              <p class="text-gray-500 dark:text-gray-500">{job.period}</p>
             </div>
           ))
         }
@@ -194,14 +221,20 @@ const blogPosts = allPosts.sort(
 
     <!-- Education Section -->
     <section class="mb-16">
-      <h2 class="font-medium text-gray-900 mb-6 px-4">Education</h2>
+      <h2 class="font-medium text-gray-900 dark:text-gray-100 mb-6 px-4">
+        Education
+      </h2>
       <div class="space-y-6">
         {
           education.map((edu) => (
             <div class="px-4">
-              <h3 class="font-medium text-gray-900">{edu.degree}</h3>
-              <p class="text-gray-700 font-medium">{edu.institution}</p>
-              <p class="text-gray-500">{edu.period}</p>
+              <h3 class="font-medium text-gray-900 dark:text-gray-100">
+                {edu.degree}
+              </h3>
+              <p class="text-gray-700 dark:text-gray-300 font-medium">
+                {edu.institution}
+              </p>
+              <p class="text-gray-500 dark:text-gray-500">{edu.period}</p>
             </div>
           ))
         }
@@ -210,12 +243,14 @@ const blogPosts = allPosts.sort(
 
     <!-- Work Projects Section -->
     <section class="mb-16">
-      <h2 class="font-medium text-gray-900 mb-6 px-4">Work Projects</h2>
-      <div class="grid gap-6 grid-cols-1">
+      <h2 class="font-medium text-gray-900 dark:text-gray-100 mb-6 px-4">
+        Projects
+      </h2>
+      <div class="grid gap-2 grid-cols-1">
         {
           workProjects.map((project) => (
-            <div class="rounded-lg pt-4 px-4 pb-2 bg-white hover:bg-gray-100 transition-colors duration-200">
-              <h3 class="font-medium text-gray-900 mb-2">
+            <div class="rounded-lg pt-4 px-4 pb-2 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
+              <h3 class="font-medium text-gray-900 dark:text-gray-100 mb-2">
                 <a
                   href={project.url}
                   target="_blank"
@@ -225,7 +260,9 @@ const blogPosts = allPosts.sort(
                   {project.name}
                 </a>
               </h3>
-              <p class="text-gray-700 mb-4">{project.description}</p>
+              <p class="text-gray-700 dark:text-gray-300 mb-4">
+                {project.description}
+              </p>
             </div>
           ))
         }
@@ -234,12 +271,14 @@ const blogPosts = allPosts.sort(
 
     <!-- Side Projects Section -->
     <section class="mb-16">
-      <h2 class="font-medium text-gray-900 mb-6 px-4">Side Projects</h2>
+      <h2 class="font-medium text-gray-900 dark:text-gray-100 mb-6 px-4">
+        Side Projects
+      </h2>
       <div class="grid gap-2 grid-cols-1">
         {
           sideProjects.map((project) => (
-            <div class="rounded-lg pt-4 px-4 pb-2 bg-white hover:bg-gray-100 transition-colors duration-200">
-              <h3 class="font-medium text-gray-900 mb-2">
+            <div class="rounded-lg pt-4 px-4 pb-2 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
+              <h3 class="font-medium text-gray-900 dark:text-gray-100 mb-2">
                 <a
                   href={project.url}
                   target="_blank"
@@ -249,7 +288,9 @@ const blogPosts = allPosts.sort(
                   {project.name}
                 </a>
               </h3>
-              <p class="text-gray-700 mb-4">{project.description}</p>
+              <p class="text-gray-700 dark:text-gray-300 mb-4">
+                {project.description}
+              </p>
             </div>
           ))
         }
