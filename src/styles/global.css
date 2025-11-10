@@ -9,17 +9,20 @@
   
   body {
     font-size: 1rem;
-    font-family: 'IBM Plex Sans', sans-serif;
+    font-family: "Geist", sans-serif;
+    font-optical-sizing: auto;
   }
   
   h1, h2, h3, h4, h5, h6, p, span, a, li, ul, ol, div, article, section {
     font-size: 1rem;
-    font-family: 'IBM Plex Sans', sans-serif;
+    font-family: "Geist", sans-serif;
+    font-optical-sizing: auto;
   }
   
-  /* Ensure code blocks and all their children use monospace (overrides the span rule above) */
+  /* Ensure code blocks and all their children use Geist Mono */
   pre, code, pre *, code *, pre span, code span {
-    font-family: monospace !important;
+    font-family: "Geist Mono", monospace !important;
+    font-optical-sizing: auto;
   }
 }
 

@@ -161,7 +161,7 @@ article pre[class*="language-"] {
 .dark article pre,
 .dark article .prose pre[class*="language-"],
 .dark article pre[class*="language-"] {
-  background-color: #030712 !important; /* gray-950 for dark mode */
+  background-color: #0c0a09 !important; /* stone-950 for dark mode */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -170,7 +170,7 @@ article pre[class*="language-"] {
   article pre,
   article .prose pre[class*="language-"],
   article pre[class*="language-"] {
-    background-color: #030712 !important; /* gray-950 for dark mode */
+    background-color: #0c0a09 !important; /* stone-950 for dark mode */
   }
 }
 
