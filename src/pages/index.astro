@@ -122,10 +122,25 @@ const workProjects = [
 // Side projects
 const sideProjects = [
   {
-    name: "Personal Tool",
+    name: "Select Parent Component",
     description:
-      "A useful tool I built to solve a specific problem I encountered.",
-    url: "https://github.com/example/personal-tool",
+      "Figma plugin to grab the component wrapping the user selection",
+    url: "https://github.com/shinjipons/Select-Parent-Component",
+  },
+  {
+    name: "Time Lens",
+    description: "Blender add-on for automating editor screenshots",
+    url: "https://github.com/shinjipons/Time-Lens",
+  },
+  {
+    name: "Modulo",
+    description: "Family of 168 grid-based typefaces",
+    url: "https://github.com/shinjipons/modulo-typeface",
+  },
+  {
+    name: "InDesign Scripting",
+    description: "Automating Adobe InDesign using basil.js",
+    url: "https://github.com/shinjipons/basiljs-scripts",
   },
 ];
 
@@ -160,38 +175,34 @@ const blogPosts = allPosts.sort(
       <h2 class="font-semibold text-gray-900 dark:text-stone-100 px-4 pb-4">
         Today
       </h2>
+      <p class="px-4 text-gray-700 dark:text-stone-300 mb-4">
+        I work on software product design at <a href="https://formlabs.com/"
+          >Formlabs</a
+        >.
+      </p>
+      <p class="px-4 text-gray-700 dark:text-stone-300 mb-4">
+        My ambition is to craft 3D tools and workflows that incite artists,
+        engineers and designers to accomplish greater things.
+      </p>
       <p class="px-4 text-gray-700 dark:text-stone-300">
-        I lead software product design at Formlabs. I craft 3D tools and
-        workflows that incite artists, engineers and designers to accomplish
-        greater things.
+        You can reach out to me on{" "}
+        <span
+          set:html={socialLinks
+            .map(
+              (link, index) =>
+                (index > 0
+                  ? index === socialLinks.length - 1
+                    ? " and "
+                    : ", "
+                  : "") +
+                `<a href="${link.url}" target="_blank" rel="noopener noreferrer" class="text-gray-700 dark:text-stone-300">${link.name.trim()}</a>`,
+            )
+            .join("")}
+        />.
       </p>
     </section>
 
-    <!-- Social Links Section -->
-    <section class="mb-16">
-      <h2 class="font-semibold text-gray-900 dark:text-stone-100 px-4 pb-4">
-        More
-      </h2>
-      <ul class="px-4">
-        {
-          socialLinks.map((link) => (
-            <li>
-              <a
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-gray-700 dark:text-stone-300 hover:text-gray-900 dark:hover:text-stone-100 inline-flex items-center gap-1"
-              >
-                {link.name}
-                <span class="text-gray-500 dark:text-stone-500 text-xs">
-                  ↗
-                </span>
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </section>
+    <hr class="border-gray-400 dark:border-stone-600 my-16" />
 
     <!-- Next Trip Section -->
     <section class="mb-16">
@@ -214,7 +225,7 @@ const blogPosts = allPosts.sort(
                   )}
                 </p>
                 {trip.date && (
-                  <p class="text-gray-500 dark:text-stone-500 w-24 text-right">
+                  <p class="text-gray-400 dark:text-stone-400 w-24 text-right">
                     {trip.date}
                   </p>
                 )}
@@ -228,6 +239,8 @@ const blogPosts = allPosts.sort(
         )
       }
     </section>
+
+    <hr class="border-gray-400 dark:border-stone-600 my-16" />
 
     <!-- Blog Posts Section -->
     <section class="mb-16">
@@ -246,7 +259,7 @@ const blogPosts = allPosts.sort(
                   <h3 class="font-medium text-gray-900 dark:text-stone-100 mb-2">
                     {post.data.title}
                   </h3>
-                  <p class="text-gray-700 dark:text-stone-300 mb-2">
+                  <p class="text-gray-400 dark:text-stone-400 mb-2">
                     {post.data.description}
                   </p>
                 </article>
@@ -260,6 +273,8 @@ const blogPosts = allPosts.sort(
         )
       }
     </section>
+
+    <hr class="border-gray-400 dark:border-stone-600 my-16" />
 
     <!-- Work Experience Section -->
     <section class="mb-16">
@@ -275,7 +290,7 @@ const blogPosts = allPosts.sort(
               </p>
               <div class="flex items-center gap-0">
                 <p class="text-gray-700 dark:text-stone-300">{job.role}</p>
-                <p class="text-gray-500 dark:text-stone-500 w-24 text-right">
+                <p class="text-gray-400 dark:text-stone-400 w-24 text-right">
                   {job.period}
                 </p>
               </div>
@@ -285,27 +300,7 @@ const blogPosts = allPosts.sort(
       </div>
     </section>
 
-    <!-- Education Section -->
-    <!-- <section class="mb-16">
-      <h2 class="font-semibold text-gray-900 dark:text-gray-100 mb-6 px-4">
-        Education
-      </h2>
-      <div class="space-y-6">
-        {
-          education.map((edu) => (
-            <div class="px-4">
-              <h3 class="font-medium text-gray-900 dark:text-gray-100">
-                {edu.degree}
-              </h3>
-              <p class="text-gray-700 dark:text-gray-300 font-medium">
-                {edu.institution}
-              </p>
-              <p class="text-gray-500 dark:text-gray-500">{edu.period}</p>
-            </div>
-          ))
-        }
-      </div>
-    </section> -->
+    <hr class="border-gray-400 dark:border-stone-600 my-16" />
 
     <!-- Work Projects Section -->
     <section class="mb-16">
@@ -324,7 +319,7 @@ const blogPosts = allPosts.sort(
               <h3 class="font-medium text-gray-900 dark:text-stone-100 mb-2">
                 {project.name}
               </h3>
-              <p class="text-gray-700 dark:text-stone-300 mb-2">
+              <p class="text-gray-400 dark:text-stone-400 mb-2">
                 {project.description}
               </p>
             </a>
@@ -332,6 +327,8 @@ const blogPosts = allPosts.sort(
         }
       </div>
     </section>
+
+    <hr class="border-gray-400 dark:border-stone-600 my-16" />
 
     <!-- Side Projects Section -->
     <section class="mb-16">
@@ -350,7 +347,7 @@ const blogPosts = allPosts.sort(
               <h3 class="font-medium text-gray-900 dark:text-stone-100 mb-2">
                 {project.name}
               </h3>
-              <p class="text-gray-700 dark:text-stone-300 mb-2">
+              <p class="text-gray-400 dark:text-stone-400 mb-2">
                 {project.description}
               </p>
             </a>

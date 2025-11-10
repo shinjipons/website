@@ -44,6 +44,7 @@ const { Content } = await post.render();
         <span>by {post.data.author}</span>
       </div>
     </header>
+
     <div
       class="prose max-w-none dark:prose-invert
         prose-headings:text-gray-900 dark:prose-headings:text-stone-100
@@ -52,10 +53,11 @@ const { Content } = await post.render();
         prose-p:text-gray-700 dark:prose-p:text-stone-300
         prose-p:text-base prose-p:mt-6 prose-p:mb-8 prose-p:[&:first-child]:mt-0 prose-p:[&:last-child]:mb-0
         prose-a:text-blue-600 dark:prose-a:text-blue-300
-        prose-a:no-underline hover:prose-a:underline
+        prose-a:underline prose-a:decoration-dotted prose-a:decoration-[1px]
+        dark:hover:prose-a:text-amber-400 hover:prose-a:decoration-solid
         prose-strong:text-gray-900 dark:prose-strong:text-stone-100
-        prose-code:text-gray-900 dark:prose-code:text-stone-100
-        prose-code:bg-gray-500 dark:prose-code:bg-stone-700
+        prose-code:text-gray-900 dark:prose-code:text-red-400
+        prose-code:bg-gray-500 dark:prose-code:bg-gray-950
         prose-code:px-1 prose-code:py-0.5 prose-code:rounded
         prose-pre:font-mono prose-pre-code:font-mono
         prose-li:text-base prose-ul:text-base prose-ol:text-base
@@ -64,6 +66,7 @@ const { Content } = await post.render();
         prose-li:my-2 prose-li:[&:first-child]:mt-0 prose-li:[&:last-child]:mb-0
         prose-blockquote:my-6 prose-blockquote:[&:first-child]:mt-0 prose-blockquote:[&:last-child]:mb-0
         prose-blockquote:pl-4 prose-blockquote:pr-4
+        prose-blockquote:text-gray-400 dark:prose-blockquote:text-stone-400
         prose-pre:my-6 prose-pre:[&:first-child]:mt-0 prose-pre:[&:last-child]:mb-0 prose-pre:p-4 prose-pre:bg-gray-900 dark:prose-pre:bg-stone-950
         prose-hr:my-8
         prose-img:my-6 prose-img:[&:first-child]:mt-0 prose-img:[&:last-child]:mb-0"
