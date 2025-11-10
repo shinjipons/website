@@ -71,15 +71,6 @@ const workExperience = [
   },
 ];
 
-// Formal education
-const education = [
-  {
-    institution: "London College of Communication",
-    degree: "Bachelor of Arts, Graphic & Media Design",
-    period: "2010—14",
-  },
-];
-
 // Work projects (most proud projects)
 const workProjects = [
   {
@@ -163,12 +154,21 @@ const allPosts = await getCollection("writing");
 const blogPosts = allPosts.sort(
   (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
 );
+
+// Navigation sections
+const navSections = [
+  { id: "next-trip", label: "Next trip" },
+  { id: "writing", label: "Writing" },
+  { id: "experience", label: "Work Experience" },
+  { id: "projects", label: "Projects" },
+  { id: "side-projects", label: "Side Projects" },
+];
 ---
 
 <BaseLayout title="Home" description="Personal website and blog">
   <div class="max-w-[560px] mx-auto px-4 py-12">
     <!-- Header section -->
-    <section class="mb-16">
+    <section class="pt-8 pb-4">
       <h2 class="font-semibold text-gray-900 dark:text-stone-100 px-4">
         Shinji Pons
       </h2>
@@ -176,7 +176,7 @@ const blogPosts = allPosts.sort(
     </section>
 
     <!-- Today section -->
-    <section class="mb-16">
+    <section class="pt-8 pb-4">
       <h2 class="font-semibold text-gray-900 dark:text-stone-100 px-4 pb-4">
         Today
       </h2>
@@ -189,7 +189,7 @@ const blogPosts = allPosts.sort(
         My ambition is to craft 3D tools and workflows that incite artists,
         engineers and designers to accomplish greater things.
       </p>
-      <p class="px-4 text-gray-700 dark:text-stone-300">
+      <p class="px-4 text-gray-700 dark:text-stone-300 mb-4">
         You can reach out to me on{" "}
         <span
           set:html={socialLinks
@@ -205,12 +205,29 @@ const blogPosts = allPosts.sort(
             .join("")}
         />.
       </p>
+      <p class="px-4 text-gray-700 dark:text-stone-300">
+        A few things to explore:
+      </p>
+      <ul class="px-4 mt-4 space-y-1 list-disc list-inside">
+        {
+          navSections.map((section) => (
+            <li class="text-gray-400 dark:text-stone-400">
+              <a
+                href={`#${section.id}`}
+                class="nav-link inline font-regular text-gray-700 dark:text-stone-300"
+              >
+                {section.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
     </section>
 
-    <hr class="border-gray-400 dark:border-stone-600 my-16" />
+    <hr class="border-gray-400 dark:border-stone-600 my-8" />
 
     <!-- Next Trip Section -->
-    <section class="mb-16">
+    <section id="next-trip" class="pt-8 pb-4">
       <h2 class="font-semibold text-gray-900 dark:text-stone-100 mb-6 px-4">
         Next trip
       </h2>
@@ -245,10 +262,10 @@ const blogPosts = allPosts.sort(
       }
     </section>
 
-    <hr class="border-gray-400 dark:border-stone-600 my-16" />
+    <hr class="border-gray-400 dark:border-stone-600 my-8" />
 
     <!-- Blog Posts Section -->
-    <section class="mb-16">
+    <section id="writing" class="pt-8 pb-4">
       <h2 class="font-semibold text-gray-900 dark:text-stone-100 mb-6 px-4">
         Writing
       </h2>
@@ -279,12 +296,12 @@ const blogPosts = allPosts.sort(
       }
     </section>
 
-    <hr class="border-gray-400 dark:border-stone-600 my-16" />
+    <hr class="border-gray-400 dark:border-stone-600 my-8" />
 
     <!-- Work Experience Section -->
-    <section class="mb-16">
+    <section id="experience" class="pt-8 pb-4">
       <h2 class="font-semibold text-gray-900 dark:text-stone-100 mb-6 px-4">
-        Experience
+        Work Experience
       </h2>
       <div class="space-y-6">
         {
@@ -305,10 +322,10 @@ const blogPosts = allPosts.sort(
       </div>
     </section>
 
-    <hr class="border-gray-400 dark:border-stone-600 my-16" />
+    <hr class="border-gray-400 dark:border-stone-600 my-8" />
 
     <!-- Work Projects Section -->
-    <section class="mb-16">
+    <section id="projects" class="pt-8 pb-4">
       <h2 class="font-semibold text-gray-900 dark:text-stone-100 mb-6 px-4">
         Projects
       </h2>
@@ -333,10 +350,10 @@ const blogPosts = allPosts.sort(
       </div>
     </section>
 
-    <hr class="border-gray-400 dark:border-stone-600 my-16" />
+    <hr class="border-gray-400 dark:border-stone-600 my-8" />
 
     <!-- Side Projects Section -->
-    <section class="mb-16">
+    <section id="side-projects" class="pt-8 pb-4">
       <h2 class="font-semibold text-gray-900 dark:text-stone-100 mb-6 px-4">
         Side Projects
       </h2>
