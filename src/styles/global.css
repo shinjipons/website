@@ -2,6 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom Easing Functions */
+:root {
+  /* ease-in */
+  --ease-in-quad: cubic-bezier(.55, .085, .68, .53);
+  --ease-in-cubic: cubic-bezier(.550, .055, .675, .19);
+  --ease-in-quart: cubic-bezier(.895, .03, .685, .22);
+  --ease-in-quint: cubic-bezier(.755, .05, .855, .06);
+  --ease-in-expo: cubic-bezier(.95, .05, .795, .035);
+  --ease-in-circ: cubic-bezier(.6, .04, .98, .335);
+  
+  /* ease-out */
+  --ease-out-quad: cubic-bezier(.25, .46, .45, .94);
+  --ease-out-cubic: cubic-bezier(.215, .61, .355, 1);
+  --ease-out-quart: cubic-bezier(.165, .84, .44, 1);
+  --ease-out-quint: cubic-bezier(.23, 1, .32, 1);
+  --ease-out-expo: cubic-bezier(.19, 1, .22, 1);
+  --ease-out-circ: cubic-bezier(.075, .82, .165, 1);
+  
+  /* ease-in-out */
+  --ease-in-out-quad: cubic-bezier(.455, .03, .515, .955);
+  --ease-in-out-cubic: cubic-bezier(.645, .045, .355, 1);
+  --ease-in-out-quart: cubic-bezier(.77, 0, .175, 1);
+  --ease-in-out-quint: cubic-bezier(.86, 0, .07, 1);
+  --ease-in-out-expo: cubic-bezier(1, 0, 0, 1);
+  --ease-in-out-circ: cubic-bezier(.785, .135, .15, .86);
+}
+
 /* iA Writer Quattro font faces */
 @font-face {
   font-family: "iA Writer Quattro";
@@ -124,18 +151,26 @@
     text-decoration-thickness: 1px;
     text-underline-offset: 0.2em;
     text-decoration-color: currentColor;
-    transition: color 0.2s ease, text-decoration-style 0.2s ease;
   }
   
-  /* Hover effect for links in dark mode */
-  .dark .prose a:not(.block):not([class*="rounded-lg"]):hover,
-  .dark article p a:not(.block):not([class*="rounded-lg"]):hover,
-  .dark p a:not(.block):not([class*="rounded-lg"]):hover {
-    color: rgb(251 191 36); /* amber-400 */
-    text-decoration-style: solid;
+  /* Hover transitions only on devices with precise pointing */
+  @media (hover: hover) and (pointer: fine) {
+    .prose a:not(.block):not([class*="rounded-lg"]),
+    article p a:not(.block):not([class*="rounded-lg"]),
+    p a:not(.block):not([class*="rounded-lg"]) {
+      transition: color 0.2s ease, text-decoration-style 0.2s ease;
+    }
+    
+    /* Hover effect for links in dark mode */
+    .dark .prose a:not(.block):not([class*="rounded-lg"]):hover,
+    .dark article p a:not(.block):not([class*="rounded-lg"]):hover,
+    .dark p a:not(.block):not([class*="rounded-lg"]):hover {
+      color: rgb(251 191 36); /* amber-400 */
+      text-decoration-style: solid;
+    }
   }
   
-  @media (prefers-color-scheme: dark) {
+  @media (prefers-color-scheme: dark) and (hover: hover) and (pointer: fine) {
     .prose a:not(.block):not([class*="rounded-lg"]):hover,
     article p a:not(.block):not([class*="rounded-lg"]):hover,
     p a:not(.block):not([class*="rounded-lg"]):hover {
@@ -164,12 +199,18 @@
     text-decoration-thickness: 1px;
     text-underline-offset: 0.2em;
     text-decoration-color: currentColor;
-    transition: color 0.2s ease, text-decoration-style 0.2s ease;
   }
   
-  .nav-link:hover {
-    color: rgb(251 191 36); /* amber-400 */
-    text-decoration-style: solid;
+  /* Hover transitions only on devices with precise pointing */
+  @media (hover: hover) and (pointer: fine) {
+    .nav-link {
+      transition: color 0.2s ease, text-decoration-style 0.2s ease;
+    }
+    
+    .nav-link:hover {
+      color: rgb(251 191 36); /* amber-400 */
+      text-decoration-style: solid;
+    }
   }
   
   /* Horizontal rules are solid */
@@ -229,6 +270,40 @@
     article img,
     img {
       background-color: rgb(12 10 9); /* stone-900 */
+    }
+  }
+}
+
+/* Reusable transition classes for hover effects */
+@layer components {
+  /* Apply transitions only on devices with precise pointing */
+  @media (hover: hover) and (pointer: fine) {
+    /* Color transition for text links (events, work experience) */
+    .transition-color-hover {
+      transition: color 0.2s ease;
+    }
+    
+    /* Background color transition for cards (blog posts, projects) */
+    .transition-bg-hover {
+      transition: background-color 0.2s ease;
+    }
+    
+    /* Combined color and background transitions */
+    .transition-colors-hover {
+      transition: color 0.2s ease, background-color 0.2s ease;
+    }
+  }
+  
+  /* Disable transitions for users who prefer reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .transition-color-hover,
+    .transition-bg-hover,
+    .transition-colors-hover,
+    .prose a:not(.block):not([class*="rounded-lg"]),
+    article p a:not(.block):not([class*="rounded-lg"]),
+    p a:not(.block):not([class*="rounded-lg"]),
+    .nav-link {
+      transition: none !important;
     }
   }
 }
