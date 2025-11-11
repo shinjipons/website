@@ -272,6 +272,46 @@
       background-color: rgb(12 10 9); /* stone-900 */
     }
   }
+  
+  /* Video styling */
+  .prose video,
+  article video,
+  video {
+    border-radius: 6px;
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  /* Hide video controls by default, show on hover (WebKit browsers) */
+  @media (hover: hover) and (pointer: fine) {
+    .prose video::-webkit-media-controls-panel,
+    article video::-webkit-media-controls-panel,
+    video::-webkit-media-controls-panel {
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+    
+    .prose video:hover::-webkit-media-controls-panel,
+    article video:hover::-webkit-media-controls-panel,
+    video:hover::-webkit-media-controls-panel {
+      opacity: 1;
+    }
+    
+    /* For other WebKit pseudo-elements */
+    .prose video:not(:hover)::-webkit-media-controls,
+    article video:not(:hover)::-webkit-media-controls,
+    video:not(:hover)::-webkit-media-controls {
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+    
+    .prose video:hover::-webkit-media-controls,
+    article video:hover::-webkit-media-controls,
+    video:hover::-webkit-media-controls {
+      opacity: 1;
+    }
+  }
 }
 
 /* Reusable transition classes for hover effects */
