@@ -152,6 +152,7 @@ article pre[class*="language-"] {
   font-size: 0.875rem;
   line-height: 1.7142857;
   border-radius: 6px;
+  border: 1px solid #374151; /* gray-700 for light mode - faint stroke */
   background-color: #111827 !important; /* gray-900 for light mode */
   color: #f9fafb !important; /* gray-50 for text */
 }
@@ -161,6 +162,7 @@ article pre[class*="language-"] {
 .dark article pre,
 .dark article .prose pre[class*="language-"],
 .dark article pre[class*="language-"] {
+  border-color: #292524; /* stone-800 for dark mode - faint stroke */
   background-color: #0c0a09 !important; /* stone-950 for dark mode */
 }
 
@@ -170,6 +172,7 @@ article pre[class*="language-"] {
   article pre,
   article .prose pre[class*="language-"],
   article pre[class*="language-"] {
+    border-color: #292524; /* stone-800 for dark mode - faint stroke */
     background-color: #0c0a09 !important; /* stone-950 for dark mode */
   }
 }

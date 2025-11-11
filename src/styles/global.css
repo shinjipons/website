@@ -172,9 +172,9 @@
     text-decoration-style: solid;
   }
   
-  /* Horizontal rules are dotted */
+  /* Horizontal rules are solid */
   hr {
-    border-style: dotted;
+    border-style: solid;
     border-width: 0 0 1px 0;
   }
   

@@ -2,6 +2,16 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
+// Format date from YYYY-MM-DD to "Nov 12, 2025"
+function formatEventDate(dateString: string): string {
+  const date = new Date(dateString + "T00:00:00"); // Add time to avoid timezone issues
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+}
+
 // Social media links
 const socialLinks = [
   { name: "Twitter", url: "https://twitter.com/shinjipons" },
@@ -18,56 +28,67 @@ const workExperience = [
     company: "Formlabs",
     role: "Product designer",
     period: "2025—",
+    url: "https://formlabs.com/",
   },
   {
     company: "Modyfi",
     role: "Product designer",
     period: "2024",
+    url: "https://www.modyfi.com/",
   },
   {
     company: "Ragdoll Dynamics",
     role: "Product designer",
     period: "2023—24",
+    url: "https://ragdolldynamics.com/",
   },
   {
     company: "Frostbite",
     role: "Product designer",
     period: "2022—23",
+    url: "https://www.ea.com/frostbite",
   },
   {
     company: "LEGO",
     role: "Product designer",
     period: "2019—21",
+    url: "https://www.lego.com/",
   },
   {
     company: "Autodesk",
     role: "Product designer",
     period: "2017—19",
+    url: "https://www.autodesk.com/",
   },
   {
     company: "Thomson Reuters",
     role: "Product designer",
     period: "2016—17",
+    url: "https://www.thomsonreuters.com/",
   },
   {
     company: "Microsoft",
     role: "UX designer",
     period: "2015",
+    url: "https://www.microsoft.com/",
   },
   {
     company: "Barnbrook",
     role: "Design intern",
     period: "2015",
+    url: "https://www.barnbrook.net/",
   },
   {
     company: "Total Identity",
     role: "Design intern",
     period: "2013",
+    url: "https://www.totalidentity.com/",
   },
   {
     company: "Ateliers Jean Nouvel",
     role: "Design intern",
     period: "2012",
+    url: "https://www.jeannouvel.com/",
   },
 ];
 
@@ -140,14 +161,37 @@ const sideProjects = [
   },
 ];
 
-// Next trips
-const nextTrips = [
-  // {
-  //   title: "Ragdoll Con 2025",
-  //   destination: "London, UK",
-  //   date: "Nov 2025",
-  // },
+// Upcoming events and meetups
+const upcomingEventsRaw = [
+  {
+    title: "ProductTank Watch Party",
+    destination: "Budapest",
+    date: "2025-11-12",
+    url: "https://luma.com/2ypljyz1?tk=a7drVs",
+  },
+  {
+    title: "UX Budapest Meetup",
+    destination: "Budapest",
+    date: "2025-11-27",
+    url: "https://luma.com/shp07hsi?tk=lMh8V7",
+  },
 ];
+
+// Format dates for display and filter out past events
+const today = new Date();
+today.setHours(0, 0, 0, 0); // Set to start of day for accurate comparison
+
+const upcomingEvents = upcomingEventsRaw
+  .filter((event) => {
+    if (!event.date) return true; // Keep events without dates
+    const eventDate = new Date(event.date + "T00:00:00");
+    eventDate.setHours(0, 0, 0, 0);
+    return eventDate >= today; // Only include today and future events
+  })
+  .map((event) => ({
+    ...event,
+    date: event.date ? formatEventDate(event.date) : undefined,
+  }));
 
 // Get all blog posts dynamically and sort by date (newest first)
 const allPosts = await getCollection("writing");
@@ -157,7 +201,7 @@ const blogPosts = allPosts.sort(
 
 // Navigation sections
 const navSections = [
-  { id: "next-trip", label: "Next trip" },
+  { id: "events", label: "Events" },
   { id: "writing", label: "Writing" },
   { id: "experience", label: "Work Experience" },
   { id: "projects", label: "Projects" },
@@ -226,37 +270,50 @@ const navSections = [
 
     <hr class="border-gray-400 dark:border-stone-600 my-8" />
 
-    <!-- Next Trip Section -->
-    <section id="next-trip" class="pt-8 pb-4">
+    <!-- Events Section -->
+    <section id="events" class="pt-8 pb-4">
       <h2 class="font-semibold text-gray-900 dark:text-stone-100 mb-6 px-4">
-        Next trip
+        Events I'm Attending
       </h2>
       {
-        nextTrips.length > 0 ? (
+        upcomingEvents.length > 0 ? (
           <div class="space-y-6">
-            {nextTrips.map((trip) => (
+            {upcomingEvents.map((event) => (
               <div class="px-4 flex justify-between items-center">
                 <p class="text-gray-900 dark:text-stone-100">
-                  {trip.title ? (
-                    <>
-                      <span class="font-medium">{trip.title}</span>
-                      {trip.destination && <> — {trip.destination}</>}
-                    </>
+                  {event.url ? (
+                    <a
+                      href={event.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="font-medium hover:text-amber-400 dark:hover:text-amber-400 transition-colors duration-200"
+                    >
+                      {event.title || event.destination}
+                    </a>
                   ) : (
-                    <span class="font-medium">{trip.destination}</span>
+                    <span class="font-medium">
+                      {event.title || event.destination}
+                    </span>
                   )}
                 </p>
-                {trip.date && (
-                  <p class="text-gray-400 dark:text-stone-400 w-24 text-right">
-                    {trip.date}
-                  </p>
-                )}
+                <div class="flex items-center gap-0">
+                  {event.destination && (
+                    <p class="text-gray-700 dark:text-stone-300">
+                      {event.destination}
+                    </p>
+                  )}
+                  {event.date && (
+                    <p class="text-gray-400 dark:text-stone-400 w-32 text-right">
+                      {event.date}
+                    </p>
+                  )}
+                </div>
               </div>
             ))}
           </div>
         ) : (
           <p class="px-4 text-gray-700 dark:text-stone-300">
-            Planning my next adventure...
+            No upcoming events scheduled...
           </p>
         )
       }
@@ -308,11 +365,22 @@ const navSections = [
           workExperience.map((job) => (
             <div class="px-4 flex justify-between items-center">
               <p class="text-gray-900 dark:text-stone-100">
-                <span class="font-medium">{job.company}</span>
+                {job.url ? (
+                  <a
+                    href={job.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="font-medium hover:text-amber-400 dark:hover:text-amber-400 transition-colors duration-200"
+                  >
+                    {job.company}
+                  </a>
+                ) : (
+                  <span class="font-medium">{job.company}</span>
+                )}
               </p>
               <div class="flex items-center gap-0">
                 <p class="text-gray-700 dark:text-stone-300">{job.role}</p>
-                <p class="text-gray-400 dark:text-stone-400 w-24 text-right">
+                <p class="text-gray-400 dark:text-stone-400 w-32 text-right">
                   {job.period}
                 </p>
               </div>
