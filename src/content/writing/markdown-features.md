@@ -1,7 +1,7 @@
 ---
-title: "Exploring Markdown: A Comprehensive Guide"
+title: "Test article, do not publish"
 pubDate: 2025-01-15
-description: "A sample blog post demonstrating various markdown syntax features including quotes, images, footnotes, code blocks, and more."
+description: "A sample blog post demonstrating various markdown syntax features including quotes, images, footnotes, code blocks, and more"
 author: "Shinji Pons"
 ---
 
