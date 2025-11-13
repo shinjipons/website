@@ -11,7 +11,7 @@
   --ease-in-quint: cubic-bezier(.755, .05, .855, .06);
   --ease-in-expo: cubic-bezier(.95, .05, .795, .035);
   --ease-in-circ: cubic-bezier(.6, .04, .98, .335);
-  
+
   /* ease-out */
   --ease-out-quad: cubic-bezier(.25, .46, .45, .94);
   --ease-out-cubic: cubic-bezier(.215, .61, .355, 1);
@@ -19,7 +19,7 @@
   --ease-out-quint: cubic-bezier(.23, 1, .32, 1);
   --ease-out-expo: cubic-bezier(.19, 1, .22, 1);
   --ease-out-circ: cubic-bezier(.075, .82, .165, 1);
-  
+
   /* ease-in-out */
   --ease-in-out-quad: cubic-bezier(.455, .03, .515, .955);
   --ease-in-out-cubic: cubic-bezier(.645, .045, .355, 1);
@@ -107,24 +107,24 @@
   html {
     font-size: 14px;
   }
-  
+
   body {
     font-size: 1rem;
     font-family: "iA Writer Quattro", sans-serif;
     line-height: 1.65;
   }
-  
+
   h1, h2, h3, h4, h5, h6, p, span, a, li, ul, ol, div, article, section {
     font-size: 1rem;
     font-family: "iA Writer Quattro", sans-serif;
     line-height: 1.65;
   }
-  
+
   /* Ensure code blocks and all their children use iA Writer Mono */
   pre, code, pre *, code *, pre span, code span {
     font-family: "iA Writer Mono", monospace !important;
   }
-  
+
   /* Inline code styling in dark mode */
   .dark .prose code:not(pre code),
   .dark article code:not(pre code),
@@ -132,7 +132,7 @@
     color: rgb(248 113 113) !important; /* red-400 */
     background-color: rgb(3 7 18) !important; /* gray-950 */
   }
-  
+
   @media (prefers-color-scheme: dark) {
     .prose code:not(pre code),
     article code:not(pre code),
@@ -141,7 +141,7 @@
       background-color: rgb(3 7 18) !important; /* gray-950 */
     }
   }
-  
+
   /* Links in text content have dotted underline */
   .prose a:not(.block):not([class*="rounded-lg"]),
   article p a:not(.block):not([class*="rounded-lg"]),
@@ -152,7 +152,7 @@
     text-underline-offset: 0.2em;
     text-decoration-color: currentColor;
   }
-  
+
   /* Hover transitions only on devices with precise pointing */
   @media (hover: hover) and (pointer: fine) {
     .prose a:not(.block):not([class*="rounded-lg"]),
@@ -160,7 +160,15 @@
     p a:not(.block):not([class*="rounded-lg"]) {
       transition: color 0.2s ease, text-decoration-style 0.2s ease;
     }
-    
+
+    /* Hover effect for links in light mode */
+    .prose a:not(.block):not([class*="rounded-lg"]):hover,
+    article p a:not(.block):not([class*="rounded-lg"]):hover,
+    p a:not(.block):not([class*="rounded-lg"]):hover {
+      color: rgb(37 99 235); /* blue-600 - saturated blue */
+      text-decoration-style: solid;
+    }
+
     /* Hover effect for links in dark mode */
     .dark .prose a:not(.block):not([class*="rounded-lg"]):hover,
     .dark article p a:not(.block):not([class*="rounded-lg"]):hover,
@@ -169,7 +177,16 @@
       text-decoration-style: solid;
     }
   }
-  
+
+  @media (prefers-color-scheme: light) and (hover: hover) and (pointer: fine) {
+    .prose a:not(.block):not([class*="rounded-lg"]):hover,
+    article p a:not(.block):not([class*="rounded-lg"]):hover,
+    p a:not(.block):not([class*="rounded-lg"]):hover {
+      color: rgb(37 99 235); /* blue-600 - saturated blue */
+      text-decoration-style: solid;
+    }
+  }
+
   @media (prefers-color-scheme: dark) and (hover: hover) and (pointer: fine) {
     .prose a:not(.block):not([class*="rounded-lg"]):hover,
     article p a:not(.block):not([class*="rounded-lg"]):hover,
@@ -178,12 +195,12 @@
       text-decoration-style: solid;
     }
   }
-  
+
   /* Remove trailing whitespace from links */
   p a {
     white-space: nowrap;
   }
-  
+
   /* Card links and navigation links should not have underline */
   a.block,
   a[class*="rounded-lg"],
@@ -191,7 +208,7 @@
   a[class*="hover:underline"] {
     text-decoration: none !important;
   }
-  
+
   /* Navigation links in "A few things to explore" list */
   .nav-link {
     text-decoration: underline;
@@ -200,42 +217,56 @@
     text-underline-offset: 0.2em;
     text-decoration-color: currentColor;
   }
-  
+
   /* Hover transitions only on devices with precise pointing */
   @media (hover: hover) and (pointer: fine) {
     .nav-link {
       transition: color 0.2s ease, text-decoration-style 0.2s ease;
     }
-    
+
+    /* Hover effect for nav links in light mode */
+    .nav-link:hover {
+      color: rgb(37 99 235); /* blue-600 - saturated blue */
+      text-decoration-style: solid;
+    }
+
+    /* Hover effect for nav links in dark mode */
+    .dark .nav-link:hover {
+      color: rgb(251 191 36); /* amber-400 */
+      text-decoration-style: solid;
+    }
+  }
+
+  @media (prefers-color-scheme: dark) and (hover: hover) and (pointer: fine) {
     .nav-link:hover {
       color: rgb(251 191 36); /* amber-400 */
       text-decoration-style: solid;
     }
   }
-  
+
   /* Horizontal rules are solid */
   hr {
     border-style: solid;
     border-width: 0 0 1px 0;
   }
-  
+
   /* Blockquotes use secondary text color and have left border */
   .prose blockquote,
   article blockquote,
   blockquote {
-    color: rgb(156 163 175) !important; /* gray-400 */
-    border-left: 2px solid rgb(156 163 175); /* gray-400 */
+    color: rgb(107 114 128) !important; /* gray-500 */
+    border-left: 2px solid rgb(107 114 128); /* gray-500 */
     box-sizing: border-box;
     padding-left: calc(1rem - 2px) !important; /* Adjust padding to account for border */
   }
-  
+
   .dark .prose blockquote,
   .dark article blockquote,
   .dark blockquote {
     color: rgb(168 162 158) !important; /* stone-400 */
     border-left-color: rgb(168 162 158); /* stone-400 */
   }
-  
+
   @media (prefers-color-scheme: dark) {
     .prose blockquote,
     article blockquote,
@@ -244,27 +275,27 @@
       border-left-color: rgb(168 162 158); /* stone-400 */
     }
   }
-  
+
   /* Images in dark mode get dark background for transparent PNGs and border radius */
   .prose img,
   article img,
   img {
     border-radius: 6px;
   }
-  
+
   /* Blog images take full width while maintaining aspect ratio */
   .prose img,
   article img {
     width: 100%;
     height: auto;
   }
-  
+
   .dark .prose img,
   .dark article img,
   .dark img {
     background-color: rgb(12 10 9); /* stone-900 */
   }
-  
+
   @media (prefers-color-scheme: dark) {
     .prose img,
     article img,
@@ -272,7 +303,7 @@
       background-color: rgb(12 10 9); /* stone-900 */
     }
   }
-  
+
   /* Video styling */
   .prose video,
   article video,
@@ -282,7 +313,7 @@
     height: auto;
     display: block;
   }
-  
+
   /* Hide video controls by default, show on hover (WebKit browsers) */
   @media (hover: hover) and (pointer: fine) {
     .prose video::-webkit-media-controls-panel,
@@ -291,13 +322,13 @@
       opacity: 0;
       transition: opacity 0.2s ease;
     }
-    
+
     .prose video:hover::-webkit-media-controls-panel,
     article video:hover::-webkit-media-controls-panel,
     video:hover::-webkit-media-controls-panel {
       opacity: 1;
     }
-    
+
     /* For other WebKit pseudo-elements */
     .prose video:not(:hover)::-webkit-media-controls,
     article video:not(:hover)::-webkit-media-controls,
@@ -305,7 +336,7 @@
       opacity: 0;
       transition: opacity 0.2s ease;
     }
-    
+
     .prose video:hover::-webkit-media-controls,
     article video:hover::-webkit-media-controls,
     video:hover::-webkit-media-controls {
@@ -322,18 +353,18 @@
     .transition-color-hover {
       transition: color 0.2s ease;
     }
-    
+
     /* Background color transition for cards (blog posts, projects) */
     .transition-bg-hover {
       transition: background-color 0.2s ease;
     }
-    
+
     /* Combined color and background transitions */
     .transition-colors-hover {
       transition: color 0.2s ease, background-color 0.2s ease;
     }
   }
-  
+
   /* Disable transitions for users who prefer reduced motion */
   @media (prefers-reduced-motion: reduce) {
     .transition-color-hover,
