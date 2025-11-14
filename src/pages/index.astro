@@ -196,17 +196,21 @@ const upcomingEvents = upcomingEventsRaw
 // Get all blog posts dynamically and sort by date (newest first)
 const allPosts = await getCollection("writing");
 const blogPosts = allPosts.sort(
-  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
+  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
 );
 
 // Experiments
 const experiments = [
   {
-    slug: "spinbox-prototype",
     url: "https://spinbox-prototype.shinjipons.com",
     imageLight: "/media/experiments/spinbox-prototype-light-mode.png",
     imageDark: "/media/experiments/spinbox-prototype-dark-mode.png",
   },
+  // {
+  //   url: "https://3d-measure.shinjipons.com",
+  //   imageLight: "/media/experiments/spinbox-prototype-light-mode.png",
+  //   imageDark: "/media/experiments/spinbox-prototype-dark-mode.png",
+  // },
 ];
 
 // Navigation sections
@@ -255,7 +259,7 @@ const navSections = [
                     ? " and "
                     : ", "
                   : "") +
-                `<a href="${link.url}" target="_blank" rel="noopener noreferrer" class="text-stone-800 dark:text-stone-100">${link.name.trim()}</a>`
+                `<a href="${link.url}" target="_blank" rel="noopener noreferrer" class="text-stone-800 dark:text-stone-100">${link.name.trim()}</a>`,
             )
             .join("")}
         />.
@@ -479,12 +483,10 @@ const navSections = [
                 >
                   <img
                     src={experiment.imageLight}
-                    alt={experiment.slug}
                     class="w-full aspect-square object-cover dark:hidden dark:!bg-transparent"
                   />
                   <img
                     src={experiment.imageDark}
-                    alt={experiment.slug}
                     class="hidden w-full aspect-square object-cover dark:block dark:!bg-transparent"
                   />
                 </a>
