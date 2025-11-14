@@ -213,27 +213,27 @@ const navSections = [
   <div class="max-w-[560px] mx-auto px-4 py-12">
     <!-- Header section -->
     <section class="pt-8 pb-4">
-      <h2 class="font-semibold text-gray-900 dark:text-stone-100 px-4">
+      <h2 class="font-semibold text-stone-800 dark:text-stone-100 px-4">
         Shinji Pons
       </h2>
-      <p class="px-4 text-gray-700 dark:text-stone-300">Product Designer</p>
+      <p class="px-4 text-stone-500 dark:text-stone-300">Product Designer</p>
     </section>
 
     <!-- Today section -->
     <section class="pt-8 pb-4">
-      <h2 class="font-semibold text-gray-900 dark:text-stone-100 px-4 pb-4">
+      <h2 class="font-semibold text-stone-800 dark:text-stone-100 px-4 pb-4">
         Today
       </h2>
-      <p class="px-4 text-gray-700 dark:text-stone-300 mb-4">
+      <p class="px-4 text-stone-500 dark:text-stone-300 mb-4">
         I work on software product design at <a href="https://formlabs.com/"
           >Formlabs</a
         >.
       </p>
-      <p class="px-4 text-gray-700 dark:text-stone-300 mb-4">
+      <p class="px-4 text-stone-500 dark:text-stone-300 mb-4">
         My ambition is to craft 3D tools and workflows that incite artists,
         engineers and designers to accomplish greater things.
       </p>
-      <p class="px-4 text-gray-700 dark:text-stone-300 mb-4">
+      <p class="px-4 text-stone-500 dark:text-stone-300 mb-4">
         You can reach out to me on{" "}
         <span
           set:html={socialLinks
@@ -244,21 +244,21 @@ const navSections = [
                     ? " and "
                     : ", "
                   : "") +
-                `<a href="${link.url}" target="_blank" rel="noopener noreferrer" class="text-gray-700 dark:text-stone-300">${link.name.trim()}</a>`,
+                `<a href="${link.url}" target="_blank" rel="noopener noreferrer" class="text-stone-500 dark:text-stone-300">${link.name.trim()}</a>`,
             )
             .join("")}
         />.
       </p>
-      <p class="px-4 text-gray-700 dark:text-stone-300">
+      <p class="px-4 text-stone-500 dark:text-stone-300">
         A few things to explore:
       </p>
       <ul class="px-4 mt-4 space-y-1 list-disc list-inside">
         {
           navSections.map((section) => (
-            <li class="text-gray-500 dark:text-stone-400">
+            <li class="text-stone-500 dark:text-stone-400">
               <a
                 href={`#${section.id}`}
-                class="nav-link inline font-regular text-gray-700 dark:text-stone-300"
+                class="nav-link inline font-regular text-stone-500 dark:text-stone-300"
               >
                 {section.label}
               </a>
@@ -268,11 +268,11 @@ const navSections = [
       </ul>
     </section>
 
-    <hr class="border-gray-400 dark:border-stone-600 my-8" />
+    <hr class="border-stone-400 dark:border-stone-600 my-8" />
 
     <!-- Events Section -->
     <section id="events" class="pt-8 pb-4">
-      <h2 class="font-semibold text-gray-900 dark:text-stone-100 mb-6 px-4">
+      <h2 class="font-semibold text-stone-800 dark:text-stone-100 mb-6 px-4">
         Events I'm Attending
       </h2>
       {
@@ -280,7 +280,7 @@ const navSections = [
           <div class="space-y-6">
             {upcomingEvents.map((event) => (
               <div class="px-4 flex justify-between items-center">
-                <p class="text-gray-900 dark:text-stone-100">
+                <p class="text-stone-800 dark:text-stone-100">
                   {event.url ? (
                     <a
                       href={event.url}
@@ -298,12 +298,12 @@ const navSections = [
                 </p>
                 <div class="flex items-center gap-0">
                   {event.destination && (
-                    <p class="text-gray-700 dark:text-stone-300">
+                    <p class="text-stone-500 dark:text-stone-300">
                       {event.destination}
                     </p>
                   )}
                   {event.date && (
-                    <p class="text-gray-500 dark:text-stone-400 w-32 text-right">
+                    <p class="text-stone-500 dark:text-stone-400 w-32 text-right">
                       {event.date}
                     </p>
                   )}
@@ -312,18 +312,18 @@ const navSections = [
             ))}
           </div>
         ) : (
-          <p class="px-4 text-gray-700 dark:text-stone-300">
+          <p class="px-4 text-stone-500 dark:text-stone-300">
             No upcoming events scheduled...
           </p>
         )
       }
     </section>
 
-    <hr class="border-gray-400 dark:border-stone-600 my-8" />
+    <hr class="border-stone-400 dark:border-stone-600 my-8" />
 
     <!-- Blog Posts Section -->
     <section id="writing" class="pt-8 pb-4">
-      <h2 class="font-semibold text-gray-900 dark:text-stone-100 mb-6 px-4">
+      <h2 class="font-semibold text-stone-800 dark:text-stone-100 mb-6 px-4">
         Writing
       </h2>
       {
@@ -332,13 +332,13 @@ const navSections = [
             {blogPosts.map((post) => (
               <a
                 href={`/writing/${post.slug}`}
-                class="block rounded-lg pt-4 px-4 pb-2 bg-stone-50 dark:bg-stone-900 hover:bg-white dark:hover:bg-stone-800 hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.05),0_4px_6px_-2px_rgba(0,0,0,0.02)] transition-all duration-200"
+                class="block rounded-lg pt-4 px-4 pb-2 bg-transparent hover:bg-stone-50 dark:hover:bg-stone-800 hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.05),0_4px_6px_-2px_rgba(0,0,0,0.02)] transition-all duration-200"
               >
                 <article>
-                  <h3 class="font-medium text-gray-900 dark:text-stone-100 mb-2">
+                  <h3 class="font-medium text-stone-800 dark:text-stone-100 mb-2">
                     {post.data.title}
                   </h3>
-                  <p class="text-gray-500 dark:text-stone-400 mb-2">
+                  <p class="text-stone-500 dark:text-stone-400 mb-2">
                     {post.data.description}
                   </p>
                 </article>
@@ -346,25 +346,25 @@ const navSections = [
             ))}
           </div>
         ) : (
-          <p class="px-4 text-gray-700 dark:text-stone-300">
+          <p class="px-4 text-stone-500 dark:text-stone-300">
             Still thinking... Check back soon.
           </p>
         )
       }
     </section>
 
-    <hr class="border-gray-400 dark:border-stone-600 my-8" />
+    <hr class="border-stone-400 dark:border-stone-600 my-8" />
 
     <!-- Work Experience Section -->
     <section id="experience" class="pt-8 pb-4">
-      <h2 class="font-semibold text-gray-900 dark:text-stone-100 mb-6 px-4">
+      <h2 class="font-semibold text-stone-800 dark:text-stone-100 mb-6 px-4">
         Work Experience
       </h2>
       <div class="space-y-6">
         {
           workExperience.map((job) => (
             <div class="px-4 flex justify-between items-center">
-              <p class="text-gray-900 dark:text-stone-100">
+              <p class="text-stone-800 dark:text-stone-100">
                 {job.url ? (
                   <a
                     href={job.url}
@@ -379,8 +379,8 @@ const navSections = [
                 )}
               </p>
               <div class="flex items-center gap-0">
-                <p class="text-gray-700 dark:text-stone-300">{job.role}</p>
-                <p class="text-gray-400 dark:text-stone-400 w-32 text-right">
+                <p class="text-stone-500 dark:text-stone-300">{job.role}</p>
+                <p class="text-stone-500 dark:text-stone-400 w-32 text-right">
                   {job.period}
                 </p>
               </div>
@@ -390,11 +390,11 @@ const navSections = [
       </div>
     </section>
 
-    <hr class="border-gray-400 dark:border-stone-600 my-8" />
+    <hr class="border-stone-400 dark:border-stone-600 my-8" />
 
     <!-- Work Projects Section -->
     <section id="projects" class="pt-8 pb-4">
-      <h2 class="font-semibold text-gray-900 dark:text-stone-100 mb-6 px-4">
+      <h2 class="font-semibold text-stone-800 dark:text-stone-100 mb-6 px-4">
         Projects
       </h2>
       <div class="grid gap-2 grid-cols-1">
@@ -404,12 +404,12 @@ const navSections = [
               href={project.url}
               target="_blank"
               rel="noopener noreferrer"
-              class="block rounded-lg pt-4 px-4 pb-2 bg-stone-50 dark:bg-stone-900 hover:bg-gray-100 dark:hover:bg-stone-800 transition-bg-hover"
+              class="block rounded-lg pt-4 px-4 pb-2 bg-transparent hover:bg-stone-50 dark:hover:bg-stone-800 transition-bg-hover"
             >
-              <h3 class="font-medium text-gray-900 dark:text-stone-100 mb-2">
+              <h3 class="font-medium text-stone-800 dark:text-stone-100 mb-2">
                 {project.name}
               </h3>
-              <p class="text-gray-400 dark:text-stone-400 mb-2">
+              <p class="text-stone-500 dark:text-stone-400 mb-2">
                 {project.description}
               </p>
             </a>
@@ -418,11 +418,11 @@ const navSections = [
       </div>
     </section>
 
-    <hr class="border-gray-400 dark:border-stone-600 my-8" />
+    <hr class="border-stone-400 dark:border-stone-600 my-8" />
 
     <!-- Side Projects Section -->
     <section id="side-projects" class="pt-8 pb-4">
-      <h2 class="font-semibold text-gray-900 dark:text-stone-100 mb-6 px-4">
+      <h2 class="font-semibold text-stone-800 dark:text-stone-100 mb-6 px-4">
         Side Projects
       </h2>
       <div class="grid gap-2 grid-cols-1">
@@ -432,12 +432,12 @@ const navSections = [
               href={project.url}
               target="_blank"
               rel="noopener noreferrer"
-              class="block rounded-lg pt-4 px-4 pb-2 bg-stone-50 dark:bg-stone-900 hover:bg-gray-100 dark:hover:bg-stone-800 transition-bg-hover"
+              class="block rounded-lg pt-4 px-4 pb-2 bg-transparent hover:bg-stone-50 dark:hover:bg-stone-800 transition-bg-hover"
             >
-              <h3 class="font-medium text-gray-900 dark:text-stone-100 mb-2">
+              <h3 class="font-medium text-stone-800 dark:text-stone-100 mb-2">
                 {project.name}
               </h3>
-              <p class="text-gray-400 dark:text-stone-400 mb-2">
+              <p class="text-stone-500 dark:text-stone-400 mb-2">
                 {project.description}
               </p>
             </a>

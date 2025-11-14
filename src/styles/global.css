@@ -254,8 +254,8 @@
   .prose blockquote,
   article blockquote,
   blockquote {
-    color: rgb(107 114 128) !important; /* gray-500 */
-    border-left: 2px solid rgb(107 114 128); /* gray-500 */
+    color: rgb(120 113 108) !important; /* stone-500 */
+    border-left: 2px solid rgb(120 113 108); /* stone-500 */
     box-sizing: border-box;
     padding-left: calc(1rem - 2px) !important; /* Adjust padding to account for border */
   }
