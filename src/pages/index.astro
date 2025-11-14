@@ -79,10 +79,16 @@ const workExperience = [
     url: "https://www.barnbrook.net/",
   },
   {
-    company: "Total Identity",
+    company: "Total Design",
     role: "Design intern",
     period: "2013",
-    url: "https://www.totalidentity.com/",
+    url: "https://designlaboratory.co.uk/",
+  },
+  {
+    company: "The Design Lab",
+    role: "Design intern",
+    period: "2014",
+    url: "https://www.totaldesign.com/",
   },
   {
     company: "Ateliers Jean Nouvel",
@@ -227,7 +233,7 @@ const navSections = [
 <BaseLayout title="Home" description="Personal website and blog">
   <div class="max-w-[560px] mx-auto px-4 py-12">
     <!-- Header section -->
-    <section class="pt-8 pb-4">
+    <section class="pt-8 pb-8 fade-in">
       <h2 class="font-semibold text-stone-800 dark:text-stone-100 px-4">
         Shinji Pons
       </h2>
@@ -235,13 +241,14 @@ const navSections = [
     </section>
 
     <!-- Today section -->
-    <section class="pt-8 pb-4">
+    <section class="pt-12 pb-8 fade-in fade-in-delay-1">
       <h2 class="font-semibold text-stone-800 dark:text-stone-100 px-4 pb-4">
         Today
       </h2>
       <p class="px-4 text-stone-800 dark:text-stone-100 mb-4">
-        I work on software product design at <a href="https://formlabs.com/"
-          >Formlabs</a
+        I work on software product design at <a
+          href="https://formlabs.com/"
+          class="text-stone-800 dark:text-stone-100">Formlabs</a
         >.
       </p>
       <p class="px-4 text-stone-800 dark:text-stone-100 mb-4">
@@ -273,7 +280,7 @@ const navSections = [
             <li class="text-stone-800 dark:text-stone-100">
               <a
                 href={`#${section.id}`}
-                class="nav-link inline font-regular text-stone-500 dark:text-stone-300"
+                class="nav-link inline font-regular text-stone-800 dark:text-stone-100"
               >
                 {section.label}
               </a>
@@ -283,18 +290,19 @@ const navSections = [
       </ul>
     </section>
 
-    <hr class="border-stone-400 dark:border-stone-600 my-8" />
-
     <!-- Events Section -->
-    <section id="events" class="pt-8 pb-4">
+    <section id="events" class="pt-12 pb-8 fade-in fade-in-delay-2">
       <h2 class="font-semibold text-stone-800 dark:text-stone-100 mb-6 px-4">
         Events I'm Attending
       </h2>
       {
         upcomingEvents.length > 0 ? (
           <div class="space-y-6">
-            {upcomingEvents.map((event) => (
-              <div class="px-4 flex flex-col gap-1 md:flex-row md:justify-between md:items-center md:gap-0">
+            {upcomingEvents.map((event, index) => (
+              <div
+                class="px-4 flex flex-col gap-1 md:flex-row md:justify-between md:items-center md:gap-0 fade-in"
+                style={`animation-delay: ${0.3 + index * 0.1}s`}
+              >
                 <p class="text-stone-800 dark:text-stone-100">
                   {event.url ? (
                     <a
@@ -334,20 +342,19 @@ const navSections = [
       }
     </section>
 
-    <hr class="border-stone-400 dark:border-stone-600 my-8" />
-
     <!-- Blog Posts Section -->
-    <section id="writing" class="pt-8 pb-4">
+    <section id="writing" class="pt-12 pb-8 fade-in fade-in-delay-3">
       <h2 class="font-semibold text-stone-800 dark:text-stone-100 mb-6 px-4">
         Writing
       </h2>
       {
         blogPosts.length > 0 ? (
           <div class="space-y-2">
-            {blogPosts.map((post) => (
+            {blogPosts.map((post, index) => (
               <a
                 href={`/writing/${post.slug}`}
-                class="block rounded-lg pt-4 px-4 pb-2 bg-transparent hover:bg-stone-50 dark:hover:bg-stone-800 hover:shadow-[0_8px_12px_0_rgba(0,0,0,0.08),0_0_1px_0_rgba(0,0,0,0.62)] transition-all duration-200"
+                class="block rounded-lg pt-4 px-4 pb-2 bg-transparent hover:bg-stone-50 dark:hover:bg-stone-800 hover:shadow-[0_8px_12px_0_rgba(0,0,0,0.08),0_0_1px_0_rgba(0,0,0,0.62)] transition-all duration-200 fade-in"
+                style={`animation-delay: ${0.4 + index * 0.05}s`}
               >
                 <article>
                   <h3 class="font-medium text-stone-800 dark:text-stone-100 mb-2">
@@ -368,17 +375,18 @@ const navSections = [
       }
     </section>
 
-    <hr class="border-stone-400 dark:border-stone-600 my-8" />
-
     <!-- Work Experience Section -->
-    <section id="experience" class="pt-8 pb-4">
+    <section id="experience" class="pt-12 pb-8 fade-in fade-in-delay-4">
       <h2 class="font-semibold text-stone-800 dark:text-stone-100 mb-6 px-4">
         Work Experience
       </h2>
       <div class="space-y-6">
         {
-          workExperience.map((job) => (
-            <div class="px-4 flex flex-col gap-1 md:flex-row md:justify-between md:items-center md:gap-0">
+          workExperience.map((job, index) => (
+            <div
+              class="px-4 flex flex-col gap-1 md:flex-row md:justify-between md:items-center md:gap-0 fade-in"
+              style={`animation-delay: ${0.5 + index * 0.03}s`}
+            >
               <p class="text-stone-800 dark:text-stone-100">
                 {job.url ? (
                   <a
@@ -405,21 +413,20 @@ const navSections = [
       </div>
     </section>
 
-    <hr class="border-stone-400 dark:border-stone-600 my-8" />
-
     <!-- Work Projects Section -->
-    <section id="projects" class="pt-8 pb-4">
+    <section id="projects" class="pt-12 pb-8 fade-in fade-in-delay-5">
       <h2 class="font-semibold text-stone-800 dark:text-stone-100 mb-6 px-4">
         Projects
       </h2>
       <div class="grid gap-2 grid-cols-1">
         {
-          workProjects.map((project) => (
+          workProjects.map((project, index) => (
             <a
               href={project.url}
               target="_blank"
               rel="noopener noreferrer"
-              class="block rounded-lg pt-4 px-4 pb-2 bg-transparent hover:bg-stone-50 dark:hover:bg-stone-800 hover:shadow-[0_8px_12px_0_rgba(0,0,0,0.08),0_0_1px_0_rgba(0,0,0,0.62)] transition-all duration-200"
+              class="block rounded-lg pt-4 px-4 pb-2 bg-transparent hover:bg-stone-50 dark:hover:bg-stone-800 hover:shadow-[0_8px_12px_0_rgba(0,0,0,0.08),0_0_1px_0_rgba(0,0,0,0.62)] transition-all duration-200 fade-in"
+              style={`animation-delay: ${0.6 + index * 0.05}s`}
             >
               <h3 class="font-medium text-stone-800 dark:text-stone-100 mb-2">
                 {project.name}
@@ -433,21 +440,20 @@ const navSections = [
       </div>
     </section>
 
-    <hr class="border-stone-400 dark:border-stone-600 my-8" />
-
     <!-- Side Projects Section -->
-    <section id="side-projects" class="pt-8 pb-4">
+    <section id="side-projects" class="pt-12 pb-8 fade-in fade-in-delay-5">
       <h2 class="font-semibold text-stone-800 dark:text-stone-100 mb-6 px-4">
         Side Projects
       </h2>
       <div class="grid gap-2 grid-cols-1">
         {
-          sideProjects.map((project) => (
+          sideProjects.map((project, index) => (
             <a
               href={project.url}
               target="_blank"
               rel="noopener noreferrer"
-              class="block rounded-lg pt-4 px-4 pb-2 bg-transparent hover:bg-stone-50 dark:hover:bg-stone-800 hover:shadow-[0_8px_12px_0_rgba(0,0,0,0.08),0_0_1px_0_rgba(0,0,0,0.62)] transition-all duration-200"
+              class="block rounded-lg pt-4 px-4 pb-2 bg-transparent hover:bg-stone-50 dark:hover:bg-stone-800 hover:shadow-[0_8px_12px_0_rgba(0,0,0,0.08),0_0_1px_0_rgba(0,0,0,0.62)] transition-all duration-200 fade-in"
+              style={`animation-delay: ${0.6 + index * 0.05}s`}
             >
               <h3 class="font-medium text-stone-800 dark:text-stone-100 mb-2">
                 {project.name}
@@ -461,10 +467,8 @@ const navSections = [
       </div>
     </section>
 
-    <hr class="border-stone-400 dark:border-stone-600 my-8" />
-
     <!-- Experiments Section -->
-    <section id="experiments" class="pt-8 pb-4">
+    <section id="experiments" class="pt-12 pb-8 fade-in fade-in-delay-6">
       <h2 class="font-semibold text-stone-800 dark:text-stone-100 mb-6 px-4">
         Experiments
       </h2>
@@ -479,7 +483,8 @@ const navSections = [
                   href={experiment.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class={`block rounded-[6px] overflow-hidden bg-transparent hover:bg-stone-50 dark:bg-transparent dark:hover:bg-stone-800 hover:shadow-[0_8px_12px_0_rgba(0,0,0,0.08),0_0_1px_0_rgba(0,0,0,0.62)] transition-all duration-200 ${isFullWidth ? "col-span-2" : ""}`}
+                  class={`block rounded-[6px] overflow-hidden bg-transparent hover:bg-stone-50 dark:bg-transparent dark:hover:bg-stone-800 hover:shadow-[0_8px_12px_0_rgba(0,0,0,0.08),0_0_1px_0_rgba(0,0,0,0.62)] transition-all duration-200 fade-in ${isFullWidth ? "col-span-2" : ""}`}
+                  style={`animation-delay: ${0.7 + index * 0.1}s`}
                 >
                   <img
                     src={experiment.imageLight}

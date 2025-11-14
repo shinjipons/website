@@ -18,9 +18,27 @@ const { title, description = "Personal website" } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <!-- Preload critical fonts to prevent FOUT -->
-    <link rel="preload" href="/fonts/iAWriterQuattroS-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
-    <link rel="preload" href="/fonts/iAWriterQuattroS-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
-    <link rel="preload" href="/fonts/iAWriterMonoS-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link
+      rel="preload"
+      href="/fonts/iAWriterQuattroS-Regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="/fonts/iAWriterQuattroS-Bold.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="/fonts/iAWriterMonoS-Regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
     <title>{title}</title>
   </head>
   <body
@@ -29,5 +47,23 @@ const { title, description = "Personal website" } = Astro.props;
     <main class="min-h-screen">
       <slot />
     </main>
+    <script is:inline>
+      // Enable automatic scroll restoration to maintain scroll position on refresh
+      if ("scrollRestoration" in history) {
+        history.scrollRestoration = "auto";
+      }
+
+      // Handle hash navigation after page loads and animations start
+      if (window.location.hash) {
+        // Wait for DOM and animations to be ready, then scroll to hash
+        setTimeout(() => {
+          const hash = window.location.hash;
+          const element = document.querySelector(hash);
+          if (element) {
+            element.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        }, 200);
+      }
+    </script>
   </body>
 </html>
