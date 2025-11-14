@@ -1,0 +1,22 @@
+{
+  "name": "flexoki-dark-theme",
+  "displayName": "Flexoki Dark",
+  "description": "Flexoki Dark theme for Cursor IDE",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "contributes": {
+    "themes": [
+      {
+        "label": "Flexoki Dark",
+        "uiTheme": "vs-dark",
+        "path": "./themes/flexoki-dark.json"
+      }
+    ]
+  }
+}
+
