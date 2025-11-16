@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import Analytics from "@vercel/analytics/astro";
 
 interface Props {
   title: string;
@@ -49,6 +50,8 @@ const { title, description = "Personal website" } = Astro.props;
     <main class="min-h-screen">
       <slot />
     </main>
+    <!-- Adding Vercel Analytics -->
+    <!-- <Analytics /> -->
     <script is:inline>
       // Enable automatic scroll restoration to maintain scroll position on refresh
       if ("scrollRestoration" in history) {
