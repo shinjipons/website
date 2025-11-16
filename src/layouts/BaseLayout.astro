@@ -50,8 +50,10 @@ const { title, description = "Personal website" } = Astro.props;
     <main class="min-h-screen">
       <slot />
     </main>
+
     <!-- Adding Vercel Analytics -->
-    <!-- <Analytics /> -->
+    <Analytics />
+
     <script is:inline>
       // Enable automatic scroll restoration to maintain scroll position on refresh
       if ("scrollRestoration" in history) {
