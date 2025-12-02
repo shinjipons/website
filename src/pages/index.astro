@@ -2,6 +2,28 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
+// Upcoming events and meetups
+const upcomingEventsRaw = [
+  {
+    title: "ProductTank Watch Party",
+    destination: "Budapest",
+    date: "2025-11-12",
+    url: "https://luma.com/2ypljyz1?tk=a7drVs",
+  },
+  {
+    title: "UX Budapest Meetup",
+    destination: "Budapest",
+    date: "2025-11-27",
+    url: "https://luma.com/shp07hsi?tk=lMh8V7",
+  },
+  {
+    title: "DevBP #11: Crash, Learn and Laugh",
+    destination: "Budapest",
+    date: "2025-12-03",
+    url: "https://www.meetup.com/devbp-meetup/events/311991887/",
+  },
+];
+
 // Format date from YYYY-MM-DD to "Nov 12, 2025"
 function formatEventDate(dateString: string): string {
   const date = new Date(dateString + "T00:00:00"); // Add time to avoid timezone issues
@@ -167,22 +189,6 @@ const sideProjects = [
   },
 ];
 
-// Upcoming events and meetups
-const upcomingEventsRaw = [
-  {
-    title: "ProductTank Watch Party",
-    destination: "Budapest",
-    date: "2025-11-12",
-    url: "https://luma.com/2ypljyz1?tk=a7drVs",
-  },
-  {
-    title: "UX Budapest Meetup",
-    destination: "Budapest",
-    date: "2025-11-27",
-    url: "https://luma.com/shp07hsi?tk=lMh8V7",
-  },
-];
-
 // Format dates for display and filter out past events
 const today = new Date();
 today.setHours(0, 0, 0, 0); // Set to start of day for accurate comparison
@@ -293,7 +299,7 @@ const navSections = [
     <!-- Events Section -->
     <section id="events" class="pt-12 pb-8">
       <h2 class="font-semibold text-stone-800 dark:text-stone-100 mb-6 px-4">
-        Events I'm Attending
+        Events I'm Going To
       </h2>
       {
         upcomingEvents.length > 0 ? (
