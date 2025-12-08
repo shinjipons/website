@@ -26,11 +26,11 @@ const { Content } = await post.render();
       </a>
     </div>
     <header class="mb-8">
-      <h1 class="font-bold text-stone-800 dark:text-stone-100 mb-4">
+      <h1 class="font-bold text-stone-800 dark:text-neutral-100 mb-4">
         {post.data.title}
       </h1>
       <div
-        class="flex items-center gap-4 text-stone-500 dark:text-stone-300 mb-6"
+        class="flex items-center gap-4 text-stone-500 dark:text-neutral-300 mb-6"
       >
         <time datetime={post.data.pubDate.toISOString()}>
           {
@@ -47,15 +47,15 @@ const { Content } = await post.render();
 
     <div
       class="prose max-w-none dark:prose-invert
-        prose-headings:text-stone-900 dark:prose-headings:text-stone-100
+        prose-headings:text-stone-900 dark:prose-headings:text-neutral-100
         prose-headings:text-base prose-headings:font-bold
         prose-headings:mt-8 prose-headings:mb-4 prose-headings:[&:first-child]:mt-0
-        prose-p:text-stone-700 dark:prose-p:text-stone-300
+        prose-p:text-stone-700 dark:prose-p:text-neutral-300
         prose-p:text-base prose-p:mt-6 prose-p:mb-8 prose-p:[&:first-child]:mt-0 prose-p:[&:last-child]:mb-0
         prose-a:text-blue-600 dark:prose-a:text-blue-300
         prose-a:underline prose-a:decoration-dotted prose-a:decoration-[1px]
         dark:hover:prose-a:text-amber-400 hover:prose-a:decoration-solid
-        prose-strong:text-stone-900 dark:prose-strong:text-stone-100
+        prose-strong:text-stone-900 dark:prose-strong:text-neutral-100
         prose-code:text-stone-900 dark:prose-code:text-red-400
         prose-code:bg-stone-500 dark:prose-code:bg-gray-950
         prose-code:px-1 prose-code:py-0.5 prose-code:rounded
@@ -66,14 +66,14 @@ const { Content } = await post.render();
         prose-li:my-2 prose-li:[&:first-child]:mt-0 prose-li:[&:last-child]:mb-0
         prose-blockquote:my-6 prose-blockquote:[&:first-child]:mt-0 prose-blockquote:[&:last-child]:mb-0
         prose-blockquote:pl-4 prose-blockquote:pr-4
-        prose-blockquote:text-stone-500 dark:prose-blockquote:text-stone-400
-        prose-pre:my-6 prose-pre:[&:first-child]:mt-0 prose-pre:[&:last-child]:mb-0 prose-pre:p-4 prose-pre:bg-stone-900 dark:prose-pre:bg-stone-950 prose-pre:border prose-pre:border-stone-700 dark:prose-pre:border-stone-800
+        prose-blockquote:text-stone-500 dark:prose-blockquote:text-neutral-400
+        prose-pre:my-6 prose-pre:[&:first-child]:mt-0 prose-pre:[&:last-child]:mb-0 prose-pre:p-4 prose-pre:bg-stone-900 dark:prose-pre:bg-neutral-950 prose-pre:border prose-pre:border-stone-700 dark:prose-pre:border-neutral-800
         prose-hr:my-8
         prose-img:my-6 prose-img:[&:first-child]:mt-0 prose-img:[&:last-child]:mb-0"
     >
       <Content />
     </div>
-    <footer class="mt-12 pt-8 border-t border-stone-500 dark:border-stone-700">
+    <footer class="mt-12 pt-8 border-t border-stone-500 dark:border-neutral-700">
       <a
         href="/"
         class="text-blue-600 dark:text-blue-300 hover:text-blue-800 dark:hover:text-blue-200 hover:underline inline-flex items-center gap-2"

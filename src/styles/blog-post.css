@@ -162,8 +162,8 @@ article pre[class*="language-"] {
 .dark article pre,
 .dark article .prose pre[class*="language-"],
 .dark article pre[class*="language-"] {
-  border-color: #292524; /* stone-800 for dark mode - faint stroke */
-  background-color: #0c0a09 !important; /* stone-950 for dark mode */
+  border-color: #262626; /* neutral-800 for dark mode - faint stroke */
+  background-color: #0a0a0a !important; /* neutral-950 for dark mode */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -172,8 +172,8 @@ article pre[class*="language-"] {
   article pre,
   article .prose pre[class*="language-"],
   article pre[class*="language-"] {
-    border-color: #292524; /* stone-800 for dark mode - faint stroke */
-    background-color: #0c0a09 !important; /* stone-950 for dark mode */
+    border-color: #262626; /* neutral-800 for dark mode - faint stroke */
+    background-color: #0a0a0a !important; /* neutral-950 for dark mode */
   }
 }
 
