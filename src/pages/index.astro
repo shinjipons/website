@@ -240,7 +240,7 @@ const navSections = [
   <div class="max-w-[560px] mx-auto px-4 py-12">
     <!-- Header section -->
     <section class="pt-8 pb-8">
-      <h2 class="font-semibold text-stone-800 dark:text-neutral-100 px-4">
+      <h2 class="font-semibold text-stone-800 dark:text-neutral-200 px-4">
         Shinji Pons
       </h2>
       <p class="px-4 text-stone-500 dark:text-neutral-300">Product Designer</p>
@@ -248,20 +248,20 @@ const navSections = [
 
     <!-- Today section -->
     <section class="pt-12 pb-8">
-      <h2 class="font-semibold text-stone-800 dark:text-neutral-100 px-4 pb-4">
+      <h2 class="font-semibold text-stone-800 dark:text-neutral-200 px-4 pb-4">
         Today
       </h2>
-      <p class="px-4 text-stone-800 dark:text-neutral-100 mb-4">
-        I work on software product design at <a
+      <p class="px-4 text-stone-800 dark:text-neutral-200 mb-4">
+        I am a product designer at <a
           href="https://formlabs.com/"
-          class="text-stone-800 dark:text-neutral-100">Formlabs</a
+          class="text-stone-800 dark:text-neutral-200">Formlabs</a
         >.
       </p>
-      <p class="px-4 text-stone-800 dark:text-neutral-100 mb-4">
+      <p class="px-4 text-stone-800 dark:text-neutral-200 mb-4">
         My ambition is to craft 3D tools and workflows that incite artists,
         engineers and designers to accomplish greater things.
       </p>
-      <p class="px-4 text-stone-800 dark:text-neutral-100 mb-4">
+      <p class="px-4 text-stone-800 dark:text-neutral-200 mb-4">
         You can reach out to me on{" "}
         <span
           set:html={socialLinks
@@ -272,21 +272,21 @@ const navSections = [
                     ? " and "
                     : ", "
                   : "") +
-                `<a href="${link.url}" target="_blank" rel="noopener noreferrer" class="text-stone-800 dark:text-neutral-100">${link.name.trim()}</a>`
+                `<a href="${link.url}" target="_blank" rel="noopener noreferrer" class="text-stone-800 dark:text-neutral-200">${link.name.trim()}</a>`
             )
             .join("")}
         />.
       </p>
-      <p class="px-4 text-stone-800 dark:text-neutral-100">
+      <p class="px-4 text-stone-800 dark:text-neutral-200">
         A few things to explore:
       </p>
       <ul class="px-4 mt-4 space-y-1 list-disc list-inside">
         {
           navSections.map((section) => (
-            <li class="text-stone-800 dark:text-neutral-100">
+            <li class="text-stone-800 dark:text-neutral-200">
               <a
                 href={`#${section.id}`}
-                class="nav-link inline font-regular text-stone-800 dark:text-neutral-100"
+                class="nav-link inline font-regular text-stone-800 dark:text-neutral-200"
               >
                 {section.label}
               </a>
@@ -298,7 +298,7 @@ const navSections = [
 
     <!-- Events Section -->
     <section id="events" class="pt-12 pb-8">
-      <h2 class="font-semibold text-stone-800 dark:text-neutral-100 mb-6 px-4">
+      <h2 class="font-semibold text-stone-800 dark:text-neutral-200 mb-6 px-4">
         Events I'm Going To
       </h2>
       {
@@ -306,7 +306,7 @@ const navSections = [
           <div class="space-y-6">
             {upcomingEvents.map((event, index) => (
               <div class="px-4 flex flex-col gap-1 md:flex-row md:justify-between md:items-center md:gap-0">
-                <p class="text-stone-800 dark:text-neutral-100">
+                <p class="text-stone-800 dark:text-neutral-200">
                   {event.url ? (
                     <a
                       href={event.url}
@@ -347,7 +347,7 @@ const navSections = [
 
     <!-- Blog Posts Section -->
     <section id="writing" class="pt-12 pb-8">
-      <h2 class="font-semibold text-stone-800 dark:text-neutral-100 mb-6 px-4">
+      <h2 class="font-semibold text-stone-800 dark:text-neutral-200 mb-6 px-4">
         Writing
       </h2>
       {
@@ -359,7 +359,7 @@ const navSections = [
                 class="block rounded-lg pt-4 px-4 pb-2 bg-transparent hover:bg-stone-50 dark:hover:bg-stone-800 hover:shadow-[0_8px_12px_0_rgba(0,0,0,0.08),0_0_1px_0_rgba(0,0,0,0.62)] transition-all duration-200"
               >
                 <article>
-                  <h3 class="font-medium text-stone-800 dark:text-neutral-100 mb-2">
+                  <h3 class="font-medium text-stone-800 dark:text-neutral-200 mb-2">
                     {post.data.title}
                   </h3>
                   <p class="text-stone-500 dark:text-neutral-400 mb-2">
@@ -379,14 +379,14 @@ const navSections = [
 
     <!-- Work Experience Section -->
     <section id="experience" class="pt-12 pb-8">
-      <h2 class="font-semibold text-stone-800 dark:text-neutral-100 mb-6 px-4">
+      <h2 class="font-semibold text-stone-800 dark:text-neutral-200 mb-6 px-4">
         Work Experience
       </h2>
       <div class="space-y-6">
         {
           workExperience.map((job, index) => (
             <div class="px-4 flex flex-col gap-1 md:flex-row md:justify-between md:items-center md:gap-0">
-              <p class="text-stone-800 dark:text-neutral-100">
+              <p class="text-stone-800 dark:text-neutral-200">
                 {job.url ? (
                   <a
                     href={job.url}
@@ -414,7 +414,7 @@ const navSections = [
 
     <!-- Work Projects Section -->
     <section id="projects" class="pt-12 pb-8">
-      <h2 class="font-semibold text-stone-800 dark:text-neutral-100 mb-6 px-4">
+      <h2 class="font-semibold text-stone-800 dark:text-neutral-200 mb-6 px-4">
         Projects
       </h2>
       <div class="grid gap-2 grid-cols-1">
@@ -426,7 +426,7 @@ const navSections = [
               rel="noopener noreferrer"
               class="block rounded-lg pt-4 px-4 pb-2 bg-transparent hover:bg-stone-50 dark:hover:bg-stone-800 hover:shadow-[0_8px_12px_0_rgba(0,0,0,0.08),0_0_1px_0_rgba(0,0,0,0.62)] transition-all duration-200"
             >
-              <h3 class="font-medium text-stone-800 dark:text-neutral-100 mb-2">
+              <h3 class="font-medium text-stone-800 dark:text-neutral-200 mb-2">
                 {project.name}
               </h3>
               <p class="text-stone-500 dark:text-neutral-400 mb-2">
@@ -440,7 +440,7 @@ const navSections = [
 
     <!-- Side Projects Section -->
     <section id="side-projects" class="pt-12 pb-8">
-      <h2 class="font-semibold text-stone-800 dark:text-neutral-100 mb-6 px-4">
+      <h2 class="font-semibold text-stone-800 dark:text-neutral-200 mb-6 px-4">
         Side Projects
       </h2>
       <div class="grid gap-2 grid-cols-1">
@@ -452,7 +452,7 @@ const navSections = [
               rel="noopener noreferrer"
               class="block rounded-lg pt-4 px-4 pb-2 bg-transparent hover:bg-stone-50 dark:hover:bg-stone-800 hover:shadow-[0_8px_12px_0_rgba(0,0,0,0.08),0_0_1px_0_rgba(0,0,0,0.62)] transition-all duration-200"
             >
-              <h3 class="font-medium text-stone-800 dark:text-neutral-100 mb-2">
+              <h3 class="font-medium text-stone-800 dark:text-neutral-200 mb-2">
                 {project.name}
               </h3>
               <p class="text-stone-500 dark:text-neutral-400 mb-2">
@@ -466,7 +466,7 @@ const navSections = [
 
     <!-- Experiments Section -->
     <section id="experiments" class="pt-12 pb-8">
-      <h2 class="font-semibold text-stone-800 dark:text-neutral-100 mb-6 px-4">
+      <h2 class="font-semibold text-stone-800 dark:text-neutral-200 mb-6 px-4">
         Experiments
       </h2>
       {
@@ -495,7 +495,9 @@ const navSections = [
             })}
           </div>
         ) : (
-          <p class="px-4 text-stone-500 dark:text-neutral-300">Coming soon...</p>
+          <p class="px-4 text-stone-500 dark:text-neutral-300">
+            Coming soon...
+          </p>
         )
       }
     </section>

@@ -69,15 +69,11 @@
     }
   }
 
-  /* Links in text content have dotted underline */
+  /* Links in text content - no underline by default */
   .prose a:not(.block):not([class*="rounded-lg"]),
   article p a:not(.block):not([class*="rounded-lg"]),
   p a:not(.block):not([class*="rounded-lg"]) {
-    text-decoration: underline;
-    text-decoration-style: dotted;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 0.2em;
-    text-decoration-color: currentColor;
+    text-decoration: none;
   }
 
   /* Hover transitions only on devices with precise pointing */
@@ -92,16 +88,22 @@
     .prose a:not(.block):not([class*="rounded-lg"]):hover,
     article p a:not(.block):not([class*="rounded-lg"]):hover,
     p a:not(.block):not([class*="rounded-lg"]):hover {
-      color: rgb(37 99 235); /* blue-600 - saturated blue */
+      color: rgb(250 250 250); /* neutral-50 */
+      text-decoration: underline;
       text-decoration-style: solid;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.2em;
     }
 
     /* Hover effect for links in dark mode */
     .dark .prose a:not(.block):not([class*="rounded-lg"]):hover,
     .dark article p a:not(.block):not([class*="rounded-lg"]):hover,
     .dark p a:not(.block):not([class*="rounded-lg"]):hover {
-      color: rgb(251 191 36); /* amber-400 */
+      color: rgb(250 250 250); /* neutral-50 */
+      text-decoration: underline;
       text-decoration-style: solid;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.2em;
     }
   }
 
@@ -109,8 +111,11 @@
     .prose a:not(.block):not([class*="rounded-lg"]):hover,
     article p a:not(.block):not([class*="rounded-lg"]):hover,
     p a:not(.block):not([class*="rounded-lg"]):hover {
-      color: rgb(37 99 235); /* blue-600 - saturated blue */
+      color: rgb(250 250 250); /* neutral-50 */
+      text-decoration: underline;
       text-decoration-style: solid;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.2em;
     }
   }
 
@@ -118,8 +123,11 @@
     .prose a:not(.block):not([class*="rounded-lg"]):hover,
     article p a:not(.block):not([class*="rounded-lg"]):hover,
     p a:not(.block):not([class*="rounded-lg"]):hover {
-      color: rgb(251 191 36); /* amber-400 */
+      color: rgb(250 250 250); /* neutral-50 */
+      text-decoration: underline;
       text-decoration-style: solid;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.2em;
     }
   }
 
@@ -136,13 +144,9 @@
     text-decoration: none !important;
   }
 
-  /* Navigation links in "A few things to explore" list */
+  /* Navigation links in "A few things to explore" list - no underline by default */
   .nav-link {
-    text-decoration: underline;
-    text-decoration-style: dotted;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 0.2em;
-    text-decoration-color: currentColor;
+    text-decoration: none;
   }
 
   /* Hover transitions only on devices with precise pointing */
@@ -153,21 +157,30 @@
 
     /* Hover effect for nav links in light mode */
     .nav-link:hover {
-      color: rgb(37 99 235); /* blue-600 - saturated blue */
+      color: rgb(250 250 250); /* neutral-50 */
+      text-decoration: underline;
       text-decoration-style: solid;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.2em;
     }
 
     /* Hover effect for nav links in dark mode */
     .dark .nav-link:hover {
-      color: rgb(251 191 36); /* amber-400 */
+      color: rgb(250 250 250); /* neutral-50 */
+      text-decoration: underline;
       text-decoration-style: solid;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.2em;
     }
   }
 
   @media (prefers-color-scheme: dark) and (hover: hover) and (pointer: fine) {
     .nav-link:hover {
-      color: rgb(251 191 36); /* amber-400 */
+      color: rgb(250 250 250); /* neutral-50 */
+      text-decoration: underline;
       text-decoration-style: solid;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.2em;
     }
   }
 
