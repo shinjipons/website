@@ -29,79 +29,6 @@
   --ease-in-out-circ: cubic-bezier(.785, .135, .15, .86);
 }
 
-/* iA Writer Quattro font faces */
-@font-face {
-  font-family: "iA Writer Quattro";
-  src: url("/fonts/iAWriterQuattroS-Regular.woff2") format("woff2"),
-       url("/fonts/iAWriterQuattroS-Regular.woff") format("woff");
-  font-weight: 400;
-  font-style: normal;
-  font-display: block;
-}
-
-@font-face {
-  font-family: "iA Writer Quattro";
-  src: url("/fonts/iAWriterQuattroS-Italic.woff2") format("woff2"),
-       url("/fonts/iAWriterQuattroS-Italic.woff") format("woff");
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "iA Writer Quattro";
-  src: url("/fonts/iAWriterQuattroS-Bold.woff2") format("woff2"),
-       url("/fonts/iAWriterQuattroS-Bold.woff") format("woff");
-  font-weight: 700;
-  font-style: normal;
-  font-display: block;
-}
-
-@font-face {
-  font-family: "iA Writer Quattro";
-  src: url("/fonts/iAWriterQuattroS-BoldItalic.woff2") format("woff2"),
-       url("/fonts/iAWriterQuattroS-BoldItalic.woff") format("woff");
-  font-weight: 700;
-  font-style: italic;
-  font-display: swap;
-}
-
-/* iA Writer Mono font faces */
-@font-face {
-  font-family: "iA Writer Mono";
-  src: url("/fonts/iAWriterMonoS-Regular.woff2") format("woff2"),
-       url("/fonts/iAWriterMonoS-Regular.woff") format("woff");
-  font-weight: 400;
-  font-style: normal;
-  font-display: block;
-}
-
-@font-face {
-  font-family: "iA Writer Mono";
-  src: url("/fonts/iAWriterMonoS-Italic.woff2") format("woff2"),
-       url("/fonts/iAWriterMonoS-Italic.woff") format("woff");
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "iA Writer Mono";
-  src: url("/fonts/iAWriterMonoS-Bold.woff2") format("woff2"),
-       url("/fonts/iAWriterMonoS-Bold.woff") format("woff");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "iA Writer Mono";
-  src: url("/fonts/iAWriterMonoS-BoldItalic.woff2") format("woff2"),
-       url("/fonts/iAWriterMonoS-BoldItalic.woff") format("woff");
-  font-weight: 700;
-  font-style: italic;
-  font-display: swap;
-}
 
 @layer base {
   html {
@@ -110,19 +37,19 @@
 
   body {
     font-size: 1rem;
-    font-family: "iA Writer Quattro", sans-serif;
+    font-family: "Inter", sans-serif;
     line-height: 1.65;
   }
 
   h1, h2, h3, h4, h5, h6, p, span, a, li, ul, ol, div, article, section {
     font-size: 1rem;
-    font-family: "iA Writer Quattro", sans-serif;
+    font-family: "Inter", sans-serif;
     line-height: 1.65;
   }
 
-  /* Ensure code blocks and all their children use iA Writer Mono */
+  /* Ensure code blocks and all their children use monospace */
   pre, code, pre *, code *, pre span, code span {
-    font-family: "iA Writer Mono", monospace !important;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace !important;
   }
 
   /* Inline code styling in dark mode */
@@ -130,7 +57,7 @@
   .dark article code:not(pre code),
   .dark p code:not(pre code) {
     color: rgb(248 113 113) !important; /* red-400 */
-    background-color: rgb(3 7 18) !important; /* gray-950 */
+    background-color: rgb(10 10 10) !important; /* neutral-950 */
   }
 
   @media (prefers-color-scheme: dark) {
@@ -138,7 +65,7 @@
     article code:not(pre code),
     p code:not(pre code) {
       color: rgb(248 113 113) !important; /* red-400 */
-      background-color: rgb(3 7 18) !important; /* gray-950 */
+      background-color: rgb(10 10 10) !important; /* neutral-950 */
     }
   }
 
@@ -263,16 +190,16 @@
   .dark .prose blockquote,
   .dark article blockquote,
   .dark blockquote {
-    color: rgb(168 162 158) !important; /* stone-400 */
-    border-left-color: rgb(168 162 158); /* stone-400 */
+    color: rgb(163 163 163) !important; /* neutral-400 */
+    border-left-color: rgb(163 163 163); /* neutral-400 */
   }
 
   @media (prefers-color-scheme: dark) {
     .prose blockquote,
     article blockquote,
     blockquote {
-      color: rgb(168 162 158) !important; /* stone-400 */
-      border-left-color: rgb(168 162 158); /* stone-400 */
+      color: rgb(163 163 163) !important; /* neutral-400 */
+      border-left-color: rgb(163 163 163); /* neutral-400 */
     }
   }
 
@@ -293,14 +220,14 @@
   .dark .prose img,
   .dark article img,
   .dark img {
-    background-color: rgb(12 10 9); /* stone-900 */
+    background-color: rgb(10 10 10); /* neutral-950 */
   }
 
   @media (prefers-color-scheme: dark) {
     .prose img,
     article img,
     img {
-      background-color: rgb(12 10 9); /* stone-900 */
+      background-color: rgb(10 10 10); /* neutral-950 */
     }
   }
 
