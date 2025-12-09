@@ -10,9 +10,9 @@
 @media (prefers-color-scheme: dark) {
   :root {
     /* Dark mode (neutral palette) */
-    --color-bg: #0a0a0a; /* neutral-950 */
-    --color-text-primary: #d4d4d4; /* neutral-300 */
-    --color-text-secondary: #d4d4d4; /* neutral-300 */
+    --color-bg:             oklch(14.5% 0 0); /* neutral-950 */
+    --color-text-primary:   oklch(92.2% 0 0); /* neutral-200 */
+    --color-text-secondary: oklch(70.8% 0 0); /* neutral-400 */
     --color-text-tertiary: #a3a3a3; /* neutral-400 */
   }
 }
@@ -35,8 +35,13 @@ h1, h2, h3, p, a {
   line-height: 150%;
 }
 
+p {
+  color: var(--color-text-secondary);
+}
+
 a:hover{
   text-decoration: underline;
+  color: var(--color-text-secondary);
 }
 
 h1 {
