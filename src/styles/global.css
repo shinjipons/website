@@ -1,0 +1,67 @@
+/* Light and Dark Mode */
+:root {
+  /* Light mode (stone palette) */
+  --color-bg: #f5f5f4; /* stone-100 */
+  --color-text-primary: #292524; /* stone-800 */
+  --color-text-secondary: #78716c; /* stone-500 */
+  --color-text-tertiary: #78716c; /* stone-500 */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Dark mode (neutral palette) */
+    --color-bg: #0a0a0a; /* neutral-950 */
+    --color-text-primary: #d4d4d4; /* neutral-300 */
+    --color-text-secondary: #d4d4d4; /* neutral-300 */
+    --color-text-tertiary: #a3a3a3; /* neutral-400 */
+  }
+}
+
+html {
+  font-size: 10px;
+}
+
+/* Base font */
+body {
+  font-family: "Inter", sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+}
+
+h1, h2, h3, p, a {
+  font-size: 1.2rem;
+  color: var(--color-text-primary);
+  text-decoration: none;
+  line-height: 150%;
+}
+
+a:hover{
+  text-decoration: underline;
+}
+
+h1 {
+  font-weight: 700;
+}
+
+h2 {
+  font-weight: 600;
+}
+
+h3 {
+  font-weight: 500;
+}
+
+p {
+  font-weight: 400;
+}
+
+.container {
+  max-width: 500px;
+  margin: 0 auto;
+  /* border: 1px solid red; */
+}
+
+section {
+  margin-bottom: 4rem;
+  /* border: 1px solid red; */
+}
