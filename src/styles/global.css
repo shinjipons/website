@@ -5,20 +5,28 @@
   --color-text-primary: #292524; /* stone-800 */
   --color-text-secondary: #78716c; /* stone-500 */
   --color-text-tertiary: #78716c; /* stone-500 */
+
+  --text-font-size: 1.6rem; /* 16px */
+  --text-line-height: 2.4rem; /* 24px */
+  --h1-font-weight: 672;
+  --p-font-weight: 450;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    /* Dark mode (neutral palette) */
-    --color-bg:             oklch(14.5% 0 0); /* neutral-950 */
-    --color-text-primary:   oklch(92.2% 0 0); /* neutral-200 */
-    --color-text-secondary: oklch(70.8% 0 0); /* neutral-400 */
-    --color-text-tertiary: #a3a3a3; /* neutral-400 */
+    /* Dark mode */
+    --color-bg: #101012;
+    --color-bg__hover: #151517;
+    --color-text-primary: #E2E2E8;
+    --color-text-secondary: #787882;
+    --color-text-tertiary: var(--color-bg);
   }
 }
 
 html {
   font-size: 10px;
+  margin-top: 17.6rem;
+  margin-bottom: 17.6rem;
 }
 
 /* Base font */
@@ -29,10 +37,10 @@ body {
 }
 
 h1, h2, h3, p, a {
-  font-size: 1.2rem;
+  font-size: var(--text-font-size);
+  line-height: var(--text-line-height);
   color: var(--color-text-primary);
   text-decoration: none;
-  line-height: 150%;
 }
 
 p {
@@ -44,20 +52,14 @@ a:hover{
   color: var(--color-text-secondary);
 }
 
+/* Font weights */
+
 h1 {
-  font-weight: 700;
+  font-weight: var(--h1-font-weight);
 }
 
-h2 {
-  font-weight: 600;
-}
-
-h3 {
-  font-weight: 500;
-}
-
-p {
-  font-weight: 400;
+h2, h3, p {
+  font-weight: var(--p-font-weight);
 }
 
 .container {
