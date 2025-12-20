@@ -10,18 +10,6 @@ const upcomingEventsRaw = [
     date: "2025-11-12",
     url: "https://luma.com/2ypljyz1?tk=a7drVs",
   },
-  {
-    title: "UX Budapest Meetup",
-    destination: "Budapest",
-    date: "2025-11-27",
-    url: "https://luma.com/shp07hsi?tk=lMh8V7",
-  },
-  {
-    title: "DevBP #11: Crash, Learn and Laugh",
-    destination: "Budapest",
-    date: "2025-12-03",
-    url: "https://www.meetup.com/devbp-meetup/events/311991887/",
-  },
 ];
 
 // Format date from YYYY-MM-DD to "Nov 12, 2025"
@@ -36,11 +24,10 @@ function formatEventDate(dateString: string): string {
 
 // Social media links
 const socialLinks = [
+  // { name: "Resume", url: "https://twitter.com/shinjipons" },
   { name: "Twitter", url: "https://twitter.com/shinjipons" },
-  { name: "GitHub", url: "https://github.com/shinjipons" },
   { name: "LinkedIn", url: "https://linkedin.com/in/shinjipons" },
   { name: "Figma", url: "https://www.figma.com/@shinjipons" },
-  { name: "Instagram", url: "https://www.instagram.com/shinji.pons" },
   { name: "Cal.com", url: "https://cal.com/shinjipons/" },
 ];
 
@@ -49,7 +36,7 @@ const workExperience = [
   {
     company: "Formlabs",
     role: "Product designer",
-    period: "2025—",
+    period: "2025 — Present",
     url: "https://formlabs.com/",
   },
   {
@@ -61,63 +48,63 @@ const workExperience = [
   {
     company: "Ragdoll Dynamics",
     role: "Product designer",
-    period: "2023—24",
+    period: "2023 — 2024",
     url: "https://ragdolldynamics.com/",
   },
   {
     company: "Frostbite",
     role: "Product designer",
-    period: "2022—23",
+    period: "2022 — 2023",
     url: "https://www.ea.com/frostbite",
   },
   {
     company: "LEGO",
     role: "Product designer",
-    period: "2019—21",
+    period: "2019 — 2021",
     url: "https://www.lego.com/",
   },
   {
     company: "Autodesk",
     role: "Product designer",
-    period: "2017—19",
+    period: "2017 — 2019",
     url: "https://www.autodesk.com/",
   },
-  {
-    company: "Thomson Reuters",
-    role: "Product designer",
-    period: "2016—17",
-    url: "https://www.thomsonreuters.com/",
-  },
+  // {
+  //   company: "Thomson Reuters",
+  //   role: "Product designer",
+  //   period: "2016 — 2017",
+  //   url: "https://www.thomsonreuters.com/",
+  // },
   {
     company: "Microsoft",
     role: "UX designer",
     period: "2015",
     url: "https://www.microsoft.com/",
   },
-  {
-    company: "Barnbrook",
-    role: "Design intern",
-    period: "2015",
-    url: "https://www.barnbrook.net/",
-  },
-  {
-    company: "Total Design",
-    role: "Design intern",
-    period: "2013",
-    url: "https://designlaboratory.co.uk/",
-  },
-  {
-    company: "The Design Lab",
-    role: "Design intern",
-    period: "2014",
-    url: "https://www.totaldesign.com/",
-  },
-  {
-    company: "Ateliers Jean Nouvel",
-    role: "Design intern",
-    period: "2012",
-    url: "https://www.jeannouvel.com/",
-  },
+  // {
+  //   company: "Barnbrook",
+  //   role: "Design intern",
+  //   period: "2015",
+  //   url: "https://www.barnbrook.net/",
+  // },
+  // {
+  //   company: "Total Design",
+  //   role: "Design intern",
+  //   period: "2013",
+  //   url: "https://designlaboratory.co.uk/",
+  // },
+  // {
+  //   company: "The Design Lab",
+  //   role: "Design intern",
+  //   period: "2014",
+  //   url: "https://www.totaldesign.com/",
+  // },
+  // {
+  //   company: "Ateliers Jean Nouvel",
+  //   role: "Design intern",
+  //   period: "2012",
+  //   url: "https://www.jeannouvel.com/",
+  // },
 ];
 
 // Work projects (most proud projects)
@@ -137,11 +124,11 @@ const workProjects = [
     description: "Confidential",
     url: "https://www.modyfi.com/",
   },
-  {
-    name: "Frostbite",
-    description: "Confidential",
-    url: "https://www.ea.com/frostbite",
-  },
+  // {
+  //   name: "Frostbite",
+  //   description: "Confidential",
+  //   url: "https://www.ea.com/frostbite",
+  // },
   {
     name: "LEGO Digital Designer Pro",
     description: "Confidential",
@@ -152,11 +139,11 @@ const workProjects = [
     description: "Designing subdivision modelling tools for Alias",
     url: "https://autodesk.com/alias",
   },
-  {
-    name: "Dynamo for Alias",
-    description: "Adding computational design to Alias",
-    url: "https://autodesk.com/alias",
-  },
+  // {
+  //   name: "Dynamo for Alias",
+  //   description: "Adding computational design to Alias",
+  //   url: "https://autodesk.com/alias",
+  // },
   {
     name: "Louvre Abu Dhabi",
     description: "Museum icon design and typography",
@@ -169,7 +156,7 @@ const sideProjects = [
   {
     name: "Select Parent Component",
     description:
-      "Figma plugin to grab the component wrapping the user selection",
+      "Grab the component nearest to the selection in Figma",
     url: "https://github.com/shinjipons/Select-Parent-Component",
   },
   {
@@ -224,20 +211,11 @@ const experiments = [
   //   imageDark: "/media/experiments/spinbox-prototype-dark-mode.png",
   // },
 ];
-
-// Navigation sections
-const navSections = [
-  { id: "events", label: "Events" },
-  { id: "writing", label: "Writing" },
-  { id: "experience", label: "Work Experience" },
-  { id: "projects", label: "Projects" },
-  { id: "side-projects", label: "Side Projects" },
-  { id: "experiments", label: "Experiments" },
-];
 ---
 
 <BaseLayout title="Shinji Pons" description="Personal website">
   <div class="container">
+
     <!-- Header section -->
     <section>
       <h2>Shinji Pons</h2>
@@ -246,68 +224,46 @@ const navSections = [
 
     <!-- Today section -->
     <section>
-      <h2>Today</h2>
+      <h1>Today</h1>
+      <p>I am a product designer at <a href="https://formlabs.com/">Formlabs</a>.</p>
+      <p>I empower artists, engineers and designers with tools and workflows that spark bolder creations.</p>
       <p>
-        I am a product designer at <a href="https://formlabs.com/">Formlabs</a>.
-      </p>
-      <p>
-        My ambition is to craft 3D tools and workflows that incite artists,
-        engineers and designers to accomplish greater things.
-      </p>
-      <p>
-        You can reach out to me on{" "}
         <span
           set:html={socialLinks
             .map(
               (link, index) =>
-                (index > 0
-                  ? index === socialLinks.length - 1
-                    ? " and "
-                    : ", "
-                  : "") +
-                `<a href="${link.url}" target="_blank" rel="noopener noreferrer">${link.name.trim()}</a>`
+                (index > 0 ? " " : "") +
+                `<a class="social-link-item" href="${link.url}" target="_blank" rel="noopener noreferrer">${link.name.trim()}</a>`
             )
             .join("")}
-        />.
+        />
       </p>
-      <p>A few things to explore:</p>
-      <ul>
-        {
-          navSections.map((section) => (
-            <li>
-              <a href={`#${section.id}`}>{section.label}</a>
-            </li>
-          ))
-        }
-      </ul>
     </section>
 
     <!-- Events Section -->
     <section id="events">
-      <h2>Events I'm Going To</h2>
+      <h1>Events</h1>
       {
         upcomingEvents.length > 0 ? (
           <div>
             {upcomingEvents.map((event, index) => (
-              <div>
-                <p>
-                  {event.url ? (
-                    <a
-                      href={event.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {event.title || event.destination}
-                    </a>
-                  ) : (
-                    <span>{event.title || event.destination}</span>
-                  )}
-                </p>
-                <div>
-                  {event.destination && <p>{event.destination}</p>}
-                  {event.date && <p>{event.date}</p>}
+              event.url ? (
+                <a href={event.url} target="_blank" rel="noopener noreferrer" class="event-card">
+                  <h2>{event.title || event.destination}</h2>
+                  <div class="event-card-description">
+                    {event.destination && <p>{event.destination}</p>}
+                    {event.date && <p>{event.date}</p>}
+                  </div>
+                </a>
+              ) : (
+                <div class="event-card">
+                  <h2>{event.title || event.destination}</h2>
+                  <div class="event-card-description">
+                    {event.destination && <p>{event.destination}</p>}
+                    {event.date && <p>{event.date}</p>}
+                  </div>
                 </div>
-              </div>
+              )
             ))}
           </div>
         ) : (
@@ -318,16 +274,14 @@ const navSections = [
 
     <!-- Blog Posts Section -->
     <section id="writing">
-      <h2>Writing</h2>
+      <h1>Writing</h1>
       {
         blogPosts.length > 0 ? (
           <div>
             {blogPosts.map((post, index) => (
-              <a href={`/writing/${post.slug}`}>
-                <article>
-                  <h3>{post.data.title}</h3>
-                  <p>{post.data.description}</p>
-                </article>
+              <a href={`/writing/${post.slug}`} class="blog-card">
+                <h3>{post.data.title}</h3>
+                <p>{post.data.description}</p>
               </a>
             ))}
           </div>
@@ -339,21 +293,19 @@ const navSections = [
 
     <!-- Work Experience Section -->
     <section id="experience">
-      <h2>Work Experience</h2>
+      <h1>Work Experience</h1>
       <div>
         {
           workExperience.map((job, index) => (
-            <div>
+            <div class="work-experience-card">
               <p>
                 {job.url ? (
-                  <a href={job.url} target="_blank" rel="noopener noreferrer">
-                    {job.company}
-                  </a>
+                  <a href={job.url} target="_blank" rel="noopener noreferrer">{job.company}</a>
                 ) : (
                   <span>{job.company}</span>
                 )}
               </p>
-              <div>
+              <div class="work-experience-card-description">
                 <p>{job.role}</p>
                 <p>{job.period}</p>
               </div>
@@ -365,32 +317,40 @@ const navSections = [
 
     <!-- Work Projects Section -->
     <section id="projects">
-      <h2>Projects</h2>
-      <div>
-        {
-          workProjects.map((project, index) => (
-            <a href={project.url} target="_blank" rel="noopener noreferrer">
-              <h3>{project.name}</h3>
-              <p>{project.description}</p>
-            </a>
-          ))
-        }
-      </div>
+      <h1>Projects</h1>
+      {
+        workProjects.length > 0 ? (
+          <div>
+            {workProjects.map((project, index) => (
+              <a href={project.url} target="_blank" rel="noopener noreferrer" class="blog-card">
+                <h3>{project.name}</h3>
+                <p>{project.description}</p>
+              </a>
+            ))}
+          </div>
+        ) : (
+          <p>Check back soon...</p>
+        )
+      }
     </section>
 
     <!-- Side Projects Section -->
     <section id="side-projects">
-      <h2>Side Projects</h2>
-      <div>
-        {
-          sideProjects.map((project, index) => (
-            <a href={project.url} target="_blank" rel="noopener noreferrer">
-              <h3>{project.name}</h3>
-              <p>{project.description}</p>
-            </a>
-          ))
-        }
-      </div>
+      <h1>Side Projects</h1>
+      {
+        sideProjects.length > 0 ? (
+          <div>
+            {sideProjects.map((project, index) => (
+              <a href={project.url} target="_blank" rel="noopener noreferrer" class="blog-card">
+                <h3>{project.name}</h3>
+                <p>{project.description}</p>
+              </a>
+            ))}
+          </div>
+        ) : (
+          <p>Check back soon...</p>
+        )
+      }
     </section>
 
     <!-- Experiments Section -->
@@ -399,15 +359,9 @@ const navSections = [
       {
         experiments.length > 0 ? (
           <div>
-            {experiments.map((experiment, index) => {
-              // Every 3rd item (index 2, 5, 8, ...) spans full width (every second row)
-              const isFullWidth = index % 3 === 2;
+            {experiments.map((experiment) => {
               return (
-                <a
-                  href={experiment.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <a href={experiment.url} target="_blank" rel="noopener noreferrer">
                   <img src={experiment.imageLight} />
                   <img src={experiment.imageDark} />
                 </a>
