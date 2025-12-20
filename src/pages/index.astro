@@ -201,11 +201,15 @@ const blogPosts = allPosts.sort(
 // Experiments
 const experiments = [
   {
+    title: "Input Field",
+    description: "Slider with spinbox design prototype",
     url: "https://spinbox-prototype.shinjipons.com",
     imageLight: "/media/experiments/spinbox-prototype-light-mode.png",
     imageDark: "/media/experiments/spinbox-prototype-dark-mode.png",
   },
   // {
+  //   title: "3D Measure",
+  //   description: "Description here",
   //   url: "https://3d-measure.shinjipons.com",
   //   imageLight: "/media/experiments/spinbox-prototype-light-mode.png",
   //   imageDark: "/media/experiments/spinbox-prototype-dark-mode.png",
@@ -355,15 +359,22 @@ const experiments = [
 
     <!-- Experiments Section -->
     <section id="experiments">
-      <h2>Experiments</h2>
+      <h1>Experiments</h1>
       {
         experiments.length > 0 ? (
           <div>
             {experiments.map((experiment) => {
               return (
-                <a href={experiment.url} target="_blank" rel="noopener noreferrer">
-                  <img src={experiment.imageLight} />
-                  <img src={experiment.imageDark} />
+                <a href={experiment.url} target="_blank" rel="noopener noreferrer" class="experiment-card">
+                  <img src={experiment.imageLight} class="experiment-image-light" />
+                  <img src={experiment.imageDark} class="experiment-image-dark" />
+                  <div class="experiment-card-description">
+                    <div class="experiment-card-description-text">
+                      <h2>{experiment.title}</h2>
+                      <p>{experiment.description}</p>
+                    </div>
+                    <button>Play</button>
+                  </div>
                 </a>
               );
             })}
