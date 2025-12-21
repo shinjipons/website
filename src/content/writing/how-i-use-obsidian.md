@@ -1,6 +1,6 @@
 ---
 title: "How I use Obsidian"
-pubDate: 2025-11-11
+pubDate: 2025-12-21
 description: "A short article detailing how I record my work and thoughts"
 author: "Shinji Pons"
 ---
@@ -9,6 +9,7 @@ author: "Shinji Pons"
 If you don't know what Obsidian is, it's a note taking application for desktop and mobile based on markdown files. I love it because of its file over app philosophy, its simplicity, speed and incredible plugins that allow me to customize the user interface and experience to my exact liking.
 
 As opposed to other note-taking apps, you can make Obsidian **yours** through extensive customization and careful plugin use.
+
 # How I use Obsidian
 
 I mainly use Obsidian as a daily journaling tool to recall what I did at any point in time. I don't write much about how I feel but it's a great way to recall anything and everything I did regarding my work or my life, from the largest task to the smallest details.
@@ -21,11 +22,12 @@ So I started taking notes about everything and anything in a disorganized manner
 
 And after a while, I got tired of doing this because I was doing something I didn't see the value in.
 
-In 2023, I started freelancing for Ragdoll Dynamics. One of the soft requirements as a fully distributed remote team was to keep a daily log of your day's accomplishments and challenges so that the rest of the team could asynchronously find out what others were doing and if they could help in any way.
+In 2023, I started freelancing for [Ragdoll Dynamics](https://ragdolldynamics.com/). One of the soft requirements as a fully distributed remote team was to keep a daily log of your day's accomplishments and challenges so that the rest of the team could asynchronously find out what others were doing and if they could help in any way.
 
 The daily logs were written through Gitlab's web markdown editor; and although I quickly enjoyed writing and reading the notes, the experience was very poor: you had to manually create a new note everyday, rename it accordingly and write timestamps manually (more on that later).
 
 I will cut to the chase, but I will share my Obsidian setup that has solved every problem for me.
+
 # On my laptop/desktop
 
 ## Setting up the automatic naming
@@ -46,10 +48,9 @@ And if today's date is Monday 17, November 2025, the new note will be created in
 
 Thanks to this wonderful core plugin, all of my daily snippets are organized by year, month and even day. Adding the day in the filename is especially useful when you are trying to recall happened during the week or the weekend.
 
-![[How I Use Obsidian-2.png]]
+![Daily notes date format settings](/media/writing/how-i-use-obsidian/how-i-use-obsidian-2.png)
 
-
-![[How I Use Obsidian-1.png]]
+![Daily notes settings](/media/writing/how-i-use-obsidian/how-i-use-obsidian-1.png)
 
 ## Setting up the location of the attachments
 
@@ -67,7 +68,7 @@ By only changing the **image name pattern** to `{{fileName}}` and setting **Auto
 
 And thus, all of my attachments have clean names and are in a logical location in my vault.
 
-![[How I Use Obsidian-3.png]]
+![Attachment settings](/media/writing/how-i-use-obsidian/how-i-use-obsidian-3.png)
 
 ## Setting up automatic timestamps
 
@@ -83,8 +84,8 @@ Obsidian supports Moment.js formatting for date and time, so I created a templat
 
 ```md
 > Time is {{time:HH:mm:ss}}
-> 
-> 
+>
+>
 ```
 
 Note that there are two empty lines at the bottom.
@@ -99,7 +100,7 @@ Now in combination with the **Hotkeys for Templates** plugin, I can add a keyboa
 
 Now thanks to the two empty line below the timestamp inside of my template, I can immediately keep typing my thoughts and everything will be neat. I have a couple of other templates I use for daily checklists for both personal and work purposes.
 
-![[How I Use Obsidian-4.png]]
+![Timestamp template](/media/writing/how-i-use-obsidian/how-i-use-obsidian-4.png)
 
 ## Using Code Editor Shortcuts
 
@@ -116,7 +117,7 @@ The Code Editor Shortcuts plugin does not have any options. It just add a pletho
 6. Select word or next occurence (`Ctrl + D`)
 7. Select all occurences (`Ctrl + Shift + L`)
 
-![[How I Use Obsidian-5.png]]
+![Code Editor Shortcuts settings](/media/writing/how-i-use-obsidian/how-i-use-obsidian-5.png)
 
 ## Typewriter Mode
 
@@ -147,11 +148,11 @@ But since I missed the ability to journal while I'm on the go or access my snipp
 
 For that money, you get a single synced vault with a total of 1GB of storage and a 5 MB maximum file size (which is OK for most screenshots, images, PDFs and very short/compressed video files attachments).
 
-![[How I Use Obsidian-6.png]]
+![Obsidian Sync storage usage](/media/writing/how-i-use-obsidian/how-i-use-obsidian-6.png)
 
 To give you a frame of reference, I've used Obsidian Sync every day since April 30th, 2025 and at the time of writing 8 months later, I am using just under half of my total storage capacity.
 
-![[How I Use Obsidian-7.png]]
+![Obsidian Sync storage details](/media/writing/how-i-use-obsidian/how-i-use-obsidian-7.png)
 
 I thought initially that having my snippets on the go wouldn't be more than a nice-to-have, but much like Raycast (which I will also write a setup article for), it grows on you over time as you discover its features.
 
@@ -163,7 +164,7 @@ Thankfully there are a couple of very handy features on the mobile version of Ob
 
 Just like Notion, the mobile experience in Obsidian offers a toolbar that appears right above your keyboard as you type. But unlike Notion, Obsidian lets you customize it to your liking. The screenshot below shows how my toolbar is set up. Note how I was able to add a command that is from a community plugin (Code Editor Shortcuts: Delete line).
 
-![[How I Use Obsidian-8.png]]
+![Mobile toolbar setup](/media/writing/how-i-use-obsidian/how-i-use-obsidian-8.png)
 
 ## The Mobile Quick Action
 
@@ -173,7 +174,10 @@ I set mine to that it inserts the current time as a quote while I'm typing. This
 
 Here is a quick demonstration:
 
-![[How I Use Obsidian-1.mp4]]
+<video autoplay muted loop>
+  <source src="/media/writing/how-i-use-obsidian/how-i-use-obsidian-1.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 One small but nagging issue with Sync I keep running into is how long Sync can take. On desktop, it's less of an issue since I always have Obsidian open. But on mobile, the sync process stops as soon as the mobile app is no longer in the foreground.
 

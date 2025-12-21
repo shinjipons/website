@@ -121,6 +121,13 @@
     margin-bottom: 1.5rem;
   }
 
+  video {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--border-radius-inner);
+    margin-bottom: 1.5rem;
+  }
+
   blockquote {
     border-left: 0.2rem solid var(--color-text-primary);
     padding-left: 1rem;
@@ -150,4 +157,11 @@
     color: var(--color-text-secondary);
     text-decoration: underline;
   }
+}
+
+
+video {
+  margin: var(--margin-x-card);
+  /* border-radius: var(--border-radius-inner); */
+  border-radius: var(--border-radius-outer);
 }
