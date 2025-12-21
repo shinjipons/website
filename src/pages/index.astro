@@ -373,7 +373,12 @@ const experiments = [
                       <h2>{experiment.title}</h2>
                       <p>{experiment.description}</p>
                     </div>
-                    <button>Play</button>
+                    <button>
+                      Play
+                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M4.5 3L8.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </button>
                   </div>
                 </a>
               );
@@ -383,6 +388,14 @@ const experiments = [
           <p>Coming soon...</p>
         )
       }
+    </section>
+
+    <!-- Archive and scraps section -->
+    <section id="archive-and-scraps">
+      <h1>Archive and Scraps</h1>
+      <div>
+        <p>Nothing here yet...</p>
+      </div>
     </section>
   </div>
 </BaseLayout>
