@@ -31,11 +31,22 @@
 
 .blog-post-content {
   /* Typography styles for markdown content */
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-weight: var(--h1-font-weight);
     color: var(--color-text-primary);
     margin-top: 2rem;
     margin-bottom: 1rem;
+  }
+
+  p, ul, li {
+    code {
+        color: var(--color-text-code);
+    }
   }
 
   p {
@@ -43,21 +54,22 @@
     margin: var(--margin-x-card);
   }
 
-strong {
+  strong {
     color: var(--color-text-primary);
     font-weight: var(--h1-font-weight);
-}
+  }
 
-a {
+  a {
     color: var(--color-text-primary);
     text-decoration: underline;
 
     &:hover {
-        color: var(--color-text-secondary);
+      color: var(--color-text-secondary);
     }
-}
+  }
 
-ul, ol {
+  ul,
+  ol {
     font-family: var(--font-family-sans);
     font-size: var(--text-font-size);
     line-height: var(--text-line-height);
@@ -72,12 +84,13 @@ ul, ol {
   }
 
   code {
-    color: var(--color-text-code);
     background-color: var(--color-bg__hover);
     border-radius: 0.4rem;
     font-family: var(--font-family-mono);
     font-size: 0.9em;
     padding: 0.2rem 0.4rem;
+    font-weight: var(--code-font-weight);
+    /* color and font-style are inherited from syntax highlighter */
   }
 
   pre {
@@ -85,11 +98,19 @@ ul, ol {
     padding: 1rem;
     border-radius: var(--border-radius-inner);
     overflow-x: auto;
-    margin-bottom: 1.5rem;
+    margin: var(--margin-x-card);
+    padding: var(--margin-x-card);
+    font-family: var(--font-family-mono);
+    font-size: var(--code-font-size);
+    font-weight: var(--code-font-weight);
+    /* color and font-style are inherited from syntax highlighter */
 
     code {
       background-color: transparent;
       padding: 0;
+      font-family: inherit;
+      font-size: inherit;
+      /* color and font-style are inherited from syntax highlighter */
     }
   }
 
@@ -130,4 +151,3 @@ ul, ol {
     text-decoration: underline;
   }
 }
-

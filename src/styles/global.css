@@ -4,15 +4,21 @@
   --text-font-size:   1.6rem;   /* 16px */
   --text-line-height: 2.4rem;   /* 24px */
   --margin-x-card:    1.6rem;
+  --none: 0px;
+
   --font-family-sans: "Inter", sans-serif;
-  --font-family-mono: "iA Writer Mono V", monospace;
+  --font-family-mono: "Google Sans Code", monospace;
   --h1-font-weight:   650;
   --p-font-weight:    450;
-  --none: 0px;
+  --code-font-size:   1.2rem;
+  --code-font-weight: 420;
+
   --border-radius-inner: 0.8rem;
   --border-radius-outer: calc(var(--border-radius-inner) + var(--margin-x-card));
+
   --button-border-radius: 999px;
   --button-padding-x: 2rem;
+
   --hover-transition-duration: 0.1s;
 
   /* Light mode (todo) */
@@ -24,6 +30,8 @@
   --color-text-code:      hsl(0, 67%, 58%);
   --button-text-color:    var(--color-text-primary);
   --button-bg:            var(--color-bg__hover);
+  --border-stroke-color:  rgba(0, 0, 0, 0.1);
+  --border-stroke-color__hover:  rgba(0, 0, 0, 0.2);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -37,6 +45,8 @@
     --color-text-code:      hsl(0, 67%, 58%);
     --button-text-color:    var(--color-text-primary);
     --button-bg:            var(--color-bg__hover);
+    --border-stroke-color:  rgba(255, 255, 255, 0.1);
+    --border-stroke-color__hover:  rgba(255, 255, 255, 0.2);
   }
 }
 
@@ -199,13 +209,19 @@ section {
   margin-left: var(--none);
   border-radius: var(--border-radius-outer);
   overflow: hidden;
-  transition: background-color var(--hover-transition-duration) ease;
+  transition: background-color var(--hover-transition-duration) ease, border-color var(--hover-transition-duration) ease;
   &:hover {
     background-color: var(--color-bg__hover);
     text-decoration: none;
     button {
       background-color: var(--color-text-primary);
       color: var(--color-bg);
+    }
+    .experiment-image-light {
+      border: 1px solid var(--border-stroke-color__hover);
+    }
+    .experiment-image-dark {
+      border: 1px solid var(--border-stroke-color__hover);
     }
   }
   .experiment-image-light {
@@ -214,6 +230,7 @@ section {
     height: 20rem;
     object-fit: cover;
     border-radius: var(--border-radius-inner);
+    border: 1px solid var(--border-stroke-color);
   }
   .experiment-image-dark {
     display: none;
@@ -221,7 +238,7 @@ section {
     height: 20rem;
     object-fit: cover;
     border-radius: var(--border-radius-inner);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--border-stroke-color);
   }
   @media (prefers-color-scheme: dark) {
     .experiment-image-light {
