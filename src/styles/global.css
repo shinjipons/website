@@ -11,27 +11,28 @@
   --border-radius-outer: calc(var(--border-radius-inner) + var(--margin-x-card));
   --button-border-radius: 999px;
   --button-padding-x: 2rem;
+  --hover-transition-duration: 0.1s;
 
   /* Light mode (todo) */
-  --color-bg:             #f5f5f4;
-  --color-bg__hover:      magenta;
-  --color-text-primary:   #292524;
-  --color-text-secondary: #78716c;
-  --color-text-tertiary:  #78716c;
-  --button-text-color:    yellow;
-  --button-bg:            magenta;
+  --color-bg:             hsl(60, 5%, 96%);
+  --color-bg__hover:      hsl( 0, 0%, 91%);
+  --color-text-primary:   hsl(12, 6%, 15%);
+  --color-text-secondary: hsl(25, 5%, 45%);
+  --color-text-tertiary:  var(--color-bg);
+  --button-text-color:    var(--color-text-primary);
+  --button-bg:            var(--color-bg__hover);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     /* Dark mode */
-    --color-bg:             #101012;
-    --color-bg__hover:      #1a1a1c;
-    --color-text-primary:   #E2E2E8;
-    --color-text-secondary: #787882;
-    --color-text-tertiary: var(--color-bg);
-    --button-text-color: var(--color-text-primary);
-    --button-bg: var(--color-bg__hover);
+    --color-bg:             hsl(240,  6%,  7%);
+    --color-bg__hover:      hsl(240,  4%, 11%);
+    --color-text-primary:   hsl(240, 12%, 90%);
+    --color-text-secondary: hsl(240,  4%, 49%);
+    --color-text-tertiary:  var(--color-bg);
+    --button-text-color:    var(--color-text-primary);
+    --button-bg:            var(--color-bg__hover);
   }
 }
 
@@ -64,7 +65,7 @@ p {
 }
 
 a {
-  transition: color 0.2s ease, text-decoration 0.2s ease;
+  transition: color var(--hover-transition-duration) ease, text-decoration var(--hover-transition-duration) ease;
   color: var(--color-text-primary);
 }
 
@@ -108,7 +109,7 @@ section {
   padding: var(--margin-x-card);
   border-radius: var(--border-radius-outer);
   margin-left: var(--none);
-  transition: background-color 0.2s ease;
+  transition: background-color var(--hover-transition-duration) ease;
   &:hover {
     background-color: var(--color-bg__hover);
     text-decoration: none;
@@ -140,7 +141,7 @@ section {
   padding: var(--margin-x-card);
   margin-left: var(--none);
   border-radius: var(--border-radius-outer);
-  transition: background-color 0.2s ease;
+  transition: background-color var(--hover-transition-duration) ease;
   &:hover {
     background-color: var(--color-bg__hover);
     text-decoration: none;
@@ -160,7 +161,7 @@ section {
   background-color: var(--color-bg);
   margin-left: var(--none);
   border-radius: var(--border-radius-outer);
-  transition: background-color 0.2s ease;
+  transition: background-color var(--hover-transition-duration) ease;
   &:hover {
     background-color: var(--color-bg__hover);
   }
@@ -188,7 +189,7 @@ section {
   padding: var(--margin-x-card);
   margin-left: var(--none);
   border-radius: var(--border-radius-outer);
-  transition: background-color 0.2s ease;
+  transition: background-color var(--hover-transition-duration) ease;
   &:hover {
     background-color: var(--color-bg__hover);
     text-decoration: none;
@@ -237,6 +238,6 @@ section {
     background-color: var(--button-bg);
     color: var(--button-text-color);
     border: none;
-    transition: background-color 0.2s ease, color 0.2s ease;
+    transition: background-color var(--hover-transition-duration) ease, color var(--hover-transition-duration) ease;
   }
 }
