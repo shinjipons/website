@@ -4,6 +4,8 @@
   --text-font-size:   1.6rem;   /* 16px */
   --text-line-height: 2.4rem;   /* 24px */
   --margin-x-card:    1.6rem;
+  --font-family-sans: "Inter", sans-serif;
+  --font-family-mono: "iA Writer Mono V", monospace;
   --h1-font-weight:   650;
   --p-font-weight:    450;
   --none: 0px;
@@ -19,6 +21,7 @@
   --color-text-primary:   hsl(12, 6%, 15%);
   --color-text-secondary: hsl(25, 5%, 45%);
   --color-text-tertiary:  var(--color-bg);
+  --color-text-code:      hsl(0, 67%, 58%);
   --button-text-color:    var(--color-text-primary);
   --button-bg:            var(--color-bg__hover);
 }
@@ -31,6 +34,7 @@
     --color-text-primary:   hsl(240, 12%, 90%);
     --color-text-secondary: hsl(240,  4%, 49%);
     --color-text-tertiary:  var(--color-bg);
+    --color-text-code:      hsl(0, 67%, 58%);
     --button-text-color:    var(--color-text-primary);
     --button-bg:            var(--color-bg__hover);
   }
@@ -48,12 +52,12 @@ html {
 
 /* Base font */
 body {
-  font-family: "Inter", sans-serif;
   background-color: var(--color-bg);
   color: var(--color-text-primary);
 }
 
 h1, h2, h3, p, a {
+  font-family: var(--font-family-sans);
   font-size: var(--text-font-size);
   line-height: var(--text-line-height);
   color: var(--color-text-primary);
