@@ -149,6 +149,10 @@ section {
       margin-top: var(--none);
       margin-bottom: var(--none);
     }
+    p:last-child {
+      font-variant-numeric: tabular-nums;
+      font-feature-settings: "tnum";
+    }
   }
 }
 
@@ -195,6 +199,10 @@ section {
     p {
       margin-top: var(--none);
       margin-bottom: var(--none);
+    }
+    p:last-child {
+      font-variant-numeric: tabular-nums;
+      font-feature-settings: "tnum";
     }
   }
 }
