@@ -2,6 +2,16 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
+// Upcoming events and meetups
+const upcomingEventsRaw = [
+  {
+    title: "ProductTank Watch Party",
+    destination: "Budapest",
+    date: "2025-11-12",
+    url: "https://luma.com/2ypljyz1?tk=a7drVs",
+  },
+];
+
 // Format date from YYYY-MM-DD to "Nov 12, 2025"
 function formatEventDate(dateString: string): string {
   const date = new Date(dateString + "T00:00:00"); // Add time to avoid timezone issues
@@ -14,11 +24,10 @@ function formatEventDate(dateString: string): string {
 
 // Social media links
 const socialLinks = [
+  // { name: "Resume", url: "https://twitter.com/shinjipons" },
   { name: "Twitter", url: "https://twitter.com/shinjipons" },
-  { name: "GitHub", url: "https://github.com/shinjipons" },
   { name: "LinkedIn", url: "https://linkedin.com/in/shinjipons" },
   { name: "Figma", url: "https://www.figma.com/@shinjipons" },
-  { name: "Instagram", url: "https://www.instagram.com/shinji.pons" },
   { name: "Cal.com", url: "https://cal.com/shinjipons/" },
 ];
 
@@ -27,7 +36,7 @@ const workExperience = [
   {
     company: "Formlabs",
     role: "Product designer",
-    period: "2025—",
+    period: "2025 — Present",
     url: "https://formlabs.com/",
   },
   {
@@ -39,63 +48,63 @@ const workExperience = [
   {
     company: "Ragdoll Dynamics",
     role: "Product designer",
-    period: "2023—24",
+    period: "2023 — 2024",
     url: "https://ragdolldynamics.com/",
   },
   {
     company: "Frostbite",
     role: "Product designer",
-    period: "2022—23",
+    period: "2022 — 2023",
     url: "https://www.ea.com/frostbite",
   },
   {
     company: "LEGO",
     role: "Product designer",
-    period: "2019—21",
+    period: "2019 — 2021",
     url: "https://www.lego.com/",
   },
   {
     company: "Autodesk",
     role: "Product designer",
-    period: "2017—19",
+    period: "2017 — 2019",
     url: "https://www.autodesk.com/",
   },
-  {
-    company: "Thomson Reuters",
-    role: "Product designer",
-    period: "2016—17",
-    url: "https://www.thomsonreuters.com/",
-  },
+  // {
+  //   company: "Thomson Reuters",
+  //   role: "Product designer",
+  //   period: "2016 — 2017",
+  //   url: "https://www.thomsonreuters.com/",
+  // },
   {
     company: "Microsoft",
     role: "UX designer",
     period: "2015",
     url: "https://www.microsoft.com/",
   },
-  {
-    company: "Barnbrook",
-    role: "Design intern",
-    period: "2015",
-    url: "https://www.barnbrook.net/",
-  },
-  {
-    company: "Total Design",
-    role: "Design intern",
-    period: "2013",
-    url: "https://designlaboratory.co.uk/",
-  },
-  {
-    company: "The Design Lab",
-    role: "Design intern",
-    period: "2014",
-    url: "https://www.totaldesign.com/",
-  },
-  {
-    company: "Ateliers Jean Nouvel",
-    role: "Design intern",
-    period: "2012",
-    url: "https://www.jeannouvel.com/",
-  },
+  // {
+  //   company: "Barnbrook",
+  //   role: "Design intern",
+  //   period: "2015",
+  //   url: "https://www.barnbrook.net/",
+  // },
+  // {
+  //   company: "Total Design",
+  //   role: "Design intern",
+  //   period: "2013",
+  //   url: "https://designlaboratory.co.uk/",
+  // },
+  // {
+  //   company: "The Design Lab",
+  //   role: "Design intern",
+  //   period: "2014",
+  //   url: "https://www.totaldesign.com/",
+  // },
+  // {
+  //   company: "Ateliers Jean Nouvel",
+  //   role: "Design intern",
+  //   period: "2012",
+  //   url: "https://www.jeannouvel.com/",
+  // },
 ];
 
 // Work projects (most proud projects)
@@ -115,11 +124,11 @@ const workProjects = [
     description: "Confidential",
     url: "https://www.modyfi.com/",
   },
-  {
-    name: "Frostbite",
-    description: "Confidential",
-    url: "https://www.ea.com/frostbite",
-  },
+  // {
+  //   name: "Frostbite",
+  //   description: "Confidential",
+  //   url: "https://www.ea.com/frostbite",
+  // },
   {
     name: "LEGO Digital Designer Pro",
     description: "Confidential",
@@ -130,11 +139,11 @@ const workProjects = [
     description: "Designing subdivision modelling tools for Alias",
     url: "https://autodesk.com/alias",
   },
-  {
-    name: "Dynamo for Alias",
-    description: "Adding computational design to Alias",
-    url: "https://autodesk.com/alias",
-  },
+  // {
+  //   name: "Dynamo for Alias",
+  //   description: "Adding computational design to Alias",
+  //   url: "https://autodesk.com/alias",
+  // },
   {
     name: "Louvre Abu Dhabi",
     description: "Museum icon design and typography",
@@ -147,7 +156,7 @@ const sideProjects = [
   {
     name: "Select Parent Component",
     description:
-      "Figma plugin to grab the component wrapping the user selection",
+      "Grab the component nearest to the selection in Figma",
     url: "https://github.com/shinjipons/Select-Parent-Component",
   },
   {
@@ -164,22 +173,6 @@ const sideProjects = [
     name: "InDesign Scripting",
     description: "Automating Adobe InDesign using basil.js",
     url: "https://github.com/shinjipons/basiljs-scripts",
-  },
-];
-
-// Upcoming events and meetups
-const upcomingEventsRaw = [
-  {
-    title: "ProductTank Watch Party",
-    destination: "Budapest",
-    date: "2025-11-12",
-    url: "https://luma.com/2ypljyz1?tk=a7drVs",
-  },
-  {
-    title: "UX Budapest Meetup",
-    destination: "Budapest",
-    date: "2025-11-27",
-    url: "https://luma.com/shp07hsi?tk=lMh8V7",
   },
 ];
 
@@ -208,204 +201,117 @@ const blogPosts = allPosts.sort(
 // Experiments
 const experiments = [
   {
+    title: "Input Field",
+    description: "Slider with spinbox design prototype",
     url: "https://spinbox-prototype.shinjipons.com",
     imageLight: "/media/experiments/spinbox-prototype-light-mode.png",
     imageDark: "/media/experiments/spinbox-prototype-dark-mode.png",
   },
   // {
+  //   title: "3D Measure",
+  //   description: "Description here",
   //   url: "https://3d-measure.shinjipons.com",
   //   imageLight: "/media/experiments/spinbox-prototype-light-mode.png",
   //   imageDark: "/media/experiments/spinbox-prototype-dark-mode.png",
   // },
 ];
-
-// Navigation sections
-const navSections = [
-  { id: "events", label: "Events" },
-  { id: "writing", label: "Writing" },
-  { id: "experience", label: "Work Experience" },
-  { id: "projects", label: "Projects" },
-  { id: "side-projects", label: "Side Projects" },
-  { id: "experiments", label: "Experiments" },
-];
 ---
 
 <BaseLayout title="Shinji Pons" description="Personal website">
-  <div class="max-w-[560px] mx-auto px-4 py-12">
+  <div class="container">
+
     <!-- Header section -->
-    <section class="pt-8 pb-8 fade-in">
-      <h2 class="font-semibold text-stone-800 dark:text-stone-100 px-4">
-        Shinji Pons
-      </h2>
-      <p class="px-4 text-stone-500 dark:text-stone-300">Product Designer</p>
+    <section>
+      <h2>Shinji Pons</h2>
+      <p>Product Designer</p>
     </section>
 
     <!-- Today section -->
-    <section class="pt-12 pb-8 fade-in fade-in-delay-1">
-      <h2 class="font-semibold text-stone-800 dark:text-stone-100 px-4 pb-4">
-        Today
-      </h2>
-      <p class="px-4 text-stone-800 dark:text-stone-100 mb-4">
-        I work on software product design at <a
-          href="https://formlabs.com/"
-          class="text-stone-800 dark:text-stone-100">Formlabs</a
-        >.
-      </p>
-      <p class="px-4 text-stone-800 dark:text-stone-100 mb-4">
-        My ambition is to craft 3D tools and workflows that incite artists,
-        engineers and designers to accomplish greater things.
-      </p>
-      <p class="px-4 text-stone-800 dark:text-stone-100 mb-4">
-        You can reach out to me on{" "}
+    <section>
+      <h1>Today</h1>
+      <p>I am a product designer at <a href="https://formlabs.com/">Formlabs</a>.</p>
+      <p>I empower artists, engineers and designers with tools and workflows that spark bolder creations.</p>
+      <p>
         <span
           set:html={socialLinks
             .map(
               (link, index) =>
-                (index > 0
-                  ? index === socialLinks.length - 1
-                    ? " and "
-                    : ", "
-                  : "") +
-                `<a href="${link.url}" target="_blank" rel="noopener noreferrer" class="text-stone-800 dark:text-stone-100">${link.name.trim()}</a>`
+                (index > 0 ? " " : "") +
+                `<a class="social-link-item" href="${link.url}" target="_blank" rel="noopener noreferrer">${link.name.trim()}</a>`
             )
             .join("")}
-        />.
+        />
       </p>
-      <p class="px-4 text-stone-800 dark:text-stone-100">
-        A few things to explore:
-      </p>
-      <ul class="px-4 mt-4 space-y-1 list-disc list-inside">
-        {
-          navSections.map((section) => (
-            <li class="text-stone-800 dark:text-stone-100">
-              <a
-                href={`#${section.id}`}
-                class="nav-link inline font-regular text-stone-800 dark:text-stone-100"
-              >
-                {section.label}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
     </section>
 
     <!-- Events Section -->
-    <section id="events" class="pt-12 pb-8 fade-in fade-in-delay-2">
-      <h2 class="font-semibold text-stone-800 dark:text-stone-100 mb-6 px-4">
-        Events I'm Attending
-      </h2>
+    <section id="events">
+      <h1>Events</h1>
       {
         upcomingEvents.length > 0 ? (
-          <div class="space-y-6">
+          <div>
             {upcomingEvents.map((event, index) => (
-              <div
-                class="px-4 flex flex-col gap-1 md:flex-row md:justify-between md:items-center md:gap-0 fade-in"
-                style={`animation-delay: ${0.3 + index * 0.1}s`}
-              >
-                <p class="text-stone-800 dark:text-stone-100">
-                  {event.url ? (
-                    <a
-                      href={event.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="font-medium hover:text-amber-400 dark:hover:text-amber-400 transition-color-hover"
-                    >
-                      {event.title || event.destination}
-                    </a>
-                  ) : (
-                    <span class="font-medium">
-                      {event.title || event.destination}
-                    </span>
-                  )}
-                </p>
-                <div class="flex flex-col gap-1 md:flex-row md:items-center md:gap-0">
-                  {event.destination && (
-                    <p class="text-stone-500 dark:text-stone-300">
-                      {event.destination}
-                    </p>
-                  )}
-                  {event.date && (
-                    <p class="text-stone-500 dark:text-stone-400 md:w-32 md:text-right">
-                      {event.date}
-                    </p>
-                  )}
+              event.url ? (
+                <a href={event.url} target="_blank" rel="noopener noreferrer" class="event-card">
+                  <h2>{event.title || event.destination}</h2>
+                  <div class="event-card-description">
+                    {event.destination && <p>{event.destination}</p>}
+                    {event.date && <p>{event.date}</p>}
+                  </div>
+                </a>
+              ) : (
+                <div class="event-card">
+                  <h2>{event.title || event.destination}</h2>
+                  <div class="event-card-description">
+                    {event.destination && <p>{event.destination}</p>}
+                    {event.date && <p>{event.date}</p>}
+                  </div>
                 </div>
-              </div>
+              )
             ))}
           </div>
         ) : (
-          <p class="px-4 text-stone-500 dark:text-stone-300">
-            No upcoming events scheduled...
-          </p>
+          <p>Nothing scheduled</p>
         )
       }
     </section>
 
     <!-- Blog Posts Section -->
-    <section id="writing" class="pt-12 pb-8 fade-in fade-in-delay-3">
-      <h2 class="font-semibold text-stone-800 dark:text-stone-100 mb-6 px-4">
-        Writing
-      </h2>
+    <section id="writing">
+      <h1>Writing</h1>
       {
         blogPosts.length > 0 ? (
-          <div class="space-y-2">
+          <div>
             {blogPosts.map((post, index) => (
-              <a
-                href={`/writing/${post.slug}`}
-                class="block rounded-lg pt-4 px-4 pb-2 bg-transparent hover:bg-stone-50 dark:hover:bg-stone-800 hover:shadow-[0_8px_12px_0_rgba(0,0,0,0.08),0_0_1px_0_rgba(0,0,0,0.62)] transition-all duration-200 fade-in"
-                style={`animation-delay: ${0.4 + index * 0.05}s`}
-              >
-                <article>
-                  <h3 class="font-medium text-stone-800 dark:text-stone-100 mb-2">
-                    {post.data.title}
-                  </h3>
-                  <p class="text-stone-500 dark:text-stone-400 mb-2">
-                    {post.data.description}
-                  </p>
-                </article>
+              <a href={`/writing/${post.slug}`} class="blog-card">
+                <h3>{post.data.title}</h3>
+                <p>{post.data.description}</p>
               </a>
             ))}
           </div>
         ) : (
-          <p class="px-4 text-stone-500 dark:text-stone-300">
-            Check back soon...
-          </p>
+          <p>Check back soon...</p>
         )
       }
     </section>
 
     <!-- Work Experience Section -->
-    <section id="experience" class="pt-12 pb-8 fade-in fade-in-delay-4">
-      <h2 class="font-semibold text-stone-800 dark:text-stone-100 mb-6 px-4">
-        Work Experience
-      </h2>
-      <div class="space-y-6">
+    <section id="experience">
+      <h1>Work Experience</h1>
+      <div>
         {
           workExperience.map((job, index) => (
-            <div
-              class="px-4 flex flex-col gap-1 md:flex-row md:justify-between md:items-center md:gap-0 fade-in"
-              style={`animation-delay: ${0.5 + index * 0.03}s`}
-            >
-              <p class="text-stone-800 dark:text-stone-100">
+            <div class="work-experience-card">
+              <p>
                 {job.url ? (
-                  <a
-                    href={job.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="font-medium hover:text-amber-400 dark:hover:text-amber-400 transition-color-hover"
-                  >
-                    {job.company}
-                  </a>
+                  <a href={job.url} target="_blank" rel="noopener noreferrer">{job.company}</a>
                 ) : (
-                  <span class="font-medium">{job.company}</span>
+                  <span>{job.company}</span>
                 )}
               </p>
-              <div class="flex flex-col gap-1 md:flex-row md:items-center md:gap-0">
-                <p class="text-stone-500 dark:text-stone-300">{job.role}</p>
-                <p class="text-stone-500 dark:text-stone-400 md:w-32 md:text-right">
-                  {job.period}
-                </p>
+              <div class="work-experience-card-description">
+                <p>{job.role}</p>
+                <p>{job.period}</p>
               </div>
             </div>
           ))
@@ -414,94 +320,82 @@ const navSections = [
     </section>
 
     <!-- Work Projects Section -->
-    <section id="projects" class="pt-12 pb-8 fade-in fade-in-delay-5">
-      <h2 class="font-semibold text-stone-800 dark:text-stone-100 mb-6 px-4">
-        Projects
-      </h2>
-      <div class="grid gap-2 grid-cols-1">
-        {
-          workProjects.map((project, index) => (
-            <a
-              href={project.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="block rounded-lg pt-4 px-4 pb-2 bg-transparent hover:bg-stone-50 dark:hover:bg-stone-800 hover:shadow-[0_8px_12px_0_rgba(0,0,0,0.08),0_0_1px_0_rgba(0,0,0,0.62)] transition-all duration-200 fade-in"
-              style={`animation-delay: ${0.6 + index * 0.05}s`}
-            >
-              <h3 class="font-medium text-stone-800 dark:text-stone-100 mb-2">
-                {project.name}
-              </h3>
-              <p class="text-stone-500 dark:text-stone-400 mb-2">
-                {project.description}
-              </p>
-            </a>
-          ))
-        }
-      </div>
+    <section id="projects">
+      <h1>Projects</h1>
+      {
+        workProjects.length > 0 ? (
+          <div>
+            {workProjects.map((project, index) => (
+              <a href={project.url} target="_blank" rel="noopener noreferrer" class="blog-card">
+                <h3>{project.name}</h3>
+                <p>{project.description}</p>
+              </a>
+            ))}
+          </div>
+        ) : (
+          <p>Check back soon...</p>
+        )
+      }
     </section>
 
     <!-- Side Projects Section -->
-    <section id="side-projects" class="pt-12 pb-8 fade-in fade-in-delay-5">
-      <h2 class="font-semibold text-stone-800 dark:text-stone-100 mb-6 px-4">
-        Side Projects
-      </h2>
-      <div class="grid gap-2 grid-cols-1">
-        {
-          sideProjects.map((project, index) => (
-            <a
-              href={project.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="block rounded-lg pt-4 px-4 pb-2 bg-transparent hover:bg-stone-50 dark:hover:bg-stone-800 hover:shadow-[0_8px_12px_0_rgba(0,0,0,0.08),0_0_1px_0_rgba(0,0,0,0.62)] transition-all duration-200 fade-in"
-              style={`animation-delay: ${0.6 + index * 0.05}s`}
-            >
-              <h3 class="font-medium text-stone-800 dark:text-stone-100 mb-2">
-                {project.name}
-              </h3>
-              <p class="text-stone-500 dark:text-stone-400 mb-2">
-                {project.description}
-              </p>
-            </a>
-          ))
-        }
-      </div>
+    <section id="side-projects">
+      <h1>Side Projects</h1>
+      {
+        sideProjects.length > 0 ? (
+          <div>
+            {sideProjects.map((project, index) => (
+              <a href={project.url} target="_blank" rel="noopener noreferrer" class="blog-card">
+                <h3>{project.name}</h3>
+                <p>{project.description}</p>
+              </a>
+            ))}
+          </div>
+        ) : (
+          <p>Check back soon...</p>
+        )
+      }
     </section>
 
     <!-- Experiments Section -->
-    <section id="experiments" class="pt-12 pb-8 fade-in fade-in-delay-6">
-      <h2 class="font-semibold text-stone-800 dark:text-stone-100 mb-6 px-4">
-        Experiments
-      </h2>
+    <section id="experiments">
+      <h1>Experiments</h1>
       {
         experiments.length > 0 ? (
-          <div class="grid gap-[12px] grid-cols-1 px-4">
-            {experiments.map((experiment, index) => {
-              // Every 3rd item (index 2, 5, 8, ...) spans full width (every second row)
-              const isFullWidth = index % 3 === 2;
+          <div>
+            {experiments.map((experiment) => {
               return (
-                <a
-                  href={experiment.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class={`block rounded-[6px] overflow-hidden bg-transparent hover:bg-stone-50 dark:bg-transparent dark:hover:bg-stone-800 hover:shadow-[0_8px_12px_0_rgba(0,0,0,0.08),0_0_1px_0_rgba(0,0,0,0.62)] transition-all duration-200 fade-in ${isFullWidth ? "col-span-2" : ""}`}
-                  style={`animation-delay: ${0.7 + index * 0.1}s`}
-                >
-                  <img
-                    src={experiment.imageLight}
-                    class="w-full aspect-square object-cover dark:hidden dark:!bg-transparent"
-                  />
-                  <img
-                    src={experiment.imageDark}
-                    class="hidden w-full aspect-square object-cover dark:block dark:!bg-transparent"
-                  />
+                <a href={experiment.url} target="_blank" rel="noopener noreferrer" class="experiment-card">
+                  <img src={experiment.imageLight} class="experiment-image-light" />
+                  <img src={experiment.imageDark} class="experiment-image-dark" />
+                  <div class="experiment-card-description">
+                    <div class="experiment-card-description-text">
+                      <h2>{experiment.title}</h2>
+                      <p>{experiment.description}</p>
+                    </div>
+                    <button>
+                      Play
+                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M4.5 3L8.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </button>
+                  </div>
                 </a>
               );
             })}
           </div>
         ) : (
-          <p class="px-4 text-stone-500 dark:text-stone-300">Coming soon...</p>
+          <p>Coming soon...</p>
         )
       }
+    </section>
+
+    <!-- Archive and scraps section -->
+    <section id="archive-and-scraps">
+      <h1>Archive and Scraps</h1>
+      <div>
+        <p>Nothing here yet...</p>
+      </div>
     </section>
   </div>
 </BaseLayout>
