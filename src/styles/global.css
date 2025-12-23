@@ -51,7 +51,7 @@
     --border-stroke-color__hover:  rgba(255, 255, 255, 0.2);
   }
   
-  @media (max-width: 768px) {
+  @media (max-width: 416px) {
     :root {
       /* Dark mode + Mobile */
       --margin-y-html: 10rem;
@@ -59,7 +59,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 416px) {
   :root {
     /* Mobile styles */
     --margin-y-html: 10rem;

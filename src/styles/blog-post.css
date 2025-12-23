@@ -128,11 +128,12 @@
   }
   
   video {
-    max-width: 100%;
+    overflow: hidden;
+    max-width: calc(100% - var(--margin-x-card) * 2);
     height: auto;
-    border-radius: var(--border-radius-inner);
-    margin-bottom: 1.5rem;
+    margin: var(--margin-x-card);
     border: 1px solid var(--border-stroke-color);
+    border-radius: var(--border-radius-inner);
     transition: border var(--hover-transition-duration) ease;
     &:hover {
       border: 1px solid var(--border-stroke-color__hover);
@@ -167,10 +168,4 @@
     color: var(--color-text-secondary);
     text-decoration: underline;
   }
-}
-
-
-video {
-  margin: var(--margin-x-card);
-  border-radius: var(--border-radius-outer);
 }
