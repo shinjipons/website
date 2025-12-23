@@ -24,16 +24,16 @@
   --hover-transition-duration: 0.1s;
 
   /* Light mode (todo) */
-  --color-bg:             hsl(60, 5%, 96%);
-  --color-bg__hover:      hsl( 0, 0%, 91%);
-  --color-text-primary:   hsl(12, 6%, 15%);
-  --color-text-secondary: hsl(25, 5%, 45%);
-  --color-text-tertiary:  var(--color-bg);
-  --color-text-code:      hsl(0, 67%, 58%);
-  --button-text-color:    var(--color-text-primary);
-  --button-bg:            var(--color-bg__hover);
-  --border-stroke-color:  rgba(0, 0, 0, 0.1);
-  --border-stroke-color__hover:  rgba(0, 0, 0, 0.2);
+  --color-bg: hsl(48, 100%, 97%);                  /* done */
+  --color-bg__hover: hsl(51, 33%, 92%);            /* done */
+  --color-text-primary: hsl(0, 3%, 6%);            /* done */
+  --color-text-secondary: hsl(50, 3%, 42%);        /* done */
+  --color-text-tertiary: var(--color-bg);            /* done */
+  --color-text-code:      rgb(209, 77, 65);        /* done */
+  --button-text-color:    var(--color-text-primary); /* done */
+  --button-bg:            var(--color-bg__hover);    /* done */
+  --border-stroke-color:  rgba(0, 0, 0, 0.1);        /* done */
+  --border-stroke-color__hover:  rgba(0, 0, 0, 0.2); /* done */
 }
 
 @media (prefers-color-scheme: dark) {
