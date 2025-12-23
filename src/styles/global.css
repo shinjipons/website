@@ -297,7 +297,7 @@ section {
     font-weight: var(--p-font-weight);
     border-radius: var(--button-border-radius);
     padding-left:  var(--button-padding-x);
-    padding-right: calc(var(--button-padding-x) - 0.4rem);
+    padding-right: calc(var(--button-padding-x) - 0.6rem);
     background-color: var(--button-bg);
     color: var(--button-text-color);
     border: none;
