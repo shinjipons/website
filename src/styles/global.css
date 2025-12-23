@@ -1,22 +1,23 @@
 /* Light and Dark Mode */
 :root {
-  --html-font-size:        10px;     /* do not change this */
-  --text-font-size:        1.6rem;   /* 16px */
-  --text-line-height:      2.4rem;   /* 24px */
-  --margin-x-card:         1.6rem;
-  --margin-y-html:         17.6rem;
-  /* --margin-y-html__mobile: 17.6rem; */
-  --none:                  0px;
+  --html-font-size: 10px; /* do not change this */
+  --text-font-size: 1.6rem; /* 16px */
+  --text-line-height: 2.4rem; /* 24px */
+  --margin-x-card: 1.6rem;
+  --margin-y-html: 17.6rem;
+  --none: 0px;
 
   --font-family-sans: "Inter", sans-serif;
   --font-family-mono: "Google Sans Code", monospace;
-  --h1-font-weight:   650;
-  --p-font-weight:    450;
-  --code-font-size:   1.2rem;
+  --h1-font-weight: 650;
+  --p-font-weight: 450;
+  --code-font-size: 1.2rem;
   --code-font-weight: 420;
 
   --border-radius-inner: 0.8rem;
-  --border-radius-outer: calc(var(--border-radius-inner) + var(--margin-x-card));
+  --border-radius-outer: calc(
+    var(--border-radius-inner) + var(--margin-x-card)
+  );
 
   --button-border-radius: 999px;
   --button-padding-x: 2rem;
@@ -24,33 +25,33 @@
   --hover-transition-duration: 0.1s;
 
   /* Light mode (todo) */
-  --color-bg: hsl(48, 100%, 97%);                  /* done */
-  --color-bg__hover: hsl(51, 33%, 92%);            /* done */
-  --color-text-primary: hsl(0, 3%, 6%);            /* done */
-  --color-text-secondary: hsl(50, 3%, 42%);        /* done */
-  --color-text-tertiary: var(--color-bg);            /* done */
-  --color-text-code:      rgb(209, 77, 65);        /* done */
-  --button-text-color:    var(--color-text-primary); /* done */
-  --button-bg:            var(--color-bg__hover);    /* done */
-  --border-stroke-color:  rgba(0, 0, 0, 0.1);        /* done */
-  --border-stroke-color__hover:  rgba(0, 0, 0, 0.2); /* done */
+  --color-bg: hsl(48, 100%, 97%);
+  --color-bg__hover: hsl(51, 33%, 92%);
+  --color-text-primary: hsl(0, 3%, 6%);
+  --color-text-secondary: hsl(50, 3%, 42%);
+  --color-text-tertiary: var(--color-bg);
+  --color-text-code: rgb(209, 77, 65);
+  --button-text-color: var(--color-text-primary);
+  --button-bg: var(--color-bg__hover);
+  --border-stroke-color: rgba(0, 0, 0, 0.1);
+  --border-stroke-color__hover: rgba(0, 0, 0, 0.2);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     /* Dark mode */
-    --color-bg:             hsl(240,  6%,  7%);
-    --color-bg__hover:      hsl(240,  4%, 11%);
-    --color-text-primary:   hsl(240, 12%, 90%);
-    --color-text-secondary: hsl(240,  4%, 49%);
-    --color-text-tertiary:  var(--color-bg);
-    --color-text-code:      hsl(0, 67%, 58%);
-    --button-text-color:    var(--color-text-primary);
-    --button-bg:            var(--color-bg__hover);
-    --border-stroke-color:  rgba(255, 255, 255, 0.1);
-    --border-stroke-color__hover:  rgba(255, 255, 255, 0.2);
+    --color-bg: hsl(240, 6%, 7%);
+    --color-bg__hover: hsl(240, 4%, 11%);
+    --color-text-primary: hsl(240, 12%, 90%);
+    --color-text-secondary: hsl(240, 4%, 49%);
+    --color-text-tertiary: var(--color-bg);
+    --color-text-code: hsl(0, 67%, 58%);
+    --button-text-color: var(--color-text-primary);
+    --button-bg: var(--color-bg__hover);
+    --border-stroke-color: rgba(255, 255, 255, 0.1);
+    --border-stroke-color__hover: rgba(255, 255, 255, 0.2);
   }
-  
+
   @media (max-width: 416px) {
     :root {
       /* Dark mode + Mobile */
@@ -72,7 +73,7 @@
 
 html {
   font-size: var(--html-font-size);
-  margin-top:    var(--margin-y-html);
+  margin-top: var(--margin-y-html);
   margin-bottom: var(--margin-y-html);
 }
 
@@ -82,7 +83,11 @@ body {
   color: var(--color-text-primary);
 }
 
-h1, h2, h3, p, a {
+h1,
+h2,
+h3,
+p,
+a {
   font-family: var(--font-family-sans);
   font-size: var(--text-font-size);
   line-height: var(--text-line-height);
@@ -99,11 +104,12 @@ p {
 }
 
 a {
-  transition: color var(--hover-transition-duration) ease, text-decoration var(--hover-transition-duration) ease;
+  transition: color var(--hover-transition-duration) ease,
+    text-decoration var(--hover-transition-duration) ease;
   color: var(--color-text-primary);
 }
 
-a:hover{
+a:hover {
   text-decoration: underline;
   color: var(--color-text-primary);
 }
@@ -114,7 +120,9 @@ h1 {
   font-weight: var(--h1-font-weight);
 }
 
-h2, h3, p {
+h2,
+h3,
+p {
   font-weight: var(--p-font-weight);
 }
 
@@ -128,7 +136,6 @@ h2, h3, p {
 section {
   margin-bottom: 4rem;
 }
-
 
 .social-link-item {
   margin-right: var(--margin-x-card);
@@ -148,7 +155,9 @@ section {
     background-color: var(--color-bg__hover);
     text-decoration: none;
   }
-  h2, p, a {
+  h2,
+  p,
+  a {
     margin-top: var(--none);
     margin-bottom: var(--none);
     margin-left: var(--none);
@@ -184,7 +193,8 @@ section {
     background-color: var(--color-bg__hover);
     text-decoration: none;
   }
-  h3, p {
+  h3,
+  p {
     margin-top: var(--none);
     margin-bottom: var(--none);
     margin-left: var(--none);
@@ -203,7 +213,9 @@ section {
   &:hover {
     background-color: var(--color-bg__hover);
   }
-  h2, p, a {
+  h2,
+  p,
+  a {
     margin-top: var(--none);
     margin-bottom: var(--none);
     margin-left: var(--none);
@@ -233,7 +245,8 @@ section {
   margin-left: var(--none);
   border-radius: var(--border-radius-outer);
   overflow: hidden;
-  transition: background-color var(--hover-transition-duration) ease, border-color var(--hover-transition-duration) ease;
+  transition: background-color var(--hover-transition-duration) ease,
+    border-color var(--hover-transition-duration) ease;
   &:hover {
     background-color: var(--color-bg__hover);
     text-decoration: none;
@@ -279,7 +292,8 @@ section {
     .experiment-card-description-text {
       display: flex;
       flex-direction: column;
-      h2, p {
+      h2,
+      p {
         margin-top: var(--none);
         margin-bottom: var(--none);
         margin-left: var(--none);
@@ -296,19 +310,23 @@ section {
     font-size: var(--text-font-size);
     font-weight: var(--p-font-weight);
     border-radius: var(--button-border-radius);
-    padding-left:  var(--button-padding-x);
+    padding-left: var(--button-padding-x);
     padding-right: calc(var(--button-padding-x) - 0.6rem);
     background-color: var(--button-bg);
     color: var(--button-text-color);
     border: none;
-    transition: background-color var(--hover-transition-duration) ease, color var(--hover-transition-duration) ease, padding-right 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: background-color var(--hover-transition-duration) ease,
+      color var(--hover-transition-duration) ease,
+      padding-right 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     svg {
       flex-shrink: 0;
       width: 0;
       overflow: hidden;
       opacity: 0;
       transform: translateX(-4px);
-      transition: opacity 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), width 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transition: opacity 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+        transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+        width 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
     &:hover {
       padding-right: var(--button-padding-x);
