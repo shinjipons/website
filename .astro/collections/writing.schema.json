@@ -30,6 +30,9 @@
           "type": "string",
           "default": "Anonymous"
         },
+        "ogImage": {
+          "type": "string"
+        },
         "$schema": {
           "type": "string"
         }

@@ -3,6 +3,7 @@ title: "How I use Obsidian"
 pubDate: 2025-12-21
 description: "How I record my work and thoughts"
 author: "Shinji Pons"
+ogImage: "/media/writing/how-i-use-obsidian/og-image.png"
 ---
 # The basics
 

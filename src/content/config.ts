@@ -7,6 +7,7 @@ const writing = defineCollection({
     pubDate: z.coerce.date(),
     description: z.string(),
     author: z.string().default('Anonymous'),
+    ogImage: z.string().optional(), // OpenGraph image path
   }),
 });
 

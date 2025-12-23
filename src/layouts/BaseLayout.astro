@@ -5,9 +5,10 @@ import Analytics from "@vercel/analytics/astro";
 interface Props {
   title: string;
   description?: string;
+  ogImage?: string; // Optional, defaults to /og-image.png
 }
 
-const { title, description = "Personal website" } = Astro.props;
+const { title, description = "Personal website", ogImage = "/og-image.png" } = Astro.props;
 ---
 
 <!doctype html>
@@ -20,6 +21,19 @@ const { title, description = "Personal website" } = Astro.props;
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png" />
     <meta name="generator" content={Astro.generator} />
+
+    <!-- OpenGraph Meta Tags -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content={new URL(ogImage, Astro.site || Astro.url).href} />
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(ogImage, Astro.site || Astro.url).href} />
+
     <!-- Inter font from Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

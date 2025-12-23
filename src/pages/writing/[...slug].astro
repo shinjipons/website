@@ -15,7 +15,11 @@ const { post } = Astro.props;
 const { Content } = await post.render();
 ---
 
-<BaseLayout title={post.data.title} description={post.data.description}>
+<BaseLayout
+  title={post.data.title}
+  description={post.data.description}
+  {...(post.data.ogImage && { ogImage: post.data.ogImage })}
+>
   <article class="container blog-post">
     <div class="blog-post-back">
       <a href="/" class="link-back"> ← Back to home </a>
