@@ -1,7 +1,7 @@
 ---
 title: "How I use Obsidian"
 pubDate: 2025-12-21
-description: "A short article detailing how I record my work and thoughts"
+description: "How I record my work and thoughts"
 author: "Shinji Pons"
 ---
 # The basics
