@@ -73,14 +73,14 @@
 
 html {
   font-size: var(--html-font-size);
-  margin-top: var(--margin-y-html);
-  margin-bottom: var(--margin-y-html);
 }
 
 /* Base font */
 body {
   background-color: var(--color-bg);
   color: var(--color-text-primary);
+  margin-top: var(--margin-y-html);
+  margin-bottom: var(--margin-y-html);
 }
 
 h1,
