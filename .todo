@@ -1,8 +1,8 @@
 To do (in order)
-- [x] write my first blog post
-    - [x] add vercel analytics the blog post layout
 - [ ] add an interactive canvas populated with my last 10 raindrop likes
-- [ ] add a 3D model that rotates as you scroll up/down the main page
-- [ ] it would be sick to hook up a notion database to a collection in Astro (for example, my life timeline into a section or something)
 - [ ] figure out how to do image compression thru Vercel
+- [ ] add a 3D model that rotates as you scroll up/down the main page
+- [x] write my first blog post
+- [x] add vercel analytics the blog post layout
+- [ ] (won't do) it would be sick to hook up a notion database to a collection in Astro (for example, my life timeline into a section or something)
 - [ ] (won't do) add elevenlabs bottom bar playback on the blog articles (probably costs money...)
