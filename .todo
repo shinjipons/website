@@ -3,6 +3,7 @@ To do (in order)
 - [ ] add an interactive canvas populated with my last 10 raindrop likes
 - [ ] add archive and scrap content
 - [ ] add a way to hook up Figma's API to a line of text on the website ("This week, I created 289 frames in Figma")
+- [ ] create a way to make a nice gallery like on Read.cv (saved on #minimal_portfolio_research in Raindrop)
 
 - [ ] figure out how to do image compression thru Vercel
 - [ ] add a 3D model that rotates as you scroll up/down the main page
