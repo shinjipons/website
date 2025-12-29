@@ -2,7 +2,6 @@ To do (in order)
 
 - [ ] add an interactive canvas populated with my last 10 raindrop likes
 - [ ] add archive and scrap content
-- [ ] add a way to hook up Figma's API to a line of text on the website ("This week, I created 289 frames in Figma")
 - [ ] create a way to make a nice gallery like on Read.cv (saved on #minimal_portfolio_research in Raindrop)
 
 - [ ] figure out how to do image compression thru Vercel
@@ -11,5 +10,8 @@ To do (in order)
 - [x] write my first blog post
 - [x] add vercel analytics the blog post layout
 
-- [ ] (won't do) hook up a notion database to a collection in Astro (for example, my life timeline into a section or something)
-- [ ] (won't do) add elevenlabs bottom bar playback on the blog articles (probably costs money...)
+Won't do
+
+- [ ] add a way to hook up Figma's API to a line of text on the website ("This week, I created 289 frames in Figma")
+- [ ] hook up a notion database to a collection in Astro (for example, my life timeline into a section or something)
+- [ ] add elevenlabs bottom bar playback on the blog articles (probably costs money...)
