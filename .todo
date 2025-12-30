@@ -1,11 +1,10 @@
 To do (in order)
 
-- [ ] add an interactive canvas populated with my last 10 raindrop likes
 - [ ] add archive and scrap content
-- [ ] create a way to make a nice gallery like on Read.cv (saved on #minimal_portfolio_research in Raindrop)
-
+    - [ ] create a way to make a nice gallery like on Read.cv (saved on #minimal_portfolio_research in Raindrop)
+- [ ] add an interactive canvas populated with my last 10 raindrop likes
+- [ ] add a simple 3D model that rotates as you scroll up/down the main page
 - [ ] figure out how to do image compression thru Vercel
-- [ ] add a 3D model that rotates as you scroll up/down the main page
 
 - [x] write my first blog post
 - [x] add vercel analytics the blog post layout
