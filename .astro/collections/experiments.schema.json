@@ -4,16 +4,36 @@
     "experiments": {
       "type": "object",
       "properties": {
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
         "url": {
           "type": "string",
           "format": "uri"
+        },
+        "imageLight": {
+          "type": "string"
+        },
+        "imageDark": {
+          "type": "string"
+        },
+        "buttonText": {
+          "type": "string",
+          "default": "Play"
         },
         "$schema": {
           "type": "string"
         }
       },
       "required": [
-        "url"
+        "title",
+        "description",
+        "url",
+        "imageLight",
+        "imageDark"
       ],
       "additionalProperties": false
     }

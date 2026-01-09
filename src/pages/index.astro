@@ -210,14 +210,15 @@ const experiments = [
     url: "https://spinbox-prototype.shinjipons.com",
     imageLight: "/media/experiments/spinbox-prototype-light-mode.png",
     imageDark: "/media/experiments/spinbox-prototype-dark-mode.png",
-  },
-  // {
-  //   title: "3D Measure",
-  //   description: "Description here",
-  //   url: "https://3d-measure.shinjipons.com",
-  //   imageLight: "/media/experiments/spinbox-prototype-light-mode.png",
-  //   imageDark: "/media/experiments/spinbox-prototype-dark-mode.png",
-  // },
+    buttonText: "Play",
+  }, {
+    title: "Luminous SF Icon",
+    description: "Icon design for Luminous SF",
+    url: "https://www.figma.com/community/file/1440464930979235933",
+    imageLight: "/media/experiments/luminous-sf-icon-light-mode.png",
+    imageDark: "/media/experiments/luminous-sf-icon-light-mode.png",
+    buttonText: "View",
+  }
 ];
 ---
 
@@ -378,7 +379,7 @@ const experiments = [
                       <p>{experiment.description}</p>
                     </div>
                     <button>
-                      Play
+                      {experiment.buttonText}
                       <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                         <path d="M4.5 3L8.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                       </svg>
