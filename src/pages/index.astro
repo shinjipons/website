@@ -9,7 +9,7 @@ const upcomingEventsRaw = [
     destination: "Budapest",
     date: "2025-11-12",
     url: "https://luma.com/2ypljyz1?tk=a7drVs",
-  },{
+  }, {
     title: "UX Budapest Meetup: Casual Meet & Drink",
     destination: "Budapest",
     date: "2026-01-22",
@@ -19,6 +19,11 @@ const upcomingEventsRaw = [
     destination: "Boston",
     date: "2026-01-30",
     url: "https://formlabs.com/",
+  }, {
+    title: "Cursor Meetup Budapest",
+    destination: "Budapest",
+    date: "2026-01-28",
+    url: "https://luma.com/7g0u7ngm?tk=uAGatJ",
   }
 ];
 
@@ -195,6 +200,13 @@ const upcomingEvents = upcomingEventsRaw
     const eventDate = new Date(event.date + "T00:00:00");
     eventDate.setHours(0, 0, 0, 0);
     return eventDate >= today; // Only include today and future events
+  })
+  .sort((a, b) => {
+    // Sort events without dates to the end
+    if (!a.date) return 1;
+    if (!b.date) return -1;
+    // Sort by date in chronological order (earliest first)
+    return new Date(a.date + "T00:00:00").getTime() - new Date(b.date + "T00:00:00").getTime();
   })
   .map((event) => ({
     ...event,

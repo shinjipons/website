@@ -22,6 +22,6 @@
   "homepage": "https://github.com/shinjipons/website#readme",
   "dependencies": {
     "@vercel/analytics": "^1.5.0",
-    "astro": "^5.15.4"
+    "astro": "^5.16.11"
   }
 }
