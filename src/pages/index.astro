@@ -415,8 +415,12 @@ const experiments = [
     <!-- Archive and scraps section -->
     <section id="archive-and-scraps">
       <h1>Archive and Scraps</h1>
-      <div>
-        <p>Nothing here yet...</p>
+      <div class="archive-grid">
+        {Array.from({ length: 12 }, (_, i) => (
+          <a href={`https://picsum.photos/seed/${i + 1}/800/800`} target="_blank" rel="noopener noreferrer" class="archive-grid-item">
+            <img src={`https://picsum.photos/seed/${i + 1}/400/400`} alt={`Archive image ${i + 1}`} loading="lazy" />
+          </a>
+        ))}
       </div>
     </section>
   </div>

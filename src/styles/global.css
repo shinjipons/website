@@ -339,3 +339,39 @@ section {
     }
   }
 }
+
+/* Archive grid styles */
+
+.archive-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.2rem;
+  margin-left: var(--margin-x-card);
+  margin-right: var(--margin-x-card);
+  margin-top: var(--margin-x-card);
+}
+
+.archive-grid-item {
+  display: block;
+  margin-left: var(--none);
+  overflow: hidden;
+  border-radius: var(--border-radius-inner);
+  aspect-ratio: 2 / 3;
+  transition: opacity var(--hover-transition-duration) ease;
+  &:hover {
+    opacity: 0.8;
+    text-decoration: none;
+  }
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+@media (max-width: 416px) {
+  .archive-grid {
+    gap: 0.15rem;
+  }
+}
