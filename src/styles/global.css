@@ -73,6 +73,7 @@
 
 html {
   font-size: var(--html-font-size);
+  background-color: var(--color-bg);
 }
 
 /* Base font */
