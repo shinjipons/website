@@ -210,6 +210,12 @@ const blogPosts = allPosts.sort(
   (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
 );
 
+// Archive images — auto-scanned from public/media/archive/
+const archiveGlob = import.meta.glob('/public/media/archive/**/*.{jpg,jpeg,png,webp,gif,avif,JPG,JPEG,PNG,WEBP,GIF,AVIF}');
+const archiveImages = Object.keys(archiveGlob)
+  .map(path => path.replace('/public', ''))
+  .sort();
+
 // Experiments
 const experiments = [
   {
@@ -404,11 +410,25 @@ const experiments = [
 
     <!-- Archive and scraps section -->
     <section id="archive-and-scraps">
-      <h1>Archive and Scraps</h1>
-      <div>
-        <p>Nothing here yet...</p>
-      </div>
+      <h1 style="margin-bottom: 3.2rem;">Archive and Scraps</h1>
+      {archiveImages.length > 0 ? (
+        <div class="archive-grid">
+          {archiveImages.map((src) => (
+            <div class="archive-item">
+              <img src={src} loading="lazy" decoding="async" alt="" />
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div>
+          <p>Nothing here yet...</p>
+        </div>
+      )}
     </section>
+  </div>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+    <img class="lightbox-img" id="lightbox-img" src="" alt="" />
   </div>
 
   <nav class="side-nav" aria-label="Page sections">
@@ -455,4 +475,23 @@ const experiments = [
 
   window.addEventListener("scroll", updateActiveLink, { passive: true });
   updateActiveLink();
+
+  // Lightbox
+  const lightbox = document.getElementById("lightbox") as HTMLElement;
+  const lightboxImg = document.getElementById("lightbox-img") as HTMLImageElement;
+
+  document.querySelectorAll<HTMLImageElement>(".archive-item img").forEach((img) => {
+    img.addEventListener("click", () => {
+      lightboxImg.src = img.src;
+      lightbox.classList.add("is-open");
+    });
+  });
+
+  lightbox.addEventListener("click", (e: MouseEvent) => {
+    if (e.target === lightbox) lightbox.classList.remove("is-open");
+  });
+
+  document.addEventListener("keydown", (e: KeyboardEvent) => {
+    if (e.key === "Escape") lightbox.classList.remove("is-open");
+  });
 </script>
