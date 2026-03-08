@@ -3,7 +3,8 @@
   --html-font-size: 10px; /* do not change this */
   --text-font-size: 1.6rem; /* 16px */
   --text-line-height: 2.4rem; /* 24px */
-  --margin-x-card: 1.6rem;
+  --margin-x-card: 0.8rem;
+  /* --margin-x-card: 1.6rem; */
   --margin-y-html: 17.6rem;
   --margin-bottom-section: 4rem;
   --none: 0px;
@@ -15,7 +16,10 @@
   --code-font-size: 1.2rem;
   --code-font-weight: 420;
 
-  --border-radius-inner: 0.8rem;
+  --archive-grid-columns: 4;
+  --archive-grid-width: 120rem;
+
+  --border-radius-inner: 0.6rem;
   --border-radius-outer: calc(
     var(--border-radius-inner) + var(--margin-x-card)
   );
@@ -344,11 +348,11 @@ section {
 /* Archive grid styles */
 
 .archive-grid {
-  width: min(100vw, 1456px);
-  margin-left: max(calc(50% - 728px), calc(50% - 50vw));
-  /* Control the number of columns */
-  columns: 4;
+  width: min(100vw, var(--archive-grid-width));
+  margin-left: max(calc(50% - var(--archive-grid-width) / 2), calc(50% - 50vw));
+  columns: var(--archive-grid-columns);
   column-gap: 0.8rem;
+  /* don't know what the fuck this does, so commented it out */
   /* padding: 0 1.6rem; */
   /* margin-top: 1.6rem; */
 }
@@ -373,20 +377,41 @@ section {
 
 /* Lightbox */
 
+@keyframes lightbox-img-in {
+  from {
+    opacity: 0;
+    transform: translateY(20rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .lightbox {
-  display: none;
+  display: flex;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.92);
   z-index: 1000;
-  cursor: zoom-out;
   align-items: center;
   justify-content: center;
   padding: 2.4rem;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
 }
 
 .lightbox.is-open {
-  display: flex;
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  cursor: zoom-out;
+}
+
+.lightbox.is-open .lightbox-img {
+  animation: lightbox-img-in 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .lightbox-img {
@@ -400,6 +425,7 @@ section {
 /* Side navigation styles */
 
 .side-nav {
+  background: transparent;
   position: fixed;
   left: 8.0rem;
   top: var(--margin-y-html);
