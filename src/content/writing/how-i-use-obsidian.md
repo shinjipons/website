@@ -31,7 +31,7 @@ I will cut to the chase, but I will share my Obsidian setup that has solved ever
 
 # On my laptop/desktop
 
-## Setting up the automatic naming
+## Automatic naming
 
 I'm lazy and I don't want to create new files for every single day I journal/use Obsidian. Thankfully, Obsidian does that for me automatically with the help of the **Daily notes** core plugin.
 
@@ -53,7 +53,7 @@ Thanks to this wonderful core plugin, all of my daily snippets are organized by 
 
 ![Daily notes settings](/media/writing/how-i-use-obsidian/how-i-use-obsidian-1.png)
 
-## Setting up the location of the attachments
+## Attachment location
 
 The great thing about attachments in Obsidian is that they are copied and backed up locally by default if you don't sync. Everything is private.
 
@@ -71,7 +71,7 @@ And thus, all of my attachments have clean names and are in a logical location i
 
 ![Attachment settings](/media/writing/how-i-use-obsidian/how-i-use-obsidian-3.png)
 
-## Setting up automatic timestamps
+## Automatic timestamps
 
 I like to add timestamps to my snippets as I progress along each day. It helps me track exactly what I did when and roughly how much time I spent or wasted on various things.
 
@@ -103,7 +103,7 @@ Now thanks to the two empty line below the timestamp inside of my template, I ca
 
 ![Timestamp template](/media/writing/how-i-use-obsidian/how-i-use-obsidian-4.png)
 
-## Using Code Editor Shortcuts
+## Code Editor Shortcuts
 
 Another essential Obsidian community plugin that I cannot live without and is another main reason I cannot use Notion for daily note taking is **Code Editor Shortcuts**.
 
@@ -141,7 +141,7 @@ For me, iA Writer is my go-to font choice:
 
 # On my phone/tablet
 
-## Using Obsidian Sync
+## Obsidian Sync
 
 At first, I was against the idea of payihg for yet another subscription service just to access the files I'm supposed to own on a phone I'm supposed to own.
 
@@ -161,7 +161,7 @@ One of the key things that convinced me to stay is my template for inserting the
 
 Thankfully there are a couple of very handy features on the mobile version of Obsidian: the **mobile toolbar** and the **Quick Action**.
 
-## The mobile toolbar
+## Mobile toolbar
 
 Just like Notion, the mobile experience in Obsidian offers a toolbar that appears right above your keyboard as you type. But unlike Notion, Obsidian lets you customize it to your liking. The screenshot below shows how my toolbar is set up. Note how I was able to add a command that is from a community plugin (Code Editor Shortcuts: Delete line).
 
