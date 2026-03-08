@@ -4,12 +4,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 // Upcoming events and meetups
 const upcomingEventsRaw = [
-  {
-    title: "First Monday with Bitrise & Lead Ventures",
-    destination: "Budapest",
-    date: "2026-03-02",
-    url: "https://luma.com/firstmondaymarch?tk=U9RVG8",
-  },
+  // {
+  //   title: "First Monday with Bitrise & Lead Ventures",
+  //   destination: "Budapest",
+  //   date: "2026-03-02",
+  //   url: "https://luma.com/firstmondaymarch?tk=U9RVG8",
+  // },
   {
     title: "Wise Product Meetup: Technical Debt & Product Management in the Al era",
     destination: "Budapest",
@@ -240,7 +240,7 @@ const experiments = [
     </section>
 
     <!-- Today section -->
-    <section>
+    <section id="today">
       <h1>Today</h1>
       <p>I empower artists, engineers and designers with tools and workflows that spark bolder creations.</p>
       <p>
@@ -410,4 +410,49 @@ const experiments = [
       </div>
     </section>
   </div>
+
+  <nav class="side-nav" aria-label="Page sections">
+    <a href="#today">Today</a>
+    <a href="#events">Events</a>
+    <a href="#writing">Writing</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#side-projects">Side Projects</a>
+    <a href="#experiments">Experiments</a>
+    <a href="#archive-and-scraps">Archive</a>
+  </nav>
 </BaseLayout>
+
+<script>
+  const sections = document.querySelectorAll<HTMLElement>("section[id]");
+  const navLinks = document.querySelectorAll<HTMLAnchorElement>(".side-nav a");
+
+  function updateActiveLink() {
+    let current = "";
+    sections.forEach((section) => {
+      if (window.scrollY >= section.offsetTop - 120) {
+        current = section.id;
+      }
+    });
+    navLinks.forEach((link) => {
+      link.classList.toggle("active", link.getAttribute("href") === "#" + current);
+    });
+  }
+
+  navLinks.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      const id = link.getAttribute("href")!.slice(1);
+      const target = document.getElementById(id);
+      if (target) {
+        const sectionMarginBottom = parseFloat(getComputedStyle(target).marginBottom);
+        const y = target.getBoundingClientRect().top + window.scrollY - sectionMarginBottom;
+        window.scrollTo({ top: y, behavior: "smooth" });
+        history.pushState(null, "", "#" + id);
+      }
+    });
+  });
+
+  window.addEventListener("scroll", updateActiveLink, { passive: true });
+  updateActiveLink();
+</script>
