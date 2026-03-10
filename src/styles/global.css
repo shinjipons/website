@@ -3,8 +3,8 @@
   --html-font-size: 10px; /* do not change this */
   --text-font-size: 1.6rem; /* 16px */
   --text-line-height: 2.4rem; /* 24px */
-  --margin-x-card: 0.8rem;
-  /* --margin-x-card: 1.6rem; */
+  --margin-x-card: 1.6rem;
+  /* --margin-x-card: 0.8rem; */
   --margin-y-html: 17.6rem;
   --margin-bottom-section: 4rem;
   --none: 0px;
@@ -19,7 +19,7 @@
   --archive-grid-columns: 4;
   --archive-grid-width: 120rem;
 
-  --border-radius-inner: 0.6rem;
+  --border-radius-inner: 0.8rem;
   --border-radius-outer: calc(
     var(--border-radius-inner) + var(--margin-x-card)
   );
@@ -424,6 +424,11 @@ section {
 
 /* Side navigation styles */
 
+@keyframes side-nav-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 .side-nav {
   background: transparent;
   position: fixed;
@@ -433,6 +438,13 @@ section {
   flex-direction: column;
   gap: 0.2rem;
   z-index: 100;
+  animation: side-nav-fade-in 0.3s cubic-bezier(.215, .61, .355, 1) 0.2s both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .side-nav {
+    animation: none;
+  }
 }
 
 @media (max-width: 800px) {
