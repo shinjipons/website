@@ -4,7 +4,6 @@
   --text-font-size: 1.6rem; /* 16px */
   --text-line-height: 2.4rem; /* 24px */
   --margin-x-card: 1.6rem;
-  /* --margin-x-card: 0.8rem; */
   --margin-y-html: 17.6rem;
   --margin-bottom-section: 4rem;
   --none: 0px;
@@ -17,7 +16,7 @@
   --code-font-weight: 420;
 
   --archive-grid-columns: 4;
-  --archive-grid-width: 120rem;
+  --archive-grid-width: calc(0.8rem * var(--archive-grid-columns) * 30);
 
   --border-radius-inner: 0.8rem;
   --border-radius-outer: calc(
@@ -395,7 +394,7 @@ section {
   pointer-events: none;
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.92);
+  background: rgba(0, 0, 0, 0.95);
   z-index: 1000;
   align-items: center;
   justify-content: center;
