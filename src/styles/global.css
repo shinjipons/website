@@ -360,17 +360,19 @@ section {
   break-inside: avoid;
   margin-bottom: 0.8rem;
   cursor: pointer;
-  overflow: hidden;
+  /* overflow: hidden; */
   img {
     width: 100%;
     height: auto;
     display: block;
+    /* transition: transform var(--hover-transition-duration) ease-in-out; */
     transition: opacity var(--hover-transition-duration) ease;
     border-radius: var(--border-radius-inner);
     border: 1px solid var(--border-stroke-color);
   }
   &:hover img {
     opacity: 0.85;
+    /* transform: translateY(-0.2rem); */
   }
 }
 
