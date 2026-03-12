@@ -351,28 +351,42 @@ section {
   margin-left: max(calc(50% - var(--archive-grid-width) / 2), calc(50% - 50vw));
   columns: var(--archive-grid-columns);
   column-gap: 0.8rem;
-  /* don't know what the fuck this does, so commented it out */
-  /* padding: 0 1.6rem; */
-  /* margin-top: 1.6rem; */
 }
 
 .archive-item {
   break-inside: avoid;
   margin-bottom: 0.8rem;
   cursor: pointer;
-  /* overflow: hidden; */
+  background-color: var(--color-bg__hover);
+  overflow: hidden;
+  border-radius: var(--border-radius-inner);
   img {
     width: 100%;
     height: auto;
     display: block;
-    /* transition: transform var(--hover-transition-duration) ease-in-out; */
-    transition: opacity var(--hover-transition-duration) ease;
+    /* starting scale of the scroll reveal animation */
+    transform: scale(0.8);
+    transform-origin: top center;
+    opacity: 0;
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
     border-radius: var(--border-radius-inner);
     border: 1px solid var(--border-stroke-color);
   }
-  &:hover img {
+  img.is-revealed {
+    transform: scale(1);
+    opacity: 1;
+  }
+  &:hover img.is-revealed {
     opacity: 0.85;
-    /* transform: translateY(-0.2rem); */
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .archive-item img {
+    transform: scale(1) !important;
+    opacity: 1 !important;
+    transition: opacity var(--hover-transition-duration) ease !important;
   }
 }
 

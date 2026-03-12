@@ -480,7 +480,26 @@ const experiments = [
   const lightbox = document.getElementById("lightbox") as HTMLElement;
   const lightboxImg = document.getElementById("lightbox-img") as HTMLImageElement;
 
-  document.querySelectorAll<HTMLImageElement>(".archive-item img").forEach((img) => {
+  const archiveImgs = document.querySelectorAll<HTMLImageElement>(".archive-item img");
+
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const img = (entry.target as HTMLElement).querySelector("img");
+          if (img) img.classList.add("is-revealed");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { rootMargin: "0px 0px -15% 0px", threshold: 0 }
+  );
+
+  document.querySelectorAll<HTMLElement>(".archive-item").forEach((item) =>
+    revealObserver.observe(item)
+  );
+
+  archiveImgs.forEach((img) => {
     img.addEventListener("click", () => {
       lightboxImg.src = img.src;
       lightbox.classList.add("is-open");
