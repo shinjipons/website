@@ -445,6 +445,37 @@ section {
   border-radius: var(--border-radius-inner);
 }
 
+.lightbox-thumbnails {
+  position: absolute;
+  right: 2.4rem;
+  top: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  align-items: center;
+
+}
+
+.lightbox-thumb {
+  --lightbox-thumb-size: 6.4rem;
+  width: var(--lightbox-thumb-size);
+  height: var(--lightbox-thumb-size);
+  object-fit: cover;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  /* transition: opacity 0.2s ease, transform 0.2s ease; */
+  flex-shrink: 0;
+}
+
+.lightbox-thumb.is-active {
+  opacity: 1;
+  border: 1px solid var(--color-text-secondary);
+  /* transform: scale(2); */
+  /* transform-origin: right center; */
+  width:  calc(var(--lightbox-thumb-size) * 1.4);
+  height: calc(var(--lightbox-thumb-size) * 1.4);
+}
+
 /* Side navigation styles */
 
 @keyframes side-nav-fade-in {

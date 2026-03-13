@@ -429,6 +429,7 @@ const experiments = [
 
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
     <img class="lightbox-img" id="lightbox-img" src="" alt="" />
+    <div class="lightbox-thumbnails" id="lightbox-thumbnails"></div>
   </div>
 
   <nav class="side-nav" aria-label="Page sections">
@@ -479,6 +480,7 @@ const experiments = [
   // Lightbox
   const lightbox = document.getElementById("lightbox") as HTMLElement;
   const lightboxImg = document.getElementById("lightbox-img") as HTMLImageElement;
+  const thumbnailStrip = document.getElementById("lightbox-thumbnails") as HTMLElement;
 
   const archiveImgs = document.querySelectorAll<HTMLImageElement>(".archive-item img");
 
@@ -492,18 +494,52 @@ const experiments = [
         }
       });
     },
-    { rootMargin: "0px 0px -20% 0px", threshold: 0 } // sets at which ratio of th total window height the top edge of each image must hit to trigger the reveal animation
+    { rootMargin: "0px 0px -15% 0px", threshold: 0 } // controls at which ratio of th total window height the top edge of each image must hit to trigger the reveal animation
   );
 
   document.querySelectorAll<HTMLElement>(".archive-item").forEach((item) =>
     revealObserver.observe(item)
   );
 
-  archiveImgs.forEach((img) => {
-    img.addEventListener("click", () => {
-      lightboxImg.src = img.src;
-      lightbox.classList.add("is-open");
+  // Build thumbnail strip
+  archiveImgs.forEach((img, i) => {
+    const thumb = document.createElement("img");
+    thumb.src = img.src;
+    thumb.alt = "";
+    thumb.className = "lightbox-thumb";
+    thumb.dataset.index = String(i);
+    thumb.addEventListener("click", (e) => {
+      e.stopPropagation();
+      openLightbox(i);
     });
+    thumbnailStrip.appendChild(thumb);
+  });
+
+  let currentIndex = -1;
+
+  function openLightbox(index: number) {
+    currentIndex = index;
+    lightboxImg.src = archiveImgs[index].src;
+    lightbox.classList.add("is-open");
+    updateActiveThumbnail();
+  }
+
+  function updateActiveThumbnail() {
+    thumbnailStrip.querySelectorAll<HTMLImageElement>(".lightbox-thumb").forEach((t, i) => {
+      t.classList.toggle("is-active", i === currentIndex);
+    });
+    const allThumbs = Array.from(thumbnailStrip.querySelectorAll<HTMLImageElement>(".lightbox-thumb"));
+    const gap = parseFloat(getComputedStyle(thumbnailStrip).gap) || 0;
+    let thumbCenterInStrip = 0;
+    for (let i = 0; i < currentIndex; i++) {
+      thumbCenterInStrip += allThumbs[i].clientHeight + gap;
+    }
+    thumbCenterInStrip += allThumbs[currentIndex].clientHeight / 2;
+    thumbnailStrip.style.transform = `translateY(-${thumbCenterInStrip}px)`;
+  }
+
+  archiveImgs.forEach((img, i) => {
+    img.addEventListener("click", () => openLightbox(i));
   });
 
   lightbox.addEventListener("click", (e: MouseEvent) => {
@@ -512,5 +548,15 @@ const experiments = [
 
   document.addEventListener("keydown", (e: KeyboardEvent) => {
     if (e.key === "Escape") lightbox.classList.remove("is-open");
+    if (!lightbox.classList.contains("is-open")) return;
+    if (["ArrowDown", "ArrowRight", "ArrowUp", "ArrowLeft"].includes(e.key)) {
+      e.preventDefault();
+    }
+    if ((e.key === "ArrowDown" || e.key === "ArrowRight") && currentIndex < archiveImgs.length - 1) {
+      openLightbox(currentIndex + 1);
+    }
+    if ((e.key === "ArrowUp" || e.key === "ArrowLeft") && currentIndex > 0) {
+      openLightbox(currentIndex - 1);
+    }
   });
 </script>
