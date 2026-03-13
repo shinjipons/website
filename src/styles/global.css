@@ -15,6 +15,10 @@
   --code-font-size: 1.2rem;
   --code-font-weight: 420;
 
+  --archive-grid-columns: 4;
+  --archive-grid-width: 880px;
+  --archive-grid-gap: 1.6rem;
+
   --border-radius-inner: 0.8rem;
   --border-radius-outer: calc(
     var(--border-radius-inner) + var(--margin-x-card)
@@ -61,6 +65,13 @@
   }
 }
 
+@media (max-width: 1200px) {
+  :root {
+    --archive-grid-width: 436px;
+    --archive-grid-columns: 2;
+  }
+}
+
 @media (max-width: 416px) {
   :root {
     /* Mobile styles */
@@ -74,6 +85,7 @@
 
 html {
   font-size: var(--html-font-size);
+  overflow-x: clip;
 }
 
 /* Base font */
@@ -130,7 +142,7 @@ p {
 /* General styles */
 
 .container {
-  max-width: 500px;
+  max-width: 468px;
   margin: 0 auto;
 }
 
@@ -340,16 +352,160 @@ section {
   }
 }
 
+/* Archive grid styles */
+
+.archive-grid {
+  width: min(100vw, var(--archive-grid-width));
+  margin-left: max(calc(50% - var(--archive-grid-width) / 2), calc(50% - 50vw));
+  columns: var(--archive-grid-columns);
+  column-gap: 0.8rem;
+}
+
+.archive-item {
+  break-inside: avoid;
+  margin-bottom: 0.8rem;
+  cursor: pointer;
+  background-color: var(--color-bg__hover);
+  overflow: hidden;
+  border-radius: var(--border-radius-inner);
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+    /* starting scale of the scroll reveal animation */
+    transform: scale(0.8);
+    transform-origin: top center;
+    opacity: 0;
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    border-radius: var(--border-radius-inner);
+    border: 1px solid var(--border-stroke-color);
+  }
+  img.is-revealed {
+    transform: scale(1);
+    opacity: 1;
+  }
+  &:hover img.is-revealed {
+    opacity: 0.85;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .archive-item img {
+    transform: scale(1) !important;
+    opacity: 1 !important;
+    transition: opacity var(--hover-transition-duration) ease !important;
+  }
+}
+
+/* Lightbox */
+
+@keyframes lightbox-img-in {
+  from {
+    opacity: 0;
+    transform: translateY(20rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.lightbox {
+  display: flex;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 2.4rem;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.lightbox.is-open {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  cursor: zoom-out;
+}
+
+.lightbox.is-open .lightbox-img {
+  animation: lightbox-img-in 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.lightbox-img {
+  max-width: 100%;
+  max-height: 90vh;
+  object-fit: contain;
+  margin-left: 0;
+  border-radius: var(--border-radius-inner);
+}
+
+.lightbox-thumbnails {
+  position: absolute;
+  right: 2.4rem;
+  top: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  align-items: center;
+
+}
+
+.lightbox-thumb {
+  --lightbox-thumb-size: 6.4rem;
+  width: var(--lightbox-thumb-size);
+  height: var(--lightbox-thumb-size);
+  object-fit: cover;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.lightbox-thumb.is-active {
+  opacity: 1;
+  border: 1px solid var(--color-text-secondary);
+  width:  calc(var(--lightbox-thumb-size) * 1.4);
+  height: calc(var(--lightbox-thumb-size) * 1.4);
+}
+
+@media (max-width: 416px) {
+  .lightbox-thumbnails {
+    display: none;
+  }
+}
+
 /* Side navigation styles */
 
+@keyframes side-nav-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 .side-nav {
+  background: transparent;
   position: fixed;
-  left: 2.4rem;
+  left: 8.0rem;
   top: var(--margin-y-html);
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
   z-index: 100;
+}
+
+.side-nav a {
+  animation: side-nav-fade-in 0.3s cubic-bezier(.215, .61, .355, 1) both;
+  animation-delay: calc(0.2s + var(--i, 0) * var(--side-nav-stagger-delay, 0.02s));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .side-nav a {
+    animation: none;
+  }
 }
 
 @media (max-width: 800px) {

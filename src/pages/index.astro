@@ -4,17 +4,17 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 // Upcoming events and meetups
 const upcomingEventsRaw = [
-  // {
-  //   title: "First Monday with Bitrise & Lead Ventures",
-  //   destination: "Budapest",
-  //   date: "2026-03-02",
-  //   url: "https://luma.com/firstmondaymarch?tk=U9RVG8",
-  // },
   {
     title: "Wise Product Meetup: Technical Debt & Product Management in the Al era",
     destination: "Budapest",
     date: "2026-03-10",
     url: "https://luma.com/pmintheaiera?tk=nrsWpQ",
+  },
+  {
+    title: "Budapest | Claude for Everyone",
+    destination: "Budapest",
+    date: "2026-03-26",
+    url: "https://luma.com/j7ehsd5s?tk=IlIGUM",
   },
 ];
 
@@ -31,10 +31,10 @@ function formatEventDate(dateString: string): string {
 // Social media links
 const socialLinks = [
   { name: "Resume", url: "/resume-shinji-pons.pdf" },
-  { name: "Twitter", url: "https://twitter.com/shinjipons" },
   { name: "LinkedIn", url: "https://linkedin.com/in/shinjipons" },
-  { name: "Figma", url: "https://www.figma.com/@shinjipons" },
   { name: "Cal.com", url: "https://cal.com/shinjipons/" },
+  // { name: "Twitter", url: "https://twitter.com/shinjipons" },
+  // { name: "Figma", url: "https://www.figma.com/@shinjipons" },
 ];
 
 // Work experience
@@ -210,6 +210,12 @@ const blogPosts = allPosts.sort(
   (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
 );
 
+// Archive images — auto-scanned from public/media/archive/
+const archiveGlob = import.meta.glob('/public/media/archive/**/*.{jpg,jpeg,png,webp,gif,avif,JPG,JPEG,PNG,WEBP,GIF,AVIF}');
+const archiveImages = Object.keys(archiveGlob)
+  .map(path => path.replace('/public', ''))
+  .sort();
+
 // Experiments
 const experiments = [
   {
@@ -262,7 +268,7 @@ const experiments = [
       {
         upcomingEvents.length > 0 ? (
           <div>
-            {upcomingEvents.map((event, index) => (
+            {upcomingEvents.map((event) => (
               event.url ? (
                 <a href={event.url} target="_blank" rel="noopener noreferrer" class="event-card">
                   <h2>{event.title || event.destination}</h2>
@@ -294,7 +300,7 @@ const experiments = [
       {
         blogPosts.length > 0 ? (
           <div>
-            {blogPosts.map((post, index) => (
+            {blogPosts.map((post) => (
               <a href={`/writing/${post.slug}`} class="blog-card">
                 <h3>{post.data.title}</h3>
                 <p>{post.data.description}</p>
@@ -312,7 +318,7 @@ const experiments = [
       <h1>Work Experience</h1>
       <div>
         {
-          workExperience.map((job, index) => (
+          workExperience.map((job) => (
             <div class="work-experience-card">
               <p>
                 {job.url ? (
@@ -337,7 +343,7 @@ const experiments = [
       {
         workProjects.length > 0 ? (
           <div>
-            {workProjects.map((project, index) => (
+            {workProjects.map((project) => (
               <a href={project.url} target="_blank" rel="noopener noreferrer" class="blog-card">
                 <h3>{project.name}</h3>
                 <p>{project.description}</p>
@@ -356,7 +362,7 @@ const experiments = [
       {
         sideProjects.length > 0 ? (
           <div>
-            {sideProjects.map((project, index) => (
+            {sideProjects.map((project) => (
               <a href={project.url} target="_blank" rel="noopener noreferrer" class="blog-card">
                 <h3>{project.name}</h3>
                 <p>{project.description}</p>
@@ -387,8 +393,8 @@ const experiments = [
                     </div>
                     <button>
                       {experiment.buttonText}
-                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        <path d="M4.5 3L8.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M6 4L20 12L6 20Z" fill="currentColor"/>
                       </svg>
                     </button>
                   </div>
@@ -404,22 +410,37 @@ const experiments = [
 
     <!-- Archive and scraps section -->
     <section id="archive-and-scraps">
-      <h1>Archive and Scraps</h1>
-      <div>
-        <p>Nothing here yet...</p>
-      </div>
+      <h1 style="margin-bottom: 3.2rem;">Archive and Scraps</h1>
+      {archiveImages.length > 0 ? (
+        <div class="archive-grid">
+          {archiveImages.map((src) => (
+            <div class="archive-item">
+              <img src={src} loading="lazy" decoding="async" alt="" />
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div>
+          <p>Nothing here yet...</p>
+        </div>
+      )}
     </section>
   </div>
 
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+    <img class="lightbox-img" id="lightbox-img" src="" alt="" />
+    <div class="lightbox-thumbnails" id="lightbox-thumbnails"></div>
+  </div>
+
   <nav class="side-nav" aria-label="Page sections">
-    <a href="#today">Today</a>
-    <a href="#events">Events</a>
-    <a href="#writing">Writing</a>
-    <a href="#experience">Experience</a>
-    <a href="#projects">Projects</a>
-    <a href="#side-projects">Side Projects</a>
-    <a href="#experiments">Experiments</a>
-    <a href="#archive-and-scraps">Archive</a>
+    <a href="#today" style="--i: 0">Today</a>
+    <a href="#events" style="--i: 1">Events</a>
+    <a href="#writing" style="--i: 2">Writing</a>
+    <a href="#experience" style="--i: 3">Experience</a>
+    <a href="#projects" style="--i: 4">Projects</a>
+    <a href="#side-projects" style="--i: 5">Side Projects</a>
+    <a href="#experiments" style="--i: 6">Experiments</a>
+    <a href="#archive-and-scraps" style="--i: 7">Archive</a>
   </nav>
 </BaseLayout>
 
@@ -455,4 +476,89 @@ const experiments = [
 
   window.addEventListener("scroll", updateActiveLink, { passive: true });
   updateActiveLink();
+
+  // Lightbox
+  const lightbox = document.getElementById("lightbox") as HTMLElement;
+  const lightboxImg = document.getElementById("lightbox-img") as HTMLImageElement;
+  const thumbnailStrip = document.getElementById("lightbox-thumbnails") as HTMLElement;
+
+  const archiveImgs = document.querySelectorAll<HTMLImageElement>(".archive-item img");
+
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const img = (entry.target as HTMLElement).querySelector("img");
+          if (img) img.classList.add("is-revealed");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    },
+    // controls at which ratio of th total window height the top edge of
+    // each image must hit to trigger the reveal animation
+    { rootMargin: "0px 0px -15% 0px", threshold: 0 }
+  );
+
+  document.querySelectorAll<HTMLElement>(".archive-item").forEach((item) =>
+    revealObserver.observe(item)
+  );
+
+  // Build thumbnail strip
+  archiveImgs.forEach((img, i) => {
+    const thumb = document.createElement("img");
+    thumb.src = img.src;
+    thumb.alt = "";
+    thumb.className = "lightbox-thumb";
+    thumb.dataset.index = String(i);
+    thumb.addEventListener("click", (e) => {
+      e.stopPropagation();
+      openLightbox(i);
+    });
+    thumbnailStrip.appendChild(thumb);
+  });
+
+  let currentIndex = -1;
+
+  function openLightbox(index: number) {
+    currentIndex = index;
+    lightboxImg.src = archiveImgs[index].src;
+    lightbox.classList.add("is-open");
+    updateActiveThumbnail();
+  }
+
+  function updateActiveThumbnail() {
+    thumbnailStrip.querySelectorAll<HTMLImageElement>(".lightbox-thumb").forEach((t, i) => {
+      t.classList.toggle("is-active", i === currentIndex);
+    });
+    const allThumbs = Array.from(thumbnailStrip.querySelectorAll<HTMLImageElement>(".lightbox-thumb"));
+    const gap = parseFloat(getComputedStyle(thumbnailStrip).gap) || 0;
+    let thumbCenterInStrip = 0;
+    for (let i = 0; i < currentIndex; i++) {
+      thumbCenterInStrip += allThumbs[i].clientHeight + gap;
+    }
+    thumbCenterInStrip += allThumbs[currentIndex].clientHeight / 2;
+    thumbnailStrip.style.transform = `translateY(-${thumbCenterInStrip}px)`;
+  }
+
+  archiveImgs.forEach((img, i) => {
+    img.addEventListener("click", () => openLightbox(i));
+  });
+
+  lightbox.addEventListener("click", (e: MouseEvent) => {
+    if (e.target === lightbox) lightbox.classList.remove("is-open");
+  });
+
+  document.addEventListener("keydown", (e: KeyboardEvent) => {
+    if (e.key === "Escape") lightbox.classList.remove("is-open");
+    if (!lightbox.classList.contains("is-open")) return;
+    if (["ArrowDown", "ArrowRight", "ArrowUp", "ArrowLeft"].includes(e.key)) {
+      e.preventDefault();
+    }
+    if ((e.key === "ArrowDown" || e.key === "ArrowRight") && currentIndex < archiveImgs.length - 1) {
+      openLightbox(currentIndex + 1);
+    }
+    if ((e.key === "ArrowUp" || e.key === "ArrowLeft") && currentIndex > 0) {
+      openLightbox(currentIndex - 1);
+    }
+  });
 </script>

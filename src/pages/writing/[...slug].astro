@@ -59,6 +59,12 @@ const { Content } = await post.render();
     document.querySelectorAll<HTMLElement>(".blog-post-content h1, .blog-post-content h2, .blog-post-content h3")
   ).filter((h) => h.id);
 
+  const indexLink = document.createElement("a");
+  indexLink.href = "/";
+  indexLink.textContent = "← Index";
+  indexLink.style.marginBottom = "1rem";
+  nav.appendChild(indexLink);
+
   headings.forEach((heading) => {
     const a = document.createElement("a");
     a.href = "#" + heading.id;
@@ -84,6 +90,7 @@ const { Content } = await post.render();
   }
 
   navLinks.forEach((link) => {
+    if (!link.getAttribute("href")?.startsWith("#")) return;
     link.addEventListener("click", (e) => {
       e.preventDefault();
       const id = link.getAttribute("href")!.slice(1);
