@@ -16,7 +16,9 @@
   --code-font-weight: 420;
 
   --archive-grid-columns: 4;
-  --archive-grid-width: calc(0.8rem * var(--archive-grid-columns) * 30);
+  /* --archive-grid-width: calc(0.8rem * var(--archive-grid-columns) * 30); */
+  --archive-grid-width: 880px;
+  --archive-grid-gap: 1.6rem;
 
   --border-radius-inner: 0.8rem;
   --border-radius-outer: calc(
@@ -134,7 +136,7 @@ p {
 /* General styles */
 
 .container {
-  max-width: 500px;
+  max-width: 468px;
   margin: 0 auto;
 }
 
