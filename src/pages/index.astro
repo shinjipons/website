@@ -31,10 +31,10 @@ function formatEventDate(dateString: string): string {
 // Social media links
 const socialLinks = [
   { name: "Resume", url: "/resume-shinji-pons.pdf" },
-  // { name: "Twitter", url: "https://twitter.com/shinjipons" },
   { name: "LinkedIn", url: "https://linkedin.com/in/shinjipons" },
-  // { name: "Figma", url: "https://www.figma.com/@shinjipons" },
   { name: "Cal.com", url: "https://cal.com/shinjipons/" },
+  // { name: "Twitter", url: "https://twitter.com/shinjipons" },
+  // { name: "Figma", url: "https://www.figma.com/@shinjipons" },
 ];
 
 // Work experience
@@ -393,8 +393,8 @@ const experiments = [
                     </div>
                     <button>
                       {experiment.buttonText}
-                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        <path d="M4.5 3L8.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M6 4L20 12L6 20Z" fill="currentColor"/>
                       </svg>
                     </button>
                   </div>
@@ -494,7 +494,9 @@ const experiments = [
         }
       });
     },
-    { rootMargin: "0px 0px -15% 0px", threshold: 0 } // controls at which ratio of th total window height the top edge of each image must hit to trigger the reveal animation
+    // controls at which ratio of th total window height the top edge of
+    // each image must hit to trigger the reveal animation
+    { rootMargin: "0px 0px -15% 0px", threshold: 0 }
   );
 
   document.querySelectorAll<HTMLElement>(".archive-item").forEach((item) =>
