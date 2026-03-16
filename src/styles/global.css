@@ -361,6 +361,13 @@ section {
   column-gap: 0.8rem;
 }
 
+@media (max-width: 484px) {
+  .archive-grid {
+    width: calc(100% - var(--margin-x-card) * 2);
+    margin-left: var(--margin-x-card);
+  }
+}
+
 .archive-item {
   break-inside: avoid;
   margin-bottom: 0.8rem;
