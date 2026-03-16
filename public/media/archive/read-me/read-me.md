@@ -1,1 +1,0 @@
-All images are supposed to be `.webp` at 80% compression and of maximum width of 1200px.
