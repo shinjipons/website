@@ -516,6 +516,11 @@ const experiments = [
       gutter: 8,
     });
     imagesLoaded(grid, () => pckry.layout());
+    let resizeTimer: ReturnType<typeof setTimeout>;
+    window.addEventListener("resize", () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => pckry.layout(), 150);
+    }, { passive: true });
   }
 
   // Build thumbnail strip
@@ -560,7 +565,7 @@ const experiments = [
   });
 
   lightbox.addEventListener("click", (e: MouseEvent) => {
-    if (e.target === lightbox) lightbox.classList.remove("is-open");
+    if (e.target === lightbox || e.target === lightboxImg) lightbox.classList.remove("is-open");
   });
 
   document.addEventListener("keydown", (e: KeyboardEvent) => {
