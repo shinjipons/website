@@ -357,8 +357,13 @@ section {
 .archive-grid {
   width: min(100vw, var(--archive-grid-width));
   margin-left: max(calc(50% - var(--archive-grid-width) / 2), calc(50% - 50vw));
-  columns: var(--archive-grid-columns);
-  column-gap: 0.8rem;
+  position: relative;
+}
+
+@media (max-width: 1200px) {
+  .archive-item {
+    width: calc(50% - 4px); /* 2 columns, 8px gutter: (100% - 1*8px) / 2 */
+  }
 }
 
 @media (max-width: 484px) {
@@ -369,8 +374,7 @@ section {
 }
 
 .archive-item {
-  break-inside: avoid;
-  margin-bottom: 0.8rem;
+  width: calc(25% - 6px); /* 4 columns, 8px gutter: (100% - 3*8px) / 4 */
   cursor: pointer;
   background-color: var(--color-bg__hover);
   overflow: hidden;
