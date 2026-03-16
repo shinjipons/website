@@ -445,6 +445,11 @@ const experiments = [
 </BaseLayout>
 
 <script>
+  import PackeryModule from "packery";
+  import imagesLoaded from "imagesloaded";
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const Packery = PackeryModule as any;
+
   const sections = document.querySelectorAll<HTMLElement>("section[id]");
   const navLinks = document.querySelectorAll<HTMLAnchorElement>(".side-nav a");
 
@@ -496,12 +501,22 @@ const experiments = [
     },
     // controls at which ratio of th total window height the top edge of
     // each image must hit to trigger the reveal animation
-    { rootMargin: "0px 0px -15% 0px", threshold: 0 }
+    { rootMargin: "0px 0px -10% 0px", threshold: 0 }
   );
 
   document.querySelectorAll<HTMLElement>(".archive-item").forEach((item) =>
     revealObserver.observe(item)
   );
+
+  // Packery masonry layout
+  const grid = document.querySelector<HTMLElement>(".archive-grid");
+  if (grid) {
+    const pckry = new Packery(grid, {
+      itemSelector: ".archive-item",
+      gutter: 8,
+    });
+    imagesLoaded(grid, () => pckry.layout());
+  }
 
   // Build thumbnail strip
   archiveImgs.forEach((img, i) => {
