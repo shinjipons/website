@@ -488,6 +488,9 @@ section {
   .lightbox-thumbnails {
     display: none;
   }
+  .lightbox {
+    padding: 2.4rem;
+  }
 }
 
 /* Side navigation styles */
