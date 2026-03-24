@@ -215,8 +215,6 @@ const archiveGlob = import.meta.glob('/public/media/archive/**/*.{jpg,jpeg,png,w
 const archiveImages = Object.keys(archiveGlob)
   .map(path => path.replace('/public', ''))
   .sort();
-const INITIAL_BATCH = 32;
-const initialImages = archiveImages.slice(0, INITIAL_BATCH);
 
 // Experiments
 const experiments = [
@@ -410,28 +408,30 @@ const experiments = [
       }
     </section>
 
-    <!-- Archive and scraps section -->
-    <section id="archive-and-scraps">
-      <h1 style="margin-bottom: 3.2rem;">Archive and Scraps</h1>
-      {archiveImages.length > 0 ? (
-        <>
-          <div class="archive-grid">
-            {initialImages.map((src, i) => (
-              <div class="archive-item" data-archive-index={i}>
-                <img src={src} loading="eager" decoding="async" alt="" />
-              </div>
-            ))}
-          </div>
-          <div class="archive-sentinel"></div>
-          <script type="application/json" id="archive-data" is:inline set:html={JSON.stringify(archiveImages)} />
-        </>
-      ) : (
-        <div>
-          <p>Nothing here yet...</p>
-        </div>
-      )}
-    </section>
   </div>
+
+  <!-- Archive and scraps section -->
+  <section id="archive-and-scraps">
+    <div class="container">
+      <h1 style="margin-bottom: 3.2rem;">Archive and Scraps</h1>
+    </div>
+    {archiveImages.length > 0 ? (
+      <>
+        <div class="archive-grid">
+          {archiveImages.map((src, i) => (
+            <div class="archive-item" data-archive-index={i}>
+              <img src={src} loading="lazy" decoding="async" alt="" />
+            </div>
+          ))}
+        </div>
+        <script type="application/json" id="archive-data" is:inline set:html={JSON.stringify(archiveImages)} />
+      </>
+    ) : (
+      <div class="container">
+        <p>Nothing here yet...</p>
+      </div>
+    )}
+  </section>
 
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
     <img class="lightbox-img" id="lightbox-img" src="" alt="" />
@@ -451,11 +451,6 @@ const experiments = [
 </BaseLayout>
 
 <script>
-  import PackeryModule from "packery";
-  import imagesLoaded from "imagesloaded";
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const Packery = PackeryModule as any;
-
   const sections = document.querySelectorAll<HTMLElement>("section[id]");
   const navLinks = document.querySelectorAll<HTMLAnchorElement>(".side-nav a");
 
@@ -488,36 +483,25 @@ const experiments = [
   window.addEventListener("scroll", updateActiveLink, { passive: true });
   updateActiveLink();
 
+  // Hide side-nav when at least half the viewport is covered by the archive section
+  const sideNav = document.querySelector<HTMLElement>(".side-nav");
+  const archiveSection = document.getElementById("archive-and-scraps");
+  function updateSideNavVisibility() {
+    if (!sideNav || !archiveSection) return;
+    const rect = archiveSection.getBoundingClientRect();
+    const visibleHeight = Math.max(0, Math.min(window.innerHeight, rect.bottom) - Math.max(0, rect.top));
+    sideNav.classList.toggle("is-hidden", visibleHeight >= window.innerHeight * 0.7);
+  }
+  window.addEventListener("scroll", updateSideNavVisibility, { passive: true });
+  updateSideNavVisibility();
+
   // Lightbox
   const lightbox = document.getElementById("lightbox") as HTMLElement;
   const lightboxImg = document.getElementById("lightbox-img") as HTMLImageElement;
   const thumbnailStrip = document.getElementById("lightbox-thumbnails") as HTMLElement;
 
-  // All image paths — read from the inline JSON tag so we know about all images
-  // even before they're progressively appended to the grid
   const allImagePaths: string[] = JSON.parse(
     document.getElementById("archive-data")!.textContent!
-  );
-  let loadedCount = Math.min(32, allImagePaths.length);
-  const BATCH_SIZE = 24;
-
-  const revealObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const img = (entry.target as HTMLElement).querySelector("img");
-          if (img) img.classList.add("is-revealed");
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    },
-    // controls at which ratio of th total window height the top edge of
-    // each image must hit to trigger the reveal animation
-    { rootMargin: "0px 0px -10% 0px", threshold: 0 }
-  );
-
-  document.querySelectorAll<HTMLElement>(".archive-item").forEach((item) =>
-    revealObserver.observe(item)
   );
 
   // Attach click handler to an archive item using its data-archive-index
@@ -526,61 +510,6 @@ const experiments = [
     item.querySelector("img")!.addEventListener("click", () => openLightbox(idx));
   }
   document.querySelectorAll<HTMLElement>(".archive-item").forEach(attachItemHandlers);
-
-  // Packery masonry layout
-  const grid = document.querySelector<HTMLElement>(".archive-grid");
-  if (grid) {
-    const pckry = new Packery(grid, {
-      itemSelector: ".archive-item",
-      gutter: 8,
-    });
-    imagesLoaded(grid, () => pckry.layout());
-    let resizeTimer: ReturnType<typeof setTimeout>;
-    window.addEventListener("resize", () => {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => pckry.layout(), 150);
-    }, { passive: true });
-
-    // Sentinel observer — append next batch when the user scrolls near the end
-    const sentinel = document.querySelector<HTMLElement>(".archive-sentinel");
-    if (sentinel) {
-      const sentinelObserver = new IntersectionObserver((entries) => {
-        if (!entries[0].isIntersecting) return;
-        if (loadedCount >= allImagePaths.length) {
-          sentinelObserver.disconnect();
-          return;
-        }
-
-        const batch = allImagePaths.slice(loadedCount, loadedCount + BATCH_SIZE);
-        const newItems: HTMLElement[] = [];
-
-        batch.forEach((src, j) => {
-          const item = document.createElement("div");
-          item.className = "archive-item";
-          item.dataset.archiveIndex = String(loadedCount + j);
-          const img = document.createElement("img");
-          img.src = src;
-          img.loading = "lazy";
-          img.decoding = "async";
-          img.alt = "";
-          item.appendChild(img);
-          grid.appendChild(item);
-          revealObserver.observe(item);
-          attachItemHandlers(item);
-          newItems.push(item);
-        });
-
-        loadedCount += batch.length;
-
-        pckry.appended(newItems);
-        imagesLoaded(newItems, () => pckry.layout());
-
-        if (loadedCount >= allImagePaths.length) sentinelObserver.disconnect();
-      }, { rootMargin: "0px 0px 400px 0px" });
-
-      sentinelObserver.observe(sentinel);
-    }
-  }
 
   // Build thumbnail strip from all image paths upfront
   allImagePaths.forEach((src, i) => {
