@@ -408,27 +408,30 @@ const experiments = [
       }
     </section>
 
-    <!-- Archive and scraps section -->
-    <section id="archive-and-scraps">
-      <h1 style="margin-bottom: 3.2rem;">Archive and Scraps</h1>
-      {archiveImages.length > 0 ? (
-        <>
-          <div class="archive-grid">
-            {archiveImages.map((src, i) => (
-              <div class="archive-item" data-archive-index={i}>
-                <img src={src} loading="lazy" decoding="async" alt="" />
-              </div>
-            ))}
-          </div>
-          <script type="application/json" id="archive-data" is:inline set:html={JSON.stringify(archiveImages)} />
-        </>
-      ) : (
-        <div>
-          <p>Nothing here yet...</p>
-        </div>
-      )}
-    </section>
   </div>
+
+  <!-- Archive and scraps section -->
+  <section id="archive-and-scraps">
+    <div class="container">
+      <h1 style="margin-bottom: 3.2rem;">Archive and Scraps</h1>
+    </div>
+    {archiveImages.length > 0 ? (
+      <>
+        <div class="archive-grid">
+          {archiveImages.map((src, i) => (
+            <div class="archive-item" data-archive-index={i}>
+              <img src={src} loading="lazy" decoding="async" alt="" />
+            </div>
+          ))}
+        </div>
+        <script type="application/json" id="archive-data" is:inline set:html={JSON.stringify(archiveImages)} />
+      </>
+    ) : (
+      <div class="container">
+        <p>Nothing here yet...</p>
+      </div>
+    )}
+  </section>
 
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
     <img class="lightbox-img" id="lightbox-img" src="" alt="" />
@@ -479,6 +482,18 @@ const experiments = [
 
   window.addEventListener("scroll", updateActiveLink, { passive: true });
   updateActiveLink();
+
+  // Hide side-nav when at least half the viewport is covered by the archive section
+  const sideNav = document.querySelector<HTMLElement>(".side-nav");
+  const archiveSection = document.getElementById("archive-and-scraps");
+  function updateSideNavVisibility() {
+    if (!sideNav || !archiveSection) return;
+    const rect = archiveSection.getBoundingClientRect();
+    const visibleHeight = Math.max(0, Math.min(window.innerHeight, rect.bottom) - Math.max(0, rect.top));
+    sideNav.classList.toggle("is-hidden", visibleHeight >= window.innerHeight * 0.7);
+  }
+  window.addEventListener("scroll", updateSideNavVisibility, { passive: true });
+  updateSideNavVisibility();
 
   // Lightbox
   const lightbox = document.getElementById("lightbox") as HTMLElement;
