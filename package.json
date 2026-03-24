@@ -22,12 +22,6 @@
   "homepage": "https://github.com/shinjipons/website#readme",
   "dependencies": {
     "@vercel/analytics": "^1.5.0",
-    "astro": "^5.18.0",
-    "imagesloaded": "^5.0.0",
-    "packery": "^3.0.0"
-  },
-  "devDependencies": {
-    "@types/imagesloaded": "^4.1.7",
-    "@types/packery": "^1.4.37"
+    "astro": "^5.18.0"
   }
 }
