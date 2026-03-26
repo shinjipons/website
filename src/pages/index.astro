@@ -507,7 +507,7 @@ const experiments = [
   // Attach click handler to an archive item using its data-archive-index
   function attachItemHandlers(item: HTMLElement) {
     const idx = Number(item.dataset.archiveIndex);
-    item.querySelector("img")!.addEventListener("click", () => openLightbox(idx));
+    item.addEventListener("click", () => openLightbox(idx));
   }
   document.querySelectorAll<HTMLElement>(".archive-item").forEach(attachItemHandlers);
 
