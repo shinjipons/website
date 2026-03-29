@@ -4,7 +4,7 @@
   --text-font-size:   1.4rem;
   --text-line-height: 2.2rem;
 
-  --main-container-width: 624px;
+  --main-container-width: 480px;
   --none: 0px;
 
   --margin-x-card: 1.2rem;
@@ -346,9 +346,8 @@ section {
 
 .archive-grid {
   display: grid;
-  /* grid-template-columns: repeat(4, 400px); */
-  grid-template-columns: repeat(auto-fill, 400px);
-  /* grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); */
+  /* grid-template-columns: repeat(auto-fill, 400px); */
+  grid-template-columns: repeat(auto-fill, calc(var(--main-container-width)/1));
   gap: calc(var(--margin-x-card)/4);
   justify-content: center;
 }
@@ -427,7 +426,6 @@ section {
   flex-direction: column;
   gap: 0.6rem;
   align-items: center;
-
 }
 
 .lightbox-thumb {
