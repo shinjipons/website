@@ -1,13 +1,14 @@
 import { defineCollection, z } from 'astro:content';
+import { glob } from 'astro/loaders';
 
 const writing = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.md', base: './src/content/writing' }),
   schema: z.object({
     title: z.string(),
     pubDate: z.coerce.date(),
     description: z.string(),
     author: z.string().default('Anonymous'),
-    ogImage: z.string().optional(), // OpenGraph image path
+    ogImage: z.string().optional(),
   }),
 });
 

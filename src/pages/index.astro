@@ -5,16 +5,16 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 // Upcoming events and meetups
 const upcomingEventsRaw = [
   {
-    title: "Wise Product Meetup: Technical Debt & Product Management in the Al era",
+    title: "Stop Designing Your Own Chaos - CraftHub x UX Budapest",
     destination: "Budapest",
-    date: "2026-03-10",
-    url: "https://luma.com/pmintheaiera?tk=nrsWpQ",
+    date: "2026-03-30",
+    url: "https://luma.com/n0e4tal9?tk=3dtDp8",
   },
   {
-    title: "Budapest | Claude for Everyone",
+    title: "SEON TechTalks",
     destination: "Budapest",
-    date: "2026-03-26",
-    url: "https://luma.com/j7ehsd5s?tk=IlIGUM",
+    date: "2026-04-16",
+    url: "https://luma.com/seontechtalks?tk=LivIBU",
   },
 ];
 
@@ -301,7 +301,7 @@ const experiments = [
         blogPosts.length > 0 ? (
           <div>
             {blogPosts.map((post) => (
-              <a href={`/writing/${post.slug}`} class="blog-card">
+              <a href={`/writing/${post.id}`} class="blog-card">
                 <h3>{post.data.title}</h3>
                 <p>{post.data.description}</p>
               </a>
@@ -440,13 +440,13 @@ const experiments = [
 
   <nav class="side-nav" aria-label="Page sections">
     <a href="#today" style="--i: 0">Today</a>
-    <a href="#events" style="--i: 1">Events</a>
-    <a href="#writing" style="--i: 2">Writing</a>
-    <a href="#experience" style="--i: 3">Experience</a>
-    <a href="#projects" style="--i: 4">Projects</a>
-    <a href="#side-projects" style="--i: 5">Side Projects</a>
-    <a href="#experiments" style="--i: 6">Experiments</a>
-    <a href="#archive-and-scraps" style="--i: 7">Archive</a>
+    <a href="#events" style="--i: 1">Events<span class="side-nav-badge">{upcomingEvents.length}</span></a>
+    <a href="#writing" style="--i: 2">Writing<span class="side-nav-badge">{blogPosts.length}</span></a>
+    <a href="#experience" style="--i: 3">Experience<span class="side-nav-badge">{workExperience.length}</span></a>
+    <a href="#projects" style="--i: 4">Projects<span class="side-nav-badge">{workProjects.length}</span></a>
+    <a href="#side-projects" style="--i: 5">Side Projects<span class="side-nav-badge">{sideProjects.length}</span></a>
+    <a href="#experiments" style="--i: 6">Experiments<span class="side-nav-badge">{experiments.length}</span></a>
+    <a href="#archive-and-scraps" style="--i: 7">Archive<span class="side-nav-badge">{archiveImages.length}</span></a>
   </nav>
 </BaseLayout>
 
