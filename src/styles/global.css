@@ -7,11 +7,11 @@
   --main-container-width: 624px;
   --none: 0px;
 
-  --margin-x-card: 0.8rem;
+  --margin-x-card: 1.2rem;
   --margin-y-html: 17.6rem;
   --margin-bottom-section: 4rem;
 
-  --border-radius-inner: 0.4rem;
+  --border-radius-inner: 0.6rem;
   --border-radius-outer: calc(var(--border-radius-inner) + var(--margin-x-card));
   --button-border-radius: 999px;
   --button-padding-x: 2rem;
@@ -497,9 +497,6 @@ section {
 }
 
 .side-nav a {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
   font-family: var(--font-family-sans);
   font-size: 1.2rem;
   line-height: 2rem;
@@ -517,18 +514,4 @@ section {
 .side-nav a.active {
   color: var(--color-text-primary);
   font-weight: var(--h1-font-weight);
-}
-
-.side-nav-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--color-bg__hover);
-  color: var(--color-text-primary);
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 1;
-  padding: 0.2rem 0.5rem;
-  border-radius: 999px;
-  min-width: 1.8rem;
 }
