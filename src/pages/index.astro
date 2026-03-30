@@ -91,12 +91,12 @@ const workExperience = [
 const workProjects = [
   {
     name: "PreForm by Formlabs",
-    description: "from version 3.51 onwards",
+    description: "from v 3.51 to 3.56",
     url: "https://formlabs.com/software/preform/",
   },
   {
     name: "Ragdoll Standalone",
-    description: "Animating with physics in Maya, Blender and beyond",
+    description: "Animating with physics",
     url: "https://ragdolldynamics.com/",
   },
   {
@@ -116,7 +116,7 @@ const workProjects = [
   },
   {
     name: "Autodesk Alias SubD",
-    description: "SubD modelling tools in Alias",
+    description: "SubD modelling in Alias",
     url: "https://autodesk.com/alias",
   },
   {
@@ -126,7 +126,7 @@ const workProjects = [
   },
   {
     name: "Louvre Abu Dhabi",
-    description: "Supergraphics and icon design",
+    description: "Supergraphics + icon design",
     url: "https://www.jeannouvel.com/projets/louvre-abou-dhabi-3/",
   },
 ];
@@ -135,22 +135,22 @@ const workProjects = [
 const sideProjects = [
   {
     name: "Select Parent Component",
-    description: "Figma plugin that locates the closest component to the selection",
+    description: "Select Figma components fast",
     url: "https://github.com/shinjipons/Select-Parent-Component",
   },
   {
     name: "Time Lens",
-    description: "Blender add-on for automating editor screenshots",
+    description: "Blender screenshot automator",
     url: "https://github.com/shinjipons/Time-Lens",
   },
   {
     name: "Modulo",
-    description: "Family of 168 grid-based typefaces",
+    description: "168 grid-based typefaces",
     url: "https://github.com/shinjipons/modulo-typeface",
   },
   {
     name: "InDesign Scripting",
-    description: "Automating Adobe InDesign using basil.js",
+    description: "Automating InDesign",
     url: "https://github.com/shinjipons/basiljs-scripts",
   },
 ];
@@ -200,17 +200,11 @@ const experiments = [
     <section id="today">
       <h1>Today</h1>
       <p>I empower artists, engineers and designers with tools and workflows that spark bolder creations.</p>
-      <p>
-        <span
-          set:html={socialLinks
-            .map(
-              (link, index) =>
-                (index > 0 ? " " : "") +
-                `<a class="social-link-item" href="${link.url}" target="_blank" rel="noopener noreferrer">${link.name.trim()}</a>`
-            )
-            .join("")}
-        />
-      </p>
+      <div class="social-links">
+        {socialLinks.map((link) => (
+          <a href={link.url} target="_blank" rel="noopener noreferrer">{link.name}</a>
+        ))}
+      </div>
     </section>
 
     <!-- Blog Posts Section -->
@@ -220,10 +214,14 @@ const experiments = [
         blogPosts.length > 0 ? (
           <div>
             {blogPosts.map((post) => (
-              <a href={`/writing/${post.id}`} class="blog-card">
-                <h3>{post.data.title}</h3>
-                <p>{post.data.description}</p>
-              </a>
+              <div class="blog-card">
+                <p>
+                  <a href={`/writing/${post.id}`}>{post.data.title}</a>
+                </p>
+                <div class="blog-card-date">
+                  <p>{post.data.pubDate.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}</p>
+                </div>
+              </div>
             ))}
           </div>
         ) : (
@@ -263,10 +261,14 @@ const experiments = [
         workProjects.length > 0 ? (
           <div>
             {workProjects.map((project) => (
-              <a href={project.url} target="_blank" rel="noopener noreferrer" class="blog-card">
-                <h3>{project.name}</h3>
-                <p>{project.description}</p>
-              </a>
+              <div class="blog-card">
+                <p>
+                  <a href={project.url} target="_blank" rel="noopener noreferrer">{project.name}</a>
+                </p>
+                <div class="blog-card-date">
+                  <p>{project.description}</p>
+                </div>
+              </div>
             ))}
           </div>
         ) : (
@@ -282,10 +284,14 @@ const experiments = [
         sideProjects.length > 0 ? (
           <div>
             {sideProjects.map((project) => (
-              <a href={project.url} target="_blank" rel="noopener noreferrer" class="blog-card">
-                <h3>{project.name}</h3>
-                <p>{project.description}</p>
-              </a>
+              <div class="blog-card">
+                <p>
+                  <a href={project.url} target="_blank" rel="noopener noreferrer">{project.name}</a>
+                </p>
+                <div class="blog-card-date">
+                  <p>{project.description}</p>
+                </div>
+              </div>
             ))}
           </div>
         ) : (
@@ -300,26 +306,16 @@ const experiments = [
       {
         experiments.length > 0 ? (
           <div>
-            {experiments.map((experiment) => {
-              return (
-                <a href={experiment.url} target="_blank" rel="noopener noreferrer" class="experiment-card">
-                  <img src={experiment.imageLight} class="experiment-image-light" />
-                  <img src={experiment.imageDark} class="experiment-image-dark" />
-                  <div class="experiment-card-description">
-                    <div class="experiment-card-description-text">
-                      <h2>{experiment.title}</h2>
-                      <p>{experiment.description}</p>
-                    </div>
-                    <button>
-                      {experiment.buttonText}
-                      <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        <path d="M6 4L20 12L6 20Z" fill="currentColor"/>
-                      </svg>
-                    </button>
-                  </div>
-                </a>
-              );
-            })}
+            {experiments.map((experiment) => (
+              <div class="blog-card">
+                <p>
+                  <a href={experiment.url} target="_blank" rel="noopener noreferrer">{experiment.title}</a>
+                </p>
+                <div class="blog-card-date">
+                  <p>{experiment.description}</p>
+                </div>
+              </div>
+            ))}
           </div>
         ) : (
           <p>Coming soon...</p>

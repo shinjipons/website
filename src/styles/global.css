@@ -87,6 +87,35 @@ section > h1 {
   margin-bottom: var(--spacing-xl);
 }
 
+/* Social Links */
+
+.social-links {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--spacing-xl);
+}
+
+.social-links > a {
+  text-decoration: underline;
+}
+
+/* Writing */
+
+.blog-card {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-m);
+}
+
+.blog-card > p > a {
+  text-decoration: underline;
+}
+
+.blog-card-date {
+  color: var(--text-color-secondary);
+  text-align: right;
+}
+
 /* Work Experience */
 
 .work-experience-card {
