@@ -4,7 +4,7 @@
   --text-font-size: 1.4rem;
   --text-line-height: 2.2rem;
 
-  --main-container-width: calc(8px * 50);
+  --main-container-width: calc(8px * 54);
   --none: 0px;
 
   --margin-x-card: 1.2rem;
@@ -13,8 +13,6 @@
 
   --border-radius-inner: 0.6rem;
   --border-radius-outer: calc(var(--border-radius-inner) + var(--margin-x-card));
-  --button-border-radius: 999px;
-  --button-padding-x: 2rem;
 
   --font-family-sans: "Inter", sans-serif;
   --font-family-mono: "Google Sans Code", monospace;
@@ -24,6 +22,8 @@
   --code-font-weight: 420;
 
   --spacing-none: 0.0rem;
+  --spacing-xxs:  0.1rem;
+  --spacing-xs:   0.2rem;
   --spacing-s:    0.4rem;
   --spacing-m:    0.8rem;
   --spacing-l:    1.6rem;
@@ -33,7 +33,7 @@
   --text-color-primary: rgba(0, 0, 0, 1);
   --text-color-secondary: rgba(0, 0, 0, 0.6);
 
-  --background-color: rgb(230, 239, 241);
+  --background-color: hsl(266, 17%, 92%);
 }
 
 /* Overall */
@@ -130,4 +130,26 @@ section > h1 {
 
 .work-experience-card-description {
   color: var(--text-color-secondary);
+}
+
+/* Archive and Scraps */
+
+.archive-grid {
+  display: grid;
+  justify-items: stretch;
+  gap: var(--spacing-xxs);
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.archive-item {
+  min-width: 0;
+}
+
+.archive-item > img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  display: block;
+  border-radius: var(--spacing-s);
 }
