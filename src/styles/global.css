@@ -84,7 +84,7 @@ section {
 }
 
 section > h1 {
-  margin-bottom: var(--spacing-xl);
+  margin-bottom: var(--spacing-l);
 }
 
 /* Social Links */
