@@ -30,10 +30,10 @@
   --spacing-xl:   3.2rem;
   --spacing-xxl:  6.4rem;
 
-  --text-color-primary: rgba(0, 0, 0, 1);
-  --text-color-secondary: rgba(0, 0, 0, 0.6);
+  --text-color-primary: rgba(0, 0, 0, 0.691);
+  --text-color-secondary: rgba(0, 0, 0, 0.369);
 
-  --background-color: hsl(266, 17%, 92%);
+  --background-color: hsl(214, 24%, 94%);
 }
 
 /* Overall */
@@ -51,8 +51,16 @@ html {
 }
 
 body {
-  max-width: var(--main-container-width);
   width: 100%;
+}
+
+.container {
+  width: var(--main-container-width);
+  margin: 0 auto;
+}
+
+section {
+  width: var(--main-container-width);
 }
 
 /* Typography */
@@ -65,9 +73,11 @@ h1, h2, h3, p, a {
 
 h1 {
   font-weight: 600;
+  color: var(--text-color-primary);
 }
 
 p {
+  color: var(--text-color-primary);
   margin-top: var(--none);
   margin-bottom: 0.8rem;
 }
@@ -80,7 +90,7 @@ a {
 /* Sections */
 
 section {
-  margin: var(--spacing-xxl) var(--spacing-none);
+  margin: var(--spacing-xl) var(--spacing-none);
 }
 
 section > h1 {
@@ -91,12 +101,15 @@ section > h1 {
 
 .social-links {
   display: flex;
-  justify-content: space-between;
   margin-top: var(--spacing-xl);
+  gap: var(--spacing-s);
 }
 
 .social-links > a {
-  text-decoration: underline;
+  padding: var(--spacing-s) var(--spacing-m);
+  border-radius: var(--spacing-s);
+  background-color: black;
+  color: white;
 }
 
 /* Writing */
@@ -128,17 +141,36 @@ section > h1 {
   text-decoration: underline;
 }
 
-.work-experience-card-description {
+.work-experience-card-description > p {
+  color: var(--text-color-secondary);
+}
+
+/* Writing */
+.blog-card-date > p {
   color: var(--text-color-secondary);
 }
 
 /* Archive and Scraps */
 
+#archive-and-scraps {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+}
+
+#archive-and-scraps > h1 {
+  text-align: left;
+  width: 100%;
+  max-width: var(--main-container-width);
+}
+
 .archive-grid {
   display: grid;
   justify-items: stretch;
-  gap: var(--spacing-xxs);
-  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-xl);
+  grid-template-columns: repeat(5, 1fr);
 }
 
 .archive-item {
