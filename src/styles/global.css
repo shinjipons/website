@@ -46,7 +46,7 @@ html {
   display: flex;
   justify-content: center;
   font-size: var(--html-font-size);
-  margin: var(--spacing-none) var(--spacing-l);
+  margin: var(--spacing-xxl) var(--spacing-l);
   background-color: var(--background-color);
 }
 
@@ -156,8 +156,8 @@ section > h1 {
   width: 100%;
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
+  margin-bottom: var(--spacing-xxl);
 }
 
 #archive-and-scraps > h1 {
@@ -170,7 +170,8 @@ section > h1 {
   display: grid;
   justify-items: stretch;
   gap: var(--spacing-xl);
-  grid-template-columns: repeat(5, 1fr);
+  /* grid-template-columns: repeat(5, 1fr); */
+  grid-template-columns: repeat(3, var(--main-container-width));
 }
 
 .archive-item {
