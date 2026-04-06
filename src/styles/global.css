@@ -62,12 +62,14 @@ body {
 }
 
 .container {
-  width: var(--main-container-width);
+  width: 100%;
+  max-width: var(--main-container-width);
   margin: 0 auto;
 }
 
 section {
-  width: var(--main-container-width);
+  width: 100%;
+  max-width: var(--main-container-width);
 }
 
 /* Typography */
