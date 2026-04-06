@@ -1,0 +1,101 @@
+/* Back link */
+.blog-post-back {
+  margin-bottom: var(--spacing-xl);
+}
+
+/* Header */
+.blog-post-header {
+  margin-bottom: var(--spacing-xl);
+}
+
+.blog-post-title {
+  margin-bottom: var(--spacing-m);
+}
+
+.blog-post-meta {
+  display: flex;
+  gap: var(--spacing-m);
+  font-family: var(--font-family-sans);
+  font-size: var(--text-font-size);
+  color: var(--color-secondary);
+}
+
+/* Content — markdown typography */
+.blog-post-content {
+  line-height: var(--text-line-height);
+}
+
+.blog-post-content h1,
+.blog-post-content h2,
+.blog-post-content h3 {
+  margin-top: var(--spacing-xl);
+  margin-bottom: var(--spacing-m);
+  font-weight: 600;
+}
+
+.blog-post-content img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+.blog-post-content ul,
+.blog-post-content ol {
+  padding-left: var(--spacing-xl);
+  margin-bottom: var(--spacing-m);
+}
+
+.blog-post-content li {
+  font-family: var(--font-family-sans);
+  font-size: var(--text-font-size);
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-s);
+}
+
+.blog-post-content a {
+  text-decoration: underline;
+}
+
+.blog-post-content pre {
+  background-color: var(--color-tertiary);
+  padding: var(--spacing-l);
+  border-radius: var(--spacing-s);
+  overflow-x: auto;
+  margin-bottom: var(--spacing-l);
+}
+
+/* Code inside of code blocks */
+.blog-post-content code {
+  font-family: var(--font-family-mono);
+  font-size: var(--code-font-size);
+  font-weight: var(--code-font-weight);
+  color: rgb(55, 228, 136);
+}
+
+/* Code outside of code blocks */
+.blog-post-content :not(pre) > code {
+  background-color: var(--color-tertiary);
+  padding: var(--spacing-xxs) var(--spacing-s) var(--spacing-xs) var(--spacing-s);
+  border-radius: var(--spacing-s);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: rgb(217, 43, 4);
+}
+
+.blog-post-content blockquote {
+  border-left: 2px solid var(--color-tertiary);
+  padding-left: var(--spacing-l);
+  margin-left: 0;
+  color: var(--color-secondary);
+}
+
+/* Footer */
+.blog-post-footer {
+  margin-top: var(--spacing-xl);
+  border-top: 1px solid var(--color-tertiary);
+  padding-top: var(--spacing-l);
+}
+
+/* Hide sidebar — single column layout */
+.side-nav {
+  display: none;
+}

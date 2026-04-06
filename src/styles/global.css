@@ -1,8 +1,18 @@
 /* Light and Dark Mode */
 :root {
   --html-font-size: 10px; /* do not change this */
+
+  /* Normal text */
+  --font-family-sans: "Inter", sans-serif;
   --text-font-size: 1.4rem;
   --text-line-height: 2.2rem;
+  --h1-font-weight: 650;
+  --p-font-weight: 450;
+  
+  /* Code text */
+  --font-family-mono: "Google Sans Code", monospace;
+  --code-font-size: 1.3rem;
+  --code-font-weight: 450;
 
   --main-container-width: calc(8px * 54);
   --none: 0px;
@@ -14,12 +24,6 @@
   --border-radius-inner: 0.6rem;
   --border-radius-outer: calc(var(--border-radius-inner) + var(--margin-x-card));
 
-  --font-family-sans: "Inter", sans-serif;
-  --font-family-mono: "Google Sans Code", monospace;
-  --h1-font-weight: 650;
-  --p-font-weight: 450;
-  --code-font-size: 1.2rem;
-  --code-font-weight: 420;
 
   --spacing-none: 0.0rem;
   --spacing-xxs:  0.1rem;
@@ -32,7 +36,7 @@
 
   --color-primary:   hsl(180, 5%, 14%);
   --color-secondary: hsl(180, 5%, 51%);
-  --color-tertiary:  hsl(180, 5%, 75%);
+  --color-tertiary:  hsl(180, 5%, 82%);
 
   --color-accent: hsl(180, 76%, 29%);
 
