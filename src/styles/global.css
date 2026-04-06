@@ -182,10 +182,20 @@ section > h1 {
 
 .archive-grid {
   display: grid;
-  justify-items: stretch;
-  gap: var(--spacing-xl);
-  /* grid-template-columns: repeat(5, 1fr); */
-  grid-template-columns: repeat(3, var(--main-container-width));
+  gap: var(--spacing-l);
+  grid-template-columns: repeat(6, calc(var(--main-container-width)/2 - var(--spacing-m)));
+}
+
+@media (max-width: 1360px) {
+  .archive-grid {
+    grid-template-columns: repeat(4, calc(var(--main-container-width)/2 - var(--spacing-m)));
+  }
+}
+
+@media (max-width: 890px) {
+  .archive-grid {
+    grid-template-columns: repeat(2, calc(var(--main-container-width)/2 - var(--spacing-m)));
+  }
 }
 
 .archive-item {
