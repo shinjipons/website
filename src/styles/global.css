@@ -30,10 +30,13 @@
   --spacing-xl:   3.2rem;
   --spacing-xxl:  6.4rem;
 
-  --text-color-primary: rgba(0, 0, 0, 0.691);
-  --text-color-secondary: rgba(0, 0, 0, 0.369);
+  --color-primary:   hsl(180, 5%, 14%);
+  --color-secondary: hsl(180, 5%, 51%);
+  --color-tertiary:  hsl(180, 5%, 75%);
 
-  --background-color: hsl(214, 24%, 94%);
+  --color-accent: hsl(180, 76%, 29%);
+
+  --background-color:hsl(180, 6%, 90%);
 }
 
 /* Overall */
@@ -73,18 +76,22 @@ h1, h2, h3, p, a {
 
 h1 {
   font-weight: 600;
-  color: var(--text-color-primary);
+  color: var(--color-primary);
 }
 
 p {
-  color: var(--text-color-primary);
+  color: var(--color-primary);
   margin-top: var(--none);
   margin-bottom: 0.8rem;
 }
 
 a {
   text-decoration: none;
-  color: var(--text-color-primary);
+  color: var(--color-primary);
+}
+
+a:hover {
+  color: var(--color-accent);
 }
 
 /* Sections */
@@ -106,10 +113,17 @@ section > h1 {
 }
 
 .social-links > a {
-  padding: var(--spacing-s) var(--spacing-m);
-  border-radius: var(--spacing-s);
-  background-color: black;
-  color: white;
+  padding: 0.6rem 1.0rem;
+  border-radius: 1.0rem;
+  background-color: var(--color-tertiary);
+  color: var(--color-primary);
+  transition: 0.1s ease-in-out;
+}
+
+.social-links > a:hover {
+  background-color: var(--color-primary);
+  transition: 0.05s ease-in-out;
+  color: var(--background-color);
 }
 
 /* Writing */
@@ -125,7 +139,7 @@ section > h1 {
 }
 
 .blog-card-date {
-  color: var(--text-color-secondary);
+  color: var(--color-secondary);
   text-align: right;
 }
 
@@ -142,12 +156,12 @@ section > h1 {
 }
 
 .work-experience-card-description > p {
-  color: var(--text-color-secondary);
+  color: var(--color-secondary);
 }
 
 /* Writing */
 .blog-card-date > p {
-  color: var(--text-color-secondary);
+  color: var(--color-secondary);
 }
 
 /* Archive and Scraps */
@@ -181,7 +195,7 @@ section > h1 {
 .archive-item > img {
   width: 100%;
   height: 100%;
-  aspect-ratio: 3/4;
+  aspect-ratio: 1/1;
   object-fit: cover;
   display: block;
   border-radius: var(--spacing-s);
