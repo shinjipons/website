@@ -161,12 +161,6 @@ const blogPosts = allPosts.sort(
   (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
 );
 
-// Archive images — auto-scanned from public/media/archive/
-const archiveGlob = import.meta.glob('/public/media/archive/**/*.{jpg,jpeg,png,webp,gif,avif,JPG,JPEG,PNG,WEBP,GIF,AVIF}');
-const archiveImages = Object.keys(archiveGlob)
-  .map(path => path.replace('/public', ''))
-  .sort();
-
 // Experiments
 const experiments = [
   {
@@ -323,26 +317,5 @@ const experiments = [
     </section>
 
   </div>
-
-  <!-- Archive and scraps section -->
-  <section id="archive-and-scraps">
-      <h1>Archive and Scraps</h1>
-    {archiveImages.length > 0 ? (
-      <>
-        <div class="archive-grid">
-          {archiveImages.map((src, i) => (
-            <div class="archive-item" data-archive-index={i}>
-              <img src={src} loading="lazy" decoding="async" alt="" />
-            </div>
-          ))}
-        </div>
-        <script type="application/json" id="archive-data" is:inline set:html={JSON.stringify(archiveImages)} />
-      </>
-    ) : (
-      <div class="container">
-        <p>Nothing here yet...</p>
-      </div>
-    )}
-  </section>
 
 </BaseLayout>

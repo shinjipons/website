@@ -1,3 +1,8 @@
+/* Article */
+.blog-post {
+  margin: var(--spacing-xl) auto;
+}
+
 /* Back link */
 .blog-post-back {
   margin-bottom: var(--spacing-xl);
@@ -33,10 +38,20 @@
   font-weight: 600;
 }
 
+.blog-post-content video {
+  display: block;
+  margin: var(--spacing-xl) auto;
+  max-width: 100%;
+  max-height: 80rem;
+  border-radius: var(--spacing-s);
+}
+
 .blog-post-content img {
   display: block;
-  margin: 0 auto;
+  margin: var(--spacing-xl) auto;
   max-width: 100%;
+  max-height: 80rem;
+  border-radius: var(--spacing-s);
 }
 
 .blog-post-content ul,
