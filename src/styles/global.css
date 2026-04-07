@@ -1,18 +1,77 @@
 /* Light and Dark Mode */
 :root {
-  --html-font-size: 10px; /* do not change this */
-  --text-font-size: 1.4rem;
-  --text-line-height: 2.2rem;
-  --font-family-sans: "Inter", sans-serif;
-  --font-family-mono: "Google Sans Code", monospace;
-  --main-container-width: 480px;
-  --h1-font-weight: 650;
-  --p-font-weight: 450;
-  --code-font-size: 1.2rem;
-  --code-font-weight: 420;
-  --hover-transition-duration: 0.1s;
+	--html-font-size: 10px; /* do not change this */
+	--text-font-size: 1.4rem;
+	--text-line-height: 2rem;
+	--font-family-sans: "Inter", sans-serif;
+	--font-family-mono: "Google Sans Code", monospace;
+	--main-container-width: 52.8rem;
+	--h1-font-weight: 650;
+	--p-font-weight: 450;
+	--code-font-size: 1.2rem;
+	--code-font-weight: 420;
+	--hover-transition-duration: 0.1s;
+
+	/* Spacing */
+	--spacing-none: 0rem;
+	--spacing-xxs: 0.2rem;
+	--spacing-xs: 0.4rem;
+	--spacing-s: 0.6rem;
+	--spacing-m: 0.8rem;
+	--spacing-l: 1.2rem;
+	--spacing-xl: 1.6rem;
+	--spacing-xxl: 2rem;
+
+	/* Colors (light mode only for now) */
+	--background-color: white;
+	--primary-color: black;
+	--secondary-color: rgb(135, 135, 135);
+}
+
+* {
+	box-sizing: content-box;
+	/* border: 1px solid red; */
 }
 
 html {
-  background-color: white;
+	width: 100%;
+	background-color: white;
+	font-size: var(--html-font-size);
+	margin: var(--spacing-none);
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	margin: var(--spacing-none);
+}
+
+h1,
+h2,
+h3,
+p,
+a {
+	font-family: var(--font-family-sans);
+	font-size: var(--text-font-size);
+	line-height: var(--text-line-height);
+	margin-top: var(--spacing-m);
+	margin-bottom: var(--spacing-none);
+}
+
+h1,
+h2,
+h3 {
+	font-weight: var(--h1-font-weight);
+}
+
+p {
+	font-weight: var(--p-font-weight);
+}
+
+a {
+	text-decoration: none;
+}
+
+section.content-section {
+	width: var(--main-container-width);
 }
