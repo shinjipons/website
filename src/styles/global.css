@@ -19,8 +19,8 @@
 	--spacing-s: 0.6rem;
 	--spacing-m: 0.8rem;
 	--spacing-l: 1.2rem;
-	--spacing-xl: 1.6rem;
-	--spacing-xxl: 2rem;
+	--spacing-xl: 4rem;
+	--spacing-xxl: 8rem;
 
 	/* Colors (light mode only for now) */
 	--background-color: white;
@@ -30,20 +30,33 @@
 
 * {
 	box-sizing: content-box;
-	/* border: 1px solid red; */
 }
 
 html {
-	width: 100%;
+	/* width: 100%; */
 	background-color: white;
 	font-size: var(--html-font-size);
-	margin: var(--spacing-none);
+	margin-top: var(--spacing-xxl);
+	margin-bottom: var(--spacing-xxl);
+	padding-left: var(--spacing-xl);
+	padding-right: var(--spacing-xl);
 }
 
 body {
 	display: flex;
 	flex-direction: column;
 	margin: var(--spacing-none);
+	align-items: center;
+}
+
+main {
+	width: 100%;
+	max-width: var(--main-container-width);
+}
+
+section {
+	margin-top: var(--spacing-xl);
+	margin-bottom: var(--spacing-xl);
 }
 
 h1,
@@ -54,14 +67,18 @@ a {
 	font-family: var(--font-family-sans);
 	font-size: var(--text-font-size);
 	line-height: var(--text-line-height);
-	margin-top: var(--spacing-m);
-	margin-bottom: var(--spacing-none);
+	margin-top: var(--spacing-none);
+	margin-bottom: var(--spacing-l);
 }
 
 h1,
-h2,
-h3 {
+h2 {
 	font-weight: var(--h1-font-weight);
+}
+
+h3 {
+	font-weight: var(--p-font-weight);
+	color: var(--secondary-color);
 }
 
 p {
@@ -70,8 +87,9 @@ p {
 
 a {
 	text-decoration: none;
+	color: var(--primary-color);
 }
 
-section.content-section {
-	width: var(--main-container-width);
+a:hover {
+	color: rgb(222, 45, 219);
 }

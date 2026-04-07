@@ -1,0 +1,9 @@
+/* "Card" styling */
+.blog-card,
+.work-experience-card {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+/* Work experience */
