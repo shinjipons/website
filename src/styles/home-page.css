@@ -28,15 +28,18 @@
 
 .blog-card > .date-year {
 	width: var(--consistent-col-width);
+	color: var(--color-primary);
 }
 
 .blog-card > .title {
 	flex-grow: 1;
+	color: var(--color-secondary);
 }
 
 .blog-card > .date-monthday {
 	width: var(--consistent-col-width);
 	text-align: right;
+	color: var(--color-tertiary);
 }
 
 /* Projects and Side Projects */
@@ -62,4 +65,5 @@
 
 .work-experience-card > .work-experience-period {
 	color: var(--color-tertiary);
+	font-variant-numeric: tabular-nums;
 }
