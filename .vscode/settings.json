@@ -1,4 +1,4 @@
 {
-  "terminal.integrated.defaultProfile.windows": "Git Bash",
-  "editor.tabSize": 4
+"terminal.integrated.defaultProfile.windows": "Git Bash",
+"editor.detectIndentation": false
 }
