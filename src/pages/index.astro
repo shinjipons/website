@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import "../styles/home-page.css";
 
 // Upcoming events and meetups
 const upcomingEventsRaw = [
@@ -30,11 +31,11 @@ function formatEventDate(dateString: string): string {
 
 // Social media links
 const socialLinks = [
-  { name: "Resume", url: "/resume-shinji-pons.pdf" },
+  { name: "Resume",   url: "/resume-shinji-pons.pdf" },
   { name: "LinkedIn", url: "https://linkedin.com/in/shinjipons" },
-  { name: "Cal.com", url: "https://cal.com/shinjipons/" },
-  // { name: "Twitter", url: "https://twitter.com/shinjipons" },
-  // { name: "Figma", url: "https://www.figma.com/@shinjipons" },
+  { name: "Cal.com",  url: "https://cal.com/shinjipons/" },
+  { name: "Twitter",  url: "https://twitter.com/shinjipons" },
+  { name: "Figma",    url: "https://www.figma.com/@shinjipons" },
 ];
 
 // Work experience
@@ -225,7 +226,8 @@ const experiments = [
     imageLight: "/media/experiments/spinbox-prototype-light-mode.png",
     imageDark: "/media/experiments/spinbox-prototype-dark-mode.png",
     buttonText: "Play",
-  }, {
+  },
+  {
     title: "Luminous SF Icon",
     description: "Icon design for Luminous SF",
     url: "https://www.figma.com/community/file/1440464930979235933",
