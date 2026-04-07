@@ -13,6 +13,7 @@
 	padding-top: var(--spacing-m);
 	padding-bottom: var(--spacing-m);
 	justify-content: space-between;
+	transition: opacity 0.1s cubic-bezier(0.39, 0.575, 0.565, 1);
 }
 
 .blog-card:last-child {
@@ -30,7 +31,6 @@
 }
 
 .blog-card > .title {
-	/* background: red; */
 	flex-grow: 1;
 }
 
@@ -39,7 +39,18 @@
 	text-align: right;
 }
 
+/* Projects and Side Projects */
+
+#projects:hover .blog-card:not(:hover),
+#side-projects:hover .blog-card:not(:hover) {
+	opacity: 0.5;
+}
+
 /* Work experience */
+
+.work-experience-card > * {
+	margin-bottom: var(--spacing-none);
+}
 .work-experience-card > .work-experience-company {
 	width: var(--consistent-col-width);
 }
@@ -50,6 +61,5 @@
 }
 
 .work-experience-card > .work-experience-period {
-	/* flex: 1; */
 	color: var(--color-tertiary);
 }
