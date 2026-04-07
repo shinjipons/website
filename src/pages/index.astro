@@ -1,5 +1,16 @@
 ---
 import { getCollection } from "astro:content";
+import { execSync } from "node:child_process";
+
+const lastUpdated = new Date(
+	execSync("git log -1 --format=%cd --date=format:%Y-%m-%d")
+		.toString()
+		.trim(),
+).toLocaleDateString("en-US", {
+	year: "numeric",
+	month: "long",
+	day: "2-digit",
+});
 import BaseLayout from "../layouts/BaseLayout.astro";
 import "../styles/home-page.css";
 
@@ -247,9 +258,11 @@ const experiments = [
 <BaseLayout title="Shinji Pons" description="Personal website">
 	<div class="container">
 		<!-- Header section -->
-		<section class="content-section">
+		<section>
 			<h1>Shinji Pons</h1>
-			<p>Misfit in 3D Workflow Design</p>
+			<h3>Updated on {lastUpdated}</h3>
+		</section>
+		<section>
 			<p>I was born in Tokyo and now live in Budapest, Hungary.</p>
 			<p>
 				I'm a senior product designer at <a
@@ -270,12 +283,19 @@ const experiments = [
 				My approach is simple: do less, but better than everyone else.
 			</p>
 			<p>
-				You can find me on LinkedIn, Twitter or book a call via Cal.com
+				You can find me on <a
+					href="https://linkedin.com/in/shinjipons/"
+					target="_blank">LinkedIn</a
+				>, <a href="https://x.com/shinjipons" target="_blank">Twitter</a
+				> or book a call via <a
+					href="https://cal.com/shinjipons"
+					target="_blank">Cal.com</a
+				>.
 			</p>
 		</section>
 
 		<!-- Today section -->
-		<section id="today">
+		<!-- <section id="today">
 			<h1>Today</h1>
 			<p>
 				I empower artists, engineers and designers with tools and
@@ -292,10 +312,10 @@ const experiments = [
 						.join("")}
 				/>
 			</p>
-		</section>
+		</section> -->
 
 		<!-- Events Section -->
-		<section id="events">
+		<!-- <section id="events">
 			<h1>Events</h1>
 			{
 				upcomingEvents.length > 0 ? (
@@ -333,7 +353,7 @@ const experiments = [
 					<p>Nothing scheduled</p>
 				)
 			}
-		</section>
+		</section> -->
 
 		<!-- Blog Posts Section -->
 		<section id="writing">
@@ -343,8 +363,27 @@ const experiments = [
 					<div>
 						{blogPosts.map((post) => (
 							<a href={`/writing/${post.id}`} class="blog-card">
+								<p>
+									{post.data.pubDate.toLocaleDateString(
+										"en-US",
+										{
+											year: "numeric",
+											// month: "long",
+											// day: "2-digit",
+										},
+									)}
+								</p>
 								<h3>{post.data.title}</h3>
-								<p>{post.data.description}</p>
+								<p>
+									{post.data.pubDate.toLocaleDateString(
+										"en-US",
+										{
+											// year: "numeric",
+											month: "long",
+											day: "2-digit",
+										},
+									)}
+								</p>
 							</a>
 						))}
 					</div>
