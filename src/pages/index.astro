@@ -3,9 +3,7 @@ import { getCollection } from "astro:content";
 import { execSync } from "node:child_process";
 
 const lastUpdated = new Date(
-	execSync("git log -1 --format=%cd --date=format:%Y-%m-%d")
-		.toString()
-		.trim(),
+	execSync("git log -1 --format=%cd --date=format:%Y-%m-%d").toString().trim(),
 ).toLocaleDateString("en-US", {
 	year: "numeric",
 	month: "long",
@@ -129,12 +127,12 @@ const workExperience = [
 const workProjects = [
 	{
 		name: "PreForm by Formlabs",
-		description: "from version 3.51 onwards",
+		description: "from v3.51 to 3.56",
 		url: "https://formlabs.com/software/preform/",
 	},
 	{
 		name: "Ragdoll Standalone",
-		description: "Animating with physics in Maya, Blender and beyond",
+		description: "Animating with physics",
 		url: "https://ragdolldynamics.com/",
 	},
 	{
@@ -173,23 +171,22 @@ const workProjects = [
 const sideProjects = [
 	{
 		name: "Select Parent Component",
-		description:
-			"Figma plugin that locates the closest component to the selection",
+		description: "Quickly select Figma components",
 		url: "https://github.com/shinjipons/Select-Parent-Component",
 	},
 	{
 		name: "Time Lens",
-		description: "Blender add-on for automating editor screenshots",
+		description: "Automate Blender editor screenshots",
 		url: "https://github.com/shinjipons/Time-Lens",
 	},
 	{
 		name: "Modulo",
-		description: "Family of 168 grid-based typefaces",
+		description: "168 grid-based typefaces",
 		url: "https://github.com/shinjipons/modulo-typeface",
 	},
 	{
 		name: "InDesign Scripting",
-		description: "Automating Adobe InDesign using basil.js",
+		description: "Automating InDesign",
 		url: "https://github.com/shinjipons/basiljs-scripts",
 	},
 ];
@@ -268,28 +265,24 @@ const experiments = [
 				I'm a senior product designer at <a
 					href="https://formlabs.com/"
 					target="_blank">Formlabs</a
-				>, where I work on software that makes professional-grade 3D
-				printing more intuitive. Previously, I worked at Autodesk, LEGO,
-				Shapr3D and Electronic Arts.
+				>, where I work on software that makes professional-grade 3D printing
+				more intuitive. Previously, I worked at Autodesk, LEGO, Shapr3D and
+				Electronic Arts.
 			</p>
 			<p>
-				I care about the full picture: how something looks, how it
-				works, how it feels on the first use and the thousandth. I'm
-				drawn to complexity that rewards patience: hardware-adjacent
-				flows, emerging workflows, and the small details that separate
-				good from exceptional.
+				I care about the full picture: how something looks, how it works, how it
+				feels on the first use and the thousandth. I'm drawn to complexity that
+				rewards patience: hardware-adjacent flows, emerging workflows, and the
+				small details that separate good from exceptional.
 			</p>
-			<p>
-				My approach is simple: do less, but better than everyone else.
-			</p>
+			<p>My approach is simple: do less, but better than everyone else.</p>
 			<p>
 				You can find me on <a
 					href="https://linkedin.com/in/shinjipons/"
 					target="_blank">LinkedIn</a
-				>, <a href="https://x.com/shinjipons" target="_blank">Twitter</a
-				> or book a call via <a
-					href="https://cal.com/shinjipons"
-					target="_blank">Cal.com</a
+				>, <a href="https://x.com/shinjipons" target="_blank">Twitter</a> or book
+				a call via <a href="https://cal.com/shinjipons" target="_blank"
+					>Cal.com</a
 				>.
 			</p>
 		</section>
@@ -363,26 +356,20 @@ const experiments = [
 					<div>
 						{blogPosts.map((post) => (
 							<a href={`/writing/${post.id}`} class="blog-card">
-								<p>
-									{post.data.pubDate.toLocaleDateString(
-										"en-US",
-										{
-											year: "numeric",
-											// month: "long",
-											// day: "2-digit",
-										},
-									)}
+								<p class="date-year">
+									{post.data.pubDate.toLocaleDateString("en-US", {
+										year: "numeric",
+										// month: "long",
+										// day: "2-digit",
+									})}
 								</p>
-								<h3>{post.data.title}</h3>
-								<p>
-									{post.data.pubDate.toLocaleDateString(
-										"en-US",
-										{
-											// year: "numeric",
-											month: "long",
-											day: "2-digit",
-										},
-									)}
+								<h3 class="title">{post.data.title}</h3>
+								<p class="date-monthday">
+									{post.data.pubDate.toLocaleDateString("en-US", {
+										// year: "numeric",
+										month: "long",
+										day: "2-digit",
+									})}
 								</p>
 							</a>
 						))}
@@ -391,36 +378,6 @@ const experiments = [
 					<p>Check back soon...</p>
 				)
 			}
-		</section>
-
-		<!-- Work Experience Section -->
-		<section id="experience">
-			<h1>Work Experience</h1>
-			<div>
-				{
-					workExperience.map((job) => (
-						<div class="work-experience-card">
-							<p>
-								{job.url ? (
-									<a
-										href={job.url}
-										target="_blank"
-										rel="noopener noreferrer"
-									>
-										{job.company}
-									</a>
-								) : (
-									<span>{job.company}</span>
-								)}
-							</p>
-							<div class="work-experience-card-description">
-								<p>{job.role}</p>
-								<p>{job.period}</p>
-							</div>
-						</div>
-					))
-				}
-			</div>
 		</section>
 
 		<!-- Work Projects Section -->
@@ -445,6 +402,30 @@ const experiments = [
 					<p>Check back soon...</p>
 				)
 			}
+		</section>
+
+		<!-- Work Experience Section -->
+		<section id="experience">
+			<h1>Work Experience</h1>
+			<div>
+				{
+					workExperience.map((job) => (
+						<div class="work-experience-card">
+							<p class="work-experience-company">
+								{job.url ? (
+									<a href={job.url} target="_blank" rel="noopener noreferrer">
+										{job.company}
+									</a>
+								) : (
+									<span>{job.company}</span>
+								)}
+							</p>
+							<p class="work-experience-role">{job.role}</p>
+							<p class="work-experience-period">{job.period}</p>
+						</div>
+					))
+				}
+			</div>
 		</section>
 
 		<!-- Side Projects Section -->
@@ -507,10 +488,7 @@ const experiments = [
 												xmlns="http://www.w3.org/2000/svg"
 												aria-hidden="true"
 											>
-												<path
-													d="M6 4L20 12L6 20Z"
-													fill="currentColor"
-												/>
+												<path d="M6 4L20 12L6 20Z" fill="currentColor" />
 											</svg>
 										</button>
 									</div>
@@ -573,8 +551,7 @@ const experiments = [
 
 <script>
 	const sections = document.querySelectorAll<HTMLElement>("section[id]");
-	const navLinks =
-		document.querySelectorAll<HTMLAnchorElement>(".side-nav a");
+	const navLinks = document.querySelectorAll<HTMLAnchorElement>(".side-nav a");
 
 	function updateActiveLink() {
 		let current = "";
@@ -686,9 +663,7 @@ const experiments = [
 				t.classList.toggle("is-active", i === currentIndex);
 			});
 		const allThumbs = Array.from(
-			thumbnailStrip.querySelectorAll<HTMLImageElement>(
-				".lightbox-thumb",
-			),
+			thumbnailStrip.querySelectorAll<HTMLImageElement>(".lightbox-thumb"),
 		);
 		const gap = parseFloat(getComputedStyle(thumbnailStrip).gap) || 0;
 		let thumbCenterInStrip = 0;
@@ -707,9 +682,7 @@ const experiments = [
 	document.addEventListener("keydown", (e: KeyboardEvent) => {
 		if (e.key === "Escape") lightbox.classList.remove("is-open");
 		if (!lightbox.classList.contains("is-open")) return;
-		if (
-			["ArrowDown", "ArrowRight", "ArrowUp", "ArrowLeft"].includes(e.key)
-		) {
+		if (["ArrowDown", "ArrowRight", "ArrowUp", "ArrowLeft"].includes(e.key)) {
 			e.preventDefault();
 		}
 		if (
@@ -718,10 +691,7 @@ const experiments = [
 		) {
 			openLightbox(currentIndex + 1);
 		}
-		if (
-			(e.key === "ArrowUp" || e.key === "ArrowLeft") &&
-			currentIndex > 0
-		) {
+		if ((e.key === "ArrowUp" || e.key === "ArrowLeft") && currentIndex > 0) {
 			openLightbox(currentIndex - 1);
 		}
 	});

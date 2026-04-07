@@ -1,9 +1,55 @@
+/* Variables */
+:root {
+	--consistent-col-width: calc(0.8rem * 21);
+}
+
 /* "Card" styling */
 .blog-card,
 .work-experience-card {
 	display: flex;
 	flex-direction: row;
+	margin-bottom: var(--spacing-none);
+	border-top: 1px solid rgb(214, 214, 214);
+	padding-top: var(--spacing-m);
+	padding-bottom: var(--spacing-m);
 	justify-content: space-between;
 }
 
+.blog-card:last-child {
+	border-bottom: 1px solid rgb(214, 214, 214);
+}
+
+/* Blog */
+
+.blog-card > * {
+	margin-bottom: var(--spacing-none);
+}
+
+.blog-card > .date-year {
+	width: var(--consistent-col-width);
+}
+
+.blog-card > .title {
+	/* background: red; */
+	flex-grow: 1;
+}
+
+.blog-card > .date-monthday {
+	width: var(--consistent-col-width);
+	text-align: right;
+}
+
 /* Work experience */
+.work-experience-card > .work-experience-company {
+	width: var(--consistent-col-width);
+}
+
+.work-experience-card > .work-experience-role {
+	flex: 1;
+	color: var(--color-secondary);
+}
+
+.work-experience-card > .work-experience-period {
+	/* flex: 1; */
+	color: var(--color-tertiary);
+}
