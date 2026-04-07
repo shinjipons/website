@@ -3,6 +3,12 @@
 	--consistent-col-width: calc(0.8rem * 21);
 }
 
+/* Introduction */
+#introduction > h1,
+#introduction > h3 {
+	margin-bottom: var(--spacing-none);
+}
+
 /* "Card" styling */
 .blog-card,
 .work-experience-card {
