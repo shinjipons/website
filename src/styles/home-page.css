@@ -60,6 +60,7 @@
 .work-experience-card > * {
 	margin-bottom: var(--spacing-none);
 }
+
 .work-experience-card > .work-experience-company {
 	width: var(--consistent-col-width);
 }
