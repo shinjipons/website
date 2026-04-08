@@ -27,6 +27,7 @@
 	--color-primary: black;
 	--color-secondary: rgb(135, 135, 135);
 	--color-tertiary: rgb(175, 175, 175);
+	--color-quaternary: rgb(221, 221, 221);
 }
 
 * {

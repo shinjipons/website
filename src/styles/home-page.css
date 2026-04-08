@@ -1,29 +1,32 @@
 /* Variables */
+
 :root {
 	--consistent-col-width: calc(0.8rem * 21);
 }
 
 /* Introduction */
+
 #introduction > h1,
 #introduction > h3 {
 	margin-bottom: var(--spacing-none);
 }
 
-/* "Card" styling */
+/* General "Card" styling */
+
 .blog-card,
 .work-experience-card {
 	display: flex;
 	flex-direction: row;
 	margin-bottom: var(--spacing-none);
-	border-top: 1px solid rgb(214, 214, 214);
 	padding-top: var(--spacing-m);
 	padding-bottom: var(--spacing-m);
 	justify-content: space-between;
 	transition: opacity 0.1s cubic-bezier(0.39, 0.575, 0.565, 1);
+	border-top: 1px solid var(--color-quaternary);
 }
 
 .blog-card:last-child {
-	border-bottom: 1px solid rgb(214, 214, 214);
+	border-bottom: 1px solid var(--color-quaternary);
 }
 
 /* Blog */
@@ -50,9 +53,20 @@
 
 /* Projects and Side Projects */
 
-#projects:hover .blog-card:not(:hover),
-#side-projects:hover .blog-card:not(:hover) {
+/* #projects:hover .blog-card:not(:hover), */
+.cards-container:hover .blog-card:not(:hover) {
 	opacity: 0.5;
+}
+
+/* Projects */
+
+.blog-card > h3 {
+	color: var(--color-primary);
+	/* background-color: red; */
+}
+
+.blog-card > p {
+	color: var(--color-tertiary);
 }
 
 /* Work experience */
@@ -63,6 +77,7 @@
 
 .work-experience-card > .work-experience-company {
 	width: var(--consistent-col-width);
+	text-decoration: none;
 }
 
 .work-experience-card > .work-experience-role {
