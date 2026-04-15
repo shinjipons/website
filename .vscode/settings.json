@@ -1,4 +1,9 @@
 {
   "terminal.integrated.defaultProfile.windows": "Git Bash",
-  "editor.tabSize": 4
+  "editor.detectIndentation": false,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[astro]": {
+    "editor.defaultFormatter": "astro-build.astro-vscode"
+  }
 }

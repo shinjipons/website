@@ -1,0 +1,143 @@
+/* Variables */
+
+:root {
+	--consistent-col-width: calc(0.8rem * 21);
+}
+
+/* Introduction */
+
+#introduction > h1,
+#introduction > h3 {
+	margin-bottom: var(--spacing-none);
+}
+
+/* General "Card" styling */
+
+.generic-card,
+.work-experience-card {
+	display: flex;
+	flex-direction: row;
+	margin-bottom: var(--spacing-none);
+	padding-top: var(--spacing-m);
+	padding-bottom: var(--spacing-m);
+	justify-content: space-between;
+	transition: opacity 0.1s cubic-bezier(0.39, 0.575, 0.565, 1);
+	border-top: 1px solid var(--color-quaternary);
+}
+
+.generic-card {
+	box-sizing: border-box !important;
+	/* border-bottom: 1px solid var(--background-color); */
+}
+
+.generic-card:last-child {
+	border-bottom: 1px solid var(--color-quaternary);
+}
+
+.generic-card > * {
+	margin-bottom: var(--spacing-none);
+}
+
+.generic-card > h3 {
+	color: var(--color-primary);
+}
+
+.generic-card > p {
+	color: var(--color-tertiary);
+}
+
+/* Blog */
+
+.generic-card > .date-year {
+	width: var(--consistent-col-width);
+	color: var(--color-primary);
+}
+
+.generic-card > .title {
+	flex-grow: 1;
+	color: var(--color-secondary);
+}
+
+.generic-card > .date-monthday {
+	width: var(--consistent-col-width);
+	text-align: right;
+	color: var(--color-tertiary);
+}
+
+/* Projects + Side Projects + Experiments */
+
+.generic-card:hover {
+	box-shadow: 0px 1px 0px 0px var(--color-quaternary);
+}
+
+.generic-card:last-child:hover {
+	box-shadow: 0px 1px 0px 0px var(--background-color);
+}
+
+.cards-container:hover .generic-card:not(:hover) {
+	opacity: 0.5;
+}
+
+/* Work experience */
+
+.work-experience-card > * {
+	margin-bottom: var(--spacing-none);
+}
+
+.work-experience-card:last-child {
+	border-bottom: 1px solid var(--color-quaternary);
+}
+
+.work-experience-card > .work-experience-company {
+	width: var(--consistent-col-width);
+}
+
+.work-experience-card > .work-experience-company > a {
+	text-decoration: none !important;
+	border: none;
+}
+
+.work-experience-card > .work-experience-role {
+	flex: 1;
+	color: var(--color-secondary);
+}
+
+.work-experience-card > .work-experience-period {
+	color: var(--color-tertiary);
+	font-variant-numeric: tabular-nums;
+}
+
+/* Narrow viewports */
+
+@media (max-width: 560px) {
+	/* Blog */
+
+	/* Hiding the publication month and day */
+
+	.date-monthday {
+		display: none;
+	}
+
+	.generic-card > .title {
+		text-align: right;
+	}
+
+	/* Left aligning the date */
+	.generic-card > .date-year {
+		text-align: left;
+	}
+
+	/* Projects */
+
+	/* Right-aligning the project description */
+	.generic-card > p {
+		text-align: right;
+	}
+
+	/* Work experience */
+
+	/* Hide the position */
+	.work-experience-role {
+		display: none;
+	}
+}
