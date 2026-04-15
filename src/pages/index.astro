@@ -281,67 +281,6 @@ const experiments = [
 			</p>
 		</section>
 
-		<!-- Today section -->
-		<!-- <section id="today">
-			<h1>Today</h1>
-			<p>
-				I empower artists, engineers and designers with tools and
-				workflows that spark bolder creations.
-			</p>
-			<p>
-				<span
-					set:html={socialLinks
-						.map(
-							(link, index) =>
-								(index > 0 ? " " : "") +
-								`<a class="social-link-item" href="${link.url}" target="_blank" rel="noopener noreferrer">${link.name.trim()}</a>`,
-						)
-						.join("")}
-				/>
-			</p>
-		</section> -->
-
-		<!-- Events Section -->
-		<!-- <section id="events">
-			<h1>Events</h1>
-			{
-				upcomingEvents.length > 0 ? (
-					<div>
-						{upcomingEvents.map((event) =>
-							event.url ? (
-								<a
-									href={event.url}
-									target="_blank"
-									rel="noopener noreferrer"
-									class="event-card"
-								>
-									<h2>{event.title || event.destination}</h2>
-									<div class="event-card-description">
-										{event.destination && (
-											<p>{event.destination}</p>
-										)}
-										{event.date && <p>{event.date}</p>}
-									</div>
-								</a>
-							) : (
-								<div class="event-card">
-									<h2>{event.title || event.destination}</h2>
-									<div class="event-card-description">
-										{event.destination && (
-											<p>{event.destination}</p>
-										)}
-										{event.date && <p>{event.date}</p>}
-									</div>
-								</div>
-							),
-						)}
-					</div>
-				) : (
-					<p>Nothing scheduled</p>
-				)
-			}
-		</section> -->
-
 		<!-- Blog Posts Section -->
 		<section id="writing">
 			<h1>Writing</h1>
@@ -349,7 +288,7 @@ const experiments = [
 				blogPosts.length > 0 ? (
 					<div>
 						{blogPosts.map((post) => (
-							<a href={`/writing/${post.id}`} class="blog-card">
+							<a href={`/writing/${post.id}`} class="generic-card">
 								<p class="date-year">
 									{post.data.pubDate.toLocaleDateString("en-US", {
 										year: "numeric",
@@ -385,7 +324,7 @@ const experiments = [
 								href={project.url}
 								target="_blank"
 								rel="noopener noreferrer"
-								class="blog-card"
+								class="generic-card"
 							>
 								<h3>{project.name}</h3>
 								<p>{project.description}</p>
@@ -427,13 +366,13 @@ const experiments = [
 			<h1>Side Projects</h1>
 			{
 				sideProjects.length > 0 ? (
-					<div>
+					<div class="cards-container">
 						{sideProjects.map((project) => (
 							<a
 								href={project.url}
 								target="_blank"
 								rel="noopener noreferrer"
-								class="blog-card"
+								class="generic-card"
 							>
 								<h3>{project.name}</h3>
 								<p>{project.description}</p>
@@ -451,21 +390,17 @@ const experiments = [
 			<h1>Experiments</h1>
 			{
 				experiments.length > 0 ? (
-					<div>
+					<div class="cards-container">
 						{experiments.map((experiment) => {
 							return (
 								<a
 									href={experiment.url}
 									target="_blank"
 									rel="noopener noreferrer"
-									class="experiment-card"
+									class="generic-card"
 								>
-									<div class="experiment-card-description">
-										<div class="experiment-card-description-text">
-											<h2>{experiment.title}</h2>
-											<p>{experiment.description}</p>
-										</div>
-									</div>
+									<h3>{experiment.title}</h3>
+									<p>{experiment.description}</p>
 								</a>
 							);
 						})}

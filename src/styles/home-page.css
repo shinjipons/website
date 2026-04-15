@@ -13,7 +13,7 @@
 
 /* General "Card" styling */
 
-.blog-card,
+.generic-card,
 .work-experience-card {
 	display: flex;
 	flex-direction: row;
@@ -25,48 +25,57 @@
 	border-top: 1px solid var(--color-quaternary);
 }
 
-.blog-card:last-child {
+.generic-card {
+	box-sizing: border-box !important;
+	/* border-bottom: 1px solid var(--background-color); */
+}
+
+.generic-card:last-child {
 	border-bottom: 1px solid var(--color-quaternary);
+}
+
+.generic-card > * {
+	margin-bottom: var(--spacing-none);
+}
+
+.generic-card > h3 {
+	color: var(--color-primary);
+}
+
+.generic-card > p {
+	color: var(--color-tertiary);
 }
 
 /* Blog */
 
-.blog-card > * {
-	margin-bottom: var(--spacing-none);
-}
-
-.blog-card > .date-year {
+.generic-card > .date-year {
 	width: var(--consistent-col-width);
 	color: var(--color-primary);
 }
 
-.blog-card > .title {
+.generic-card > .title {
 	flex-grow: 1;
 	color: var(--color-secondary);
 }
 
-.blog-card > .date-monthday {
+.generic-card > .date-monthday {
 	width: var(--consistent-col-width);
 	text-align: right;
 	color: var(--color-tertiary);
 }
 
-/* Projects and Side Projects */
+/* Projects + Side Projects + Experiments */
 
-/* #projects:hover .blog-card:not(:hover), */
-.cards-container:hover .blog-card:not(:hover) {
+.generic-card:hover {
+	box-shadow: 0px 1px 0px 0px var(--color-quaternary);
+}
+
+.generic-card:last-child:hover {
+	box-shadow: 0px 1px 0px 0px var(--background-color);
+}
+
+.cards-container:hover .generic-card:not(:hover) {
 	opacity: 0.5;
-}
-
-/* Projects */
-
-.blog-card > h3 {
-	color: var(--color-primary);
-	/* background-color: red; */
-}
-
-.blog-card > p {
-	color: var(--color-tertiary);
 }
 
 /* Work experience */
@@ -75,9 +84,17 @@
 	margin-bottom: var(--spacing-none);
 }
 
+.work-experience-card:last-child {
+	border-bottom: 1px solid var(--color-quaternary);
+}
+
 .work-experience-card > .work-experience-company {
 	width: var(--consistent-col-width);
-	text-decoration: none;
+}
+
+.work-experience-card > .work-experience-company > a {
+	text-decoration: none !important;
+	border: none;
 }
 
 .work-experience-card > .work-experience-role {
@@ -88,4 +105,9 @@
 .work-experience-card > .work-experience-period {
 	color: var(--color-tertiary);
 	font-variant-numeric: tabular-nums;
+}
+
+/* Narrow viewports */
+
+@media (max-width: 512px) {
 }

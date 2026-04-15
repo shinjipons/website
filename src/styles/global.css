@@ -25,9 +25,9 @@
 	/* Colors (light mode only for now) */
 	--background-color: white;
 	--color-primary: black;
-	--color-secondary: rgb(135, 135, 135);
-	--color-tertiary: rgb(175, 175, 175);
-	--color-quaternary: rgb(221, 221, 221);
+	--color-secondary: oklch(62.341% 0.00007 271.152);
+	--color-tertiary: oklch(75.402% 0.00009 271.152);
+	--color-quaternary: oklch(89.755% 0.0001 271.152);
 }
 
 * {
@@ -35,11 +35,8 @@
 }
 
 html {
-	/* width: 100%; */
 	background-color: white;
 	font-size: var(--html-font-size);
-	margin-top: var(--spacing-xxl);
-	margin-bottom: var(--spacing-xxl);
 	padding-left: var(--spacing-xl);
 	padding-right: var(--spacing-xl);
 }
@@ -47,7 +44,8 @@ html {
 body {
 	display: flex;
 	flex-direction: column;
-	margin: var(--spacing-none);
+	margin-top: var(--spacing-xxl);
+	margin-bottom: var(--spacing-xxl);
 	align-items: center;
 }
 
@@ -90,16 +88,12 @@ p {
 a {
 	text-decoration: none;
 	color: var(--color-primary);
-	/* background-color: red; */
 }
 
 p > a {
-	/* background-color: hsl(60, 58%, 86%); */
-	/* text-decoration: underline; */
 	border-bottom: 1px solid var(--color-tertiary);
 }
 
 p > a:hover {
-	/* background-color: hsl(60, 75%, 51%); */
 	border-bottom: 1px solid var(--color-primary);
 }
