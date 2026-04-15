@@ -9,34 +9,9 @@ const lastUpdated = new Date(
 	month: "long",
 	day: "2-digit",
 });
+
 import BaseLayout from "../layouts/BaseLayout.astro";
 import "../styles/home-page.css";
-
-// Upcoming events and meetups
-const upcomingEventsRaw = [
-	{
-		title: "Stop Designing Your Own Chaos - CraftHub x UX Budapest",
-		destination: "Budapest",
-		date: "2026-03-30",
-		url: "https://luma.com/n0e4tal9?tk=3dtDp8",
-	},
-	{
-		title: "SEON TechTalks",
-		destination: "Budapest",
-		date: "2026-04-16",
-		url: "https://luma.com/seontechtalks?tk=LivIBU",
-	},
-];
-
-// Format date from YYYY-MM-DD to "Nov 12, 2025"
-function formatEventDate(dateString: string): string {
-	const date = new Date(dateString + "T00:00:00"); // Add time to avoid timezone issues
-	return date.toLocaleDateString("en-US", {
-		year: "numeric",
-		month: "short",
-		day: "numeric",
-	});
-}
 
 // Social media links
 const socialLinks = [
@@ -152,17 +127,17 @@ const workProjects = [
 	},
 	{
 		name: "Autodesk Alias SubD",
-		description: "SubD modelling tools in Alias",
+		description: "SubD modelling tools",
 		url: "https://autodesk.com/alias",
 	},
 	{
 		name: "Dynamo for Alias",
-		description: "Computational design in Alias",
+		description: "Computational design tools",
 		url: "https://autodesk.com/alias",
 	},
 	{
 		name: "Louvre Abu Dhabi",
-		description: "Supergraphics and icon design",
+		description: "Supergraphics + icons",
 		url: "https://www.jeannouvel.com/projets/louvre-abou-dhabi-3/",
 	},
 ];
@@ -176,7 +151,7 @@ const sideProjects = [
 	},
 	{
 		name: "Time Lens",
-		description: "Automate Blender editor screenshots",
+		description: "Automate Blender screenshots",
 		url: "https://github.com/shinjipons/Time-Lens",
 	},
 	{
@@ -191,31 +166,23 @@ const sideProjects = [
 	},
 ];
 
+// Experiments
+const experiments = [
+	{
+		title: "Input Field",
+		description: "Slider with spinbox design prototype",
+		url: "https://spinbox-prototype.shinjipons.com",
+	},
+	{
+		title: "Luminous SF Icon",
+		description: "Icon design for Luminous SF",
+		url: "https://www.figma.com/community/file/1440464930979235933",
+	},
+];
+
 // Format dates for display and filter out past events
 const today = new Date();
 today.setHours(0, 0, 0, 0); // Set to start of day for accurate comparison
-
-const upcomingEvents = upcomingEventsRaw
-	.filter((event) => {
-		if (!event.date) return true; // Keep events without dates
-		const eventDate = new Date(event.date + "T00:00:00");
-		eventDate.setHours(0, 0, 0, 0);
-		return eventDate >= today; // Only include today and future events
-	})
-	.sort((a, b) => {
-		// Sort events without dates to the end
-		if (!a.date) return 1;
-		if (!b.date) return -1;
-		// Sort by date in chronological order (earliest first)
-		return (
-			new Date(a.date + "T00:00:00").getTime() -
-			new Date(b.date + "T00:00:00").getTime()
-		);
-	})
-	.map((event) => ({
-		...event,
-		date: event.date ? formatEventDate(event.date) : undefined,
-	}));
 
 // Get all blog posts dynamically and sort by date (newest first)
 const allPosts = await getCollection("writing");
@@ -230,20 +197,6 @@ const archiveGlob = import.meta.glob(
 const archiveImages = Object.keys(archiveGlob)
 	.map((path) => path.replace("/public", ""))
 	.sort();
-
-// Experiments
-const experiments = [
-	{
-		title: "Input Field",
-		description: "Slider with spinbox design prototype",
-		url: "https://spinbox-prototype.shinjipons.com",
-	},
-	{
-		title: "Luminous SF Icon",
-		description: "Icon design for Luminous SF",
-		url: "https://www.figma.com/community/file/1440464930979235933",
-	},
-];
 ---
 
 <BaseLayout title="Shinji Pons" description="Personal website">

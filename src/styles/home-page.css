@@ -109,5 +109,35 @@
 
 /* Narrow viewports */
 
-@media (max-width: 512px) {
+@media (max-width: 560px) {
+	/* Blog */
+
+	/* Hiding the publication month and day */
+
+	.date-monthday {
+		display: none;
+	}
+
+	.generic-card > .title {
+		text-align: right;
+	}
+
+	/* Left aligning the date */
+	.generic-card > .date-year {
+		text-align: left;
+	}
+
+	/* Projects */
+
+	/* Right-aligning the project description */
+	.generic-card > p {
+		text-align: right;
+	}
+
+	/* Work experience */
+
+	/* Hide the position */
+	.work-experience-role {
+		display: none;
+	}
 }
