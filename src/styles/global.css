@@ -2,7 +2,7 @@
 :root {
 	--html-font-size: 10px; /* do not change this */
 	--text-font-size: 1.4rem;
-	--text-line-height: 2rem;
+	--text-line-height: 2.4rem;
 	--font-family-sans: "Inter", sans-serif;
 	--font-family-mono: "Google Sans Code", monospace;
 	--main-container-width: 52.8rem;
@@ -67,6 +67,8 @@ a,
 ul,
 ol {
 	font-family: var(--font-family-sans);
+	font-optical-sizing: auto;
+	font-style: normal;
 	font-size: var(--text-font-size);
 	line-height: var(--text-line-height);
 	margin-top: var(--spacing-none);
