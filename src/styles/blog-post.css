@@ -25,7 +25,7 @@ code {
 	font-family: var(--font-family-mono);
 	font-size: var(--code-font-size);
 	font-weight: var(--code-font-weight);
-	color: oklch(61.549% 0.2175 26.432);
+	color: oklch(46.339% 0.1445 259.823);
 }
 
 /* Code blocks */
@@ -35,6 +35,7 @@ pre.astro-code {
 	border-radius: var(--spacing-s);
 	color: var(--color-primary) !important;
 	background-color: var(--color-quaternary) !important;
+	/* box-shadow: 0px 0px 0px 1px var(--color-tertiary); */
 	/* Is there a way to show line numbers on the left side of the block? */
 	/* There is probably a package for this */
 }
@@ -45,19 +46,38 @@ p > code,
 li > code {
 	background: var(--color-quaternary);
 	box-sizing: content-box;
-	border: 2px solid var(--color-quaternary);
+	border-width: 4px 6px 4px 6px;
+	border-style: solid;
+	border-color: var(--color-quaternary);
 	border-radius: var(--spacing-xs);
+	/* box-shadow: 0px 0px 0px 1px var(--color-tertiary); */
 }
 
 /* Images */
 
 img {
-	max-width: 100%;
+	width: 100%;
+	box-sizing: border-box;
+	/* padding: var(--spacing-xl); */
 	border-radius: var(--spacing-m);
+	border: 1px solid var(--color-quaternary);
+	/* box-shadow: 0px 0px 0px 1px var(--color-tertiary); */
 }
 
 /* Bold text */
 
 p > strong {
 	font-weight: var(--h1-font-weight) !important;
+}
+
+/* Blockquotes */
+
+blockquote {
+	border-left: var(--spacing-xxs) solid var(--color-tertiary);
+	margin: var(--spacing-none);
+	padding-left: var(--spacing-l);
+}
+
+blockquote > p {
+	color: var(--color-secondary);
 }
