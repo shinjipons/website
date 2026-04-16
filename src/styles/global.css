@@ -103,4 +103,8 @@ p > a:hover {
 		padding-left: var(--spacing-m);
 		padding-right: var(--spacing-m);
 	}
+	body {
+		margin-top: var(--spacing-xl);
+		margin-bottom: var(--spacing-xl);
+	}
 }
