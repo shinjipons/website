@@ -1,0 +1,63 @@
+/* Header section */
+
+.blog-post-title {
+	margin-bottom: var(--spacing-none);
+}
+
+.blog-post-header {
+	margin: var(--spacing-xl) var(--spacing-none);
+}
+
+.blog-post-meta {
+	font-family: var(--font-family-sans);
+	font-size: var(--text-font-size);
+}
+
+/* Blog content */
+
+h1 {
+	margin-top: var(--spacing-xl);
+}
+
+/* General code styling */
+
+code {
+	font-family: var(--font-family-mono);
+	font-size: var(--code-font-size);
+	font-weight: var(--code-font-weight);
+	color: oklch(61.549% 0.2175 26.432);
+}
+
+/* Code blocks */
+
+pre.astro-code {
+	padding: var(--spacing-m) var(--spacing-l);
+	border-radius: var(--spacing-s);
+	color: var(--color-primary) !important;
+	background-color: var(--color-quaternary) !important;
+	/* Is there a way to show line numbers on the left side of the block? */
+	/* There is probably a package for this */
+}
+
+/* Inline code */
+
+p > code,
+li > code {
+	background: var(--color-quaternary);
+	box-sizing: content-box;
+	border: 2px solid var(--color-quaternary);
+	border-radius: var(--spacing-xs);
+}
+
+/* Images */
+
+img {
+	max-width: 100%;
+	border-radius: var(--spacing-m);
+}
+
+/* Bold text */
+
+p > strong {
+	font-weight: var(--h1-font-weight) !important;
+}

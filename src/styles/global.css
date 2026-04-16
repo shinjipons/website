@@ -23,11 +23,11 @@
 	--spacing-xxl: 8rem;
 
 	/* Colors (light mode only for now) */
-	--background-color: white;
 	--color-primary: black;
 	--color-secondary: oklch(62.341% 0.00007 271.152);
 	--color-tertiary: oklch(75.402% 0.00009 271.152);
-	--color-quaternary: oklch(89.755% 0.0001 271.152);
+	--color-quaternary: oklch(93.403% 0.00011 271.152);
+	--background-color: white;
 }
 
 * {
@@ -63,7 +63,9 @@ h1,
 h2,
 h3,
 p,
-a {
+a,
+ul,
+ol {
 	font-family: var(--font-family-sans);
 	font-size: var(--text-font-size);
 	line-height: var(--text-line-height);
