@@ -4,11 +4,11 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import "../../styles/blog-post.css";
 
 export async function getStaticPaths() {
-  const blogPosts = await getCollection("writing");
-  return blogPosts.map((post) => ({
-    params: { slug: post.id },
-    props: { post },
-  }));
+	const blogPosts = await getCollection("writing");
+	return blogPosts.map((post) => ({
+		params: { slug: post.id },
+		props: { post },
+	}));
 }
 
 const { post } = Astro.props;
@@ -16,94 +16,100 @@ const { Content } = await render(post);
 ---
 
 <BaseLayout
-  title={post.data.title}
-  description={post.data.description}
-  {...(post.data.ogImage && { ogImage: post.data.ogImage })}
+	title={post.data.title}
+	description={post.data.description}
+	{...post.data.ogImage && { ogImage: post.data.ogImage }}
 >
-  <article class="container blog-post">
-    <div class="blog-post-back">
-      <a href="/" class="link-back"> ← Back to home </a>
-    </div>
-    <header class="blog-post-header">
-      <h1 class="blog-post-title">
-        {post.data.title}
-      </h1>
-      <div class="blog-post-meta">
-        <time datetime={post.data.pubDate.toISOString()}>
-          {
-            post.data.pubDate.toLocaleDateString("en-US", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })
-          }
-        </time>
-        <span>by {post.data.author}</span>
-      </div>
-    </header>
+	<article class="container blog-post">
+		<div class="blog-post-back">
+			<a href="/" class="link-back"> ← Back to home </a>
+		</div>
+		<header class="blog-post-header">
+			<h1 class="blog-post-title">
+				{post.data.title}
+			</h1>
+			<div class="blog-post-meta">
+				<time datetime={post.data.pubDate.toISOString()}>
+					{
+						post.data.pubDate.toLocaleDateString("en-US", {
+							year: "numeric",
+							month: "long",
+							day: "numeric",
+						})
+					}
+				</time>
+				<span>by {post.data.author}</span>
+			</div>
+		</header>
 
-    <div class="blog-post-content">
-      <Content />
-    </div>
-    <footer class="blog-post-footer">
-      <a href="/" class="link-back"> ← Back to home </a>
-    </footer>
-  </article>
+		<div class="blog-post-content">
+			<Content />
+		</div>
+		<footer class="blog-post-footer">
+			<a href="/" class="link-back"> ← Back to home </a>
+		</footer>
+	</article>
 
-  <nav class="side-nav" id="blog-side-nav" aria-label="Article sections"></nav>
+	<nav class="side-nav" id="blog-side-nav" aria-label="Article sections"></nav>
 </BaseLayout>
 
 <script>
-  const nav = document.getElementById("blog-side-nav")!;
-  const headings = Array.from(
-    document.querySelectorAll<HTMLElement>(".blog-post-content h1, .blog-post-content h2, .blog-post-content h3")
-  ).filter((h) => h.id);
+	const nav = document.getElementById("blog-side-nav")!;
+	const headings = Array.from(
+		document.querySelectorAll<HTMLElement>(
+			".blog-post-content h1, .blog-post-content h2, .blog-post-content h3",
+		),
+	).filter((h) => h.id);
 
-  const indexLink = document.createElement("a");
-  indexLink.href = "/";
-  indexLink.textContent = "← Index";
-  indexLink.style.marginBottom = "1rem";
-  nav.appendChild(indexLink);
+	const indexLink = document.createElement("a");
+	indexLink.href = "/";
+	indexLink.textContent = "← Index";
+	indexLink.classList.add("side-nav-index");
+	nav.appendChild(indexLink);
 
-  headings.forEach((heading) => {
-    const a = document.createElement("a");
-    a.href = "#" + heading.id;
-    a.textContent = heading.textContent;
-    if (heading.tagName === "H2") a.style.paddingLeft = "1rem";
-    if (heading.tagName === "H3") a.style.paddingLeft = "2rem";
-    nav.appendChild(a);
-  });
+	headings.forEach((heading) => {
+		const a = document.createElement("a");
+		a.href = "#" + heading.id;
+		a.textContent = heading.textContent;
+		if (heading.tagName === "H2") a.classList.add("h2-link");
+		if (heading.tagName === "H3") a.classList.add("h3-link");
+		nav.appendChild(a);
+	});
 
-  const navLinks = Array.from(nav.querySelectorAll<HTMLAnchorElement>("a"));
+	const navLinks = Array.from(nav.querySelectorAll<HTMLAnchorElement>("a"));
 
-  function updateActiveLink() {
-    let current = "";
-    headings.forEach((heading) => {
-      const offset = parseFloat(getComputedStyle(heading).marginTop);
-      if (window.scrollY >= heading.offsetTop - offset) {
-        current = heading.id;
-      }
-    });
-    navLinks.forEach((link) => {
-      link.classList.toggle("active", link.getAttribute("href") === "#" + current);
-    });
-  }
+	function updateActiveLink() {
+		let current = "";
+		headings.forEach((heading) => {
+			const offset = parseFloat(getComputedStyle(heading).marginTop);
+			if (window.scrollY >= heading.offsetTop - offset) {
+				current = heading.id;
+			}
+		});
+		navLinks.forEach((link) => {
+			link.classList.toggle(
+				"active",
+				link.getAttribute("href") === "#" + current,
+			);
+		});
+	}
 
-  navLinks.forEach((link) => {
-    if (!link.getAttribute("href")?.startsWith("#")) return;
-    link.addEventListener("click", (e) => {
-      e.preventDefault();
-      const id = link.getAttribute("href")!.slice(1);
-      const target = document.getElementById(id);
-      if (target) {
-        const marginTop = parseFloat(getComputedStyle(target).marginTop);
-        const y = target.getBoundingClientRect().top + window.scrollY - marginTop;
-        window.scrollTo({ top: y, behavior: "smooth" });
-        history.pushState(null, "", "#" + id);
-      }
-    });
-  });
+	navLinks.forEach((link) => {
+		if (!link.getAttribute("href")?.startsWith("#")) return;
+		link.addEventListener("click", (e) => {
+			e.preventDefault();
+			const id = link.getAttribute("href")!.slice(1);
+			const target = document.getElementById(id);
+			if (target) {
+				const marginTop = parseFloat(getComputedStyle(target).marginTop);
+				const y =
+					target.getBoundingClientRect().top + window.scrollY - marginTop;
+				window.scrollTo({ top: y, behavior: "smooth" });
+				history.pushState(null, "", "#" + id);
+			}
+		});
+	});
 
-  window.addEventListener("scroll", updateActiveLink, { passive: true });
-  updateActiveLink();
+	window.addEventListener("scroll", updateActiveLink, { passive: true });
+	updateActiveLink();
 </script>
