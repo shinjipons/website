@@ -1,3 +1,7 @@
+:root {
+	--color-code: oklch(46.339% 0.1445 259.823);
+}
+
 /* Header section */
 
 .blog-post-title {
@@ -25,7 +29,7 @@ code {
 	font-family: var(--font-family-mono);
 	font-size: var(--code-font-size);
 	font-weight: var(--code-font-weight);
-	color: oklch(46.339% 0.1445 259.823);
+	color: var(--color-code);
 }
 
 /* Code blocks */
@@ -35,9 +39,21 @@ pre.astro-code {
 	border-radius: var(--spacing-s);
 	color: var(--color-primary) !important;
 	background-color: var(--color-quaternary) !important;
-	/* box-shadow: 0px 0px 0px 1px var(--color-tertiary); */
-	/* Is there a way to show line numbers on the left side of the block? */
-	/* There is probably a package for this */
+	counter-reset: line;
+}
+
+pre.astro-code .line::before {
+	counter-increment: line;
+	content: counter(line);
+	display: inline-block;
+	width: 1rem;
+	margin-right: 1.5rem;
+	text-align: right;
+	color: var(--color-tertiary);
+}
+
+code > span.line > span {
+	color: var(--color-code) !important;
 }
 
 /* Inline code */
@@ -53,15 +69,21 @@ li > code {
 	/* box-shadow: 0px 0px 0px 1px var(--color-tertiary); */
 }
 
-/* Images */
+/* Images & Videos */
 
-img {
+img,
+video {
+	border-radius: var(--spacing-m);
 	width: 100%;
 	box-sizing: border-box;
-	/* padding: var(--spacing-xl); */
-	border-radius: var(--spacing-m);
 	border: 1px solid var(--color-quaternary);
-	/* box-shadow: 0px 0px 0px 1px var(--color-tertiary); */
+}
+
+video {
+	max-height: 540px;
+	padding: var(--spacing-xl);
+	margin-top: var(--spacing-l);
+	margin-bottom: var(--spacing-xl);
 }
 
 /* Bold text */
@@ -80,4 +102,49 @@ blockquote {
 
 blockquote > p {
 	color: var(--color-secondary);
+}
+
+/* Side nav */
+
+.side-nav {
+	position: fixed;
+	top: var(--spacing-xxl);
+	left: var(--spacing-xl);
+	display: flex;
+	flex-direction: column;
+	gap: var(--spacing-xxs);
+}
+
+.side-nav a {
+	font-size: var(--text-font-size);
+	color: var(--color-tertiary);
+	line-height: var(--text-line-height);
+	margin-bottom: var(--spacing-none);
+	transition: color var(--hover-transition-duration);
+}
+
+.side-nav a:hover {
+	color: var(--color-primary);
+}
+
+.side-nav a.active {
+	color: var(--color-primary);
+}
+
+.side-nav .side-nav-index {
+	margin-bottom: var(--spacing-m);
+}
+
+.side-nav .h2-link {
+	padding-left: var(--spacing-l);
+}
+
+.side-nav .h3-link {
+	padding-left: calc(var(--spacing-l) * 2);
+}
+
+@media (max-width: 1050px) {
+	.side-nav {
+		display: none;
+	}
 }
