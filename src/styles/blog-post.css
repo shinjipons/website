@@ -15,6 +15,7 @@
 .blog-post-meta {
 	font-family: var(--font-family-sans);
 	font-size: var(--text-font-size);
+	color: var(--color-secondary);
 }
 
 /* Blog content */
