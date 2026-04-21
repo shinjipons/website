@@ -1,7 +1,7 @@
 /* Variables */
 
 :root {
-	--consistent-col-width: calc(0.8rem * 21);
+	--consistent-col-width: calc(0.8rem * 22);
 }
 
 /* Introduction */
@@ -27,7 +27,6 @@
 
 .generic-card {
 	box-sizing: border-box !important;
-	/* border-bottom: 1px solid var(--background-color); */
 }
 
 .generic-card:last-child {
@@ -93,8 +92,13 @@
 }
 
 .work-experience-card > .work-experience-company > a {
-	text-decoration: none !important;
+	text-decoration: none;
+	color: var(--color-primary);
 	border: none;
+}
+
+.work-experience-card > .work-experience-company > a:hover {
+	border-bottom: 1px solid var(--color-primary);
 }
 
 .work-experience-card > .work-experience-role {

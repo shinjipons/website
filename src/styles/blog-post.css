@@ -114,6 +114,9 @@ blockquote > p {
 	display: flex;
 	flex-direction: column;
 	gap: var(--spacing-xxs);
+	opacity: 1;
+	transform: translateX(calc(-1 * var(--spacing-m)));
+	transition: 0.3s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .side-nav a {
@@ -146,6 +149,8 @@ blockquote > p {
 
 @media (max-width: 1050px) {
 	.side-nav {
-		display: none;
+		/* display: none; */
+		opacity: 0;
+		transform: translateX(var(--spacing-none));
 	}
 }
