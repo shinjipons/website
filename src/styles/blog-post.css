@@ -43,6 +43,8 @@ pre.astro-code {
 	counter-reset: line;
 }
 
+/* Line numbers of the code block */
+
 pre.astro-code .line::before {
 	counter-increment: line;
 	content: counter(line);
@@ -50,11 +52,7 @@ pre.astro-code .line::before {
 	width: 1rem;
 	margin-right: 1.5rem;
 	text-align: right;
-	color: var(--color-tertiary);
-}
-
-code > span.line > span {
-	color: var(--color-code) !important;
+	color: var(--color-secondary);
 }
 
 /* Inline code */
@@ -63,11 +61,10 @@ p > code,
 li > code {
 	background: var(--color-quaternary);
 	box-sizing: content-box;
-	border-width: 4px 6px 4px 6px;
+	border-width: 2px 6px;
 	border-style: solid;
 	border-color: var(--color-quaternary);
-	border-radius: var(--spacing-xs);
-	/* box-shadow: 0px 0px 0px 1px var(--color-tertiary); */
+	border-radius: var(--spacing-s);
 }
 
 /* Images & Videos */
