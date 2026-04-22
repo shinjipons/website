@@ -1,15 +1,14 @@
 /* Light and Dark Mode */
 :root {
 	--html-font-size: 10px; /* do not change this */
-	--text-font-size: 1.5rem;
+	--text-font-size: 1.4rem;
 	--text-line-height: 2.4rem;
+	--code-font-size: 1.3rem;
 	--font-family-sans: "Inter", sans-serif;
 	--font-family-mono: "Google Sans Code", monospace;
 	--main-container-width: 52.8rem;
 	--h1-font-weight: 630;
 	--p-font-weight: 450;
-	/* --code-font-size: 1.2rem; */
-	--code-font-size: 1.33rem;
 	--code-font-weight: 450;
 	--hover-transition-duration: 0.1s;
 
@@ -101,10 +100,9 @@ a:hover {
 
 p > a {
 	border-bottom: 1px solid var(--color-tertiary);
-}
-
-p > a:hover {
-	border-bottom: 1px solid var(--color-primary);
+	&:hover {
+		border-bottom: 1px solid var(--color-primary);
+	}
 }
 
 @media (max-width: 560px) {
