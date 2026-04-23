@@ -45,6 +45,31 @@
 	color: var(--color-tertiary);
 }
 
+/* Gallery */
+
+.gallery-container {
+	display: grid;
+	width: 100%;
+	border-radius: var(--spacing-l);
+	grid-template-columns: 1fr 1fr;
+	grid-gap: var(--spacing-m);
+}
+
+.gallery-container > .gallery-item {
+	width: auto;
+	aspect-ratio: 4/3;
+	background-color: var(--color-quaternary);
+	border-radius: var(--spacing-m);
+	transition: background-color 90ms cubic-bezier(0.104, 0.734, 0.374, 0.974);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	&:hover {
+		background-color: var(--color-tertiary);
+		transition: background-color 120ms cubic-bezier(0.907, 0.23, 0.374, 0.974);
+	}
+}
+
 /* Blog */
 
 .generic-card > .date-year {
