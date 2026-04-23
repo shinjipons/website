@@ -122,10 +122,9 @@ blockquote > p {
 	line-height: 2rem;
 	margin-bottom: var(--spacing-none);
 	transition: color var(--hover-transition-duration);
-}
-
-.side-nav a:hover {
-	color: var(--color-primary);
+	&:hover {
+		color: var(--color-primary);
+	}
 }
 
 .side-nav a.active {
