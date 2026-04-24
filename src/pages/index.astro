@@ -201,6 +201,14 @@ const blogPosts = allPosts.sort(
 	(a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
 );
 
+// Gallery media — auto-scanned from public/media/gallery/
+const galleryGlob = import.meta.glob(
+	"/public/media/gallery/**/*.{jpg,jpeg,png,webp,gif,avif,mp4,mov,webm,JPG,JPEG,PNG,WEBP,GIF,AVIF,MP4,MOV,WEBM}",
+);
+const galleryImages = Object.keys(galleryGlob)
+	.map((path) => path.replace("/public", ""))
+	.sort();
+
 // Archive images — auto-scanned from public/media/archive/
 const archiveGlob = import.meta.glob(
 	"/public/media/archive/**/*.{jpg,jpeg,png,webp,gif,avif,JPG,JPEG,PNG,WEBP,GIF,AVIF}",
@@ -249,10 +257,17 @@ const archiveImages = Object.keys(archiveGlob)
 		<section id="gallery">
 			<h1>Gallery</h1>
 			<div class="gallery-container">
-				<div class="gallery-item"></div>
-				<div class="gallery-item"></div>
-				<div class="gallery-item"></div>
-				<div class="gallery-item"></div>
+				{
+					galleryImages.map((src) => (
+						<div class="gallery-item">
+							{/\.(mp4|mov|webm)$/i.test(src) ? (
+								<video src={src} autoplay loop muted playsinline />
+							) : (
+								<img src={src} alt="" />
+							)}
+						</div>
+					))
+				}
 			</div>
 		</section>
 
