@@ -259,7 +259,13 @@ const archiveImages = Object.keys(archiveGlob)
 			<div class="gallery-container">
 				{
 					galleryImages.map((src) => (
-						<div class="gallery-item">
+						<div
+							class="gallery-item"
+							tabindex="0"
+							role="button"
+							aria-haspopup="dialog"
+							aria-label="Open in fullscreen"
+						>
 							{/\.(mp4|mov|webm)$/i.test(src) ? (
 								<video src={src} autoplay loop muted playsinline />
 							) : (
@@ -268,6 +274,28 @@ const archiveImages = Object.keys(archiveGlob)
 						</div>
 					))
 				}
+			</div>
+			<div
+				id="gallery-lightbox"
+				class="gallery-lightbox"
+				hidden
+				role="dialog"
+				aria-modal="true"
+				aria-label="Gallery fullscreen"
+			>
+				<img
+					class="gallery-lightbox-img"
+					alt=""
+					tabindex="-1"
+					hidden
+				/>
+				<video
+					class="gallery-lightbox-video"
+					controls
+					playsinline
+					tabindex="-1"
+					hidden
+				></video>
 			</div>
 		</section>
 
@@ -401,4 +429,178 @@ const archiveImages = Object.keys(archiveGlob)
 			}
 		</section>
 	</div>
+
+	<script>
+		function initGalleryLightbox() {
+			const container = document.querySelector(".gallery-container");
+			const lightbox = document.getElementById("gallery-lightbox");
+			if (!container || !lightbox) return;
+
+			const lbImg = lightbox.querySelector(
+				".gallery-lightbox-img",
+			) as HTMLImageElement;
+			const lbVideo = lightbox.querySelector(
+				".gallery-lightbox-video",
+			) as HTMLVideoElement;
+			const closeBtn = lightbox.querySelector(
+				".gallery-lightbox-close",
+			) as HTMLButtonElement | null;
+
+			let lastFocus: HTMLElement | null = null;
+			/** Cancels an in-flight close animation (e.g. user opens another item). */
+			let cancelCloseAnimation: (() => void) | null = null;
+
+			function scrollbarWidthPx() {
+				const root = document.documentElement;
+				return Math.max(0, window.innerWidth - root.clientWidth);
+			}
+
+			function lockDocumentScroll() {
+				const root = document.documentElement;
+				const sb = scrollbarWidthPx();
+				if (sb > 0) {
+					const pad = parseFloat(getComputedStyle(root).paddingRight);
+					const base = Number.isFinite(pad) ? pad : 0;
+					root.style.paddingRight = `${base + sb}px`;
+				}
+				root.style.overflow = "hidden";
+				document.body.style.overflow = "hidden";
+			}
+
+			function unlockDocumentScroll() {
+				const root = document.documentElement;
+				root.style.overflow = "";
+				root.style.paddingRight = "";
+				document.body.style.overflow = "";
+			}
+
+			const CLOSE_ANIM_MS = 150;
+
+			function teardownLightbox() {
+				lightbox.hidden = true;
+				lightbox.classList.remove("is-open", "is-closing");
+				unlockDocumentScroll();
+				lbVideo.pause();
+				lbVideo.removeAttribute("src");
+				lbVideo.hidden = true;
+				lbImg.removeAttribute("src");
+				lbImg.hidden = true;
+				document.removeEventListener("keydown", onKeyDown);
+				lastFocus?.focus();
+				lastFocus = null;
+			}
+
+			function close() {
+				if (lightbox.hidden || lightbox.classList.contains("is-closing")) {
+					return;
+				}
+
+				document.removeEventListener("keydown", onKeyDown);
+
+				lightbox.classList.remove("is-open");
+				lightbox.classList.add("is-closing");
+
+				let settled = false;
+				const settle = () => {
+					if (settled) return;
+					settled = true;
+					cancelCloseAnimation = null;
+					lightbox.removeEventListener("animationend", onAnimEnd);
+					window.clearTimeout(fallbackTimer);
+					teardownLightbox();
+				};
+
+				const onAnimEnd = (e: AnimationEvent) => {
+					if (e.target !== lightbox) return;
+					if (e.animationName !== "gallery-lightbox-fade-out") return;
+					settle();
+				};
+
+				lightbox.addEventListener("animationend", onAnimEnd);
+				const fallbackTimer = window.setTimeout(settle, CLOSE_ANIM_MS + 80);
+
+				cancelCloseAnimation = () => {
+					settled = true;
+					cancelCloseAnimation = null;
+					lightbox.removeEventListener("animationend", onAnimEnd);
+					window.clearTimeout(fallbackTimer);
+					lightbox.classList.remove("is-closing");
+				};
+			}
+
+			function onKeyDown(e: KeyboardEvent) {
+				if (e.key === "Escape") close();
+			}
+
+			function open(media: HTMLImageElement | HTMLVideoElement) {
+				cancelCloseAnimation?.();
+
+				lastFocus = document.activeElement as HTMLElement;
+				lockDocumentScroll();
+				lightbox.hidden = false;
+				lightbox.classList.add("is-open");
+				document.addEventListener("keydown", onKeyDown);
+
+				if (media instanceof HTMLImageElement) {
+					lbVideo.hidden = true;
+					lbVideo.pause();
+					lbVideo.removeAttribute("src");
+					lbImg.src = media.currentSrc || media.src;
+					lbImg.alt = media.alt;
+					lbImg.hidden = false;
+				} else {
+					lbImg.hidden = true;
+					lbImg.removeAttribute("src");
+					lbVideo.hidden = false;
+					lbVideo.src = media.currentSrc || media.src;
+					void lbVideo.play().catch(() => {});
+				}
+
+				if (closeBtn) {
+					closeBtn.focus();
+				} else if (!lbImg.hidden) {
+					lbImg.focus();
+				} else if (!lbVideo.hidden) {
+					lbVideo.focus();
+				}
+			}
+
+			container.addEventListener("click", (e) => {
+				const item = (e.target as Element).closest(".gallery-item");
+				if (!item || !container.contains(item)) return;
+				const media = item.querySelector("img, video");
+				if (
+					media instanceof HTMLImageElement ||
+					media instanceof HTMLVideoElement
+				) {
+					e.preventDefault();
+					open(media);
+				}
+			});
+
+			container.addEventListener("keydown", (e: KeyboardEvent) => {
+				if (e.key !== "Enter" && e.key !== " ") return;
+				const item = (e.target as Element).closest(".gallery-item");
+				if (!item || !container.contains(item)) return;
+				const media = item.querySelector("img, video");
+				if (
+					media instanceof HTMLImageElement ||
+					media instanceof HTMLVideoElement
+				) {
+					e.preventDefault();
+					open(media);
+				}
+			});
+
+			lightbox.addEventListener("click", (e) => {
+				if (e.target === lightbox) close();
+			});
+
+			closeBtn?.addEventListener("click", () => close());
+
+			lbImg.addEventListener("click", () => close());
+		}
+
+		initGalleryLightbox();
+	</script>
 </BaseLayout>
