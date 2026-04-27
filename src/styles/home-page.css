@@ -51,8 +51,8 @@
 	display: grid;
 	width: 100%;
 	border-radius: var(--spacing-l);
-	grid-template-columns: 1fr 1fr;
-	grid-gap: var(--spacing-m);
+	grid-template-columns: repeat(2, 1fr);
+	gap: var(--spacing-m);
 }
 
 .gallery-container > .gallery-item {
@@ -62,16 +62,20 @@
 	align-items: center;
 	justify-content: center;
 	overflow: hidden;
-	transition: 90ms cubic-bezier(0.104, 0.734, 0.374, 0.974);
+	transition: 300ms cubic-bezier(0.104, 0.734, 0.374, 0.974);
+	background: var(--color-quaternary);
+	aspect-ratio: 1;
+	&:hover {
+		background-color: transparent;
+		transition: 150ms cubic-bezier(0.104, 0.734, 0.374, 0.974);
+	}
 }
 
 .gallery-container > .gallery-item > img,
 .gallery-container > .gallery-item > video {
-	aspect-ratio: 3/2;
 	width: 100%;
-	height: auto;
+	height: 100%;
 	object-fit: cover;
-	border-radius: var(--spacing-m);
 }
 
 /* Blog */
