@@ -600,7 +600,7 @@ const archiveImages = Object.keys(archiveGlob)
 				const item = (e.target as Element).closest(".gallery-item");
 				if (!item || !container.contains(item)) return;
 				const media = item.querySelector(
-					".gallery-item-face--front img, .gallery-item-face--front video",
+					".gallery-item-face--front img, .gallery-item-face--front video, .gallery-item-face--back img, .gallery-item-face--back video",
 				);
 				if (
 					media instanceof HTMLImageElement ||
@@ -616,7 +616,7 @@ const archiveImages = Object.keys(archiveGlob)
 				const item = (e.target as Element).closest(".gallery-item");
 				if (!item || !container.contains(item)) return;
 				const media = item.querySelector(
-					".gallery-item-face--front img, .gallery-item-face--front video",
+					".gallery-item-face--front img, .gallery-item-face--front video, .gallery-item-face--back img, .gallery-item-face--back video",
 				);
 				if (
 					media instanceof HTMLImageElement ||

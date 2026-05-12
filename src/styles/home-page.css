@@ -7,8 +7,8 @@
 	--gallery-sphere-tilt-z: -4deg;
 	--gallery-sphere-burst-duration: 5.5s;
 	--gallery-sphere-burst-timing: cubic-bezier(0.17, 0.72, 0.12, 1);
-	--gallery-sphere-burst-rotation: 720deg;
-	--gallery-sphere-burst-scale-start: 5;
+	--gallery-sphere-burst-rotation: 180deg;
+	--gallery-sphere-burst-scale-start: 8;
 	--gallery-sphere-burst-scale-end: 1;
 	--gallery-sphere-rotate-duration: 96s;
 }
@@ -64,6 +64,12 @@
 .container > section#gallery {
 	position: relative;
 	z-index: 1;
+}
+
+/* Fixed lightbox lives inside #gallery; sibling sections use z-index: 2, so lift this
+   section while the overlay is shown (including close animation, before [hidden]). */
+.container > section#gallery:has(.gallery-lightbox:not([hidden])) {
+	z-index: 10;
 }
 
 #gallery > h1 {
@@ -181,6 +187,7 @@
 	aspect-ratio: 1;
 	cursor: pointer;
 	transform-style: preserve-3d;
+	pointer-events: auto;
 }
 
 .gallery-item-shell {
@@ -199,6 +206,8 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	/* Let clicks reach .gallery-item so back-facing tiles (rear of sphere) still open. */
+	pointer-events: none;
 	backface-visibility: hidden;
 	-webkit-backface-visibility: hidden;
 	transform-style: preserve-3d;
