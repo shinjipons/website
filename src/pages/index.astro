@@ -11,6 +11,7 @@ const lastUpdated = new Date(
 });
 
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { gallerySphereItemTransform } from "../lib/gallery-sphere-layout";
 import "../styles/home-page.css";
 
 // Social media links
@@ -267,23 +268,49 @@ const archiveImages = Object.keys(archiveGlob)
 		<section id="gallery">
 			<h1>Gallery</h1>
 			<div class="gallery-container">
-				{
-					galleryImages.map((src) => (
-						<div
-							class="gallery-item"
-							tabindex="0"
-							role="button"
-							aria-haspopup="dialog"
-							aria-label="Open in fullscreen"
-						>
-							{/\.(mp4|mov|webm)$/i.test(src) ? (
-								<video src={src} autoplay loop muted playsinline />
-							) : (
-								<img src={src} alt="" />
-							)}
+				<div class="gallery-pivot">
+					<div class="gallery-sphere-stage">
+						<div class="gallery-sphere">
+							{
+								galleryImages.map((src, i) => (
+									<div
+										class="gallery-item"
+										tabindex="0"
+										role="button"
+										aria-haspopup="dialog"
+										aria-label="Open in fullscreen"
+										style={{
+											transform: `${gallerySphereItemTransform(
+												i,
+												galleryImages.length,
+											)} scale(calc(var(--gallery-image-scale, 1) / var(--gallery-sphere-scale, 1)))`,
+										}}
+									>
+										<div class="gallery-item-shell">
+											<div class="gallery-item-face gallery-item-face--front">
+												{/\.(mp4|mov|webm)$/i.test(src) ? (
+													<video src={src} autoplay loop muted playsinline />
+												) : (
+													<img src={src} alt="" />
+												)}
+											</div>
+											<div
+												class="gallery-item-face gallery-item-face--back"
+												aria-hidden="true"
+											>
+												{/\.(mp4|mov|webm)$/i.test(src) ? (
+													<video src={src} autoplay loop muted playsinline />
+												) : (
+													<img src={src} alt="" />
+												)}
+											</div>
+										</div>
+									</div>
+								))
+							}
 						</div>
-					))
-				}
+					</div>
+				</div>
 			</div>
 			<div
 				id="gallery-lightbox"
@@ -572,7 +599,9 @@ const archiveImages = Object.keys(archiveGlob)
 			container.addEventListener("click", (e) => {
 				const item = (e.target as Element).closest(".gallery-item");
 				if (!item || !container.contains(item)) return;
-				const media = item.querySelector("img, video");
+				const media = item.querySelector(
+					".gallery-item-face--front img, .gallery-item-face--front video",
+				);
 				if (
 					media instanceof HTMLImageElement ||
 					media instanceof HTMLVideoElement
@@ -586,7 +615,9 @@ const archiveImages = Object.keys(archiveGlob)
 				if (e.key !== "Enter" && e.key !== " ") return;
 				const item = (e.target as Element).closest(".gallery-item");
 				if (!item || !container.contains(item)) return;
-				const media = item.querySelector("img, video");
+				const media = item.querySelector(
+					".gallery-item-face--front img, .gallery-item-face--front video",
+				);
 				if (
 					media instanceof HTMLImageElement ||
 					media instanceof HTMLVideoElement

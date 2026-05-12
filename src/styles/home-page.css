@@ -2,6 +2,15 @@
 
 :root {
 	--consistent-col-width: calc(0.8rem * 22);
+	--gallery-sphere-tilt-x: -5deg;
+	--gallery-sphere-tilt-y: 0deg;
+	--gallery-sphere-tilt-z: -4deg;
+	--gallery-sphere-burst-duration: 5.5s;
+	--gallery-sphere-burst-timing: cubic-bezier(0.17, 0.72, 0.12, 1);
+	--gallery-sphere-burst-rotation: 720deg;
+	--gallery-sphere-burst-scale-start: 5;
+	--gallery-sphere-burst-scale-end: 1;
+	--gallery-sphere-rotate-duration: 96s;
 }
 
 /* Introduction */
@@ -45,43 +54,187 @@
 	color: var(--color-tertiary);
 }
 
-/* Gallery */
+/* Main page: gallery block stacks under other sections; sphere under the Gallery heading */
 
-.gallery-container {
-	display: grid;
-	width: 100%;
-	grid-template-columns: repeat(3, 1fr);
-	gap: var(--spacing-l);
+.container > section:not(#gallery) {
+	position: relative;
+	z-index: 2;
 }
 
-.gallery-container > .gallery-item {
-	width: auto;
-	border-radius: var(--spacing-s);
+.container > section#gallery {
+	position: relative;
+	z-index: 1;
+}
+
+#gallery > h1 {
+	position: relative;
+	z-index: 1;
+}
+
+/* Gallery — 3D sphere (equal rows × cols; radius fills the container via cq units) */
+
+.gallery-container {
+	container-type: size;
+	container-name: gallery;
+	width: 100%;
+	max-width: 100%;
+	aspect-ratio: 1;
+	max-height: min(100vw, 88dvh);
+	box-sizing: border-box;
+	--gallery-card-size: clamp(4.5rem, 29.25cqmin, 16.875rem);
+	/* Override (e.g. fixed `2.5rem`) to size the sphere without tying radius to card width. */
+	--gallery-radius-clearance: calc(var(--gallery-card-size) * 0.56);
+	--gallery-radius: max(
+		1.5rem,
+		calc(min(50cqw, 50cqh) - var(--gallery-radius-clearance))
+		);
+		--gallery-sphere-scale: 1;
+		/* Multiplier on top of automatic 1 / --gallery-sphere-scale tile scaling (keeps visuals steady when sphere shrinks). */
+		--gallery-image-scale: 1;
+		touch-action: pan-y;
+		/* Smaller perspective distance → stronger foreshortening (less “orthographic”). */
+		perspective: min(
+			calc(var(--gallery-radius) * var(--gallery-sphere-scale, 1) * 3),
+			200vw
+		);
+		perspective-origin: 50% 50%;
+		position: relative;
+		overflow-y: clip;
+	}
+
+.gallery-pivot {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	overflow: hidden;
-	transition: 300ms cubic-bezier(0.104, 0.734, 0.374, 0.974);
-	background: var(--color-quaternary);
-	aspect-ratio: 1;
-	cursor: pointer;
-	&:hover {
-		background-color: transparent;
-		transition: 150ms cubic-bezier(0.104, 0.734, 0.374, 0.974);
+	height: 100%;
+	min-height: 0;
+	transform: rotateX(var(--gallery-sphere-tilt-x))
+		rotateY(var(--gallery-sphere-tilt-y)) rotateZ(var(--gallery-sphere-tilt-z));
+	transform-style: preserve-3d;
+}
+
+.gallery-sphere-stage {
+	position: relative;
+	width: 0;
+	height: 0;
+	margin: auto;
+	transform-style: preserve-3d;
+	animation: gallery-sphere-burst var(--gallery-sphere-burst-duration)
+		var(--gallery-sphere-burst-timing) forwards;
+	will-change: transform;
+}
+
+@keyframes gallery-sphere-burst {
+	from {
+		transform: scale(var(--gallery-sphere-burst-scale-start)) rotateY(0deg);
 	}
-	&:focus-visible {
-		outline: 2px solid transparent;
-		outline-offset: 2px;
+	to {
+		transform: scale(var(--gallery-sphere-burst-scale-end))
+			rotateY(var(--gallery-sphere-burst-rotation));
 	}
 }
 
-.gallery-container > .gallery-item > img,
-.gallery-container > .gallery-item > video {
+.gallery-sphere {
+	position: relative;
+	width: 0;
+	height: 0;
+	margin: auto;
+	transform-style: preserve-3d;
+	animation: gallery-sphere-rotate var(--gallery-sphere-rotate-duration) linear
+		infinite;
+	will-change: transform;
+}
+
+@keyframes gallery-sphere-rotate {
+	from {
+		transform: rotateY(0deg);
+	}
+	to {
+		transform: rotateY(360deg);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.gallery-sphere-stage {
+		animation: none;
+		transform: none;
+	}
+
+	.gallery-sphere {
+		animation: none;
+		transform: rotateY(18deg);
+	}
+}
+
+.gallery-container .gallery-item {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: var(--gallery-card-size);
+	margin-left: calc(var(--gallery-card-size) * -0.5);
+	margin-top: calc(var(--gallery-card-size) * -0.5);
+	transform-origin: center center;
+	border-radius: var(--spacing-s);
+	display: block;
+	overflow: visible;
+	background: transparent;
+	aspect-ratio: 1;
+	cursor: pointer;
+	transform-style: preserve-3d;
+}
+
+.gallery-item-shell {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	transform-style: preserve-3d;
+}
+
+.gallery-item-face {
+	position: absolute;
+	inset: 0;
+	border-radius: var(--spacing-s);
+	overflow: hidden;
+	background: var(--color-quaternary);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+	transform-style: preserve-3d;
+}
+
+.gallery-item-face--front {
+	transform: translateZ(1px);
+}
+
+.gallery-item-face--back {
+	transform: rotateY(180deg) translateZ(1px);
+}
+
+.gallery-container .gallery-item-face > img,
+.gallery-container .gallery-item-face > video {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
 	pointer-events: none;
 	user-select: none;
+}
+
+.gallery-container .gallery-item:focus-visible {
+	outline: 2px solid transparent;
+	outline-offset: 2px;
+}
+
+@media (max-width: 560px) {
+	.gallery-container {
+		max-height: min(100vw, 78dvh);
+		--gallery-card-size: clamp(3.9375rem, 31.5cqmin, 13.5rem);
+		perspective: min(
+			calc(var(--gallery-radius) * var(--gallery-sphere-scale, 1) * 2.7),
+			180vw
+		);
+	}
 }
 
 /* Gallery lightbox */
