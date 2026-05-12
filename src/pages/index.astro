@@ -287,17 +287,17 @@ const archiveImages = Object.keys(archiveGlob)
 										}}
 									>
 										<div class="gallery-item-shell">
-											<div class="gallery-item-face gallery-item-face--front">
+											<div
+												class="gallery-item-face gallery-item-face--back"
+												aria-hidden="true"
+											>
 												{/\.(mp4|mov|webm)$/i.test(src) ? (
 													<video src={src} autoplay loop muted playsinline />
 												) : (
 													<img src={src} alt="" />
 												)}
 											</div>
-											<div
-												class="gallery-item-face gallery-item-face--back"
-												aria-hidden="true"
-											>
+											<div class="gallery-item-face gallery-item-face--front">
 												{/\.(mp4|mov|webm)$/i.test(src) ? (
 													<video src={src} autoplay loop muted playsinline />
 												) : (
@@ -596,19 +596,34 @@ const archiveImages = Object.keys(archiveGlob)
 				}
 			}
 
-			container.addEventListener("click", (e) => {
-				const item = (e.target as Element).closest(".gallery-item");
-				if (!item || !container.contains(item)) return;
-				const media = item.querySelector(
-					".gallery-item-face--front img, .gallery-item-face--front video, .gallery-item-face--back img, .gallery-item-face--back video",
-				);
-				if (
-					media instanceof HTMLImageElement ||
-					media instanceof HTMLVideoElement
-				) {
-					e.preventDefault();
-					open(media);
+			const GALLERY_MEDIA_SELECTOR =
+				".gallery-item-face--front img, .gallery-item-face--front video, .gallery-item-face--back img, .gallery-item-face--back video";
+
+			function mediaUnderPoint(
+				clientX: number,
+				clientY: number,
+			): HTMLImageElement | HTMLVideoElement | null {
+				const stack = document.elementsFromPoint(clientX, clientY);
+				for (let i = 0; i < stack.length; i++) {
+					const el = stack[i];
+					if (
+						(el instanceof HTMLImageElement ||
+							el instanceof HTMLVideoElement) &&
+						container.contains(el) &&
+						el.matches(GALLERY_MEDIA_SELECTOR)
+					) {
+						return el;
+					}
 				}
+				return null;
+			}
+
+			container.addEventListener("click", (e) => {
+				const me = e as MouseEvent;
+				const media = mediaUnderPoint(me.clientX, me.clientY);
+				if (!media) return;
+				e.preventDefault();
+				open(media);
 			});
 
 			container.addEventListener("keydown", (e: KeyboardEvent) => {
