@@ -187,7 +187,6 @@
 	aspect-ratio: 1;
 	cursor: pointer;
 	transform-style: preserve-3d;
-	pointer-events: auto;
 }
 
 .gallery-item-shell {
@@ -206,8 +205,6 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	/* Let clicks reach .gallery-item so back-facing tiles (rear of sphere) still open. */
-	pointer-events: none;
 	backface-visibility: hidden;
 	-webkit-backface-visibility: hidden;
 	transform-style: preserve-3d;
@@ -226,7 +223,6 @@
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
-	pointer-events: none;
 	user-select: none;
 }
 
