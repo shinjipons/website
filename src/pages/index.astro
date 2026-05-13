@@ -651,6 +651,73 @@ const archiveImages = Object.keys(archiveGlob)
 			lbImg.addEventListener("click", () => close());
 		}
 
+		/**
+		 * Drive the infinite sphere rotation from rAF instead of CSS.
+		 *
+		 * Browsers throttle compositor-driven CSS animations when the animated
+		 * element is (partly) offscreen as a power-saving optimization, which
+		 * shows up here as visibly skipped frames once the gallery scrolls out
+		 * of view. rAF is only throttled when the document is hidden, so this
+		 * keeps the rotation smooth regardless of scroll position.
+		 */
+		function initGallerySphereRotation() {
+			const sphere = document.querySelector(
+				".gallery-sphere",
+			) as HTMLElement | null;
+			if (!sphere) return;
+
+			const reduceMotion = window.matchMedia(
+				"(prefers-reduced-motion: reduce)",
+			);
+
+			function readDurationMs(): number {
+				const raw = getComputedStyle(document.documentElement)
+					.getPropertyValue("--gallery-sphere-rotate-duration")
+					.trim();
+				if (!raw) return 96000;
+				if (raw.endsWith("ms")) return parseFloat(raw);
+				if (raw.endsWith("s")) return parseFloat(raw) * 1000;
+				const n = parseFloat(raw);
+				return Number.isFinite(n) && n > 0 ? n : 96000;
+			}
+
+			let rafId = 0;
+			let startTime = 0;
+			let durationMs = readDurationMs();
+
+			function tick(now: number) {
+				if (startTime === 0) startTime = now;
+				const angle = (((now - startTime) / durationMs) * 360) % 360;
+				sphere!.style.transform = `rotateY(${angle}deg)`;
+				rafId = requestAnimationFrame(tick);
+			}
+
+			function start() {
+				if (rafId !== 0) return;
+				durationMs = readDurationMs();
+				sphere!.style.animation = "none";
+				startTime = 0;
+				rafId = requestAnimationFrame(tick);
+			}
+
+			function stop() {
+				if (rafId !== 0) {
+					cancelAnimationFrame(rafId);
+					rafId = 0;
+				}
+				sphere!.style.animation = "";
+				sphere!.style.transform = "";
+			}
+
+			if (!reduceMotion.matches) start();
+
+			reduceMotion.addEventListener("change", (e) => {
+				if (e.matches) stop();
+				else start();
+			});
+		}
+
 		initGalleryLightbox();
+		initGallerySphereRotation();
 	</script>
 </BaseLayout>
