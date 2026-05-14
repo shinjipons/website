@@ -652,19 +652,46 @@ const archiveImages = Object.keys(archiveGlob)
 		}
 
 		/**
-		 * Drive the infinite sphere rotation from rAF instead of CSS.
+		 * Drive the sphere's Y rotation from rAF and let the user grab it
+		 * with the mouse / touch to rotate manually, with momentum on release.
 		 *
+		 * Why rAF instead of CSS animation:
 		 * Browsers throttle compositor-driven CSS animations when the animated
 		 * element is (partly) offscreen as a power-saving optimization, which
 		 * shows up here as visibly skipped frames once the gallery scrolls out
 		 * of view. rAF is only throttled when the document is hidden, so this
 		 * keeps the rotation smooth regardless of scroll position.
+		 *
+		 * Motion model:
+		 * The sphere is always in a "coast" state described by an initial
+		 * velocity v0 at time t0 (= release time), decaying exponentially
+		 * toward the steady-state auto-rotation velocity vAuto:
+		 *
+		 *     v(t)     = vAuto + (v0 - vAuto) * exp(-t / TAU)
+		 *     angle(t) = θ0 + vAuto·t + (v0 - vAuto)·TAU·(1 - exp(-t / TAU))
+		 *
+		 * Idle auto-rotation is just the special case v0 == vAuto (the decay
+		 * term vanishes), so the same loop handles both "ambient spin" and
+		 * "post-flick coast" with no state machine.
+		 *
+		 * Drag model:
+		 * - Pointer down on .gallery-pivot pauses the coast.
+		 * - Horizontal movement maps 1 pivot width → 360°.
+		 * - On release we sample the angular velocity from a short trailing
+		 *   window of move events (so the velocity reflects the user's
+		 *   *final* gesture, not the average of the whole drag) and seed a
+		 *   fresh coast with that velocity.
+		 * - A drag past the threshold suppresses the next click so the
+		 *   lightbox doesn't open at the end of a gesture.
 		 */
-		function initGallerySphereRotation() {
+		function initGallerySphere() {
+			const pivot = document.querySelector(
+				".gallery-pivot",
+			) as HTMLElement | null;
 			const sphere = document.querySelector(
 				".gallery-sphere",
 			) as HTMLElement | null;
-			if (!sphere) return;
+			if (!pivot || !sphere) return;
 
 			const reduceMotion = window.matchMedia(
 				"(prefers-reduced-motion: reduce)",
@@ -681,43 +708,189 @@ const archiveImages = Object.keys(archiveGlob)
 				return Number.isFinite(n) && n > 0 ? n : 96000;
 			}
 
-			let rafId = 0;
-			let startTime = 0;
+			const norm = (a: number) => ((a % 360) + 360) % 360;
+
+			// Tuning knobs for the inertial coast.
+			const TAU_MS = 350; // time constant — ~3·TAU until coast is indistinguishable from auto
+			const SAMPLE_WINDOW_MS = 80; // trailing window for release-velocity sampling
+			const MAX_FLICK_DEG_PER_MS = 2; // hard cap on |v0| (~5.5 turns/sec)
+			const DRAG_THRESHOLD_PX = 4;
+
 			let durationMs = readDurationMs();
+			let angleDeg = 0;
+			let rafId = 0;
+			let coastStartTime = 0;
+			let coastStartAngle = 0;
+			let coastVelocity = 0; // deg/ms
+
+			const autoVelocity = () => 360 / durationMs;
+
+			function angleAtTime(now: number): number {
+				const vAuto = autoVelocity();
+				const t = now - coastStartTime;
+				return (
+					coastStartAngle +
+					vAuto * t +
+					(coastVelocity - vAuto) * TAU_MS * (1 - Math.exp(-t / TAU_MS))
+				);
+			}
+
+			function apply() {
+				sphere!.style.transform = `rotateY(${angleDeg}deg)`;
+			}
 
 			function tick(now: number) {
-				if (startTime === 0) startTime = now;
-				const angle = (((now - startTime) / durationMs) * 360) % 360;
-				sphere!.style.transform = `rotateY(${angle}deg)`;
+				angleDeg = norm(angleAtTime(now));
+				apply();
 				rafId = requestAnimationFrame(tick);
 			}
 
-			function start() {
-				if (rafId !== 0) return;
+			function startCoast(initialVelocity: number) {
 				durationMs = readDurationMs();
 				sphere!.style.animation = "none";
-				startTime = 0;
-				rafId = requestAnimationFrame(tick);
+				coastStartTime = performance.now();
+				coastStartAngle = angleDeg;
+				coastVelocity = initialVelocity;
+				if (rafId === 0) rafId = requestAnimationFrame(tick);
 			}
 
-			function stop() {
-				if (rafId !== 0) {
-					cancelAnimationFrame(rafId);
-					rafId = 0;
+			function stopLoop() {
+				if (rafId === 0) return;
+				cancelAnimationFrame(rafId);
+				rafId = 0;
+			}
+
+			// Drag state + velocity sampling buffer.
+			let dragging = false;
+			let dragPointerId = -1;
+			let dragStartX = 0;
+			let dragStartUnwrapped = 0;
+			let dragUnwrappedAngle = 0;
+			let dragMoved = false;
+
+			type Sample = { t: number; angle: number };
+			let dragSamples: Sample[] = [];
+
+			function pushSample(t: number, unwrappedAngle: number) {
+				dragSamples.push({ t, angle: unwrappedAngle });
+				while (
+					dragSamples.length > 0 &&
+					t - dragSamples[0].t > SAMPLE_WINDOW_MS
+				) {
+					dragSamples.shift();
 				}
-				sphere!.style.animation = "";
-				sphere!.style.transform = "";
 			}
 
-			if (!reduceMotion.matches) start();
+			function computeReleaseVelocity(): number {
+				if (dragSamples.length < 2) return autoVelocity();
+				const oldest = dragSamples[0];
+				const newest = dragSamples[dragSamples.length - 1];
+				const dt = newest.t - oldest.t;
+				if (dt < 1) return autoVelocity();
+				let v = (newest.angle - oldest.angle) / dt;
+				if (v > MAX_FLICK_DEG_PER_MS) v = MAX_FLICK_DEG_PER_MS;
+				else if (v < -MAX_FLICK_DEG_PER_MS) v = -MAX_FLICK_DEG_PER_MS;
+				return v;
+			}
+
+			const prevBodyCursor = { value: "" };
+			const prevBodyUserSelect = { value: "" };
+
+			function onPointerDown(e: PointerEvent) {
+				if (e.button !== 0) return;
+				dragging = true;
+				dragPointerId = e.pointerId;
+				dragStartX = e.clientX;
+				dragStartUnwrapped = angleDeg;
+				dragUnwrappedAngle = angleDeg;
+				dragMoved = false;
+				dragSamples = [];
+				pushSample(e.timeStamp || performance.now(), dragUnwrappedAngle);
+
+				stopLoop();
+				sphere!.style.animation = "none";
+
+				try {
+					pivot!.setPointerCapture(e.pointerId);
+				} catch {}
+
+				prevBodyCursor.value = document.body.style.cursor;
+				prevBodyUserSelect.value = document.body.style.userSelect;
+				document.body.style.cursor = "grabbing";
+				document.body.style.userSelect = "none";
+				pivot!.style.cursor = "grabbing";
+			}
+
+			function onPointerMove(e: PointerEvent) {
+				if (!dragging || e.pointerId !== dragPointerId) return;
+				const dx = e.clientX - dragStartX;
+				if (!dragMoved && Math.abs(dx) > DRAG_THRESHOLD_PX) dragMoved = true;
+				const width = pivot!.clientWidth || 1;
+				dragUnwrappedAngle = dragStartUnwrapped + (dx / width) * 360;
+				angleDeg = norm(dragUnwrappedAngle);
+				apply();
+				pushSample(e.timeStamp || performance.now(), dragUnwrappedAngle);
+			}
+
+			function endDrag(e: PointerEvent) {
+				if (!dragging || e.pointerId !== dragPointerId) return;
+				dragging = false;
+				dragPointerId = -1;
+				try {
+					pivot!.releasePointerCapture(e.pointerId);
+				} catch {}
+
+				// Make sure the release position itself is in the velocity window —
+				// pointerup may carry a different coord than the last pointermove.
+				const dx = e.clientX - dragStartX;
+				const width = pivot!.clientWidth || 1;
+				dragUnwrappedAngle = dragStartUnwrapped + (dx / width) * 360;
+				angleDeg = norm(dragUnwrappedAngle);
+				pushSample(e.timeStamp || performance.now(), dragUnwrappedAngle);
+
+				document.body.style.cursor = prevBodyCursor.value;
+				document.body.style.userSelect = prevBodyUserSelect.value;
+				pivot!.style.cursor = "grab";
+
+				if (dragMoved) {
+					// Swallow the click that would otherwise open the lightbox at the
+					// end of a drag. Capture phase so it fires before the bubble-phase
+					// handler registered in initGalleryLightbox().
+					const suppress = (ev: Event) => {
+						ev.stopPropagation();
+						ev.preventDefault();
+					};
+					const opts = { capture: true, once: true } as AddEventListenerOptions;
+					window.addEventListener("click", suppress, opts);
+					window.setTimeout(() => {
+						window.removeEventListener("click", suppress, { capture: true });
+					}, 300);
+				}
+
+				if (!reduceMotion.matches) startCoast(computeReleaseVelocity());
+			}
+
+			pivot.style.cursor = "grab";
+			pivot.addEventListener("pointerdown", onPointerDown);
+			pivot.addEventListener("pointermove", onPointerMove);
+			pivot.addEventListener("pointerup", endDrag);
+			pivot.addEventListener("pointercancel", endDrag);
+			pivot.addEventListener("dragstart", (e) => e.preventDefault());
+
+			if (!reduceMotion.matches) startCoast(autoVelocity());
 
 			reduceMotion.addEventListener("change", (e) => {
-				if (e.matches) stop();
-				else start();
+				if (e.matches) {
+					stopLoop();
+					sphere!.style.animation = "";
+					sphere!.style.transform = "";
+				} else {
+					startCoast(autoVelocity());
+				}
 			});
 		}
 
 		initGalleryLightbox();
-		initGallerySphereRotation();
+		initGallerySphere();
 	</script>
 </BaseLayout>
