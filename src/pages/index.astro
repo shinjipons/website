@@ -13,9 +13,11 @@ const lastUpdated = new Date(
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { gallerySphereItemTransform } from "../lib/gallery-sphere-layout";
 import { getWeeklyGitHubStats } from "../lib/github-weekly-stats";
+import { getRaindropLikes } from "../lib/raindrop-likes";
 import "../styles/home-page.css";
 
 const githubStatsThisWeek = await getWeeklyGitHubStats();
+const raindropLikes = await getRaindropLikes();
 
 // Social media links
 const socialLinks = [
@@ -472,6 +474,27 @@ const archiveImages = Object.keys(archiveGlob)
 				)
 			}
 		</section>
+
+		{
+			raindropLikes?.length ? (
+				<section id="likes">
+					<h1>Stuff I Find Cool</h1>
+					<div class="likes-grid">
+						{raindropLikes.map((like) => (
+							<a
+								href={like.link}
+								target="_blank"
+								rel="noopener noreferrer"
+								class="like-card"
+								aria-label={like.title}
+							>
+								<img src={like.cover} alt={like.title} loading="lazy" />
+							</a>
+						))}
+					</div>
+				</section>
+			) : null
+		}
 	</div>
 
 	<script>
