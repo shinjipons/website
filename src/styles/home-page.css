@@ -12,7 +12,6 @@
 	--gallery-sphere-burst-scale-end: 1.2;
 	/* Negative: stage starts deeper in Z; eases to 0 for a subtle "camera push in". */
 	--gallery-sphere-burst-dolly-z-factor: -0.34;
-	/* --gallery-sphere-burst-dolly-z-factor: -0.7; */
 	--gallery-sphere-rotate-duration: 96s;
 }
 
@@ -20,14 +19,8 @@
 
 #introduction > h1,
 #introduction > h3 {
+	margin-top: var(--spacing-none);
 	margin-bottom: var(--spacing-none);
-}
-
-#introduction > .intro-github-stat {
-	margin-top: var(--spacing-m);
-	margin-bottom: var(--spacing-none);
-	color: var(--color-secondary);
-	font-weight: var(--p-font-weight);
 }
 
 /* General "Card" styling */
@@ -103,20 +96,20 @@
 	--gallery-radius: max(
 		1.5rem,
 		calc(min(50cqw, 50cqh) - var(--gallery-radius-clearance))
-		);
-		--gallery-sphere-scale: 1;
-		/* Multiplier on top of automatic 1 / --gallery-sphere-scale tile scaling (keeps visuals steady when sphere shrinks). */
-		--gallery-image-scale: 1;
-		touch-action: pan-y;
-		/* Smaller perspective distance → stronger foreshortening (less “orthographic”). */
-		perspective: min(
-			calc(var(--gallery-radius) * var(--gallery-sphere-scale, 1) * 3),
-			200vw
-		);
-		perspective-origin: 50% 50%;
-		position: relative;
-		overflow-y: clip;
-	}
+	);
+	--gallery-sphere-scale: 1;
+	/* Multiplier on top of automatic 1 / --gallery-sphere-scale tile scaling (keeps visuals steady when sphere shrinks). */
+	--gallery-image-scale: 1;
+	touch-action: pan-y;
+	/* Smaller perspective distance → stronger foreshortening (less “orthographic”). */
+	perspective: min(
+		calc(var(--gallery-radius) * var(--gallery-sphere-scale, 1) * 3),
+		200vw
+	);
+	perspective-origin: 50% 50%;
+	position: relative;
+	overflow-y: clip;
+}
 
 .gallery-pivot {
 	display: flex;
@@ -132,17 +125,19 @@
 @keyframes gallery-pivot-dolly {
 	from {
 		transform: rotateX(var(--gallery-sphere-tilt-x))
-			rotateY(var(--gallery-sphere-tilt-y)) rotateZ(var(--gallery-sphere-tilt-z))
+			rotateY(var(--gallery-sphere-tilt-y))
+			rotateZ(var(--gallery-sphere-tilt-z))
 			translateZ(
 				calc(
-					var(--gallery-radius, 9rem) * var(--gallery-sphere-burst-dolly-z-factor)
+					var(--gallery-radius, 9rem) *
+						var(--gallery-sphere-burst-dolly-z-factor)
 				)
 			);
 	}
 	to {
 		transform: rotateX(var(--gallery-sphere-tilt-x))
-			rotateY(var(--gallery-sphere-tilt-y)) rotateZ(var(--gallery-sphere-tilt-z))
-			translateZ(0);
+			rotateY(var(--gallery-sphere-tilt-y))
+			rotateZ(var(--gallery-sphere-tilt-z)) translateZ(0);
 	}
 }
 
@@ -191,7 +186,8 @@
 	.gallery-pivot {
 		animation: none;
 		transform: rotateX(var(--gallery-sphere-tilt-x))
-			rotateY(var(--gallery-sphere-tilt-y)) rotateZ(var(--gallery-sphere-tilt-z));
+			rotateY(var(--gallery-sphere-tilt-y))
+			rotateZ(var(--gallery-sphere-tilt-z));
 	}
 
 	.gallery-sphere-stage {

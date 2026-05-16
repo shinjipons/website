@@ -12,10 +12,10 @@ const lastUpdated = new Date(
 
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { gallerySphereItemTransform } from "../lib/gallery-sphere-layout";
-import { getWeeklyCommitCount } from "../lib/github-weekly-commits";
+import { getWeeklyGitHubStats } from "../lib/github-weekly-stats";
 import "../styles/home-page.css";
 
-const githubCommitsThisWeek = await getWeeklyCommitCount();
+const githubStatsThisWeek = await getWeeklyGitHubStats();
 
 // Social media links
 const socialLinks = [
@@ -239,15 +239,17 @@ const archiveImages = Object.keys(archiveGlob)
 			<h1>Shinji Pons</h1>
 			<h3>Updated on {lastUpdated}</h3>
 			{
-				githubCommitsThisWeek !== null && (
-					<p class="intro-github-stat">
-						This week, I pushed {githubCommitsThisWeek}{" "}
-						{githubCommitsThisWeek === 1 ? "commit" : "commits"} on{" "}
+				githubStatsThisWeek !== null && (
+					<h3 class="intro-github-stat">
+						This week, I pushed {githubStatsThisWeek.commits}{" "}
+						{githubStatsThisWeek.commits === 1 ? "commit" : "commits"} and{" "}
+						{githubStatsThisWeek.linesAdded.toLocaleString("en-US")}{" "}
+						{githubStatsThisWeek.linesAdded === 1 ? "line" : "lines"} of code on{" "}
 						<a href="https://github.com/shinjipons" target="_blank">
 							GitHub
 						</a>
 						.
-					</p>
+					</h3>
 				)
 			}
 		</section>
