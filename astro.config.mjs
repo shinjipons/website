@@ -6,7 +6,10 @@ export default defineConfig({
   integrations: [],
   markdown: {
     shikiConfig: {
-      theme: "github-light",
+      themes: {
+        light: "github-light",
+        dark: "github-dark",
+      },
     },
   },
 });

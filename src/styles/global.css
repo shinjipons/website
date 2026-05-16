@@ -22,12 +22,24 @@
 	--spacing-xl: 4rem;
 	--spacing-xxl: 8rem;
 
-	/* Colors (light mode only for now) */
+	/* Colors (light mode — default) */
 	--color-primary: black;
 	--color-secondary: oklch(62.341% 0.00007 271.152);
 	--color-tertiary: oklch(75.402% 0.00009 271.152);
 	--color-quaternary: oklch(93.403% 0.00011 271.152);
 	--background-color: white;
+	--color-overlay: oklch(0.45 0.02 270 / 0.75);
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--color-primary: #dad7ca;
+		--color-secondary: #8b8881;
+		--color-tertiary: #585754;
+		--color-quaternary: #343230;
+		--background-color: #100f0d;
+		--color-overlay: oklch(0.75 0.02 90 / 0.35);
+	}
 }
 
 * {
@@ -35,7 +47,8 @@
 }
 
 html {
-	background-color: white;
+	background-color: var(--background-color);
+	color-scheme: light dark;
 	font-size: var(--html-font-size);
 	padding-left: var(--spacing-xl);
 	padding-right: var(--spacing-xl);
@@ -48,6 +61,7 @@ body {
 	margin-top: var(--spacing-xxl);
 	margin-bottom: var(--spacing-xxl);
 	align-items: center;
+	color: var(--color-primary);
 }
 
 main {
@@ -104,6 +118,17 @@ p > a {
 	border-bottom: 1px solid var(--color-tertiary);
 	&:hover {
 		border-bottom: 1px solid var(--color-primary);
+	}
+}
+
+@media (prefers-color-scheme: dark) {
+	.astro-code,
+	.astro-code span {
+		color: var(--shiki-dark) !important;
+		background-color: var(--shiki-dark-bg) !important;
+		font-style: var(--shiki-dark-font-style) !important;
+		font-weight: var(--shiki-dark-font-weight) !important;
+		text-decoration: var(--shiki-dark-text-decoration) !important;
 	}
 }
 

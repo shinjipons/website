@@ -338,7 +338,7 @@
 }
 
 .gallery-lightbox-close:hover {
-	background: oklch(0.45 0.02 270 / 0.75);
+	background: var(--color-overlay);
 }
 
 .gallery-lightbox-close:focus-visible {
