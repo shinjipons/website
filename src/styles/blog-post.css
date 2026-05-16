@@ -94,6 +94,32 @@ p > strong {
 	font-weight: var(--h1-font-weight) !important;
 }
 
+/* Lists — long line markers */
+
+.blog-post-content ul {
+	list-style: none;
+	padding-left: 0;
+}
+
+.blog-post-content ul > li {
+	display: flex;
+	gap: var(--list-marker-gap, var(--spacing-l));
+	align-items: flex-start;
+}
+
+.blog-post-content ul > li::before {
+	content: "";
+	flex-shrink: 0;
+	width: var(--list-marker-width, 2.4rem);
+	height: 1px;
+	margin-top: calc((var(--text-line-height) - 1px) / 2);
+	background-color: var(--color-primary);
+}
+
+.blog-post-content ul > li:not(:last-child) {
+	margin-bottom: var(--spacing-l);
+}
+
 /* Blockquotes */
 
 blockquote {
