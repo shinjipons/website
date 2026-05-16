@@ -23,6 +23,13 @@
 	margin-bottom: var(--spacing-none);
 }
 
+#introduction > .intro-github-stat {
+	margin-top: var(--spacing-m);
+	margin-bottom: var(--spacing-none);
+	color: var(--color-secondary);
+	font-weight: var(--p-font-weight);
+}
+
 /* General "Card" styling */
 
 .generic-card,
