@@ -255,9 +255,9 @@
 	user-select: none;
 }
 
+.gallery-container .gallery-item:focus,
 .gallery-container .gallery-item:focus-visible {
-	outline: 2px solid transparent;
-	outline-offset: 2px;
+	outline: none;
 }
 
 @media (max-width: 560px) {
@@ -344,9 +344,9 @@
 	background: var(--color-overlay);
 }
 
+.gallery-lightbox-close:focus,
 .gallery-lightbox-close:focus-visible {
-	outline: 2px solid var(--background-color);
-	outline-offset: 2px;
+	outline: none;
 }
 
 .gallery-lightbox-img,
@@ -360,12 +360,17 @@
 	border-radius: 0.8rem;
 }
 
+.gallery-lightbox-img,
+.gallery-lightbox-video {
+	outline: none;
+}
+
 .gallery-lightbox-img {
 	cursor: pointer;
 }
 
 .gallery-lightbox-video {
-	cursor: default;
+	cursor: pointer;
 }
 
 /* Blog */
@@ -467,4 +472,58 @@
 	.work-experience-role {
 		display: none;
 	}
+}
+
+/* Grid gallery — three columns, 3:4 aspect ratio */
+
+.grid-gallery {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: var(--spacing-xxs);
+}
+
+.grid-gallery__cell {
+	display: block;
+	width: 100%;
+	padding: 0;
+	border: none;
+	background: transparent;
+	aspect-ratio: 3 / 4;
+	overflow: hidden;
+	box-sizing: border-box;
+	border-radius: var(--spacing-s);
+	cursor: zoom-in;
+}
+
+.grid-gallery__cell:focus,
+.grid-gallery__cell:focus-visible {
+	outline: none;
+}
+
+.grid-gallery__cell img,
+.grid-gallery__cell video {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+/* Homepage videos — no native control bar on hover */
+
+.gallery-container video,
+.grid-gallery video,
+.gallery-lightbox-video {
+	-webkit-touch-callout: none;
+}
+
+.gallery-container video::-webkit-media-controls,
+.grid-gallery video::-webkit-media-controls,
+.gallery-lightbox-video::-webkit-media-controls,
+.gallery-container video::-webkit-media-controls-enclosure,
+.grid-gallery video::-webkit-media-controls-enclosure,
+.gallery-lightbox-video::-webkit-media-controls-enclosure,
+.gallery-container video::-webkit-media-controls-panel,
+.grid-gallery video::-webkit-media-controls-panel,
+.gallery-lightbox-video::-webkit-media-controls-panel {
+	display: none !important;
 }

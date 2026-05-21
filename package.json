@@ -22,7 +22,8 @@
   "homepage": "https://github.com/shinjipons/website#readme",
   "dependencies": {
     "@vercel/analytics": "^1.5.0",
-    "astro": "^6.1.9"
+    "astro": "^6.3.7",
+    "masonry-layout": "^4.2.2"
   },
   "devDependencies": {
     "@types/node": "^25.5.2"
