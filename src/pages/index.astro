@@ -230,6 +230,9 @@ const archiveGlob = import.meta.glob(
 const archiveImages = Object.keys(archiveGlob)
 	.map((path) => path.replace("/public", ""))
 	.sort();
+
+const gridGalleryImages =
+	archiveImages.length > 0 ? archiveImages : galleryImages;
 ---
 
 <BaseLayout title="Shinji Pons" description="Personal website">
@@ -244,7 +247,11 @@ const archiveImages = Object.keys(archiveGlob)
 						This week, I pushed {githubStatsThisWeek.commits}{" "}
 						{githubStatsThisWeek.commits === 1 ? "commit" : "commits"} and{" "}
 						{githubStatsThisWeek.linesAdded.toLocaleString("en-US")}{" "}
-						{githubStatsThisWeek.linesAdded === 1 ? "line" : "lines"} of code on <a href="https://github.com/shinjipons" target="_blank">GitHub</a>.
+						{githubStatsThisWeek.linesAdded === 1 ? "line" : "lines"} of code on{" "}
+						<a href="https://github.com/shinjipons" target="_blank">
+							GitHub
+						</a>
+						.
 					</h3>
 				)
 			}
@@ -275,11 +282,6 @@ const archiveImages = Object.keys(archiveGlob)
 					>Cal.com</a
 				>.
 			</p>
-		</section>
-
-		<!-- Gallery Section -->
-		<section id="gallery">
-			<h1>Gallery</h1>
 			<div class="gallery-container">
 				<div class="gallery-pivot">
 					<div class="gallery-sphere-stage">
@@ -305,14 +307,28 @@ const archiveImages = Object.keys(archiveGlob)
 												aria-hidden="true"
 											>
 												{/\.(mp4|mov|webm)$/i.test(src) ? (
-													<video src={src} autoplay loop muted playsinline />
+													<video
+														src={src}
+														autoplay
+														loop
+														muted
+														playsinline
+														controlslist="nodownload nofullscreen noremoteplayback"
+													/>
 												) : (
 													<img src={src} alt="" />
 												)}
 											</div>
 											<div class="gallery-item-face gallery-item-face--front">
 												{/\.(mp4|mov|webm)$/i.test(src) ? (
-													<video src={src} autoplay loop muted playsinline />
+													<video
+														src={src}
+														autoplay
+														loop
+														muted
+														playsinline
+														controlslist="nodownload nofullscreen noremoteplayback"
+													/>
 												) : (
 													<img src={src} alt="" />
 												)}
@@ -336,8 +352,8 @@ const archiveImages = Object.keys(archiveGlob)
 				<img class="gallery-lightbox-img" alt="" tabindex="-1" hidden />
 				<video
 					class="gallery-lightbox-video"
-					controls
 					playsinline
+					controlslist="nodownload nofullscreen noremoteplayback"
 					tabindex="-1"
 					hidden></video>
 			</div>
@@ -472,13 +488,44 @@ const archiveImages = Object.keys(archiveGlob)
 				)
 			}
 		</section>
+
+		<section id="grid-gallery">
+			<h1>Archive</h1>
+			{
+				gridGalleryImages.length > 0 ? (
+					<div class="grid-gallery">
+						{gridGalleryImages.map((src) => (
+							<button
+								type="button"
+								class="grid-gallery__cell"
+								aria-haspopup="dialog"
+								aria-label="Open in fullscreen"
+							>
+								{/\.(mp4|mov|webm)$/i.test(src) ? (
+									<video
+										src={src}
+										muted
+										loop
+										playsinline
+										controlslist="nodownload nofullscreen noremoteplayback"
+									/>
+								) : (
+									<img src={src} alt="" loading="lazy" decoding="async" />
+								)}
+							</button>
+						))}
+					</div>
+				) : (
+					<p>Check back soon...</p>
+				)
+			}
+		</section>
 	</div>
 
 	<script>
 		function initGalleryLightbox() {
-			const container = document.querySelector(".gallery-container");
 			const lightbox = document.getElementById("gallery-lightbox");
-			if (!container || !lightbox) return;
+			if (!lightbox) return;
 
 			const lbImg = lightbox.querySelector(
 				".gallery-lightbox-img",
@@ -493,6 +540,8 @@ const archiveImages = Object.keys(archiveGlob)
 			let lastFocus: HTMLElement | null = null;
 			/** Cancels an in-flight close animation (e.g. user opens another item). */
 			let cancelCloseAnimation: (() => void) | null = null;
+			let playlist: (HTMLImageElement | HTMLVideoElement)[] = [];
+			let currentIndex = -1;
 
 			function scrollbarWidthPx() {
 				const root = document.documentElement;
@@ -532,6 +581,8 @@ const archiveImages = Object.keys(archiveGlob)
 				document.removeEventListener("keydown", onKeyDown);
 				lastFocus?.focus();
 				lastFocus = null;
+				playlist = [];
+				currentIndex = -1;
 			}
 
 			function close() {
@@ -572,88 +623,189 @@ const archiveImages = Object.keys(archiveGlob)
 				};
 			}
 
-			function onKeyDown(e: KeyboardEvent) {
-				if (e.key === "Escape") close();
+			const gridMediaSelector =
+				".grid-gallery__cell img, .grid-gallery__cell video";
+
+			function mediaSrc(media: HTMLImageElement | HTMLVideoElement) {
+				return media.currentSrc || media.src;
 			}
 
-			function open(media: HTMLImageElement | HTMLVideoElement) {
-				cancelCloseAnimation?.();
+			function buildPlaylist(
+				media: HTMLImageElement | HTMLVideoElement,
+			): (HTMLImageElement | HTMLVideoElement)[] {
+				const grid = document.querySelector(".grid-gallery");
+				if (grid?.contains(media)) {
+					return Array.from(grid.querySelectorAll(gridMediaSelector)) as (
+						| HTMLImageElement
+						| HTMLVideoElement
+					)[];
+				}
 
-				lastFocus = document.activeElement as HTMLElement;
-				lockDocumentScroll();
-				lightbox.hidden = false;
-				lightbox.classList.add("is-open");
-				document.addEventListener("keydown", onKeyDown);
+				const gallery = document.querySelector(".gallery-container");
+				if (gallery?.contains(media)) {
+					const items: (HTMLImageElement | HTMLVideoElement)[] = [];
+					gallery.querySelectorAll(".gallery-item").forEach((item) => {
+						const el = item.querySelector(
+							".gallery-item-face--front img, .gallery-item-face--front video",
+						);
+						if (
+							el instanceof HTMLImageElement ||
+							el instanceof HTMLVideoElement
+						) {
+							items.push(el);
+						}
+					});
+					return items;
+				}
+
+				return [media];
+			}
+
+			function indexInPlaylist(media: HTMLImageElement | HTMLVideoElement) {
+				const direct = playlist.indexOf(media);
+				if (direct >= 0) return direct;
+				const src = mediaSrc(media);
+				return playlist.findIndex((m) => mediaSrc(m) === src);
+			}
+
+			function showPlaylistIndex(index: number) {
+				if (index < 0 || index >= playlist.length) return;
+
+				cancelCloseAnimation?.();
+				currentIndex = index;
+				const media = playlist[currentIndex];
 
 				if (media instanceof HTMLImageElement) {
 					lbVideo.hidden = true;
 					lbVideo.pause();
 					lbVideo.removeAttribute("src");
-					lbImg.src = media.currentSrc || media.src;
+					lbImg.src = mediaSrc(media);
 					lbImg.alt = media.alt;
 					lbImg.hidden = false;
 				} else {
 					lbImg.hidden = true;
 					lbImg.removeAttribute("src");
 					lbVideo.hidden = false;
-					lbVideo.src = media.currentSrc || media.src;
+					lbVideo.src = mediaSrc(media);
 					void lbVideo.play().catch(() => {});
 				}
+			}
 
-				if (closeBtn) {
-					closeBtn.focus();
-				} else if (!lbImg.hidden) {
-					lbImg.focus();
-				} else if (!lbVideo.hidden) {
-					lbVideo.focus();
+			function focusLightboxControls() {
+				closeBtn?.focus();
+			}
+
+			function onKeyDown(e: KeyboardEvent) {
+				if (e.key === "Escape") {
+					close();
+					return;
 				}
+
+				if (
+					lightbox.hidden ||
+					!lightbox.classList.contains("is-open") ||
+					lightbox.classList.contains("is-closing")
+				) {
+					return;
+				}
+
+				if (playlist.length < 2) return;
+
+				if (e.key === "ArrowLeft") {
+					e.preventDefault();
+					showPlaylistIndex(
+						(currentIndex - 1 + playlist.length) % playlist.length,
+					);
+				} else if (e.key === "ArrowRight") {
+					e.preventDefault();
+					showPlaylistIndex((currentIndex + 1) % playlist.length);
+				}
+			}
+
+			function open(media: HTMLImageElement | HTMLVideoElement) {
+				playlist = buildPlaylist(media);
+				const idx = indexInPlaylist(media);
+				currentIndex = idx >= 0 ? idx : 0;
+
+				const isFirstOpen = lightbox.hidden;
+				if (isFirstOpen) {
+					lastFocus = document.activeElement as HTMLElement;
+					lockDocumentScroll();
+					lightbox.hidden = false;
+					lightbox.classList.add("is-open");
+					document.addEventListener("keydown", onKeyDown);
+				}
+
+				showPlaylistIndex(currentIndex);
+				focusLightboxControls();
 			}
 
 			const GALLERY_MEDIA_SELECTOR =
 				".gallery-item-face--front img, .gallery-item-face--front video, .gallery-item-face--back img, .gallery-item-face--back video";
 
-			function mediaUnderPoint(
-				clientX: number,
-				clientY: number,
-			): HTMLImageElement | HTMLVideoElement | null {
-				const stack = document.elementsFromPoint(clientX, clientY);
-				for (let i = 0; i < stack.length; i++) {
-					const el = stack[i];
-					if (
-						(el instanceof HTMLImageElement ||
-							el instanceof HTMLVideoElement) &&
-						container.contains(el) &&
-						el.matches(GALLERY_MEDIA_SELECTOR)
-					) {
-						return el;
+			function registerLightboxContainer(
+				container: Element | null,
+				mediaSelector: string,
+				keyboardItemSelector: string,
+				keyboardMediaSelector: string,
+			) {
+				if (!container) return;
+
+				function mediaUnderPoint(
+					clientX: number,
+					clientY: number,
+				): HTMLImageElement | HTMLVideoElement | null {
+					const stack = document.elementsFromPoint(clientX, clientY);
+					for (let i = 0; i < stack.length; i++) {
+						const el = stack[i];
+						if (
+							(el instanceof HTMLImageElement ||
+								el instanceof HTMLVideoElement) &&
+							container.contains(el) &&
+							el.matches(mediaSelector)
+						) {
+							return el;
+						}
 					}
+					return null;
 				}
-				return null;
-			}
 
-			container.addEventListener("click", (e) => {
-				const me = e as MouseEvent;
-				const media = mediaUnderPoint(me.clientX, me.clientY);
-				if (!media) return;
-				e.preventDefault();
-				open(media);
-			});
-
-			container.addEventListener("keydown", (e: KeyboardEvent) => {
-				if (e.key !== "Enter" && e.key !== " ") return;
-				const item = (e.target as Element).closest(".gallery-item");
-				if (!item || !container.contains(item)) return;
-				const media = item.querySelector(
-					".gallery-item-face--front img, .gallery-item-face--front video, .gallery-item-face--back img, .gallery-item-face--back video",
-				);
-				if (
-					media instanceof HTMLImageElement ||
-					media instanceof HTMLVideoElement
-				) {
+				container.addEventListener("click", (e) => {
+					const me = e as MouseEvent;
+					const media = mediaUnderPoint(me.clientX, me.clientY);
+					if (!media) return;
 					e.preventDefault();
 					open(media);
-				}
-			});
+				});
+
+				container.addEventListener("keydown", (e: KeyboardEvent) => {
+					if (e.key !== "Enter" && e.key !== " ") return;
+					const item = (e.target as Element).closest(keyboardItemSelector);
+					if (!item || !container.contains(item)) return;
+					const media = item.querySelector(keyboardMediaSelector);
+					if (
+						media instanceof HTMLImageElement ||
+						media instanceof HTMLVideoElement
+					) {
+						e.preventDefault();
+						open(media);
+					}
+				});
+			}
+
+			registerLightboxContainer(
+				document.querySelector(".gallery-container"),
+				GALLERY_MEDIA_SELECTOR,
+				".gallery-item",
+				".gallery-item-face--front img, .gallery-item-face--front video, .gallery-item-face--back img, .gallery-item-face--back video",
+			);
+
+			registerLightboxContainer(
+				document.querySelector(".grid-gallery"),
+				gridMediaSelector,
+				".grid-gallery__cell",
+				gridMediaSelector,
+			);
 
 			lightbox.addEventListener("click", (e) => {
 				if (e.target === lightbox) close();
@@ -662,6 +814,7 @@ const archiveImages = Object.keys(archiveGlob)
 			closeBtn?.addEventListener("click", () => close());
 
 			lbImg.addEventListener("click", () => close());
+			lbVideo.addEventListener("click", () => close());
 		}
 
 		/**
