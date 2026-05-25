@@ -223,16 +223,16 @@ const galleryImages = Object.keys(galleryGlob)
 	.map((path) => path.replace("/public", ""))
 	.sort();
 
-// Archive media — auto-scanned from public/media/archive/
-const archiveGlob = import.meta.glob(
-	"/public/media/archive/**/*.{jpg,jpeg,png,webp,gif,avif,mp4,mov,webm,JPG,JPEG,PNG,WEBP,GIF,AVIF,MP4,MOV,WEBM}",
-);
-const archiveImages = Object.keys(archiveGlob)
-	.map((path) => path.replace("/public", ""))
-	.sort();
-
-const gridGalleryImages =
-	archiveImages.length > 0 ? archiveImages : galleryImages;
+// Archive media — auto-scanned from public/media/archive/ (section commented out)
+// const archiveGlob = import.meta.glob(
+// 	"/public/media/archive/**/*.{jpg,jpeg,png,webp,gif,avif,mp4,mov,webm,JPG,JPEG,PNG,WEBP,GIF,AVIF,MP4,MOV,WEBM}",
+// );
+// const archiveImages = Object.keys(archiveGlob)
+// 	.map((path) => path.replace("/public", ""))
+// 	.sort();
+//
+// const gridGalleryImages =
+// 	archiveImages.length > 0 ? archiveImages : galleryImages;
 ---
 
 <BaseLayout title="Shinji Pons" description="Personal website">
@@ -489,6 +489,7 @@ const gridGalleryImages =
 			}
 		</section>
 
+		{/*
 		<section id="grid-gallery">
 			<h1>Archive</h1>
 			{
@@ -520,6 +521,7 @@ const gridGalleryImages =
 				)
 			}
 		</section>
+		*/}
 	</div>
 
 	<script>
