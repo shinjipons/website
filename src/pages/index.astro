@@ -223,9 +223,9 @@ const galleryImages = Object.keys(galleryGlob)
 	.map((path) => path.replace("/public", ""))
 	.sort();
 
-// Archive images — auto-scanned from public/media/archive/
+// Archive media — auto-scanned from public/media/archive/
 const archiveGlob = import.meta.glob(
-	"/public/media/archive/**/*.{jpg,jpeg,png,webp,gif,avif,JPG,JPEG,PNG,WEBP,GIF,AVIF}",
+	"/public/media/archive/**/*.{jpg,jpeg,png,webp,gif,avif,mp4,mov,webm,JPG,JPEG,PNG,WEBP,GIF,AVIF,MP4,MOV,WEBM}",
 );
 const archiveImages = Object.keys(archiveGlob)
 	.map((path) => path.replace("/public", ""))
