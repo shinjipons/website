@@ -23,7 +23,9 @@
   "dependencies": {
     "@vercel/analytics": "^1.5.0",
     "astro": "^6.3.7",
-    "masonry-layout": "^4.2.2"
+    "gsap": "^3.15.0",
+    "masonry-layout": "^4.2.2",
+    "split-type": "^0.3.4"
   },
   "devDependencies": {
     "@types/node": "^25.5.2"
