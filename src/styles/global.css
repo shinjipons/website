@@ -55,6 +55,26 @@ html {
 	overflow-x: hidden;
 }
 
+html::after {
+	content: "";
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: var(--spacing-xxl);
+	pointer-events: none;
+	z-index: 50;
+	/* OKLCH interpolation + ease-out stops: opaque longer at the bottom, softer falloff */
+	background: linear-gradient(
+		to top in oklch,
+		var(--background-color) 0%,
+		color-mix(in oklch, var(--background-color) 92%, transparent) 30%,
+		color-mix(in oklch, var(--background-color) 55%, transparent) 60%,
+		color-mix(in oklch, var(--background-color) 18%, transparent) 85%,
+		transparent 100%
+	);
+}
+
 body {
 	display: flex;
 	flex-direction: column;
