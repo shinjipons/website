@@ -30,22 +30,25 @@
 	--spacing-xl: 4rem;
 	--spacing-xxl: 8rem;
 
+	/* Principal Hue */
+	--principal-hue: 271;
+
 	/* Colors (light mode — default) */
-	--color-primary: black;
-	--color-secondary: oklch(62.341% 0.00007 271.152);
-	--color-tertiary: oklch(75.402% 0.00009 271.152);
-	--color-quaternary: oklch(93.403% 0.00011 271.152);
-	--background-color: white;
+	--color-primary: oklch(0% 0 var(--principal-hue));
+	--color-secondary: oklch(62% 0.00007 var(--principal-hue));
+	--color-tertiary: oklch(75% 0.00009 var(--principal-hue));
+	--color-quaternary: oklch(93% 0.00011 var(--principal-hue));
+	--background-color: oklch(1 0 0);
 	--color-overlay: oklch(0.45 0.02 270 / 0.75);
 }
 
 @media (prefers-color-scheme: dark) {
 	:root {
-		--color-primary: #dad7ca;
-		--color-secondary: #8b8881;
-		--color-tertiary: #585754;
-		--color-quaternary: #343230;
-		--background-color: #100f0d;
+		--color-primary: oklch(100% 0 0);
+		--color-secondary: oklch(75% 0.00007 var(--principal-hue));
+		--color-tertiary: oklch(48% 0.00009 var(--principal-hue));
+		--color-quaternary: oklch(22% 0.00011 var(--principal-hue));
+		--background-color: oklch(0% 0 var(--principal-hue));
 		--color-overlay: oklch(0.75 0.02 90 / 0.35);
 	}
 }
