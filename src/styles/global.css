@@ -1,3 +1,5 @@
+@import "./page-reveal.css";
+
 /* Global theme variables */
 :root {
 	--html-font-size: 10px; /* do not change this */

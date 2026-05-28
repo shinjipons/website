@@ -2,17 +2,6 @@
 
 :root {
 	--consistent-col-width: calc(0.8rem * 22);
-	--gallery-sphere-tilt-x: -5deg;
-	--gallery-sphere-tilt-y: 0deg;
-	--gallery-sphere-tilt-z: -4deg;
-	--gallery-sphere-burst-duration: 5.5s;
-	--gallery-sphere-burst-timing: cubic-bezier(0.17, 0.72, 0.12, 1);
-	--gallery-sphere-burst-rotation: 270deg;
-	--gallery-sphere-burst-scale-start: 0;
-	--gallery-sphere-burst-scale-end: 1.2;
-	/* Negative: stage starts deeper in Z; eases to 0 for a subtle "camera push in". */
-	--gallery-sphere-burst-dolly-z-factor: -0.34;
-	--gallery-sphere-rotate-duration: 96s;
 }
 
 /* Introduction */

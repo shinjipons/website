@@ -364,4 +364,13 @@ const blogPosts = allPosts.sort(
 			}
 		</section>
 	</div>
+
+	<script>
+		import { initPageReveal } from "../scripts/page-reveal.ts";
+
+		initPageReveal(
+			document.querySelector(".container"),
+			"#introduction > h1, #introduction > h3, #gallery > p, section > h1, section > p, .generic-card, .work-experience-card",
+		);
+	</script>
 </BaseLayout>

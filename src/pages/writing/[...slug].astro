@@ -53,6 +53,15 @@ const { Content } = await render(post);
 </BaseLayout>
 
 <script>
+	import { initPageReveal } from "../../scripts/page-reveal.ts";
+
+	initPageReveal(
+		document.querySelector(".blog-post"),
+		".blog-post-back a, .blog-post-title, .blog-post-meta, .blog-post-content > *",
+	);
+</script>
+
+<script>
 	const nav = document.getElementById("blog-side-nav")!;
 	const headings = Array.from(
 		document.querySelectorAll<HTMLElement>(

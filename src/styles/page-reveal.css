@@ -1,0 +1,44 @@
+/* Staggered blur + fade in on load (home + blog) */
+
+:root {
+	--page-reveal-duration: 0.55s;
+	--page-reveal-delay-start: 200ms;
+	--page-reveal-stagger: 48ms;
+	--page-reveal-blur: 10px;
+	--page-reveal-easing: cubic-bezier(0.504, 0.104, 0.507, 1.019);
+}
+
+@keyframes page-reveal {
+	from {
+		opacity: 0;
+		filter: blur(var(--page-reveal-blur));
+	}
+	to {
+		opacity: 1;
+		filter: blur(0);
+	}
+}
+
+[data-page-reveal] {
+	opacity: 0;
+	filter: blur(var(--page-reveal-blur));
+}
+
+.page-reveal-ready [data-page-reveal] {
+	animation: page-reveal var(--page-reveal-duration) var(--page-reveal-easing)
+		both;
+	animation-delay: calc(
+		var(--page-reveal-delay-start) + var(--page-reveal-index, 0) *
+			var(--page-reveal-stagger)
+	);
+	will-change: opacity, filter;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	[data-page-reveal] {
+		opacity: 1;
+		filter: none;
+		animation: none;
+		will-change: auto;
+	}
+}
