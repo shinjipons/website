@@ -15,6 +15,15 @@ export function initPageReveal(
 			"--page-reveal-index",
 			String(index),
 		);
+		el.addEventListener(
+			"animationend",
+			(event) => {
+				if (event.animationName !== "page-reveal") return;
+				el.removeAttribute("data-page-reveal");
+				(el as HTMLElement).style.removeProperty("--page-reveal-index");
+			},
+			{ once: true },
+		);
 	});
 
 	requestAnimationFrame(() => {

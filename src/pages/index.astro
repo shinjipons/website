@@ -239,7 +239,7 @@ const blogPosts = allPosts.sort(
 			<h1>Writing</h1>
 			{
 				blogPosts.length > 0 ? (
-					<div>
+					<div class="cards-container">
 						{blogPosts.map((post) => (
 							<a href={`/writing/${post.id}`} class="generic-card">
 								<p class="date-year">
@@ -293,7 +293,7 @@ const blogPosts = allPosts.sort(
 		<!-- Work Experience Section -->
 		<section id="experience">
 			<h1>Work Experience</h1>
-			<div>
+			<div class="cards-container">
 				{
 					workExperience.map((job) => (
 						<div class="work-experience-card">
