@@ -19,12 +19,54 @@
 	}
 }
 
-[data-page-reveal] {
+@keyframes page-reveal-from-left {
+	from {
+		opacity: 0;
+		transform: translateX(calc(-1 * var(--page-reveal-transform)));
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+/* Hide targets on first paint until JS adds data-page-reveal + page-reveal-ready */
+@media (prefers-reduced-motion: no-preference) {
+	.page-reveal.blog-post:not(.page-reveal-ready) :is(
+			.blog-post-back a,
+			.blog-post-title,
+			.blog-post-meta,
+			.blog-post-content > *
+		) {
+		opacity: 0;
+		transform: translateY(var(--page-reveal-transform));
+	}
+
+	.page-reveal.container:not(.page-reveal-ready) :is(
+			#introduction > h1,
+			#introduction > h3,
+			#gallery > p,
+			section > h1,
+			section > p,
+			.generic-card,
+			.work-experience-card
+		) {
+		opacity: 0;
+		transform: translateY(var(--page-reveal-transform));
+	}
+}
+
+[data-page-reveal]:not([data-page-reveal="from-left"]) {
 	opacity: 0;
 	transform: translateY(var(--page-reveal-transform));
 }
 
-.page-reveal-ready [data-page-reveal] {
+[data-page-reveal="from-left"] {
+	opacity: 0;
+	transform: translateX(calc(-1 * var(--page-reveal-transform)));
+}
+
+.page-reveal-ready [data-page-reveal]:not([data-page-reveal="from-left"]) {
 	animation: page-reveal var(--page-reveal-duration) var(--page-reveal-easing)
 		both;
 	animation-delay: calc(
@@ -32,6 +74,20 @@
 			var(--page-reveal-stagger)
 	);
 	will-change: opacity, transform;
+}
+
+.page-reveal-ready [data-page-reveal="from-left"] {
+	animation: page-reveal-from-left var(--page-reveal-duration)
+		var(--page-reveal-easing) both;
+	animation-delay: calc(
+		var(--page-reveal-delay-start) + var(--page-reveal-index, 0) *
+			var(--page-reveal-stagger)
+	);
+	will-change: opacity, transform;
+}
+
+.page-reveal.side-nav {
+	--page-reveal-delay-start: 360ms;
 }
 
 @media (prefers-reduced-motion: reduce) {

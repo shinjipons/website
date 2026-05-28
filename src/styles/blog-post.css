@@ -41,6 +41,8 @@ code {
 /* Code blocks */
 
 pre.astro-code {
+	background-color: var(--color-quaternary) !important;
+	--shiki-dark-bg: var(--color-quaternary);
 	padding: var(--spacing-m) var(--spacing-l);
 	border-radius: var(--spacing-s);
 	counter-reset: line;

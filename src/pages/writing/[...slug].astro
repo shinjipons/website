@@ -20,7 +20,7 @@ const { Content } = await render(post);
 	description={post.data.description}
 	{...post.data.ogImage && { ogImage: post.data.ogImage }}
 >
-	<article class="container blog-post">
+	<article class="container blog-post page-reveal">
 		<div class="blog-post-back">
 			<a href="/" class="link-back"> ← Back to home </a>
 		</div>
@@ -49,7 +49,11 @@ const { Content } = await render(post);
 		</footer>
 	</article>
 
-	<nav class="side-nav" id="blog-side-nav" aria-label="Article sections"></nav>
+	<nav
+		class="side-nav page-reveal"
+		id="blog-side-nav"
+		aria-label="Article sections"
+	></nav>
 </BaseLayout>
 
 <script>
@@ -59,9 +63,7 @@ const { Content } = await render(post);
 		document.querySelector(".blog-post"),
 		".blog-post-back a, .blog-post-title, .blog-post-meta, .blog-post-content > *",
 	);
-</script>
 
-<script>
 	const nav = document.getElementById("blog-side-nav")!;
 	const headings = Array.from(
 		document.querySelectorAll<HTMLElement>(
@@ -120,4 +122,6 @@ const { Content } = await render(post);
 
 	window.addEventListener("scroll", updateActiveLink, { passive: true });
 	updateActiveLink();
+
+	initPageReveal(nav, "a", { indexOffset: 3, variant: "from-left" });
 </script>
