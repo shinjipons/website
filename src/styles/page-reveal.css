@@ -45,6 +45,7 @@
 	.page-reveal.container:not(.page-reveal-ready) :is(
 			#introduction > h1,
 			#introduction > h3,
+			#video > video,
 			#gallery > p,
 			section > h1,
 			section > p,

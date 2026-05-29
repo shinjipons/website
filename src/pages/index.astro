@@ -202,6 +202,14 @@ const blogPosts = allPosts.sort(
 <BaseLayout title="Shinji Pons" description="Personal website">
 	<div class="container page-reveal">
 		<!-- Header section -->
+		<section id="video">
+			<video
+				src="/media/videos/sequence-compressed.webm"
+				autoplay
+				loop
+				muted
+				playsinline></video>
+		</section>
 		<section id="introduction">
 			<h1>Shinji Pons</h1>
 			<h3>Updated on {lastUpdated}</h3>
@@ -370,7 +378,7 @@ const blogPosts = allPosts.sort(
 
 		initPageReveal(
 			document.querySelector(".container"),
-			"#introduction > h1, #introduction > h3, #gallery > p, section > h1, section > p, .generic-card, .work-experience-card",
+			"#introduction > h1, #introduction > h3, #video > video, #gallery > p, section > h1, section > p, .generic-card, .work-experience-card",
 		);
 	</script>
 </BaseLayout>
