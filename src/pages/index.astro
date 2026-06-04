@@ -13,6 +13,22 @@ const lastUpdated = new Date(
 import BaseLayout from "../layouts/BaseLayout.astro";
 import "../styles/home-page.css";
 
+// Social links
+const socialLinks = [
+	{
+		name: "LinkedIn",
+		url: "https://linkedin.com/in/shinji-pons",
+	},
+	{
+		name: "X.com",
+		url: "https://x.com/shinjipons",
+	},
+	{
+		name: "Cal.com",
+		url: "https://cal.com/shinjipons",
+	},
+];
+
 // Work experience
 const workExperience = [
 	{
@@ -222,15 +238,15 @@ const blogPosts = allPosts.sort(
 				small details that separate good from exceptional.
 			</p>
 			<p>My full resume is available upon request.</p>
-			<p>
-				You can find me on <a
-					href="https://linkedin.com/in/shinjipons/"
-					target="_blank">LinkedIn</a
-				>, <a href="https://x.com/shinjipons" target="_blank">Twitter</a> or book
-				a call via <a href="https://cal.com/shinjipons" target="_blank"
-					>Cal.com</a
-				>.
-			</p>
+			<div class="social-links">
+				{
+					socialLinks.map((link) => (
+						<a href={link.url} target="_blank" rel="noopener noreferrer">
+							{link.name}
+						</a>
+					))
+				}
+			</div>
 		</section>
 
 		<!-- Blog Posts Section -->
