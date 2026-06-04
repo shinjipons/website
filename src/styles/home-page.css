@@ -12,12 +12,10 @@
 	margin-bottom: var(--spacing-none);
 }
 
-/* Video */
-
-#video > video {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
+/* Social Links */
+.social-links {
+	display: flex;
+	gap: var(--spacing-l);
 }
 
 /* General "Card" styling */
