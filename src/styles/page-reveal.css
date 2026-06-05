@@ -1,9 +1,9 @@
 /* Staggered fade in on load (home + blog) */
 
 :root {
-	--page-reveal-duration: 500ms;
+	--page-reveal-duration: 300ms;
 	--page-reveal-delay-start: 200ms;
-	--page-reveal-stagger: 32ms;
+	--page-reveal-stagger: 16ms;
 	--page-reveal-easing: cubic-bezier(0.504, 0.104, 0.507, 1.019);
 	--page-reveal-transform: var(--spacing-l);
 }
