@@ -28,7 +28,7 @@
 	padding-top: var(--spacing-m);
 	padding-bottom: var(--spacing-m);
 	justify-content: space-between;
-	transition: opacity 0.1s cubic-bezier(0.39, 0.575, 0.565, 1);
+	transition: opacity 200ms cubic-bezier(0.39, 0.575, 0.565, 1);
 	border-top: 1px solid var(--color-quaternary);
 }
 
@@ -50,209 +50,6 @@
 
 .generic-card > p {
 	color: var(--color-tertiary);
-}
-
-/* Main page: gallery block stacks under other sections; sphere under the Gallery heading */
-
-.container > section:not(#gallery) {
-	position: relative;
-	z-index: 2;
-}
-
-.container > section#gallery {
-	position: relative;
-	z-index: 1;
-}
-
-/* Fixed lightbox lives inside #gallery; sibling sections use z-index: 2, so lift this
-   section while the overlay is shown (including close animation, before [hidden]). */
-.container > section#gallery:has(.gallery-lightbox:not([hidden])) {
-	z-index: 10;
-}
-
-#gallery > h1 {
-	position: relative;
-	z-index: 1;
-}
-
-/* Gallery — 3D sphere (equal rows × cols; radius fills the container via cq units) */
-
-.gallery-container {
-	container-type: size;
-	container-name: gallery;
-	width: 100%;
-	max-width: 100%;
-	aspect-ratio: 1;
-	max-height: min(100vw, 88dvh);
-	box-sizing: border-box;
-	--gallery-card-size: clamp(4.5rem, 29.25cqmin, 16.875rem);
-	/* Override (e.g. fixed `2.5rem`) to size the sphere without tying radius to card width. */
-	--gallery-radius-clearance: calc(var(--gallery-card-size) * 0.56);
-	--gallery-radius: max(
-		1.5rem,
-		calc(min(50cqw, 50cqh) - var(--gallery-radius-clearance))
-	);
-	--gallery-sphere-scale: 1;
-	/* Multiplier on top of automatic 1 / --gallery-sphere-scale tile scaling (keeps visuals steady when sphere shrinks). */
-	--gallery-image-scale: 1;
-	touch-action: pan-y;
-	/* Smaller perspective distance → stronger foreshortening (less “orthographic”). */
-	perspective: min(
-		calc(var(--gallery-radius) * var(--gallery-sphere-scale, 1) * 3),
-		200vw
-	);
-	perspective-origin: 50% 50%;
-	position: relative;
-	overflow-y: clip;
-}
-
-.gallery-pivot {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	height: 100%;
-	min-height: 0;
-	transform-style: preserve-3d;
-	animation: gallery-pivot-dolly var(--gallery-sphere-burst-duration)
-		var(--gallery-sphere-burst-timing) forwards;
-}
-
-@keyframes gallery-pivot-dolly {
-	from {
-		transform: rotateX(var(--gallery-sphere-tilt-x))
-			rotateY(var(--gallery-sphere-tilt-y))
-			rotateZ(var(--gallery-sphere-tilt-z))
-			translateZ(
-				calc(
-					var(--gallery-radius, 9rem) *
-						var(--gallery-sphere-burst-dolly-z-factor)
-				)
-			);
-	}
-	to {
-		transform: rotateX(var(--gallery-sphere-tilt-x))
-			rotateY(var(--gallery-sphere-tilt-y))
-			rotateZ(var(--gallery-sphere-tilt-z)) translateZ(0);
-	}
-}
-
-.gallery-sphere-stage {
-	position: relative;
-	width: 0;
-	height: 0;
-	margin: auto;
-	transform-style: preserve-3d;
-	animation: gallery-sphere-burst var(--gallery-sphere-burst-duration)
-		var(--gallery-sphere-burst-timing) forwards;
-	will-change: transform;
-}
-
-@keyframes gallery-sphere-burst {
-	from {
-		transform: scale(var(--gallery-sphere-burst-scale-start)) rotateY(0deg);
-	}
-	to {
-		transform: scale(var(--gallery-sphere-burst-scale-end))
-			rotateY(var(--gallery-sphere-burst-rotation));
-	}
-}
-
-.gallery-sphere {
-	position: relative;
-	width: 0;
-	height: 0;
-	margin: auto;
-	transform-style: preserve-3d;
-	animation: gallery-sphere-rotate var(--gallery-sphere-rotate-duration) linear
-		infinite;
-	will-change: transform;
-}
-
-@keyframes gallery-sphere-rotate {
-	from {
-		transform: rotateY(0deg);
-	}
-	to {
-		transform: rotateY(360deg);
-	}
-}
-
-@media (prefers-reduced-motion: reduce) {
-	.gallery-pivot {
-		animation: none;
-		transform: rotateX(var(--gallery-sphere-tilt-x))
-			rotateY(var(--gallery-sphere-tilt-y))
-			rotateZ(var(--gallery-sphere-tilt-z));
-	}
-
-	.gallery-sphere-stage {
-		animation: none;
-		transform: none;
-	}
-
-	.gallery-sphere {
-		animation: none;
-		transform: rotateY(18deg);
-	}
-}
-
-.gallery-container .gallery-item {
-	position: absolute;
-	left: 0;
-	top: 0;
-	width: var(--gallery-card-size);
-	margin-left: calc(var(--gallery-card-size) * -0.5);
-	margin-top: calc(var(--gallery-card-size) * -0.5);
-	transform-origin: center center;
-	border-radius: var(--spacing-s);
-	display: block;
-	overflow: visible;
-	background: transparent;
-	aspect-ratio: 1;
-	cursor: pointer;
-	transform-style: preserve-3d;
-}
-
-.gallery-item-shell {
-	position: relative;
-	width: 100%;
-	height: 100%;
-	transform-style: preserve-3d;
-}
-
-.gallery-item-face {
-	position: absolute;
-	inset: 0;
-	border-radius: var(--spacing-s);
-	overflow: hidden;
-	background: var(--color-quaternary);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	backface-visibility: hidden;
-	-webkit-backface-visibility: hidden;
-	transform-style: preserve-3d;
-}
-
-.gallery-item-face--front {
-	transform: translateZ(1px);
-}
-
-.gallery-item-face--back {
-	transform: rotateY(180deg) translateZ(1px);
-}
-
-.gallery-container .gallery-item-face > img,
-.gallery-container .gallery-item-face > video {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	user-select: none;
-}
-
-.gallery-container .gallery-item:focus,
-.gallery-container .gallery-item:focus-visible {
-	outline: none;
 }
 
 @media (max-width: 560px) {
@@ -332,6 +129,10 @@
 	font-variant-numeric: tabular-nums;
 }
 
+.work-experience-card:hover {
+	box-shadow: 0px 1px 0px 0px var(--color-quaternary);
+}
+
 /* Narrow viewports */
 
 @media (max-width: 560px) {
@@ -365,58 +166,4 @@
 	.work-experience-role {
 		display: none;
 	}
-}
-
-/* Grid gallery — three columns, 3:4 aspect ratio */
-
-.grid-gallery {
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	gap: var(--spacing-xxs);
-}
-
-.grid-gallery__cell {
-	display: block;
-	width: 100%;
-	padding: 0;
-	border: none;
-	background: transparent;
-	aspect-ratio: 3 / 4;
-	overflow: hidden;
-	box-sizing: border-box;
-	border-radius: var(--spacing-s);
-	cursor: zoom-in;
-}
-
-.grid-gallery__cell:focus,
-.grid-gallery__cell:focus-visible {
-	outline: none;
-}
-
-.grid-gallery__cell img,
-.grid-gallery__cell video {
-	display: block;
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-}
-
-/* Homepage videos — no native control bar on hover */
-
-.gallery-container video,
-.grid-gallery video,
-.gallery-lightbox-video {
-	-webkit-touch-callout: none;
-}
-
-.gallery-container video::-webkit-media-controls,
-.grid-gallery video::-webkit-media-controls,
-.gallery-lightbox-video::-webkit-media-controls,
-.gallery-container video::-webkit-media-controls-enclosure,
-.grid-gallery video::-webkit-media-controls-enclosure,
-.gallery-lightbox-video::-webkit-media-controls-enclosure,
-.gallery-container video::-webkit-media-controls-panel,
-.grid-gallery video::-webkit-media-controls-panel,
-.gallery-lightbox-video::-webkit-media-controls-panel {
-	display: none !important;
 }
