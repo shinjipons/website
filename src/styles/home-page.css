@@ -13,6 +13,7 @@
 }
 
 /* Social Links */
+
 .social-links {
 	display: flex;
 	gap: var(--spacing-l);
@@ -44,20 +45,14 @@
 	height: var(--spacing-s);
 }
 
-.social-button-corner-top-left {
-	left: 0;
-}
-
-.social-button-corner-top-right {
-	right: 0;
-}
-
-.social-button-corner-bottom-right {
-	right: 0;
-}
-
+.social-button-corner-top-left,
 .social-button-corner-bottom-left {
 	left: 0;
+}
+
+.social-button-corner-top-right,
+.social-button-corner-bottom-right {
+	right: 0;
 }
 
 /* General "Card" styling */
@@ -70,8 +65,11 @@
 	padding-top: var(--spacing-m);
 	padding-bottom: var(--spacing-m);
 	justify-content: space-between;
-	transition: opacity 200ms cubic-bezier(0.39, 0.575, 0.565, 1);
 	border-top: 1px solid var(--color-quaternary);
+	transition:
+		background-color 200ms cubic-bezier(0.39, 0.575, 0.565, 1),
+		border-radius 200ms cubic-bezier(0.39, 0.575, 0.565, 1);
+	border-radius: var(--spacing-none);
 }
 
 .generic-card {
@@ -94,17 +92,6 @@
 	color: var(--color-tertiary);
 }
 
-@media (max-width: 560px) {
-	.gallery-container {
-		max-height: min(100vw, 78dvh);
-		--gallery-card-size: clamp(3.9375rem, 31.5cqmin, 13.5rem);
-		perspective: min(
-			calc(var(--gallery-radius) * var(--gallery-sphere-scale, 1) * 2.7),
-			180vw
-		);
-	}
-}
-
 /* Blog */
 
 .generic-card > .date-year {
@@ -123,18 +110,32 @@
 	color: var(--color-tertiary);
 }
 
-/* Writing, Projects, Work Experience, Side Projects, Experiments */
+.generic-card > .date-monthday,
+.generic-card > .date-year,
+.generic-card > .project-name,
+.generic-card > .project-description {
+	transition: transform 200ms cubic-bezier(0.39, 0.575, 0.565, 1);
+}
 
 .generic-card:hover {
-	box-shadow: 0px 1px 0px 0px var(--color-quaternary);
+	background-color: var(--color-primary);
+	border-radius: var(--spacing-s);
 }
 
-.generic-card:last-child:hover {
-	box-shadow: 0px 1px 0px 0px var(--background-color);
+.generic-card:hover > .date-year,
+.generic-card:hover > .project-name {
+	color: var(--background-color);
+	transform: translateX(var(--spacing-m));
 }
 
-.cards-container:hover :is(.generic-card, .work-experience-card):not(:hover) {
-	opacity: 0.5;
+.generic-card:hover > .date-monthday,
+.generic-card:hover > .project-description {
+	color: var(--background-color);
+	transform: translateX(calc(-1 * var(--spacing-m)));
+}
+
+.generic-card:hover > .title {
+	color: var(--background-color);
 }
 
 /* Work experience */
@@ -179,9 +180,7 @@
 
 @media (max-width: 560px) {
 	/* Blog */
-
 	/* Hiding the publication month and day */
-
 	.date-monthday {
 		display: none;
 	}
@@ -196,14 +195,12 @@
 	}
 
 	/* Projects */
-
 	/* Right-aligning the project description */
 	.generic-card > p {
 		text-align: right;
 	}
 
 	/* Work experience */
-
 	/* Hide the position */
 	.work-experience-role {
 		display: none;
