@@ -50,8 +50,7 @@
 			#gallery .social-links a,
 			section > h1,
 			section > p,
-			.generic-card,
-			.work-experience-card
+			.generic-card
 		) {
 		opacity: 0;
 		transform: translateY(var(--page-reveal-transform));

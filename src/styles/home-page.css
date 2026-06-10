@@ -57,8 +57,7 @@
 
 /* General "Card" styling */
 
-.generic-card,
-.work-experience-card {
+.generic-card {
 	display: flex;
 	flex-direction: row;
 	margin-bottom: var(--spacing-none);
@@ -113,7 +112,9 @@
 .generic-card > .date-monthday,
 .generic-card > .date-year,
 .generic-card > .project-name,
-.generic-card > .project-description {
+.generic-card > .project-description,
+.generic-card > .work-experience-company,
+.generic-card > .work-experience-period {
 	transition: transform 200ms cubic-bezier(0.39, 0.575, 0.565, 1);
 }
 
@@ -140,40 +141,35 @@
 
 /* Work experience */
 
-.work-experience-card > * {
-	margin-bottom: var(--spacing-none);
-}
-
-.work-experience-card:last-child {
-	border-bottom: 1px solid var(--color-quaternary);
-}
-
-.work-experience-card > .work-experience-company {
+.generic-card > .work-experience-company {
 	width: var(--consistent-col-width);
-}
-
-.work-experience-card > .work-experience-company > a {
-	text-decoration: none;
 	color: var(--color-primary);
-	border: none;
 }
 
-.work-experience-card > .work-experience-company > a:hover {
-	border-bottom: 1px solid var(--color-primary);
-}
-
-.work-experience-card > .work-experience-role {
-	flex: 1;
+.generic-card > .work-experience-role {
+	flex-grow: 1;
 	color: var(--color-secondary);
 }
 
-.work-experience-card > .work-experience-period {
+.generic-card > .work-experience-period {
+	width: var(--consistent-col-width);
+	text-align: right;
 	color: var(--color-tertiary);
 	font-variant-numeric: tabular-nums;
 }
 
-.work-experience-card:hover {
-	box-shadow: 0px 1px 0px 0px var(--color-quaternary);
+.generic-card:hover > .work-experience-company {
+	color: var(--background-color);
+	transform: translateX(var(--spacing-m));
+}
+
+.generic-card:hover > .work-experience-role {
+	color: var(--background-color);
+}
+
+.generic-card:hover > .work-experience-period {
+	color: var(--background-color);
+	transform: translateX(calc(-1 * var(--spacing-m)));
 }
 
 /* Narrow viewports */

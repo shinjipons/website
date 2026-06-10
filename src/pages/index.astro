@@ -373,19 +373,16 @@ const blogPosts = allPosts.sort(
 			<div class="cards-container">
 				{
 					workExperience.map((job) => (
-						<div class="work-experience-card">
-							<p class="work-experience-company">
-								{job.url ? (
-									<a href={job.url} target="_blank" rel="noopener noreferrer">
-										{job.company}
-									</a>
-								) : (
-									<span>{job.company}</span>
-								)}
-							</p>
-							<p class="work-experience-role">{job.role}</p>
+						<a
+							href={job.url}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="generic-card"
+						>
+							<p class="work-experience-company">{job.company}</p>
+							<h3 class="work-experience-role">{job.role}</h3>
 							<p class="work-experience-period">{job.period}</p>
-						</div>
+						</a>
 					))
 				}
 			</div>
@@ -447,7 +444,7 @@ const blogPosts = allPosts.sort(
 
 		initPageReveal(
 			document.querySelector(".container"),
-			"#introduction > h1, #introduction > h3, #video > video, #gallery > p, #gallery .social-links a, section > h1, section > p, .generic-card, .work-experience-card",
+			"#introduction > h1, #introduction > h3, #video > video, #gallery > p, #gallery .social-links a, section > h1, section > p, .generic-card",
 		);
 	</script>
 </BaseLayout>
