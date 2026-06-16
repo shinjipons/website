@@ -25,7 +25,6 @@
 	/* Spacing */
 	--spacing-none: 0rem;
 	--spacing-xxs: 0.2rem;
-	--spacing-xs: 0.4rem;
 	--spacing-s: 0.6rem;
 	--spacing-m: 0.8rem;
 	--spacing-l: 1.2rem;
@@ -33,15 +32,14 @@
 	--spacing-xxl: 8rem;
 
 	/* Principal Hue */
-	--principal-hue: 271;
+	--principal-hue: 182;
 
 	/* Colors */
-	--color-primary: oklch(0% 0 var(--principal-hue));
-	--color-secondary: oklch(62% 0.00007 var(--principal-hue));
-	--color-tertiary: oklch(75% 0.00009 var(--principal-hue));
-	--color-quaternary: oklch(93% 0.00011 var(--principal-hue));
-	--background-color: oklch(1 0 0);
-	--color-overlay: oklch(0.45 0.02 270 / 0.75);
+	--color-primary: hsl(var(--principal-hue) 3% 10%);
+	--color-secondary: hsl(var(--principal-hue) 3% 35%);
+	--color-tertiary: hsl(var(--principal-hue) 3% 60%);
+	--color-quaternary: hsl(var(--principal-hue) 3% 90%);
+	--background-color: hsl(var(--principal-hue) 3% 94%);
 }
 
 * {
