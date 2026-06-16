@@ -39,6 +39,7 @@
 	--color-secondary: hsl(var(--principal-hue) 3% 35%);
 	--color-tertiary: hsl(var(--principal-hue) 3% 60%);
 	--color-quaternary: hsl(var(--principal-hue) 3% 90%);
+
 	--background-color: hsl(var(--principal-hue) 3% 94%);
 }
 
