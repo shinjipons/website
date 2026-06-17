@@ -45,8 +45,8 @@
 	.page-reveal.container:not(.page-reveal-ready) :is(
 			#introduction > h1,
 			#introduction > h3,
-			#gallery > p,
-			#gallery .social-links a,
+			#introduction > p,
+			#introduction .profile-links a,
 			section > h1,
 			section > p,
 			.generic-card

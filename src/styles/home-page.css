@@ -12,55 +12,50 @@
 	margin-bottom: var(--spacing-none);
 }
 
-/* Social Links */
+/* Profile links */
 
-.social-links {
-	display: flex;
+#introduction .profile-links {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
 	gap: var(--spacing-l);
-}
-
-.social-links:first-of-type {
 	margin-top: var(--spacing-xl);
 }
 
-.social-links > a {
-	flex-grow: 1;
-	text-align: center;
-}
-.social-button {
+.profile-link {
 	position: relative;
 	padding: var(--spacing-s) var(--spacing-l);
 	color: var(--color-primary);
+	text-align: center;
 }
 
-.social-button:hover {
+.profile-link:hover {
 	background-color: var(--color-quaternary);
 }
 
-.social-button-corner-top-left,
-.social-button-corner-top-right {
+.profile-link-corner {
 	position: absolute;
+	width: var(--spacing-s);
+	height: var(--spacing-s);
+}
+
+.profile-link-corner--top-left {
 	top: 0;
-	width: var(--spacing-s);
-	height: var(--spacing-s);
-}
-
-.social-button-corner-bottom-left,
-.social-button-corner-bottom-right {
-	position: absolute;
-	bottom: 0;
-	width: var(--spacing-s);
-	height: var(--spacing-s);
-}
-
-.social-button-corner-top-left,
-.social-button-corner-bottom-left {
 	left: 0;
 }
 
-.social-button-corner-top-right,
-.social-button-corner-bottom-right {
+.profile-link-corner--top-right {
+	top: 0;
 	right: 0;
+}
+
+.profile-link-corner--bottom-right {
+	bottom: 0;
+	right: 0;
+}
+
+.profile-link-corner--bottom-left {
+	bottom: 0;
+	left: 0;
 }
 
 /* General "Card" styling */
@@ -207,5 +202,15 @@
 	/* Hide the position */
 	.work-experience-role {
 		display: none;
+	}
+
+	#introduction .profile-links {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: var(--spacing-s);
+	}
+
+	.profile-link {
+		margin-bottom: var(--spacing-none);
 	}
 }

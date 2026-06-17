@@ -13,8 +13,16 @@ const lastUpdated = new Date(
 import BaseLayout from "../layouts/BaseLayout.astro";
 import "../styles/home-page.css";
 
-// Social links
-const socialLinks = [
+// Profile links
+const profileLinks = [
+	{
+		name: "Resume",
+		url: "https://shinjipons.com/resume.pdf",
+	},
+	{
+		name: "Portfolio",
+		url: "https://www.figma.com/deck/eRw4IdFoOf1V3f1qHNajkc/Portfolio-Presentation?node-id=0-1&t=fWvz3biLbLIRWqI8-1",
+	},
 	{
 		name: "LinkedIn",
 		url: "https://linkedin.com/in/shinji-pons",
@@ -26,18 +34,6 @@ const socialLinks = [
 	{
 		name: "Cal.com",
 		url: "https://cal.com/shinjipons",
-	},
-];
-
-// Career links
-const careerLinks = [
-	{
-		name: "Resume",
-		url: "https://shinjipons.com/resume.pdf",
-	},
-	{
-		name: "Portfolio",
-		url: "https://www.figma.com/deck/eRw4IdFoOf1V3f1qHNajkc/Portfolio-Presentation?node-id=0-1&t=fWvz3biLbLIRWqI8-1",
 	},
 ];
 
@@ -232,8 +228,6 @@ const blogPosts = allPosts.sort(
 		<section id="introduction">
 			<h1>Shinji Pons</h1>
 			<h3>Updated on {lastUpdated}</h3>
-		</section>
-		<section id="gallery">
 			<p>My expertise lies in the design of 3D tools and workflows.</p>
 			<p>
 				Right now, I'm taking a short break before I look for my next role.
@@ -246,11 +240,11 @@ const blogPosts = allPosts.sort(
 				rewards patience: hardware-adjacent flows, emerging workflows, and the
 				small details that separate good from exceptional.
 			</p>
-			<div class="social-links">
+			<div class="profile-links">
 				{
-					careerLinks.map((link) => (
+					profileLinks.map((link) => (
 						<a
-							class="social-button"
+							class="profile-link"
 							href={link.url}
 							target="_blank"
 							rel="noopener noreferrer"
@@ -261,7 +255,7 @@ const blogPosts = allPosts.sort(
 								viewBox="0 0 8 8"
 								fill="none"
 								xmlns="http://www.w3.org/2000/svg"
-								class="social-button-corner-top-left"
+								class="profile-link-corner profile-link-corner--top-left"
 							>
 								<path
 									d="M0.5 7.5V0.5H7.5"
@@ -276,7 +270,7 @@ const blogPosts = allPosts.sort(
 								viewBox="0 0 8 8"
 								fill="none"
 								xmlns="http://www.w3.org/2000/svg"
-								class="social-button-corner-top-right"
+								class="profile-link-corner profile-link-corner--top-right"
 							>
 								<path
 									d="M7.5 7.5V0.5H0.5"
@@ -291,7 +285,7 @@ const blogPosts = allPosts.sort(
 								viewBox="0 0 8 8"
 								fill="none"
 								xmlns="http://www.w3.org/2000/svg"
-								class="social-button-corner-bottom-right"
+								class="profile-link-corner profile-link-corner--bottom-right"
 							>
 								<path
 									d="M7.5 0.5V7.5H0.5"
@@ -306,81 +300,7 @@ const blogPosts = allPosts.sort(
 								viewBox="0 0 8 8"
 								fill="none"
 								xmlns="http://www.w3.org/2000/svg"
-								class="social-button-corner-bottom-left"
-							>
-								<path
-									d="M0.5 0.5V7.5H7.5"
-									stroke="black"
-									stroke-linecap="square"
-								/>
-							</svg>
-
-							{link.name}
-						</a>
-					))
-				}
-			</div>
-			<div class="social-links">
-				{
-					socialLinks.map((link) => (
-						<a
-							class="social-button"
-							href={link.url}
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							<svg
-								width="8"
-								height="8"
-								viewBox="0 0 8 8"
-								fill="none"
-								xmlns="http://www.w3.org/2000/svg"
-								class="social-button-corner-top-left"
-							>
-								<path
-									d="M0.5 7.5V0.5H7.5"
-									stroke="black"
-									stroke-linecap="square"
-								/>
-							</svg>
-
-							<svg
-								width="8"
-								height="8"
-								viewBox="0 0 8 8"
-								fill="none"
-								xmlns="http://www.w3.org/2000/svg"
-								class="social-button-corner-top-right"
-							>
-								<path
-									d="M7.5 7.5V0.5H0.5"
-									stroke="black"
-									stroke-linecap="square"
-								/>
-							</svg>
-
-							<svg
-								width="8"
-								height="8"
-								viewBox="0 0 8 8"
-								fill="none"
-								xmlns="http://www.w3.org/2000/svg"
-								class="social-button-corner-bottom-right"
-							>
-								<path
-									d="M7.5 0.5V7.5H0.5"
-									stroke="black"
-									stroke-linecap="square"
-								/>
-							</svg>
-
-							<svg
-								width="8"
-								height="8"
-								viewBox="0 0 8 8"
-								fill="none"
-								xmlns="http://www.w3.org/2000/svg"
-								class="social-button-corner-bottom-left"
+								class="profile-link-corner profile-link-corner--bottom-left"
 							>
 								<path
 									d="M0.5 0.5V7.5H7.5"
@@ -529,7 +449,7 @@ const blogPosts = allPosts.sort(
 
 		initPageReveal(
 			document.querySelector(".container"),
-			"#introduction > h1, #introduction > h3, #gallery > p, #gallery .social-links a, section > h1, section > p, .generic-card",
+			"#introduction > h1, #introduction > h3, #introduction > p, #introduction .profile-links a, section > h1, section > p, .generic-card",
 		);
 	</script>
 </BaseLayout>
