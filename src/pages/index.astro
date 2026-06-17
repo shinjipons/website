@@ -29,6 +29,18 @@ const socialLinks = [
 	},
 ];
 
+// Career links
+const careerLinks = [
+	{
+		name: "Resume",
+		url: "https://shinjipons.com/resume.pdf",
+	},
+	{
+		name: "Portfolio",
+		url: "https://www.figma.com/deck/eRw4IdFoOf1V3f1qHNajkc/Portfolio-Presentation?node-id=0-1&t=fWvz3biLbLIRWqI8-1",
+	},
+];
+
 // Work experience
 const workExperience = [
 	{
@@ -234,7 +246,80 @@ const blogPosts = allPosts.sort(
 				rewards patience: hardware-adjacent flows, emerging workflows, and the
 				small details that separate good from exceptional.
 			</p>
-			<p>My full resume is available upon request.</p>
+			<div class="social-links">
+				{
+					careerLinks.map((link) => (
+						<a
+							class="social-button"
+							href={link.url}
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<svg
+								width="8"
+								height="8"
+								viewBox="0 0 8 8"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+								class="social-button-corner-top-left"
+							>
+								<path
+									d="M0.5 7.5V0.5H7.5"
+									stroke="black"
+									stroke-linecap="square"
+								/>
+							</svg>
+
+							<svg
+								width="8"
+								height="8"
+								viewBox="0 0 8 8"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+								class="social-button-corner-top-right"
+							>
+								<path
+									d="M7.5 7.5V0.5H0.5"
+									stroke="black"
+									stroke-linecap="square"
+								/>
+							</svg>
+
+							<svg
+								width="8"
+								height="8"
+								viewBox="0 0 8 8"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+								class="social-button-corner-bottom-right"
+							>
+								<path
+									d="M7.5 0.5V7.5H0.5"
+									stroke="black"
+									stroke-linecap="square"
+								/>
+							</svg>
+
+							<svg
+								width="8"
+								height="8"
+								viewBox="0 0 8 8"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+								class="social-button-corner-bottom-left"
+							>
+								<path
+									d="M0.5 0.5V7.5H7.5"
+									stroke="black"
+									stroke-linecap="square"
+								/>
+							</svg>
+
+							{link.name}
+						</a>
+					))
+				}
+			</div>
 			<div class="social-links">
 				{
 					socialLinks.map((link) => (

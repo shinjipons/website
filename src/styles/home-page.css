@@ -19,6 +19,14 @@
 	gap: var(--spacing-l);
 }
 
+.social-links:first-of-type {
+	margin-top: var(--spacing-xl);
+}
+
+.social-links > a {
+	flex-grow: 1;
+	text-align: center;
+}
 .social-button {
 	position: relative;
 	padding: var(--spacing-s) var(--spacing-l);
