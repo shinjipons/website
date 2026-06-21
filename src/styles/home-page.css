@@ -204,6 +204,10 @@
 		display: none;
 	}
 
+	.generic-card > .work-experience-company {
+		text-align: left;
+	}
+
 	#introduction .profile-links {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
