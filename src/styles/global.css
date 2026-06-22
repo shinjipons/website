@@ -51,18 +51,20 @@ html {
 	background-color: var(--background-color);
 	color-scheme: light;
 	font-size: var(--html-font-size);
-	padding-left: var(--spacing-xl);
-	padding-right: var(--spacing-xl);
+	padding-left: var(--spacing-none);
+	padding-right: var(--spacing-none);
 	overflow-x: hidden;
 }
 
 body {
 	display: flex;
+	align-items: center;
 	flex-direction: column;
+	color: var(--color-primary);
 	margin-top: var(--spacing-xxl);
 	margin-bottom: var(--spacing-xxl);
-	align-items: center;
-	color: var(--color-primary);
+	margin-left: var(--spacing-xl);
+	margin-right: var(--spacing-xl);
 }
 
 main {
@@ -122,11 +124,7 @@ p > a {
 	}
 }
 
-@media (max-width: 560px) {
-	html {
-		padding-left: var(--spacing-m);
-		padding-right: var(--spacing-m);
-	}
+@media (max-width: 575px) {
 	body {
 		margin-top: var(--spacing-xl);
 		margin-bottom: var(--spacing-xl);

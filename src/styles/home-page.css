@@ -14,10 +14,10 @@
 
 /* Profile links */
 
-#introduction .profile-links {
+.profile-links {
 	display: grid;
 	grid-template-columns: repeat(5, 1fr);
-	gap: var(--spacing-l);
+	gap: var(--spacing-m);
 	margin-top: var(--spacing-xl);
 }
 
@@ -26,10 +26,14 @@
 	padding: var(--spacing-s) var(--spacing-l);
 	color: var(--color-primary);
 	text-align: center;
+	transition:
+		background-color 100ms cubic-bezier(0.39, 0.575, 0.565, 1),
+		color 100ms cubic-bezier(0.39, 0.575, 0.565, 1);
 }
 
 .profile-link:hover {
-	background-color: var(--color-quaternary);
+	background-color: var(--color-primary);
+	color: var(--background-color);
 }
 
 .profile-link-corner {
@@ -176,7 +180,7 @@
 
 /* Narrow viewports */
 
-@media (max-width: 560px) {
+@media (max-width: 575px) {
 	/* Blog */
 	/* Hiding the publication month and day */
 	.date-monthday {
@@ -202,6 +206,10 @@
 	/* Hide the position */
 	.work-experience-role {
 		display: none;
+	}
+
+	.generic-card > .work-experience-company {
+		text-align: left;
 	}
 
 	#introduction .profile-links {
