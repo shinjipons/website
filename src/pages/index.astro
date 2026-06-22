@@ -230,6 +230,12 @@ const allPosts = await getCollection("writing");
 const blogPosts = allPosts.sort(
 	(a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
 );
+
+// Same thing for case studies
+const allCaseStudies = await getCollection("caseStudies");
+const caseStudies = allCaseStudies.sort(
+	(a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
+);
 ---
 
 <BaseLayout title="Shinji Pons" description="Personal website">
@@ -323,6 +329,35 @@ const blogPosts = allPosts.sort(
 					))
 				}
 			</div>
+		</section>
+
+		<!-- Case Studies Section -->
+		<section id="case-studies">
+			<h1>Case Studies</h1>
+			{
+				caseStudies.length > 0 ? (
+					<div class="cards-container">
+						{caseStudies.map((study) => (
+							<a href={`/case-studies/${study.id}`} class="generic-card">
+								<p class="date-year">
+									{study.data.pubDate.toLocaleDateString("en-US", {
+										year: "numeric",
+									})}
+								</p>
+								<h3 class="title">{study.data.title}</h3>
+								<p class="date-monthday">
+									{study.data.pubDate.toLocaleDateString("en-US", {
+										month: "long",
+										day: "2-digit",
+									})}
+								</p>
+							</a>
+						))}
+					</div>
+				) : (
+					<p>Check back soon...</p>
+				)
+			}
 		</section>
 
 		<!-- Blog Posts Section -->
