@@ -342,7 +342,7 @@ const caseStudies = allCaseStudies.sort(
 		</section>
 
 		<!-- Case Studies Section -->
-		<section id="case-studies">
+		<!-- <section id="case-studies">
 			<h1>Case Studies</h1>
 			{
 				caseStudies.length > 0 ? (
@@ -368,7 +368,7 @@ const caseStudies = allCaseStudies.sort(
 					<p>Check back soon...</p>
 				)
 			}
-		</section>
+		</section> -->
 
 		<!-- Blog Posts Section -->
 		<section id="writing">
@@ -402,6 +402,27 @@ const caseStudies = allCaseStudies.sort(
 			}
 		</section>
 
+		<!-- Work Experience Section -->
+		<section id="experience">
+			<h1>Work Experience</h1>
+			<div class="cards-container">
+				{
+					workExperience.map((job) => (
+						<a
+							href={job.url}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="generic-card"
+						>
+							<p class="work-experience-company">{job.company}</p>
+							<h3 class="work-experience-role">{job.role}</h3>
+							<p class="work-experience-period">{job.period}</p>
+						</a>
+					))
+				}
+			</div>
+		</section>
+
 		<!-- Work Projects Section -->
 		<section id="projects">
 			<h1>Projects</h1>
@@ -424,27 +445,6 @@ const caseStudies = allCaseStudies.sort(
 					<p>Check back soon...</p>
 				)
 			}
-		</section>
-
-		<!-- Work Experience Section -->
-		<section id="experience">
-			<h1>Work Experience</h1>
-			<div class="cards-container">
-				{
-					workExperience.map((job) => (
-						<a
-							href={job.url}
-							target="_blank"
-							rel="noopener noreferrer"
-							class="generic-card"
-						>
-							<p class="work-experience-company">{job.company}</p>
-							<h3 class="work-experience-role">{job.role}</h3>
-							<p class="work-experience-period">{job.period}</p>
-						</a>
-					))
-				}
-			</div>
 		</section>
 
 		<!-- Side Projects Section -->
