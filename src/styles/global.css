@@ -1,0 +1,76 @@
+:root {
+	color-scheme: light dark;
+	--color-bg: #ffffff;
+	--color-text: #1a1a1a;
+	--color-muted: #6b6b6b;
+	--font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+	--font-mono: ui-monospace, 'SF Mono', Consolas, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--color-bg: #111111;
+		--color-text: #ededed;
+		--color-muted: #9a9a9a;
+	}
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+* {
+	margin: 0;
+}
+
+html {
+	-webkit-text-size-adjust: 100%;
+}
+
+body {
+	min-height: 100dvh;
+	background: var(--color-bg);
+	color: var(--color-text);
+	font-family: var(--font-sans);
+	line-height: 1.5;
+	-webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+	display: block;
+	max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+	font: inherit;
+}
+
+h1,
+h2,
+h3,
+h4 {
+	line-height: 1.2;
+	text-wrap: balance;
+}
+
+p {
+	text-wrap: pretty;
+}
+
+a {
+	color: inherit;
+}
+
+code,
+pre {
+	font-family: var(--font-mono);
+}
