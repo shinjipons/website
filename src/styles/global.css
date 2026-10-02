@@ -135,6 +135,12 @@ section {
     }
 }
 
+.profile-picture {
+    width: 8rem;
+    height: 8rem;
+    border-radius: 1.4rem;
+}
+
 .available {
     color: var(--color-accent-available);
 }

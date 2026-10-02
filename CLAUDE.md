@@ -8,6 +8,8 @@ astro dev --background
 
 Manage the background server with `astro dev stop`, `astro dev status`, and `astro dev logs`.
 
+When previewing in the browser pane, reuse the existing localhost tab: list the open tabs first and reload the one already on the dev server. Only open a new tab if none is open, and close any duplicate localhost tabs.
+
 ## Documentation
 
 Full documentation: https://docs.astro.build
