@@ -101,6 +101,9 @@ section {
     &[data-for="linkedin"] {
         background: linear-gradient(rgba(31, 31, 31, 1), rgba(27, 31, 35, 1));
     }
+    &[data-for="github"] {
+        background: linear-gradient(rgba(31, 31, 31, 1), rgba(13, 17, 23, 1));
+    }
     /* Invisible bridge over the gap up to the icon, so moving onto the card doesn't count as leaving */
     &::before {
         content: "";
