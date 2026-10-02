@@ -62,13 +62,21 @@ const socials = (await getCollection("social")).sort((a, b) => a.data.order - b.
             </a>
           );
         })}
-        <div class="hover-card">
+        <div class="hover-card" data-for="x">
           <div class="hover-card-header">
             <Image class="avatar" src={profilePicture} alt="Shinji Pons" width={96} height={96} />
             <a class="button follow-button" href="https://x.com/intent/follow?screen_name=shinjipons" target="_blank">Follow</a>
           </div>
           <p><strong>Shinji Pons</strong><br />@shinjipons</p>
           <p><strong>358</strong> following&nbsp;&nbsp;<strong>133</strong> followers</p>
+        </div>
+        <div class="hover-card" data-for="linkedin">
+          <div class="hover-card-header">
+            <Image class="avatar" src={profilePicture} alt="Shinji Pons" width={96} height={96} />
+            <a class="button follow-button" href="https://www.linkedin.com/in/shinjipons" target="_blank">Connect</a>
+          </div>
+          <p><strong>Shinji Pons</strong><br />I design 3D tools and workflows</p>
+          <p><strong>312</strong> connections</p>
         </div>
       </section>
     </main>
@@ -82,19 +90,36 @@ const socials = (await getCollection("social")).sort((a, b) => a.data.order - b.
         return () => copies.forEach((copy) => animate(copy.querySelectorAll("span"), { y: 0 }, { delay: stagger(0.02) }));
       });
 
-      const card = document.querySelector(".hover-card");
-      let hideTimer;
+      // The card currently showing, so moving to another icon can swap cards without animating
+      let openCard = null;
 
-      hover([document.querySelector('[data-social="x"]'), card], () => {
-        clearTimeout(hideTimer);
-        card.style.pointerEvents = "auto";
-        animate(card, { opacity: 1, y: 0 }, { duration: 0.2 });
-        return () => {
-          hideTimer = setTimeout(() => {
-            card.style.pointerEvents = "none";
-            animate(card, { opacity: 0, y: -8 }, { duration: 0.2 });
-          }, 150);
+      document.querySelectorAll(".hover-card").forEach((card) => {
+        let hideTimer;
+
+        const show = (duration) => {
+          card.style.pointerEvents = "auto";
+          animate(card, { opacity: 1, y: 0 }, { duration });
+          openCard = { card, close };
         };
+        const hide = (duration) => {
+          card.style.pointerEvents = "none";
+          animate(card, { opacity: 0, y: -8 }, { duration });
+          if (openCard?.card === card) openCard = null;
+        };
+        const close = () => {
+          clearTimeout(hideTimer);
+          hide(0);
+        };
+
+        hover([document.querySelector(`[data-social="${card.dataset.for}"]`), card], () => {
+          clearTimeout(hideTimer);
+          const switching = openCard && openCard.card !== card;
+          if (switching) openCard.close();
+          show(switching ? 0 : 0.2);
+          return () => {
+            hideTimer = setTimeout(() => hide(0.2), 150);
+          };
+        });
       });
     </script>
   </body>
