@@ -104,6 +104,9 @@ section {
     &[data-for="github"] {
         background: linear-gradient(rgba(31, 31, 31, 1), rgba(13, 17, 23, 1));
     }
+    &[data-for="figma"] {
+        background: linear-gradient(rgba(31, 31, 31, 1), rgba(44, 44, 44, 1));
+    }
     /* Invisible bridge over the gap up to the icon, so moving onto the card doesn't count as leaving */
     &::before {
         content: "";
