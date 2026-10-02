@@ -25,3 +25,6 @@ pnpm-debug.log*
 
 # trial fonts (license forbids public use)
 public/fonts/
+
+# Claude Code local settings
+.claude/
