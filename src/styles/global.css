@@ -79,6 +79,11 @@ section {
 .social-link {
     display: flex;
     fill: var(--color-secondary);
+    transition: fill 0.3s ease-in-out;
+    &:hover {
+        transition: fill 0.1s ease-in-out;
+        fill: var(--color-primary);
+    }
 }
 
 .available {
@@ -97,5 +102,23 @@ section {
     &:hover {
         transition: background-color 0.1s ease-in;
         background-color: rgba(255, 255, 255, 0.8);
+    }
+}
+
+.rolling-text {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    white-space: pre;
+}
+
+.rolling-copy {
+    & span {
+        display: inline-block;
+    }
+    & + .rolling-copy {
+        position: absolute;
+        top: 100%;
+        left: 0;
     }
 }

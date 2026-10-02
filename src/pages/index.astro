@@ -6,7 +6,8 @@ import X from "../icons/x.svg";
 import GitHub from "../icons/github.svg";
 import Figma from "../icons/figma.svg";
 
-const icons = { linkedin: LinkedIn, x: X, github: GitHub, figma: Figma };
+const ctaLabel = "Book a call";
+const icons ={ linkedin: LinkedIn, x: X, github: GitHub, figma: Figma };
 const socials = (await getCollection("social")).sort((a, b) => a.data.order - b.data.order);
 ---
 
@@ -44,7 +45,12 @@ const socials = (await getCollection("social")).sort((a, b) => a.data.order - b.
       </section>
 
       <section class="cta">
-        <a class="button" href="https://cal.com/shinjipons/" target="_blank">Book a call</a>
+        <a class="button" href="https://cal.com/shinjipons/" target="_blank" aria-label={ctaLabel}>
+          <span class="rolling-text" aria-hidden="true">
+            <span class="rolling-copy">{[...ctaLabel].map((char) => <span>{char}</span>)}</span>
+            <span class="rolling-copy">{[...ctaLabel].map((char) => <span>{char}</span>)}</span>
+          </span>
+        </a>
         {socials.map(({ id, data }) => {
           const Icon = icons[id];
           return (
@@ -55,5 +61,15 @@ const socials = (await getCollection("social")).sort((a, b) => a.data.order - b.
         })}
       </section>
     </main>
+
+    <script>
+      import { animate, hover, stagger } from "motion";
+
+      hover(".button", (button) => {
+        const copies = button.querySelectorAll(".rolling-copy");
+        copies.forEach((copy) => animate(copy.querySelectorAll("span"), { y: "-100%" }, { delay: stagger(0.02) }));
+        return () => copies.forEach((copy) => animate(copy.querySelectorAll("span"), { y: 0 }, { delay: stagger(0.02) }));
+      });
+    </script>
   </body>
 </html>
