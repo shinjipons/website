@@ -1,0 +1,6 @@
+[
+  { "id": "linkedin", "order": 1, "name": "LinkedIn", "url": "https://www.linkedin.com/in/shinjipons/" },
+  { "id": "x", "order": 2, "name": "X", "url": "https://x.com/shinjipons/" },
+  { "id": "github", "order": 3, "name": "GitHub", "url": "https://github.com/shinjipons/" },
+  { "id": "figma", "order": 4, "name": "Figma", "url": "https://www.figma.com/@shinjipons" }
+]

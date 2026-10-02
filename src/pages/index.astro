@@ -1,5 +1,13 @@
 ---
 import "../styles/global.css";
+import { getCollection } from "astro:content";
+import LinkedIn from "../icons/linkedin.svg";
+import X from "../icons/x.svg";
+import GitHub from "../icons/github.svg";
+import Figma from "../icons/figma.svg";
+
+const icons = { linkedin: LinkedIn, x: X, github: GitHub, figma: Figma };
+const socials = (await getCollection("social")).sort((a, b) => a.data.order - b.data.order);
 ---
 
 <html lang="en">
@@ -35,8 +43,16 @@ import "../styles/global.css";
         </div>
       </section>
 
-      <section>
+      <section class="cta">
         <a class="button" href="https://cal.com/shinjipons/" target="_blank">Book a call</a>
+        {socials.map(({ id, data }) => {
+          const Icon = icons[id];
+          return (
+            <a class="social-link" href={data.url} target="_blank" aria-label={data.name}>
+              <Icon />
+            </a>
+          );
+        })}
       </section>
     </main>
   </body>
