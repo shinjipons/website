@@ -71,17 +71,66 @@ section {
     flex-direction: row;
     align-items: center;
     gap: 1.6rem;
-    & .button {
+    position: relative;
+    & > .button {
         margin-right: auto;
     }
+}
+
+.hover-card {
+    position: absolute;
+    top: calc(100% + 0.8rem);
+    right: 0;
+    width: 28rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    padding: 1.5rem;
+    background: linear-gradient(rgba(31, 31, 31, 1), rgba(26, 26, 26, 1));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1.6rem;
+    box-shadow: 0 0.6rem 1.1rem -0.5rem rgba(0, 0, 0, 0.22), 0 0.8rem 1.6rem 0 rgba(0, 0, 0, 0.12);
+    color: var(--color-secondary);
+    opacity: 0;
+    transform: translateY(-0.8rem);
+    pointer-events: none;
+    & strong {
+        color: var(--color-primary);
+    }
+    /* Invisible bridge over the gap up to the icon, so moving onto the card doesn't count as leaving */
+    &::before {
+        content: "";
+        position: absolute;
+        bottom: 100%;
+        left: 0;
+        right: 0;
+        height: 1.6rem;
+    }
+}
+
+.hover-card-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.avatar {
+    width: 4.8rem;
+    height: 4.8rem;
+    border-radius: 50%;
+}
+
+.follow-button {
+    border-radius: 5rem;
+    margin-top: 0.6rem;
 }
 
 .social-link {
     display: flex;
     fill: var(--color-secondary);
-    transition: fill 0.3s ease-in-out;
+    transition: fill 0.1s ease-in-out;
+    /* transition: fill 0.3s ease-in-out; */
     &:hover {
-        transition: fill 0.1s ease-in-out;
         fill: var(--color-primary);
     }
 }

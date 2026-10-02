@@ -1,6 +1,8 @@
 ---
 import "../styles/global.css";
 import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+import profilePicture from "../assets/profile-picture.png";
 import LinkedIn from "../icons/linkedin.svg";
 import X from "../icons/x.svg";
 import GitHub from "../icons/github.svg";
@@ -54,11 +56,19 @@ const socials = (await getCollection("social")).sort((a, b) => a.data.order - b.
         {socials.map(({ id, data }) => {
           const Icon = icons[id];
           return (
-            <a class="social-link" href={data.url} target="_blank" aria-label={data.name}>
+            <a class="social-link" href={data.url} target="_blank" aria-label={data.name} data-social={id}>
               <Icon />
             </a>
           );
         })}
+        <div class="hover-card">
+          <div class="hover-card-header">
+            <Image class="avatar" src={profilePicture} alt="Shinji Pons" width={96} height={96} />
+            <a class="button follow-button" href="https://x.com/intent/follow?screen_name=shinjipons" target="_blank">Follow</a>
+          </div>
+          <p><strong>Shinji Pons</strong><br />@shinjipons</p>
+          <p><strong>358</strong> following&nbsp;&nbsp;<strong>133</strong> followers</p>
+        </div>
       </section>
     </main>
 
@@ -69,6 +79,21 @@ const socials = (await getCollection("social")).sort((a, b) => a.data.order - b.
         const copies = button.querySelectorAll(".rolling-copy");
         copies.forEach((copy) => animate(copy.querySelectorAll("span"), { y: "-100%" }, { delay: stagger(0.02) }));
         return () => copies.forEach((copy) => animate(copy.querySelectorAll("span"), { y: 0 }, { delay: stagger(0.02) }));
+      });
+
+      const card = document.querySelector(".hover-card");
+      let hideTimer;
+
+      hover([document.querySelector('[data-social="x"]'), card], () => {
+        clearTimeout(hideTimer);
+        card.style.pointerEvents = "auto";
+        animate(card, { opacity: 1, y: 0 }, { duration: 0.2 });
+        return () => {
+          hideTimer = setTimeout(() => {
+            card.style.pointerEvents = "none";
+            animate(card, { opacity: 0, y: -8 }, { duration: 0.2 });
+          }, 150);
+        };
       });
     </script>
   </body>
