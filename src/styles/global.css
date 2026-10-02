@@ -17,6 +17,7 @@
     --width-text: 56rem;
     --gap-grid: 2.4rem;
     --gap-section: 4.3rem;
+    --radius-button: 1rem;
 }
 
 html {
@@ -67,4 +68,15 @@ section {
 
 .available {
     color: var(--color-accent-available);
+}
+
+.button {
+    align-self: start;
+    background-color: var(--color-primary);
+    color: var(--color-background);
+    border-radius: var(--radius-button);
+    padding: 0.4rem 2rem 0.6rem;
+    font-size: 1.5rem;
+    line-height: 2.6rem;
+    text-decoration: none;
 }
