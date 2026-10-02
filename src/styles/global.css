@@ -1,132 +1,70 @@
-@import "./page-reveal.css";
-
-/* Global theme variables */
-:root {
-	--html-font-size: 10px; /* do not change this */
-	--main-container-width: 52.8rem;
-
-	/* Font families */
-	--font-family-sans: "Inter", sans-serif;
-	--font-family-mono: "Google Sans Code", monospace;
-
-	/* Font sizes */
-	--text-font-size: 1.4rem;
-	--code-font-size: 1.3rem;
-	--text-line-height: 2.3rem;
-
-	/* Weights */
-	--h1-font-weight: 600;
-	--p-font-weight: 400;
-	--code-font-weight: 450;
-
-	/* Transitions */
-	--hover-transition-duration: 0.1s;
-
-	/* Spacing */
-	--spacing-none: 0rem;
-	--spacing-xxs: 0.2rem;
-	--spacing-s: 0.6rem;
-	--spacing-m: 0.8rem;
-	--spacing-l: 1.2rem;
-	--spacing-xl: 4rem;
-	--spacing-xxl: 8rem;
-
-	/* Principal Hue */
-	--principal-hue: 182;
-
-	/* Colors */
-	--color-primary: hsl(var(--principal-hue) 3% 10%);
-	--color-secondary: hsl(var(--principal-hue) 3% 35%);
-	--color-tertiary: hsl(var(--principal-hue) 3% 60%);
-	--color-quaternary: hsl(var(--principal-hue) 3% 90%);
-
-	--background-color: hsl(var(--principal-hue) 3% 94%);
+@font-face {
+    font-family: "GT America";
+    src: url("/fonts/GT-America-Trial-VF.woff2") format("woff2-variations");
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
 }
 
-* {
-	box-sizing: content-box;
+:root {
+    color-scheme: dark;
+    --color-background: rgba(20, 20, 20, 1);
+    --color-primary: rgba(255, 255, 255, 1);
+    --color-accent-available: rgba(80, 201, 53, 1);
+    --font-sans: "GT America", system-ui, sans-serif;
+    --font-size-root: 10px;
+    --width-max: 84.8rem;
+    --width-text: 56rem;
+    --gap-grid: 2.4rem;
+    --gap-section: 4.3rem;
 }
 
 html {
-	background-color: var(--background-color);
-	color-scheme: light;
-	font-size: var(--html-font-size);
-	padding-left: var(--spacing-none);
-	padding-right: var(--spacing-none);
-	overflow-x: hidden;
+    font-size: var(--font-size-root);
 }
 
 body {
-	display: flex;
-	align-items: center;
-	flex-direction: column;
-	color: var(--color-primary);
-	margin-top: var(--spacing-xxl);
-	margin-bottom: var(--spacing-xxl);
-	margin-left: var(--spacing-xl);
-	margin-right: var(--spacing-xl);
+    background-color: var(--color-background);
+    color: var(--color-primary);
+    font-family: var(--font-sans);
+    max-width: var(--width-max);
+    margin-inline: auto;
+    padding: 12rem 1.6rem 24rem;
 }
 
 main {
-	width: 100%;
-	max-width: var(--main-container-width);
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-section);
+}
+
+h1, p, ul, li {
+  font-size: 1.5rem;
+  line-height: 2.6rem;
+  margin: 0;
+}
+
+strong {
+    font-weight: 600;
+}
+
+ul {
+    padding-left: 0px;
+}
+
+li {
+    margin-left: 2.4rem;
 }
 
 section {
-	margin-top: var(--spacing-xl);
-	margin-bottom: var(--spacing-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-grid);
+    width: 100%;
+    max-width: var(--width-text);
+    margin-inline: auto;
 }
 
-h1,
-h2,
-h3,
-p,
-a,
-ul,
-ol {
-	font-family: var(--font-family-sans);
-	font-optical-sizing: auto;
-	font-style: normal;
-	font-size: var(--text-font-size);
-	line-height: var(--text-line-height);
-	margin-top: var(--spacing-none);
-	margin-bottom: var(--spacing-l);
-}
-
-h1,
-h2 {
-	font-weight: var(--h1-font-weight);
-	color: var(--color-primary);
-}
-
-h3 {
-	font-weight: var(--p-font-weight);
-	color: var(--color-secondary);
-}
-
-p {
-	font-weight: var(--p-font-weight);
-}
-
-a {
-	text-decoration: none;
-	color: var(--color-secondary);
-}
-
-a:hover {
-	color: var(--color-primary);
-}
-
-p > a {
-	border-bottom: 1px solid var(--color-tertiary);
-	&:hover {
-		border-bottom: 1px solid var(--color-primary);
-	}
-}
-
-@media (max-width: 575px) {
-	body {
-		margin-top: var(--spacing-xl);
-		margin-bottom: var(--spacing-xl);
-	}
+.available {
+    color: var(--color-accent-available);
 }
